@@ -115,14 +115,19 @@ import java.util.List;
 
 import javax.swing.event.EventListenerList;
 
-import org.jfree.chart.entity.AxisEntity;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.event.AxisChangeListener;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.util.AttrStringUtils;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.axis.AxisLabelLocation;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.AxisEntity;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.event.AxisChangeListener;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.util.AttrStringUtils;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleEdge;
@@ -216,7 +221,7 @@ public abstract class Axis implements Cloneable, Serializable {
     private double labelAngle;
     
     /** The axis label location (new in 1.0.16). */
-    private AxisLabelLocation labelLocation;
+    private jfree.chart.axis.AxisLabelLocation labelLocation;
 
     /** A flag that controls whether or not the axis line is visible. */
     private boolean axisLineVisible;
@@ -313,7 +318,7 @@ public abstract class Axis implements Cloneable, Serializable {
         this.labelPaint = DEFAULT_AXIS_LABEL_PAINT;
         this.labelInsets = DEFAULT_AXIS_LABEL_INSETS;
         this.labelAngle = 0.0;
-        this.labelLocation = AxisLabelLocation.MIDDLE;
+        this.labelLocation = jfree.chart.axis.AxisLabelLocation.MIDDLE;
 
         this.axisLineVisible = true;
         this.axisLinePaint = DEFAULT_AXIS_LINE_PAINT;
@@ -582,13 +587,13 @@ public abstract class Axis implements Cloneable, Serializable {
     
     /**
      * Returns the location of the axis label.  The default is
-     * {@link AxisLabelLocation#MIDDLE}.
+     * {@link jfree.chart.axis.AxisLabelLocation#MIDDLE}.
      * 
      * @return The location of the axis label (never {@code null}). 
      * 
      * @since 1.0.16
      */
-    public AxisLabelLocation getLabelLocation() {
+    public jfree.chart.axis.AxisLabelLocation getLabelLocation() {
         return this.labelLocation;
     }
     
@@ -600,7 +605,7 @@ public abstract class Axis implements Cloneable, Serializable {
      * 
      * @since 1.0.16
      */
-    public void setLabelLocation(AxisLabelLocation location) {
+    public void setLabelLocation(jfree.chart.axis.AxisLabelLocation location) {
         ParamChecks.nullNotPermitted(location, "location");
         this.labelLocation = location;
         fireChangeEvent();
@@ -1090,10 +1095,10 @@ public abstract class Axis implements Cloneable, Serializable {
      * @return The space required to draw the axis (including pre-reserved
      *         space).
      */
-    public abstract AxisSpace reserveSpace(Graphics2D g2, Plot plot,
-                                           Rectangle2D plotArea,
-                                           RectangleEdge edge,
-                                           AxisSpace space);
+    public abstract jfree.chart.axis.AxisSpace reserveSpace(Graphics2D g2, Plot plot,
+                                                                 Rectangle2D plotArea,
+                                                                 RectangleEdge edge,
+                                                                 AxisSpace space);
 
     /**
      * Draws the axis on a Java 2D graphics device (such as the screen or a
@@ -1109,9 +1114,9 @@ public abstract class Axis implements Cloneable, Serializable {
      *
      * @return The axis state (never {@code null}).
      */
-    public abstract AxisState draw(Graphics2D g2, double cursor,
-            Rectangle2D plotArea, Rectangle2D dataArea, RectangleEdge edge,
-            PlotRenderingInfo plotState);
+    public abstract jfree.chart.axis.AxisState draw(Graphics2D g2, double cursor,
+                                                         Rectangle2D plotArea, Rectangle2D dataArea, RectangleEdge edge,
+                                                         PlotRenderingInfo plotState);
 
     /**
      * Calculates the positions of the ticks for the axis, storing the results
@@ -1124,7 +1129,7 @@ public abstract class Axis implements Cloneable, Serializable {
      *
      * @return The list of ticks.
      */
-    public abstract List refreshTicks(Graphics2D g2, AxisState state,
+    public abstract List refreshTicks(Graphics2D g2, jfree.chart.axis.AxisState state,
             Rectangle2D dataArea, RectangleEdge edge);
 
     /**
@@ -1140,7 +1145,7 @@ public abstract class Axis implements Cloneable, Serializable {
      *
      * @since 1.0.13
      */
-    protected void createAndAddEntity(double cursor, AxisState state,
+    protected void createAndAddEntity(double cursor, jfree.chart.axis.AxisState state,
             Rectangle2D dataArea, RectangleEdge edge,
             PlotRenderingInfo plotState) {
 
@@ -1273,52 +1278,52 @@ public abstract class Axis implements Cloneable, Serializable {
         return result;
     }
 
-    protected double labelLocationX(AxisLabelLocation location, 
-            Rectangle2D dataArea) {
-        if (location.equals(AxisLabelLocation.HIGH_END)) {
+    protected double labelLocationX(jfree.chart.axis.AxisLabelLocation location,
+                                    Rectangle2D dataArea) {
+        if (location.equals(jfree.chart.axis.AxisLabelLocation.HIGH_END)) {
             return dataArea.getMaxX();
         }
-        if (location.equals(AxisLabelLocation.MIDDLE)) {
+        if (location.equals(jfree.chart.axis.AxisLabelLocation.MIDDLE)) {
             return dataArea.getCenterX();
         }
-        if (location.equals(AxisLabelLocation.LOW_END)) {
+        if (location.equals(jfree.chart.axis.AxisLabelLocation.LOW_END)) {
             return dataArea.getMinX();
         }
         throw new RuntimeException("Unexpected AxisLabelLocation: " + location);
     }
     
-    protected double labelLocationY(AxisLabelLocation location, 
-            Rectangle2D dataArea) {
-        if (location.equals(AxisLabelLocation.HIGH_END)) {
+    protected double labelLocationY(jfree.chart.axis.AxisLabelLocation location,
+                                    Rectangle2D dataArea) {
+        if (location.equals(jfree.chart.axis.AxisLabelLocation.HIGH_END)) {
             return dataArea.getMinY();
         }
-        if (location.equals(AxisLabelLocation.MIDDLE)) {
+        if (location.equals(jfree.chart.axis.AxisLabelLocation.MIDDLE)) {
             return dataArea.getCenterY();
         }
-        if (location.equals(AxisLabelLocation.LOW_END)) {
+        if (location.equals(jfree.chart.axis.AxisLabelLocation.LOW_END)) {
             return dataArea.getMaxY();
         }
         throw new RuntimeException("Unexpected AxisLabelLocation: " + location);
     }
     
-    protected TextAnchor labelAnchorH(AxisLabelLocation location) {
-        if (location.equals(AxisLabelLocation.HIGH_END)) {
+    protected TextAnchor labelAnchorH(jfree.chart.axis.AxisLabelLocation location) {
+        if (location.equals(jfree.chart.axis.AxisLabelLocation.HIGH_END)) {
             return TextAnchor.CENTER_RIGHT;
         }
-        if (location.equals(AxisLabelLocation.MIDDLE)) {
+        if (location.equals(jfree.chart.axis.AxisLabelLocation.MIDDLE)) {
             return TextAnchor.CENTER;
         }
-        if (location.equals(AxisLabelLocation.LOW_END)) {
+        if (location.equals(jfree.chart.axis.AxisLabelLocation.LOW_END)) {
             return TextAnchor.CENTER_LEFT;
         }
         throw new RuntimeException("Unexpected AxisLabelLocation: " + location);
     }
     
-    protected TextAnchor labelAnchorV(AxisLabelLocation location) {
-        if (location.equals(AxisLabelLocation.HIGH_END)) {
+    protected TextAnchor labelAnchorV(jfree.chart.axis.AxisLabelLocation location) {
+        if (location.equals(jfree.chart.axis.AxisLabelLocation.HIGH_END)) {
             return TextAnchor.CENTER_RIGHT;
         }
-        if (location.equals(AxisLabelLocation.MIDDLE)) {
+        if (location.equals(jfree.chart.axis.AxisLabelLocation.MIDDLE)) {
             return TextAnchor.CENTER;
         }
         if (location.equals(AxisLabelLocation.LOW_END)) {
@@ -1339,9 +1344,9 @@ public abstract class Axis implements Cloneable, Serializable {
      *
      * @return Information about the axis.
      */
-    protected AxisState drawLabel(String label, Graphics2D g2,
-            Rectangle2D plotArea, Rectangle2D dataArea, RectangleEdge edge,
-            AxisState state) {
+    protected jfree.chart.axis.AxisState drawLabel(String label, Graphics2D g2,
+                                                        Rectangle2D plotArea, Rectangle2D dataArea, RectangleEdge edge,
+                                                        jfree.chart.axis.AxisState state) {
 
         // it is unlikely that 'state' will be null, but check anyway...
         ParamChecks.nullNotPermitted(state, "state");
@@ -1438,9 +1443,9 @@ public abstract class Axis implements Cloneable, Serializable {
      * 
      * @since 1.0.16
      */
-    protected AxisState drawAttributedLabel(AttributedString label, 
-            Graphics2D g2, Rectangle2D plotArea, Rectangle2D dataArea, 
-            RectangleEdge edge, AxisState state) {
+    protected jfree.chart.axis.AxisState drawAttributedLabel(AttributedString label,
+                                                                  Graphics2D g2, Rectangle2D plotArea, Rectangle2D dataArea,
+                                                                  RectangleEdge edge, AxisState state) {
 
         // it is unlikely that 'state' will be null, but check anyway...
         ParamChecks.nullNotPermitted(state, "state");
@@ -1562,7 +1567,7 @@ public abstract class Axis implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        Axis clone = (Axis) super.clone();
+        jfree.chart.axis.Axis clone = (jfree.chart.axis.Axis) super.clone();
         // It's up to the plot which clones up to restore the correct references
         clone.plot = null;
         clone.listenerList = new EventListenerList();
@@ -1581,10 +1586,10 @@ public abstract class Axis implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Axis)) {
+        if (!(obj instanceof jfree.chart.axis.Axis)) {
             return false;
         }
-        Axis that = (Axis) obj;
+        jfree.chart.axis.Axis that = (jfree.chart.axis.Axis) obj;
         if (this.visible != that.visible) {
             return false;
         }

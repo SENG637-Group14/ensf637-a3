@@ -42,6 +42,9 @@
 
 package org.jfree.chart;
 
+import jfree.chart.ChartPanel;
+import jfree.chart.JFreeChart;
+
 import java.awt.Graphics2D;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -63,7 +66,7 @@ public class ChartTransferable implements Transferable {
             "image/x-java-image; class=java.awt.Image", "Image");    
     
     /** The chart. */
-    private JFreeChart chart;
+    private jfree.chart.JFreeChart chart;
 
     /** The width of the chart on the clipboard. */
     private int width;
@@ -110,7 +113,7 @@ public class ChartTransferable implements Transferable {
      * @param width  the chart width.
      * @param height  the chart height.
      */
-    public ChartTransferable(JFreeChart chart, int width, int height) {
+    public ChartTransferable(jfree.chart.JFreeChart chart, int width, int height) {
         this(chart, width, height, true);
     }
 
@@ -122,8 +125,8 @@ public class ChartTransferable implements Transferable {
      * @param height  the chart height.
      * @param cloneData  clone the dataset(s)?
      */
-    public ChartTransferable(JFreeChart chart, int width, int height,
-            boolean cloneData) {
+    public ChartTransferable(jfree.chart.JFreeChart chart, int width, int height,
+                             boolean cloneData) {
         this(chart, width, height, 0, 0, Integer.MAX_VALUE, Integer.MAX_VALUE,
                 true);
     }
@@ -144,15 +147,15 @@ public class ChartTransferable implements Transferable {
      *
      * @since 1.0.14
      */
-    public ChartTransferable(JFreeChart chart, int width, int height,
-            int minDrawW, int minDrawH, int maxDrawW, int maxDrawH,
-            boolean cloneData) {
+    public ChartTransferable(jfree.chart.JFreeChart chart, int width, int height,
+                             int minDrawW, int minDrawH, int maxDrawW, int maxDrawH,
+                             boolean cloneData) {
 
         // we clone the chart because presumably there can be some delay
         // between putting this instance on the system clipboard and
         // actually having the getTransferData() method called...
         try {
-            this.chart = (JFreeChart) chart.clone();
+            this.chart = (jfree.chart.JFreeChart) chart.clone();
         }
         catch (CloneNotSupportedException e) {
             this.chart = chart;
@@ -228,7 +231,7 @@ public class ChartTransferable implements Transferable {
      * @since 1.0.14
      */
     private BufferedImage createBufferedImage(JFreeChart chart, int w, int h,
-            int minDrawW, int minDrawH, int maxDrawW, int maxDrawH) {
+                                              int minDrawW, int minDrawH, int maxDrawW, int maxDrawH) {
 
         BufferedImage image = new BufferedImage(w, h,
                 BufferedImage.TYPE_INT_ARGB);

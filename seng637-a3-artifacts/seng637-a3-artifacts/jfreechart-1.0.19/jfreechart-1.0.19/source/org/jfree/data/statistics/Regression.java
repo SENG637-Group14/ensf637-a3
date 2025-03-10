@@ -46,8 +46,8 @@
 
 package org.jfree.data.statistics;
 
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 
 /**
  * A utility class for fitting regression curves to data.

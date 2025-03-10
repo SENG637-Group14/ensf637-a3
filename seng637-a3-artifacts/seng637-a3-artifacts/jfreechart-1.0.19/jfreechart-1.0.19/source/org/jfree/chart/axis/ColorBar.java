@@ -61,12 +61,16 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.plot.ColorPalette;
-import org.jfree.chart.plot.ContourPlot;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.RainbowPalette;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.plot.ColorPalette;
+import jfree.chart.plot.ContourPlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.RainbowPalette;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
 import org.jfree.ui.RectangleEdge;
 
 /**
@@ -91,7 +95,7 @@ public class ColorBar implements Cloneable, Serializable {
     public static final int DEFAULT_OUTERGAP = 2;
 
     /** The axis. */
-    private ValueAxis axis;
+    private jfree.chart.axis.ValueAxis axis;
 
     /** The color bar thickness. */
     private int colorBarThickness = DEFAULT_COLORBAR_THICKNESS;
@@ -119,7 +123,7 @@ public class ColorBar implements Cloneable, Serializable {
      */
     public ColorBar(String label) {
 
-        NumberAxis a = new NumberAxis(label);
+        jfree.chart.axis.NumberAxis a = new NumberAxis(label);
         a.setAutoRangeIncludesZero(false);
         this.axis = a;
         this.axis.setLowerMargin(0.0);
@@ -151,7 +155,7 @@ public class ColorBar implements Cloneable, Serializable {
      *
      * @return The axis.
      */
-    public ValueAxis getAxis() {
+    public jfree.chart.axis.ValueAxis getAxis() {
         return this.axis;
     }
 
@@ -160,7 +164,7 @@ public class ColorBar implements Cloneable, Serializable {
      *
      * @param axis  the axis.
      */
-    public void setAxis(ValueAxis axis) {
+    public void setAxis(jfree.chart.axis.ValueAxis axis) {
         this.axis = axis;
     }
 
@@ -228,7 +232,7 @@ public class ColorBar implements Cloneable, Serializable {
         }
 
         // update, but dont draw tick marks (needed for stepped colors)
-        this.axis.refreshTicks(g2, new AxisState(), colorBarArea, edge);
+        this.axis.refreshTicks(g2, new jfree.chart.axis.AxisState(), colorBarArea, edge);
 
         drawColorBar(g2, colorBarArea, edge);
 
@@ -373,10 +377,10 @@ public class ColorBar implements Cloneable, Serializable {
      *
      * @return The space required to draw the axis in the specified plot area.
      */
-    public AxisSpace reserveSpace(Graphics2D g2, Plot plot,
-                                  Rectangle2D plotArea,
-                                  Rectangle2D dataArea, RectangleEdge edge,
-                                  AxisSpace space) {
+    public jfree.chart.axis.AxisSpace reserveSpace(Graphics2D g2, Plot plot,
+                                                        Rectangle2D plotArea,
+                                                        Rectangle2D dataArea, RectangleEdge edge,
+                                                        jfree.chart.axis.AxisSpace space) {
 
         AxisSpace result = this.axis.reserveSpace(g2, plot, plotArea, edge,
                 space);
@@ -416,7 +420,7 @@ public class ColorBar implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        ColorBar clone = (ColorBar) super.clone();
+        jfree.chart.axis.ColorBar clone = (jfree.chart.axis.ColorBar) super.clone();
         clone.axis = (ValueAxis) this.axis.clone();
         return clone;
     }
@@ -433,10 +437,10 @@ public class ColorBar implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ColorBar)) {
+        if (!(obj instanceof jfree.chart.axis.ColorBar)) {
             return false;
         }
-        ColorBar that = (ColorBar) obj;
+        jfree.chart.axis.ColorBar that = (jfree.chart.axis.ColorBar) obj;
         if (!this.axis.equals(that.axis)) {
             return false;
         }

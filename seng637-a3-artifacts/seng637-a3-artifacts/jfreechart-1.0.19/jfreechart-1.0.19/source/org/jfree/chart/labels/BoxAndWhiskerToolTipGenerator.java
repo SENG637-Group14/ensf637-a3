@@ -45,8 +45,10 @@ import java.io.Serializable;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
 
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.statistics.BoxAndWhiskerCategoryDataset;
+import jfree.chart.labels.CategoryToolTipGenerator;
+import jfree.chart.labels.StandardCategoryToolTipGenerator;
+import jfree.data.category.CategoryDataset;
+import jfree.data.statistics.BoxAndWhiskerCategoryDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -140,7 +142,7 @@ public class BoxAndWhiskerToolTipGenerator
         if (obj == this) {
             return true;
         }
-        if (obj instanceof BoxAndWhiskerToolTipGenerator) {
+        if (obj instanceof jfree.chart.labels.BoxAndWhiskerToolTipGenerator) {
             return super.equals(obj);
         }
         return false;

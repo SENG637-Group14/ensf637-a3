@@ -40,8 +40,8 @@
 
 package org.jfree.chart.annotations;
 
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.event.AnnotationChangeListener;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.event.AnnotationChangeListener;
 
 /**
  * The base interface for annotations.  All annotations should support the

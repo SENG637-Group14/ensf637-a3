@@ -57,16 +57,18 @@ import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.util.Date;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.data.xy.OHLCDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.labels.XYItemLabelGenerator;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.data.xy.OHLCDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A standard item label generator for plots that use data from a 
  * {@link OHLCDataset}.
  */
-public class HighLowItemLabelGenerator implements XYItemLabelGenerator, 
+public class HighLowItemLabelGenerator implements XYItemLabelGenerator,
         XYToolTipGenerator, Cloneable, PublicCloneable, Serializable {
 
     /** For serialization. */
@@ -177,8 +179,8 @@ public class HighLowItemLabelGenerator implements XYItemLabelGenerator,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        HighLowItemLabelGenerator clone 
-                = (HighLowItemLabelGenerator) super.clone();
+        jfree.chart.labels.HighLowItemLabelGenerator clone
+                = (jfree.chart.labels.HighLowItemLabelGenerator) super.clone();
         if (this.dateFormatter != null) {
             clone.dateFormatter = (DateFormat) this.dateFormatter.clone();
         }
@@ -200,10 +202,10 @@ public class HighLowItemLabelGenerator implements XYItemLabelGenerator,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof HighLowItemLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.HighLowItemLabelGenerator)) {
             return false;
         }
-        HighLowItemLabelGenerator generator = (HighLowItemLabelGenerator) obj;
+        jfree.chart.labels.HighLowItemLabelGenerator generator = (jfree.chart.labels.HighLowItemLabelGenerator) obj;
         if (!this.dateFormatter.equals(generator.dateFormatter)) {
             return false;
         }

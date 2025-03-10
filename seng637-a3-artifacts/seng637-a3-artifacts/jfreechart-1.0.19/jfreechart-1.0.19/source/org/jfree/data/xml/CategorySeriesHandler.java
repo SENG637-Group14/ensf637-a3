@@ -42,7 +42,11 @@ package org.jfree.data.xml;
 
 import java.util.Iterator;
 
-import org.jfree.data.DefaultKeyedValues;
+import jfree.data.DefaultKeyedValues;
+import jfree.data.xml.CategoryDatasetHandler;
+import jfree.data.xml.DatasetTags;
+import jfree.data.xml.ItemHandler;
+import jfree.data.xml.RootHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -54,7 +58,7 @@ public class CategorySeriesHandler extends DefaultHandler
         implements DatasetTags {
 
     /** The root handler. */
-    private RootHandler root;
+    private jfree.data.xml.RootHandler root;
 
     /** The series key. */
     private Comparable seriesKey;
@@ -109,11 +113,11 @@ public class CategorySeriesHandler extends DefaultHandler
 
         if (qName.equals(SERIES_TAG)) {
             setSeriesKey(atts.getValue("name"));
-            ItemHandler subhandler = new ItemHandler(this.root, this);
+            jfree.data.xml.ItemHandler subhandler = new jfree.data.xml.ItemHandler(this.root, this);
             this.root.pushSubHandler(subhandler);
         }
         else if (qName.equals(ITEM_TAG)) {
-            ItemHandler subhandler = new ItemHandler(this.root, this);
+            jfree.data.xml.ItemHandler subhandler = new ItemHandler(this.root, this);
             this.root.pushSubHandler(subhandler);
             subhandler.startElement(namespaceURI, localName, qName, atts);
         }
@@ -137,8 +141,8 @@ public class CategorySeriesHandler extends DefaultHandler
                            String localName,
                            String qName) {
 
-        if (this.root instanceof CategoryDatasetHandler) {
-            CategoryDatasetHandler handler = (CategoryDatasetHandler) this.root;
+        if (this.root instanceof jfree.data.xml.CategoryDatasetHandler) {
+            jfree.data.xml.CategoryDatasetHandler handler = (CategoryDatasetHandler) this.root;
 
             Iterator iterator = this.values.getKeys().iterator();
             while (iterator.hasNext()) {

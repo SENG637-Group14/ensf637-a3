@@ -43,6 +43,9 @@
 
 package org.jfree.chart.event;
 
+import jfree.chart.event.ChartChangeEvent;
+import jfree.chart.event.RendererChangeListener;
+
 /**
  * An event that can be forwarded to any {@link RendererChangeListener} to
  * signal a change to a renderer.

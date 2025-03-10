@@ -52,16 +52,16 @@ public final class ChartChangeEventType implements Serializable {
     private static final long serialVersionUID = 5481917022435735602L;
 
     /** GENERAL. */
-    public static final ChartChangeEventType GENERAL
-            = new ChartChangeEventType("ChartChangeEventType.GENERAL");
+    public static final jfree.chart.event.ChartChangeEventType GENERAL
+            = new jfree.chart.event.ChartChangeEventType("ChartChangeEventType.GENERAL");
 
     /** NEW_DATASET. */
-    public static final ChartChangeEventType NEW_DATASET
-            = new ChartChangeEventType("ChartChangeEventType.NEW_DATASET");
+    public static final jfree.chart.event.ChartChangeEventType NEW_DATASET
+            = new jfree.chart.event.ChartChangeEventType("ChartChangeEventType.NEW_DATASET");
 
     /** DATASET_UPDATED. */
-    public static final ChartChangeEventType DATASET_UPDATED
-            = new ChartChangeEventType("ChartChangeEventType.DATASET_UPDATED");
+    public static final jfree.chart.event.ChartChangeEventType DATASET_UPDATED
+            = new jfree.chart.event.ChartChangeEventType("ChartChangeEventType.DATASET_UPDATED");
 
     /** The name. */
     private String name;
@@ -98,10 +98,10 @@ public final class ChartChangeEventType implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof ChartChangeEventType)) {
+        if (!(obj instanceof jfree.chart.event.ChartChangeEventType)) {
             return false;
         }
-        ChartChangeEventType that = (ChartChangeEventType) obj;
+        jfree.chart.event.ChartChangeEventType that = (jfree.chart.event.ChartChangeEventType) obj;
         if (!this.name.equals(that.toString())) {
             return false;
         }
@@ -126,14 +126,14 @@ public final class ChartChangeEventType implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(ChartChangeEventType.GENERAL)) {
-            return ChartChangeEventType.GENERAL;
+        if (this.equals(jfree.chart.event.ChartChangeEventType.GENERAL)) {
+            return jfree.chart.event.ChartChangeEventType.GENERAL;
         }
-        else if (this.equals(ChartChangeEventType.NEW_DATASET)) {
-            return ChartChangeEventType.NEW_DATASET;
+        else if (this.equals(jfree.chart.event.ChartChangeEventType.NEW_DATASET)) {
+            return jfree.chart.event.ChartChangeEventType.NEW_DATASET;
         }
-        else if (this.equals(ChartChangeEventType.DATASET_UPDATED)) {
-            return ChartChangeEventType.DATASET_UPDATED;
+        else if (this.equals(jfree.chart.event.ChartChangeEventType.DATASET_UPDATED)) {
+            return jfree.chart.event.ChartChangeEventType.DATASET_UPDATED;
         }
         return null;
     }

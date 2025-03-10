@@ -41,6 +41,8 @@
 
 package org.jfree.data;
 
+import jfree.data.KeyedValueComparator;
+
 import java.io.Serializable;
 
 /**
@@ -50,12 +52,12 @@ import java.io.Serializable;
 public final class KeyedValueComparatorType implements Serializable {
 
     /** An object representing 'by key' sorting. */
-    public static final KeyedValueComparatorType BY_KEY
-        = new KeyedValueComparatorType("KeyedValueComparatorType.BY_KEY");
+    public static final jfree.data.KeyedValueComparatorType BY_KEY
+        = new jfree.data.KeyedValueComparatorType("KeyedValueComparatorType.BY_KEY");
 
     /** An object representing 'by value' sorting. */
-    public static final KeyedValueComparatorType BY_VALUE
-        = new KeyedValueComparatorType("KeyedValueComparatorType.BY_VALUE");
+    public static final jfree.data.KeyedValueComparatorType BY_VALUE
+        = new jfree.data.KeyedValueComparatorType("KeyedValueComparatorType.BY_VALUE");
 
     /** The name. */
     private String name;
@@ -92,11 +94,11 @@ public final class KeyedValueComparatorType implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof KeyedValueComparatorType)) {
+        if (!(o instanceof jfree.data.KeyedValueComparatorType)) {
             return false;
         }
 
-        KeyedValueComparatorType type = (KeyedValueComparatorType) o;
+        jfree.data.KeyedValueComparatorType type = (jfree.data.KeyedValueComparatorType) o;
         if (!this.name.equals(type.name)) {
             return false;
         }

@@ -51,6 +51,9 @@
 
 package org.jfree.chart.plot;
 
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.xy.XYItemRenderer;
+
 import java.awt.geom.Point2D;
 
 /**
@@ -163,7 +166,7 @@ public class CrosshairState {
      * <P>
      * To understand this method, you need to know the context in which it will
      * be called.  An instance of this class is passed to an
-     * {@link org.jfree.chart.renderer.xy.XYItemRenderer} as
+     * {@link XYItemRenderer} as
      * each data point is plotted.  As the point is plotted, it is passed to
      * this method to see if it should be the new crosshair point.
      *
@@ -174,11 +177,11 @@ public class CrosshairState {
      * @param orientation  the plot orientation.
      *
      * @deprecated Use {@link #updateCrosshairPoint(double, double, int, int,
-     *     double, double, PlotOrientation)}.  See bug report 1086307.
+     *     double, double, jfree.chart.plot.PlotOrientation)}.  See bug report 1086307.
      */
     public void updateCrosshairPoint(double x, double y,
                                      double transX, double transY,
-                                     PlotOrientation orientation) {
+                                     jfree.chart.plot.PlotOrientation orientation) {
         updateCrosshairPoint(x, y, 0, 0, transX, transY, orientation);
     }
 
@@ -188,7 +191,7 @@ public class CrosshairState {
      * <P>
      * To understand this method, you need to know the context in which it will
      * be called.  An instance of this class is passed to an
-     * {@link org.jfree.chart.renderer.xy.XYItemRenderer} as
+     * {@link XYItemRenderer} as
      * each data point is plotted.  As the point is plotted, it is passed to
      * this method to see if it should be the new crosshair point.
      *
@@ -204,7 +207,7 @@ public class CrosshairState {
      */
     public void updateCrosshairPoint(double x, double y, int domainAxisIndex,
             int rangeAxisIndex, double transX, double transY,
-            PlotOrientation orientation) {
+            jfree.chart.plot.PlotOrientation orientation) {
 
         if (this.anchor != null) {
             double d = 0.0;
@@ -215,7 +218,7 @@ public class CrosshairState {
             else {
                 double xx = this.anchor.getX();
                 double yy = this.anchor.getY();
-                if (orientation == PlotOrientation.HORIZONTAL) {
+                if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                     double temp = yy;
                     yy = xx;
                     xx = temp;
@@ -410,7 +413,7 @@ public class CrosshairState {
      * @see #getCrosshairX()
      * @see #setCrosshairY(double)
      * @see #updateCrosshairPoint(double, double, double, double,
-     * PlotOrientation)
+     * jfree.chart.plot.PlotOrientation)
      */
     public void setCrosshairX(double x) {
         this.crosshairX = x;

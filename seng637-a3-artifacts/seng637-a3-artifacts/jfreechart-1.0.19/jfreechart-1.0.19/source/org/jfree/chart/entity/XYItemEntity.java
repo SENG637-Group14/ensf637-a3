@@ -52,11 +52,13 @@ package org.jfree.chart.entity;
 
 import java.awt.Shape;
 
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.entity.ChartEntity;
+import jfree.chart.plot.XYPlot;
+import jfree.data.xy.XYDataset;
 
 /**
  * A chart entity that represents one item within an
- * {@link org.jfree.chart.plot.XYPlot}.
+ * {@link XYPlot}.
  */
 public class XYItemEntity extends ChartEntity {
 
@@ -157,8 +159,8 @@ public class XYItemEntity extends ChartEntity {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof XYItemEntity && super.equals(obj)) {
-            XYItemEntity ie = (XYItemEntity) obj;
+        if (obj instanceof jfree.chart.entity.XYItemEntity && super.equals(obj)) {
+            jfree.chart.entity.XYItemEntity ie = (jfree.chart.entity.XYItemEntity) obj;
             if (this.series != ie.series) {
                 return false;
             }

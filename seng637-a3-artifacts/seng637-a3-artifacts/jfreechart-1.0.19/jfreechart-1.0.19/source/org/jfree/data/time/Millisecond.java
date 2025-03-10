@@ -60,6 +60,10 @@
 
 package org.jfree.data.time;
 
+import jfree.data.time.Day;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.Second;
+
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -68,9 +72,9 @@ import java.util.TimeZone;
 
 /**
  * Represents a millisecond.  This class is immutable, which is a requirement
- * for all {@link RegularTimePeriod} subclasses.
+ * for all {@link jfree.data.time.RegularTimePeriod} subclasses.
  */
-public class Millisecond extends RegularTimePeriod implements Serializable {
+public class Millisecond extends jfree.data.time.RegularTimePeriod implements Serializable {
 
     /** For serialization. */
     static final long serialVersionUID = -5316836467277638485L;
@@ -82,7 +86,7 @@ public class Millisecond extends RegularTimePeriod implements Serializable {
     public static final int LAST_MILLISECOND_IN_SECOND = 999;
 
     /** The day. */
-    private Day day;
+    private jfree.data.time.Day day;
 
     /** The hour in the day. */
     private byte hour;
@@ -114,7 +118,7 @@ public class Millisecond extends RegularTimePeriod implements Serializable {
      * @param millisecond  the millisecond (0-999).
      * @param second  the second.
      */
-    public Millisecond(int millisecond, Second second) {
+    public Millisecond(int millisecond, jfree.data.time.Second second) {
         this.millisecond = millisecond;
         this.second = (byte) second.getSecond();
         this.minute = (byte) second.getMinute().getMinute();
@@ -137,7 +141,7 @@ public class Millisecond extends RegularTimePeriod implements Serializable {
     public Millisecond(int millisecond, int second, int minute, int hour,
                        int day, int month, int year) {
 
-        this(millisecond, new Second(second, minute, hour, day, month, year));
+        this(millisecond, new jfree.data.time.Second(second, minute, hour, day, month, year));
 
     }
 
@@ -190,8 +194,8 @@ public class Millisecond extends RegularTimePeriod implements Serializable {
      *
      * @return The second.
      */
-    public Second getSecond() {
-        return new Second(this.second, this.minute, this.hour,
+    public jfree.data.time.Second getSecond() {
+        return new jfree.data.time.Second(this.second, this.minute, this.hour,
                 this.day.getDayOfMonth(), this.day.getMonth(),
                 this.day.getYear());
     }
@@ -254,15 +258,15 @@ public class Millisecond extends RegularTimePeriod implements Serializable {
      * @return The millisecond preceding this one.
      */
     @Override
-    public RegularTimePeriod previous() {
-        RegularTimePeriod result = null;
+    public jfree.data.time.RegularTimePeriod previous() {
+        jfree.data.time.RegularTimePeriod result = null;
         if (this.millisecond != FIRST_MILLISECOND_IN_SECOND) {
-            result = new Millisecond(this.millisecond - 1, getSecond());
+            result = new jfree.data.time.Millisecond(this.millisecond - 1, getSecond());
         }
         else {
-            Second previous = (Second) getSecond().previous();
+            jfree.data.time.Second previous = (jfree.data.time.Second) getSecond().previous();
             if (previous != null) {
-                result = new Millisecond(LAST_MILLISECOND_IN_SECOND, previous);
+                result = new jfree.data.time.Millisecond(LAST_MILLISECOND_IN_SECOND, previous);
             }
         }
         return result;
@@ -274,15 +278,15 @@ public class Millisecond extends RegularTimePeriod implements Serializable {
      * @return The millisecond following this one.
      */
     @Override
-    public RegularTimePeriod next() {
-        RegularTimePeriod result = null;
+    public jfree.data.time.RegularTimePeriod next() {
+        jfree.data.time.RegularTimePeriod result = null;
         if (this.millisecond != LAST_MILLISECOND_IN_SECOND) {
-            result = new Millisecond(this.millisecond + 1, getSecond());
+            result = new jfree.data.time.Millisecond(this.millisecond + 1, getSecond());
         }
         else {
-            Second next = (Second) getSecond().next();
+            jfree.data.time.Second next = (Second) getSecond().next();
             if (next != null) {
-                result = new Millisecond(FIRST_MILLISECOND_IN_SECOND, next);
+                result = new jfree.data.time.Millisecond(FIRST_MILLISECOND_IN_SECOND, next);
             }
         }
         return result;
@@ -317,10 +321,10 @@ public class Millisecond extends RegularTimePeriod implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Millisecond)) {
+        if (!(obj instanceof jfree.data.time.Millisecond)) {
             return false;
         }
-        Millisecond that = (Millisecond) obj;
+        jfree.data.time.Millisecond that = (jfree.data.time.Millisecond) obj;
         if (this.millisecond != that.millisecond) {
             return false;
         }
@@ -373,8 +377,8 @@ public class Millisecond extends RegularTimePeriod implements Serializable {
 
         // CASE 1 : Comparing to another Second object
         // -------------------------------------------
-        if (obj instanceof Millisecond) {
-            Millisecond ms = (Millisecond) obj;
+        if (obj instanceof jfree.data.time.Millisecond) {
+            jfree.data.time.Millisecond ms = (jfree.data.time.Millisecond) obj;
             difference = getFirstMillisecond() - ms.getFirstMillisecond();
             if (difference > 0) {
                 result = 1;
@@ -391,8 +395,8 @@ public class Millisecond extends RegularTimePeriod implements Serializable {
 
         // CASE 2 : Comparing to another TimePeriod object
         // -----------------------------------------------
-        else if (obj instanceof RegularTimePeriod) {
-            RegularTimePeriod rtp = (RegularTimePeriod) obj;
+        else if (obj instanceof jfree.data.time.RegularTimePeriod) {
+            jfree.data.time.RegularTimePeriod rtp = (RegularTimePeriod) obj;
             final long thisVal = this.getFirstMillisecond();
             final long anotherVal = rtp.getFirstMillisecond();
             result = (thisVal < anotherVal ? -1

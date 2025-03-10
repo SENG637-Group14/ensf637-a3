@@ -52,22 +52,22 @@ import java.io.Serializable;
 public final class XYCoordinateType implements Serializable {
 
     /** The (x, y) coordinates represent a point in the data space. */
-    public static final XYCoordinateType DATA
-            = new XYCoordinateType("XYCoordinateType.DATA");
+    public static final jfree.chart.util.XYCoordinateType DATA
+            = new jfree.chart.util.XYCoordinateType("XYCoordinateType.DATA");
 
     /**
      * The (x, y) coordinates represent a relative position in the data space.
      * In this case, the values should be in the range (0.0 to 1.0).
      */
-    public static final XYCoordinateType RELATIVE
-            = new XYCoordinateType("XYCoordinateType.RELATIVE");
+    public static final jfree.chart.util.XYCoordinateType RELATIVE
+            = new jfree.chart.util.XYCoordinateType("XYCoordinateType.RELATIVE");
 
     /**
      * The (x, y) coordinates represent indices in a dataset.
      * In this case, the values should be in the range (0.0 to 1.0).
      */
-    public static final XYCoordinateType INDEX
-            = new XYCoordinateType("XYCoordinateType.INDEX");
+    public static final jfree.chart.util.XYCoordinateType INDEX
+            = new jfree.chart.util.XYCoordinateType("XYCoordinateType.INDEX");
 
     /** The name. */
     private String name;
@@ -104,10 +104,10 @@ public final class XYCoordinateType implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof XYCoordinateType)) {
+        if (!(obj instanceof jfree.chart.util.XYCoordinateType)) {
             return false;
         }
-        XYCoordinateType order = (XYCoordinateType) obj;
+        jfree.chart.util.XYCoordinateType order = (jfree.chart.util.XYCoordinateType) obj;
         if (!this.name.equals(order.toString())) {
             return false;
         }
@@ -122,14 +122,14 @@ public final class XYCoordinateType implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(XYCoordinateType.DATA)) {
-            return XYCoordinateType.DATA;
+        if (this.equals(jfree.chart.util.XYCoordinateType.DATA)) {
+            return jfree.chart.util.XYCoordinateType.DATA;
         }
-        else if (this.equals(XYCoordinateType.RELATIVE)) {
-            return XYCoordinateType.RELATIVE;
+        else if (this.equals(jfree.chart.util.XYCoordinateType.RELATIVE)) {
+            return jfree.chart.util.XYCoordinateType.RELATIVE;
         }
-        else if (this.equals(XYCoordinateType.INDEX)) {
-            return XYCoordinateType.INDEX;
+        else if (this.equals(jfree.chart.util.XYCoordinateType.INDEX)) {
+            return jfree.chart.util.XYCoordinateType.INDEX;
         }
         return null;
     }

@@ -43,7 +43,10 @@
 
 package org.jfree.data.xy;
 
-import org.jfree.data.ComparableObjectItem;
+import jfree.data.ComparableObjectItem;
+import jfree.data.xy.Vector;
+import jfree.data.xy.VectorSeries;
+import jfree.data.xy.XYCoordinate;
 
 /**
  * A data item representing data in the form (x, y, deltaX, deltaY), intended
@@ -62,7 +65,7 @@ public class VectorDataItem extends ComparableObjectItem {
      * @param deltaY  the vector y.
      */
     public VectorDataItem(double x, double y, double deltaX, double deltaY) {
-        super(new XYCoordinate(x, y), new Vector(deltaX, deltaY));
+        super(new jfree.data.xy.XYCoordinate(x, y), new jfree.data.xy.Vector(deltaX, deltaY));
     }
 
     /**
@@ -71,7 +74,7 @@ public class VectorDataItem extends ComparableObjectItem {
      * @return The x-value (never <code>null</code>).
      */
     public double getXValue() {
-        XYCoordinate xy = (XYCoordinate) getComparable();
+        jfree.data.xy.XYCoordinate xy = (jfree.data.xy.XYCoordinate) getComparable();
         return xy.getX();
     }
 
@@ -81,7 +84,7 @@ public class VectorDataItem extends ComparableObjectItem {
      * @return The y-value.
      */
     public double getYValue() {
-        XYCoordinate xy = (XYCoordinate) getComparable();
+        jfree.data.xy.XYCoordinate xy = (XYCoordinate) getComparable();
         return xy.getY();
     }
 
@@ -90,8 +93,8 @@ public class VectorDataItem extends ComparableObjectItem {
      *
      * @return The vector (possibly <code>null</code>).
      */
-    public Vector getVector() {
-        return (Vector) getObject();
+    public jfree.data.xy.Vector getVector() {
+        return (jfree.data.xy.Vector) getObject();
     }
 
     /**
@@ -100,7 +103,7 @@ public class VectorDataItem extends ComparableObjectItem {
      * @return The x-component.
      */
     public double getVectorX() {
-        Vector vi = (Vector) getObject();
+        jfree.data.xy.Vector vi = (jfree.data.xy.Vector) getObject();
         if (vi != null) {
             return vi.getX();
         }
@@ -115,7 +118,7 @@ public class VectorDataItem extends ComparableObjectItem {
      * @return The y-component.
      */
     public double getVectorY() {
-        Vector vi = (Vector) getObject();
+        jfree.data.xy.Vector vi = (Vector) getObject();
         if (vi != null) {
             return vi.getY();
         }

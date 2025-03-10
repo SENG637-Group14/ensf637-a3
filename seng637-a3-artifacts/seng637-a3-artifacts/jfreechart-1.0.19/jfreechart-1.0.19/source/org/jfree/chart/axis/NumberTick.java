@@ -41,6 +41,8 @@
 
 package org.jfree.chart.axis;
 
+import jfree.chart.axis.TickType;
+import jfree.chart.axis.ValueTick;
 import org.jfree.ui.TextAnchor;
 
 /**

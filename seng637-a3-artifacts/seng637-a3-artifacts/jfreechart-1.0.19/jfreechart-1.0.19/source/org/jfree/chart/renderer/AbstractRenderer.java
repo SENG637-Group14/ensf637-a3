@@ -117,16 +117,16 @@ import java.util.Map;
 
 import javax.swing.event.EventListenerList;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.event.RendererChangeListener;
-import org.jfree.chart.labels.ItemLabelAnchor;
-import org.jfree.chart.labels.ItemLabelPosition;
-import org.jfree.chart.plot.DrawingSupplier;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.title.LegendTitle;
-import org.jfree.chart.util.CloneUtils;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.event.RendererChangeListener;
+import jfree.chart.labels.ItemLabelAnchor;
+import jfree.chart.labels.ItemLabelPosition;
+import jfree.chart.plot.DrawingSupplier;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.title.LegendTitle;
+import jfree.chart.util.CloneUtils;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.TextAnchor;
 import org.jfree.util.BooleanList;
@@ -2948,10 +2948,10 @@ public abstract class AbstractRenderer implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AbstractRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.AbstractRenderer)) {
             return false;
         }
-        AbstractRenderer that = (AbstractRenderer) obj;
+        jfree.chart.renderer.AbstractRenderer that = (jfree.chart.renderer.AbstractRenderer) obj;
         if (this.dataBoundsIncludesVisibleSeriesOnly
                 != that.dataBoundsIncludesVisibleSeriesOnly) {
             return false;
@@ -3192,7 +3192,7 @@ public abstract class AbstractRenderer implements Cloneable, Serializable {
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        AbstractRenderer clone = (AbstractRenderer) super.clone();
+        jfree.chart.renderer.AbstractRenderer clone = (jfree.chart.renderer.AbstractRenderer) super.clone();
 
         if (this.seriesVisibleList != null) {
             clone.seriesVisibleList

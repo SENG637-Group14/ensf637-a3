@@ -46,6 +46,8 @@
 
 package org.jfree.chart.axis;
 
+import jfree.chart.axis.ValueAxis;
+
 import java.io.Serializable;
 
 /**
@@ -142,8 +144,8 @@ public abstract class TickUnit implements Comparable, Serializable {
     @Override
     public int compareTo(Object object) {
 
-        if (object instanceof TickUnit) {
-            TickUnit other = (TickUnit) object;
+        if (object instanceof jfree.chart.axis.TickUnit) {
+            jfree.chart.axis.TickUnit other = (jfree.chart.axis.TickUnit) object;
             if (this.size > other.getSize()) {
                 return 1;
             }
@@ -172,10 +174,10 @@ public abstract class TickUnit implements Comparable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof TickUnit)) {
+        if (!(obj instanceof jfree.chart.axis.TickUnit)) {
             return false;
         }
-        TickUnit that = (TickUnit) obj;
+        jfree.chart.axis.TickUnit that = (jfree.chart.axis.TickUnit) obj;
         if (this.size != that.size) {
             return false;
         }

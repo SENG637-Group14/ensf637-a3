@@ -56,7 +56,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
 /**
  * A formatter that formats dates to show the year and quarter (for example,
@@ -194,10 +194,10 @@ public class QuarterDateFormat extends DateFormat
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof QuarterDateFormat)) {
+        if (!(obj instanceof jfree.chart.axis.QuarterDateFormat)) {
             return false;
         }
-        QuarterDateFormat that = (QuarterDateFormat) obj;
+        jfree.chart.axis.QuarterDateFormat that = (jfree.chart.axis.QuarterDateFormat) obj;
         if (!Arrays.equals(this.quarters, that.quarters)) {
             return false;
         }

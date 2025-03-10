@@ -53,7 +53,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.renderer.PaintScale;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PaintUtilities;
@@ -344,10 +346,10 @@ public class LookupPaintScale
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LookupPaintScale)) {
+        if (!(obj instanceof jfree.chart.renderer.LookupPaintScale)) {
             return false;
         }
-        LookupPaintScale that = (LookupPaintScale) obj;
+        jfree.chart.renderer.LookupPaintScale that = (jfree.chart.renderer.LookupPaintScale) obj;
         if (this.lowerBound != that.lowerBound) {
             return false;
         }
@@ -373,7 +375,7 @@ public class LookupPaintScale
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        LookupPaintScale clone = (LookupPaintScale) super.clone();
+        jfree.chart.renderer.LookupPaintScale clone = (jfree.chart.renderer.LookupPaintScale) super.clone();
         clone.lookupTable = new java.util.ArrayList(this.lookupTable);
         return clone;
     }

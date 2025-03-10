@@ -67,11 +67,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.xy.AbstractIntervalXYDataset;
-import org.jfree.data.xy.IntervalXYDataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.statistics.HistogramBin;
+import jfree.data.statistics.HistogramType;
+import jfree.data.statistics.SimpleHistogramDataset;
+import jfree.data.xy.AbstractIntervalXYDataset;
+import jfree.data.xy.IntervalXYDataset;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
@@ -91,15 +94,15 @@ public class HistogramDataset extends AbstractIntervalXYDataset
     private List list;
 
     /** The histogram type. */
-    private HistogramType type;
+    private jfree.data.statistics.HistogramType type;
 
     /**
      * Creates a new (empty) dataset with a default type of
-     * {@link HistogramType}.FREQUENCY.
+     * {@link jfree.data.statistics.HistogramType}.FREQUENCY.
      */
     public HistogramDataset() {
         this.list = new ArrayList();
-        this.type = HistogramType.FREQUENCY;
+        this.type = jfree.data.statistics.HistogramType.FREQUENCY;
     }
 
     /**
@@ -107,7 +110,7 @@ public class HistogramDataset extends AbstractIntervalXYDataset
      *
      * @return The type (never <code>null</code>).
      */
-    public HistogramType getType() {
+    public jfree.data.statistics.HistogramType getType() {
         return this.type;
     }
 
@@ -117,7 +120,7 @@ public class HistogramDataset extends AbstractIntervalXYDataset
      *
      * @param type  the type (<code>null</code> not permitted).
      */
-    public void setType(HistogramType type) {
+    public void setType(jfree.data.statistics.HistogramType type) {
         ParamChecks.nullNotPermitted(type, "type");
         this.type = type;
         fireDatasetChanged();
@@ -165,16 +168,16 @@ public class HistogramDataset extends AbstractIntervalXYDataset
         double upper;
         List binList = new ArrayList(bins);
         for (int i = 0; i < bins; i++) {
-            HistogramBin bin;
+            jfree.data.statistics.HistogramBin bin;
             // make sure bins[bins.length]'s upper boundary ends at maximum
             // to avoid the rounding issue. the bins[0] lower boundary is
             // guaranteed start from min
             if (i == bins - 1) {
-                bin = new HistogramBin(lower, maximum);
+                bin = new jfree.data.statistics.HistogramBin(lower, maximum);
             }
             else {
                 upper = minimum + (i + 1) * binWidth;
-                bin = new HistogramBin(lower, upper);
+                bin = new jfree.data.statistics.HistogramBin(lower, upper);
                 lower = upper;
             }
             binList.add(bin);
@@ -195,7 +198,7 @@ public class HistogramDataset extends AbstractIntervalXYDataset
                     binIndex = bins - 1;
                 }
             }
-            HistogramBin bin = (HistogramBin) binList.get(binIndex);
+            jfree.data.statistics.HistogramBin bin = (jfree.data.statistics.HistogramBin) binList.get(binIndex);
             bin.incrementCount();
         }
         // generic map for each series
@@ -353,7 +356,7 @@ public class HistogramDataset extends AbstractIntervalXYDataset
     @Override
     public Number getX(int series, int item) {
         List bins = getBins(series);
-        HistogramBin bin = (HistogramBin) bins.get(item);
+        jfree.data.statistics.HistogramBin bin = (jfree.data.statistics.HistogramBin) bins.get(item);
         double x = (bin.getStartBoundary() + bin.getEndBoundary()) / 2.;
         return new Double(x);
     }
@@ -374,14 +377,14 @@ public class HistogramDataset extends AbstractIntervalXYDataset
     @Override
     public Number getY(int series, int item) {
         List bins = getBins(series);
-        HistogramBin bin = (HistogramBin) bins.get(item);
+        jfree.data.statistics.HistogramBin bin = (jfree.data.statistics.HistogramBin) bins.get(item);
         double total = getTotal(series);
         double binWidth = getBinWidth(series);
 
-        if (this.type == HistogramType.FREQUENCY) {
+        if (this.type == jfree.data.statistics.HistogramType.FREQUENCY) {
             return new Double(bin.getCount());
         }
-        else if (this.type == HistogramType.RELATIVE_FREQUENCY) {
+        else if (this.type == jfree.data.statistics.HistogramType.RELATIVE_FREQUENCY) {
             return new Double(bin.getCount() / total);
         }
         else if (this.type == HistogramType.SCALE_AREA_TO_1) {
@@ -407,7 +410,7 @@ public class HistogramDataset extends AbstractIntervalXYDataset
     @Override
     public Number getStartX(int series, int item) {
         List bins = getBins(series);
-        HistogramBin bin = (HistogramBin) bins.get(item);
+        jfree.data.statistics.HistogramBin bin = (jfree.data.statistics.HistogramBin) bins.get(item);
         return new Double(bin.getStartBoundary());
     }
 
@@ -426,7 +429,7 @@ public class HistogramDataset extends AbstractIntervalXYDataset
     @Override
     public Number getEndX(int series, int item) {
         List bins = getBins(series);
-        HistogramBin bin = (HistogramBin) bins.get(item);
+        jfree.data.statistics.HistogramBin bin = (HistogramBin) bins.get(item);
         return new Double(bin.getEndBoundary());
     }
 
@@ -480,10 +483,10 @@ public class HistogramDataset extends AbstractIntervalXYDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof HistogramDataset)) {
+        if (!(obj instanceof jfree.data.statistics.HistogramDataset)) {
             return false;
         }
-        HistogramDataset that = (HistogramDataset) obj;
+        jfree.data.statistics.HistogramDataset that = (jfree.data.statistics.HistogramDataset) obj;
         if (!ObjectUtilities.equal(this.type, that.type)) {
             return false;
         }
@@ -502,7 +505,7 @@ public class HistogramDataset extends AbstractIntervalXYDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        HistogramDataset clone = (HistogramDataset) super.clone();
+        jfree.data.statistics.HistogramDataset clone = (jfree.data.statistics.HistogramDataset) super.clone();
         int seriesCount = getSeriesCount();
         clone.list = new java.util.ArrayList(seriesCount);
         for (int i = 0; i < seriesCount; i++) {

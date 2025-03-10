@@ -49,6 +49,10 @@
 
 package org.jfree.data.general;
 
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetChangeListener;
+import jfree.data.general.DatasetGroup;
+
 /**
  * The base interface for data sets.
  * <P>
@@ -57,7 +61,7 @@ package org.jfree.data.general;
  * changes to the dataset.
  * <P>
  * In addition, all datasets must belong to one (and only one)
- * {@link DatasetGroup}.  The group object maintains a reader-writer lock
+ * {@link jfree.data.general.DatasetGroup}.  The group object maintains a reader-writer lock
  * which provides synchronised access to the datasets in multi-threaded code.
  */
 public interface Dataset {
@@ -67,7 +71,7 @@ public interface Dataset {
      *
      * @param listener  the object to register.
      */
-    public void addChangeListener(DatasetChangeListener listener);
+    public void addChangeListener(jfree.data.general.DatasetChangeListener listener);
 
     /**
      * Deregisters an object for notification of changes to the dataset.
@@ -81,7 +85,7 @@ public interface Dataset {
      *
      * @return The dataset group.
      */
-    public DatasetGroup getGroup();
+    public jfree.data.general.DatasetGroup getGroup();
 
     /**
      * Sets the dataset group.

@@ -40,6 +40,12 @@
 
 package org.jfree.data.xml;
 
+import jfree.data.xml.CategorySeriesHandler;
+import jfree.data.xml.DatasetTags;
+import jfree.data.xml.KeyHandler;
+import jfree.data.xml.PieDatasetHandler;
+import jfree.data.xml.RootHandler;
+import jfree.data.xml.ValueHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -50,7 +56,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class ItemHandler extends DefaultHandler implements DatasetTags {
 
     /** The root handler. */
-    private RootHandler root;
+    private jfree.data.xml.RootHandler root;
 
     /** The parent handler (can be the same as root, but not always). */
     private DefaultHandler parent;
@@ -127,11 +133,11 @@ public class ItemHandler extends DefaultHandler implements DatasetTags {
                              Attributes atts) throws SAXException {
 
         if (qName.equals(ITEM_TAG)) {
-            KeyHandler subhandler = new KeyHandler(this.root, this);
+            jfree.data.xml.KeyHandler subhandler = new KeyHandler(this.root, this);
             this.root.pushSubHandler(subhandler);
         }
         else if (qName.equals(VALUE_TAG)) {
-            ValueHandler subhandler = new ValueHandler(this.root, this);
+            jfree.data.xml.ValueHandler subhandler = new ValueHandler(this.root, this);
             this.root.pushSubHandler(subhandler);
         }
         else {
@@ -154,13 +160,13 @@ public class ItemHandler extends DefaultHandler implements DatasetTags {
                            String localName,
                            String qName) {
 
-        if (this.parent instanceof PieDatasetHandler) {
-            PieDatasetHandler handler = (PieDatasetHandler) this.parent;
+        if (this.parent instanceof jfree.data.xml.PieDatasetHandler) {
+            jfree.data.xml.PieDatasetHandler handler = (PieDatasetHandler) this.parent;
             handler.addItem(this.key, this.value);
             this.root.popSubHandler();
         }
-        else if (this.parent instanceof CategorySeriesHandler) {
-            CategorySeriesHandler handler = (CategorySeriesHandler) this.parent;
+        else if (this.parent instanceof jfree.data.xml.CategorySeriesHandler) {
+            jfree.data.xml.CategorySeriesHandler handler = (CategorySeriesHandler) this.parent;
             handler.addItem(this.key, this.value);
             this.root.popSubHandler();
         }

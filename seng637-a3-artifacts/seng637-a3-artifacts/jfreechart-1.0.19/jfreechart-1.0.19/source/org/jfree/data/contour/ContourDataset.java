@@ -44,10 +44,10 @@
 
 package org.jfree.data.contour;
 
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
-import org.jfree.data.Range;
-import org.jfree.data.xy.XYZDataset;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.data.Range;
+import jfree.data.xy.XYZDataset;
 
 /**
  * The interface through which JFreeChart obtains data in the form of (x, y, z)

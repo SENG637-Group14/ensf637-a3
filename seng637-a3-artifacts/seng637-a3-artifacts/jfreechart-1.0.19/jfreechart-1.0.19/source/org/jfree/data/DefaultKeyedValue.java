@@ -50,13 +50,14 @@
 package org.jfree.data;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
+import jfree.data.KeyedValue;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A (key, value) pair.  This class provides a default implementation
- * of the {@link KeyedValue} interface.
+ * of the {@link jfree.data.KeyedValue} interface.
  */
 public class DefaultKeyedValue implements KeyedValue, Cloneable,
         PublicCloneable, Serializable {
@@ -124,10 +125,10 @@ public class DefaultKeyedValue implements KeyedValue, Cloneable,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultKeyedValue)) {
+        if (!(obj instanceof jfree.data.DefaultKeyedValue)) {
             return false;
         }
-        DefaultKeyedValue that = (DefaultKeyedValue) obj;
+        jfree.data.DefaultKeyedValue that = (jfree.data.DefaultKeyedValue) obj;
 
         if (!this.key.equals(that.key)) {
             return false;
@@ -164,7 +165,7 @@ public class DefaultKeyedValue implements KeyedValue, Cloneable,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return (DefaultKeyedValue) super.clone();
+        return (jfree.data.DefaultKeyedValue) super.clone();
     }
 
     /**

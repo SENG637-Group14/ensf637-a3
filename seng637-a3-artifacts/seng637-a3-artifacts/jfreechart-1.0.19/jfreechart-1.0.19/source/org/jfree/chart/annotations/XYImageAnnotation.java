@@ -58,13 +58,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.AxisLocation;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.annotations.AbstractXYAnnotation;
+import jfree.chart.axis.AxisLocation;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.util.ParamChecks;
 import org.jfree.ui.RectangleAnchor;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.ObjectUtilities;
@@ -251,10 +252,10 @@ public class XYImageAnnotation extends AbstractXYAnnotation
         if (!super.equals(obj)) {
             return false;
         }
-        if (!(obj instanceof XYImageAnnotation)) {
+        if (!(obj instanceof jfree.chart.annotations.XYImageAnnotation)) {
             return false;
         }
-        XYImageAnnotation that = (XYImageAnnotation) obj;
+        jfree.chart.annotations.XYImageAnnotation that = (jfree.chart.annotations.XYImageAnnotation) obj;
         if (this.x != that.x) {
             return false;
         }

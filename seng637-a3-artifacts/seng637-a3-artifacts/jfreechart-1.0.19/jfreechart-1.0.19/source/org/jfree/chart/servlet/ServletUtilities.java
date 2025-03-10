@@ -71,10 +71,12 @@ import java.util.TimeZone;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.jfree.chart.ChartRenderingInfo;
-import org.jfree.chart.ChartUtilities;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.ChartRenderingInfo;
+import jfree.chart.ChartUtilities;
+import jfree.chart.JFreeChart;
+import jfree.chart.servlet.ChartDeleter;
+import jfree.chart.servlet.DisplayChart;
+import jfree.chart.util.ParamChecks;
 
 /**
  * Utility class used for servlet related JFreeChart operations.
@@ -93,7 +95,7 @@ public class ServletUtilities {
      * @return The prefix (never <code>null</code>).
      */
     public static String getTempFilePrefix() {
-        return ServletUtilities.tempFilePrefix;
+        return jfree.chart.servlet.ServletUtilities.tempFilePrefix;
     }
 
     /**
@@ -103,7 +105,7 @@ public class ServletUtilities {
      */
     public static void setTempFilePrefix(String prefix) {
         ParamChecks.nullNotPermitted(prefix, "prefix");
-        ServletUtilities.tempFilePrefix = prefix;
+        jfree.chart.servlet.ServletUtilities.tempFilePrefix = prefix;
     }
 
     /**
@@ -113,7 +115,7 @@ public class ServletUtilities {
      * @return The prefix.
      */
     public static String getTempOneTimeFilePrefix() {
-        return ServletUtilities.tempOneTimeFilePrefix;
+        return jfree.chart.servlet.ServletUtilities.tempOneTimeFilePrefix;
     }
 
     /**
@@ -124,7 +126,7 @@ public class ServletUtilities {
      */
     public static void setTempOneTimeFilePrefix(String prefix) {
         ParamChecks.nullNotPermitted(prefix, "prefix");
-        ServletUtilities.tempOneTimeFilePrefix = prefix;
+        jfree.chart.servlet.ServletUtilities.tempOneTimeFilePrefix = prefix;
     }
 
     /**
@@ -135,7 +137,7 @@ public class ServletUtilities {
      * @param height  the height of the chart.
      * @param session  the HttpSession of the client (if <code>null</code>, the
      *                 temporary file is marked as "one-time" and deleted by
-     *                 the {@link DisplayChart} servlet right after it is
+     *                 the {@link jfree.chart.servlet.DisplayChart} servlet right after it is
      *                 streamed to the client).
      *
      * @return The filename of the chart saved in the temporary directory.
@@ -145,7 +147,7 @@ public class ServletUtilities {
     public static String saveChartAsPNG(JFreeChart chart, int width, int height,
             HttpSession session) throws IOException {
 
-        return ServletUtilities.saveChartAsPNG(chart, width, height, null,
+        return jfree.chart.servlet.ServletUtilities.saveChartAsPNG(chart, width, height, null,
                 session);
 
     }
@@ -162,7 +164,7 @@ public class ServletUtilities {
      *              (<code>null</code> permitted).
      * @param session  the HttpSession of the client (if <code>null</code>, the
      *                 temporary file is marked as "one-time" and deleted by
-     *                 the {@link DisplayChart} servlet right after it is
+     *                 the {@link jfree.chart.servlet.DisplayChart} servlet right after it is
      *                 streamed to the client).
      *
      * @return The filename of the chart saved in the temporary directory.
@@ -173,16 +175,16 @@ public class ServletUtilities {
             ChartRenderingInfo info, HttpSession session) throws IOException {
 
         ParamChecks.nullNotPermitted(chart, "chart");
-        ServletUtilities.createTempDir();
-        String prefix = ServletUtilities.tempFilePrefix;
+        jfree.chart.servlet.ServletUtilities.createTempDir();
+        String prefix = jfree.chart.servlet.ServletUtilities.tempFilePrefix;
         if (session == null) {
-            prefix = ServletUtilities.tempOneTimeFilePrefix;
+            prefix = jfree.chart.servlet.ServletUtilities.tempOneTimeFilePrefix;
         }
         File tempFile = File.createTempFile(prefix, ".png",
                 new File(System.getProperty("java.io.tmpdir")));
         ChartUtilities.saveChartAsPNG(tempFile, chart, width, height, info);
         if (session != null) {
-            ServletUtilities.registerChartForDeletion(tempFile, session);
+            jfree.chart.servlet.ServletUtilities.registerChartForDeletion(tempFile, session);
         }
         return tempFile.getName();
 
@@ -201,7 +203,7 @@ public class ServletUtilities {
      * @param height  the height of the chart.
      * @param session  the HttpSession of the client (if <code>null</code>, the
      *                 temporary file is marked as "one-time" and deleted by
-     *                 the {@link DisplayChart} servlet right after it is
+     *                 the {@link jfree.chart.servlet.DisplayChart} servlet right after it is
      *                 streamed to the client).
      *
      * @return The filename of the chart saved in the temporary directory.
@@ -212,7 +214,7 @@ public class ServletUtilities {
                                          int height, HttpSession session)
             throws IOException {
 
-        return ServletUtilities.saveChartAsJPEG(chart, width, height, null,
+        return jfree.chart.servlet.ServletUtilities.saveChartAsJPEG(chart, width, height, null,
                 session);
 
     }
@@ -245,16 +247,16 @@ public class ServletUtilities {
             throws IOException {
 
         ParamChecks.nullNotPermitted(chart, "chart");
-        ServletUtilities.createTempDir();
-        String prefix = ServletUtilities.tempFilePrefix;
+        jfree.chart.servlet.ServletUtilities.createTempDir();
+        String prefix = jfree.chart.servlet.ServletUtilities.tempFilePrefix;
         if (session == null) {
-            prefix = ServletUtilities.tempOneTimeFilePrefix;
+            prefix = jfree.chart.servlet.ServletUtilities.tempOneTimeFilePrefix;
         }
         File tempFile = File.createTempFile(prefix, ".jpeg",
                 new File(System.getProperty("java.io.tmpdir")));
         ChartUtilities.saveChartAsJPEG(tempFile, chart, width, height, info);
         if (session != null) {
-            ServletUtilities.registerChartForDeletion(tempFile, session);
+            jfree.chart.servlet.ServletUtilities.registerChartForDeletion(tempFile, session);
         }
         return tempFile.getName();
 
@@ -284,7 +286,7 @@ public class ServletUtilities {
     }
 
     /**
-     * Adds a {@link ChartDeleter} object to the session object with the name
+     * Adds a {@link jfree.chart.servlet.ChartDeleter} object to the session object with the name
      * <code>JFreeChart_Deleter</code> if there is not already one bound to the
      * session and adds the filename to the list of charts to be deleted.
      *
@@ -296,8 +298,8 @@ public class ServletUtilities {
 
         //  Add chart to deletion list in session
         if (session != null) {
-            ChartDeleter chartDeleter
-                = (ChartDeleter) session.getAttribute("JFreeChart_Deleter");
+            jfree.chart.servlet.ChartDeleter chartDeleter
+                = (jfree.chart.servlet.ChartDeleter) session.getAttribute("JFreeChart_Deleter");
             if (chartDeleter == null) {
                 chartDeleter = new ChartDeleter();
                 session.setAttribute("JFreeChart_Deleter", chartDeleter);
@@ -322,7 +324,7 @@ public class ServletUtilities {
             HttpServletResponse response) throws IOException {
 
         File file = new File(System.getProperty("java.io.tmpdir"), filename);
-        ServletUtilities.sendTempFile(file, response);
+        jfree.chart.servlet.ServletUtilities.sendTempFile(file, response);
     }
 
     /**
@@ -348,7 +350,7 @@ public class ServletUtilities {
                 mimeType = "image/png";
             }
         }
-        ServletUtilities.sendTempFile(file, response, mimeType);
+        jfree.chart.servlet.ServletUtilities.sendTempFile(file, response, mimeType);
     }
 
     /**

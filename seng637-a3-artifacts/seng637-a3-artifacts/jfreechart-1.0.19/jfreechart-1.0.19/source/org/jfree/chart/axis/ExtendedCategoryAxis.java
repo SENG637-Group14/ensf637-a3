@@ -55,8 +55,9 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextBlock;
 import org.jfree.text.TextFragment;
@@ -65,7 +66,7 @@ import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PaintUtilities;
 
 /**
- * An extended version of the {@link CategoryAxis} class that supports
+ * An extended version of the {@link jfree.chart.axis.CategoryAxis} class that supports
  * sublabels on the axis.
  */
 public class ExtendedCategoryAxis extends CategoryAxis {
@@ -200,10 +201,10 @@ public class ExtendedCategoryAxis extends CategoryAxis {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ExtendedCategoryAxis)) {
+        if (!(obj instanceof jfree.chart.axis.ExtendedCategoryAxis)) {
             return false;
         }
-        ExtendedCategoryAxis that = (ExtendedCategoryAxis) obj;
+        jfree.chart.axis.ExtendedCategoryAxis that = (jfree.chart.axis.ExtendedCategoryAxis) obj;
         if (!this.sublabelFont.equals(that.sublabelFont)) {
             return false;
         }
@@ -225,7 +226,7 @@ public class ExtendedCategoryAxis extends CategoryAxis {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        ExtendedCategoryAxis clone = (ExtendedCategoryAxis) super.clone();
+        jfree.chart.axis.ExtendedCategoryAxis clone = (jfree.chart.axis.ExtendedCategoryAxis) super.clone();
         clone.sublabels = new HashMap(this.sublabels);
         return clone;
     }

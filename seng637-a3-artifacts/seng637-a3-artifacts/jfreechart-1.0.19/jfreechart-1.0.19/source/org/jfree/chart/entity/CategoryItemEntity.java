@@ -55,9 +55,11 @@ package org.jfree.chart.entity;
 
 import java.awt.Shape;
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
 
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.entity.ChartEntity;
+import jfree.chart.util.ParamChecks;
+
+import jfree.data.category.CategoryDataset;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -354,10 +356,10 @@ public class CategoryItemEntity extends ChartEntity
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CategoryItemEntity)) {
+        if (!(obj instanceof jfree.chart.entity.CategoryItemEntity)) {
             return false;
         }
-        CategoryItemEntity that = (CategoryItemEntity) obj;
+        jfree.chart.entity.CategoryItemEntity that = (jfree.chart.entity.CategoryItemEntity) obj;
         if (!this.rowKey.equals(that.rowKey)) {
             return false;
         }

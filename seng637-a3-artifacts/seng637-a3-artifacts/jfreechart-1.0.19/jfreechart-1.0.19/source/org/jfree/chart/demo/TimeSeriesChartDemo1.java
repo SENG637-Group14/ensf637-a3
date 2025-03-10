@@ -46,18 +46,18 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.JPanel;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.StandardChartTheme;
-import org.jfree.chart.axis.DateAxis;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.time.Month;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.ChartFactory;
+import jfree.chart.ChartPanel;
+import jfree.chart.JFreeChart;
+import jfree.chart.StandardChartTheme;
+import jfree.chart.axis.DateAxis;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import jfree.data.time.Month;
+import jfree.data.time.TimeSeries;
+import jfree.data.time.TimeSeriesCollection;
+import jfree.data.xy.XYDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.ui.RefineryUtilities;
@@ -218,7 +218,7 @@ public class TimeSeriesChartDemo1 extends ApplicationFrame {
      */
     public static void main(String[] args) {
 
-        TimeSeriesChartDemo1 demo = new TimeSeriesChartDemo1(
+        jfree.chart.demo.TimeSeriesChartDemo1 demo = new jfree.chart.demo.TimeSeriesChartDemo1(
                 "Time Series Chart Demo 1");
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);

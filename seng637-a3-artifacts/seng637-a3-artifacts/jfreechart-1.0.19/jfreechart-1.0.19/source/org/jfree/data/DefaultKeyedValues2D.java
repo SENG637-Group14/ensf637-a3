@@ -62,8 +62,11 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
+import jfree.data.DefaultKeyedValues;
+import jfree.data.KeyedValues2D;
+import jfree.data.UnknownKeyException;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
@@ -72,7 +75,7 @@ import org.jfree.util.PublicCloneable;
  * is associated with two keys (a 'row' key and a 'column' key).  The keys
  * should be (a) instances of {@link Comparable} and (b) immutable.
  */
-public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
+public class DefaultKeyedValues2D implements jfree.data.KeyedValues2D, PublicCloneable,
         Cloneable, Serializable {
 
     /** For serialization. */
@@ -146,7 +149,7 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
     @Override
     public Number getValue(int row, int column) {
         Number result = null;
-        DefaultKeyedValues rowData = (DefaultKeyedValues) this.rows.get(row);
+        jfree.data.DefaultKeyedValues rowData = (jfree.data.DefaultKeyedValues) this.rows.get(row);
         if (rowData != null) {
             Comparable columnKey = (Comparable) this.columnKeys.get(column);
             // the row may not have an entry for this key, in which case the
@@ -253,7 +256,7 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
 
     /**
      * Returns the value for the given row and column keys.  This method will
-     * throw an {@link UnknownKeyException} if either key is not defined in the
+     * throw an {@link jfree.data.UnknownKeyException} if either key is not defined in the
      * data structure.
      *
      * @param rowKey  the row key (<code>null</code> not permitted).
@@ -271,7 +274,7 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
 
         // check that the column key is defined in the 2D structure
         if (!(this.columnKeys.contains(columnKey))) {
-            throw new UnknownKeyException("Unrecognised columnKey: "
+            throw new jfree.data.UnknownKeyException("Unrecognised columnKey: "
                     + columnKey);
         }
 
@@ -280,13 +283,13 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
         // have already checked that the key is valid for the 2D structure
         int row = getRowIndex(rowKey);
         if (row >= 0) {
-            DefaultKeyedValues rowData
-                = (DefaultKeyedValues) this.rows.get(row);
+            jfree.data.DefaultKeyedValues rowData
+                = (jfree.data.DefaultKeyedValues) this.rows.get(row);
             int col = rowData.getIndex(columnKey);
             return (col >= 0 ? rowData.getValue(col) : null);
         }
         else {
-            throw new UnknownKeyException("Unrecognised rowKey: " + rowKey);
+            throw new jfree.data.UnknownKeyException("Unrecognised rowKey: " + rowKey);
         }
     }
 
@@ -320,14 +323,14 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
     public void setValue(Number value, Comparable rowKey,
                          Comparable columnKey) {
 
-        DefaultKeyedValues row;
+        jfree.data.DefaultKeyedValues row;
         int rowIndex = getRowIndex(rowKey);
 
         if (rowIndex >= 0) {
-            row = (DefaultKeyedValues) this.rows.get(rowIndex);
+            row = (jfree.data.DefaultKeyedValues) this.rows.get(rowIndex);
         }
         else {
-            row = new DefaultKeyedValues();
+            row = new jfree.data.DefaultKeyedValues();
             if (this.sortRowKeys) {
                 rowIndex = -rowIndex - 1;
                 this.rowKeys.add(rowIndex, rowKey);
@@ -362,7 +365,7 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
         // 1. check whether the row is now empty.
         boolean allNull = true;
         int rowIndex = getRowIndex(rowKey);
-        DefaultKeyedValues row = (DefaultKeyedValues) this.rows.get(rowIndex);
+        jfree.data.DefaultKeyedValues row = (jfree.data.DefaultKeyedValues) this.rows.get(rowIndex);
 
         for (int item = 0, itemCount = row.getItemCount(); item < itemCount;
              item++) {
@@ -383,7 +386,7 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
 
         for (int item = 0, itemCount = this.rows.size(); item < itemCount;
              item++) {
-            row = (DefaultKeyedValues) this.rows.get(item);
+            row = (jfree.data.DefaultKeyedValues) this.rows.get(item);
             int columnIndex = row.getIndex(columnKey);
             if (columnIndex >= 0 && row.getValue(columnIndex) != null) {
                 allNull = false;
@@ -394,7 +397,7 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
         if (allNull) {
             for (int item = 0, itemCount = this.rows.size(); item < itemCount;
                  item++) {
-                row = (DefaultKeyedValues) this.rows.get(item);
+                row = (jfree.data.DefaultKeyedValues) this.rows.get(item);
                 int columnIndex = row.getIndex(columnKey);
                 if (columnIndex >= 0) {
                     row.removeValue(columnIndex);
@@ -425,7 +428,7 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
      * @see #removeRow(int)
      * @see #removeColumn(Comparable)
      *
-     * @throws UnknownKeyException if <code>rowKey</code> is not defined in the
+     * @throws jfree.data.UnknownKeyException if <code>rowKey</code> is not defined in the
      *         table.
      */
     public void removeRow(Comparable rowKey) {
@@ -435,7 +438,7 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
             removeRow(index);
         }
         else {
-            throw new UnknownKeyException("Unknown key: " + rowKey);
+            throw new jfree.data.UnknownKeyException("Unknown key: " + rowKey);
         }
     }
 
@@ -457,7 +460,7 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
      *
      * @param columnKey  the column key (<code>null</code> not permitted).
      *
-     * @throws UnknownKeyException if the table does not contain a column with
+     * @throws jfree.data.UnknownKeyException if the table does not contain a column with
      *     the specified key.
      * @throws IllegalArgumentException if <code>columnKey</code> is
      *     <code>null</code>.
@@ -472,7 +475,7 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
         }
         Iterator iterator = this.rows.iterator();
         while (iterator.hasNext()) {
-            DefaultKeyedValues rowData = (DefaultKeyedValues) iterator.next();
+            jfree.data.DefaultKeyedValues rowData = (DefaultKeyedValues) iterator.next();
             int index = rowData.getIndex(columnKey);
             if (index >= 0) {
                 rowData.removeValue(columnKey);
@@ -507,10 +510,10 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
             return true;
         }
 
-        if (!(o instanceof KeyedValues2D)) {
+        if (!(o instanceof jfree.data.KeyedValues2D)) {
             return false;
         }
-        KeyedValues2D kv2D = (KeyedValues2D) o;
+        jfree.data.KeyedValues2D kv2D = (KeyedValues2D) o;
         if (!getRowKeys().equals(kv2D.getRowKeys())) {
             return false;
         }
@@ -570,7 +573,7 @@ public class DefaultKeyedValues2D implements KeyedValues2D, PublicCloneable,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultKeyedValues2D clone = (DefaultKeyedValues2D) super.clone();
+        jfree.data.DefaultKeyedValues2D clone = (jfree.data.DefaultKeyedValues2D) super.clone();
         // for the keys, a shallow copy should be fine because keys
         // should be immutable...
         clone.columnKeys = new java.util.ArrayList(this.columnKeys);

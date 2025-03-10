@@ -48,7 +48,7 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
-import org.jfree.data.Range;
+import jfree.data.Range;
 
 /**
  * A range specified in terms of two <code>java.util.Date</code> objects.
@@ -99,7 +99,7 @@ public class DateRange extends Range implements Serializable {
 
     /**
      * Constructs a new range that is based on another {@link Range}.  The
-     * other range does not have to be a {@link DateRange}.  If it is not, the
+     * other range does not have to be a {@link jfree.data.time.DateRange}.  If it is not, the
      * upper and lower bounds are evaluated as milliseconds since midnight
      * GMT, 1-Jan-1970.
      *

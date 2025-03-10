@@ -185,32 +185,36 @@ import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.event.EventListenerList;
 
+import jfree.chart.ChartFactory;
+import jfree.chart.ChartPanel;
+import jfree.chart.ChartRenderingInfo;
+import jfree.data.general.Dataset;
 import org.jfree.JCommon;
-import org.jfree.chart.block.BlockParams;
-import org.jfree.chart.block.EntityBlockResult;
-import org.jfree.chart.block.LengthConstraintType;
-import org.jfree.chart.block.LineBorder;
-import org.jfree.chart.block.RectangleConstraint;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.JFreeChartEntity;
-import org.jfree.chart.event.ChartChangeEvent;
-import org.jfree.chart.event.ChartChangeListener;
-import org.jfree.chart.event.ChartProgressEvent;
-import org.jfree.chart.event.ChartProgressListener;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.event.PlotChangeListener;
-import org.jfree.chart.event.TitleChangeEvent;
-import org.jfree.chart.event.TitleChangeListener;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.title.LegendTitle;
-import org.jfree.chart.title.TextTitle;
-import org.jfree.chart.title.Title;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.data.Range;
+import jfree.chart.block.BlockParams;
+import jfree.chart.block.EntityBlockResult;
+import jfree.chart.block.LengthConstraintType;
+import jfree.chart.block.LineBorder;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.JFreeChartEntity;
+import jfree.chart.event.ChartChangeEvent;
+import jfree.chart.event.ChartChangeListener;
+import jfree.chart.event.ChartProgressEvent;
+import jfree.chart.event.ChartProgressListener;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.event.PlotChangeListener;
+import jfree.chart.event.TitleChangeEvent;
+import jfree.chart.event.TitleChangeListener;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.title.LegendTitle;
+import jfree.chart.title.TextTitle;
+import jfree.chart.title.Title;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.data.Range;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.Align;
 import org.jfree.ui.Drawable;
@@ -233,16 +237,16 @@ import org.jfree.util.PaintUtilities;
  * JFreeChart coordinates several objects to achieve its aim of being able to
  * draw a chart on a Java 2D graphics device: a list of {@link Title} objects
  * (which often includes the chart's legend), a {@link Plot} and a
- * {@link org.jfree.data.general.Dataset} (the plot in turn manages a
+ * {@link Dataset} (the plot in turn manages a
  * domain axis and a range axis).
  * <P>
- * You should use a {@link ChartPanel} to display a chart in a GUI.
+ * You should use a {@link jfree.chart.ChartPanel} to display a chart in a GUI.
  * <P>
- * The {@link ChartFactory} class contains static methods for creating
+ * The {@link jfree.chart.ChartFactory} class contains static methods for creating
  * 'ready-made' charts.
  *
- * @see ChartPanel
- * @see ChartFactory
+ * @see jfree.chart.ChartPanel
+ * @see jfree.chart.ChartFactory
  * @see Title
  * @see Plot
  */
@@ -253,7 +257,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
     private static final long serialVersionUID = -3470703747817429120L;
 
     /** Information about the project. */
-    public static final ProjectInfo INFO = new JFreeChartInfo();
+    public static final ProjectInfo INFO = new jfree.chart.JFreeChartInfo();
 
     /** The default font for titles. */
     public static final Font DEFAULT_TITLE_FONT
@@ -346,7 +350,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
      * a legend added automatically, but no title (although you can easily add
      * one later).
      * <br><br>
-     * Note that the  {@link ChartFactory} class contains a range
+     * Note that the  {@link jfree.chart.ChartFactory} class contains a range
      * of static methods that will return ready-made charts, and often this
      * is a more convenient way to create charts than using this constructor.
      *
@@ -361,7 +365,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
      * ({@link #DEFAULT_TITLE_FONT}) is used for the title, and the chart will
      * have a legend added automatically.
      * <br><br>
-     * Note that the {@link ChartFactory} class contains a range
+     * Note that the {@link jfree.chart.ChartFactory} class contains a range
      * of static methods that will return ready-made charts, and often this
      * is a more convenient way to create charts than using this constructor.
      *
@@ -369,7 +373,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
      * @param plot  the plot (<code>null</code> not permitted).
      */
     public JFreeChart(String title, Plot plot) {
-        this(title, JFreeChart.DEFAULT_TITLE_FONT, plot, true);
+        this(title, jfree.chart.JFreeChart.DEFAULT_TITLE_FONT, plot, true);
     }
 
     /**
@@ -619,7 +623,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
     public void setTitle(String text) {
         if (text != null) {
             if (this.title == null) {
-                setTitle(new TextTitle(text, JFreeChart.DEFAULT_TITLE_FONT));
+                setTitle(new TextTitle(text, jfree.chart.JFreeChart.DEFAULT_TITLE_FONT));
             }
             else {
                 this.title.setText(text);
@@ -1120,7 +1124,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
      * @param area  the area within which the chart should be drawn.
      * @param info  records info about the drawing (null means collect no info).
      */
-    public void draw(Graphics2D g2, Rectangle2D area, ChartRenderingInfo info) {
+    public void draw(Graphics2D g2, Rectangle2D area, jfree.chart.ChartRenderingInfo info) {
         draw(g2, area, null, info);
     }
 
@@ -1137,7 +1141,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
      * @param info  records info about the drawing (null means collect no info).
      */
     public void draw(Graphics2D g2, Rectangle2D chartArea, Point2D anchor,
-             ChartRenderingInfo info) {
+             jfree.chart.ChartRenderingInfo info) {
 
         notifyListeners(new ChartProgressEvent(this, this,
                 ChartProgressEvent.DRAWING_STARTED, 0));
@@ -1375,7 +1379,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
      * @return A buffered image.
      */
     public BufferedImage createBufferedImage(int width, int height,
-                                             ChartRenderingInfo info) {
+                                             jfree.chart.ChartRenderingInfo info) {
         return createBufferedImage(width, height, BufferedImage.TYPE_INT_ARGB,
                 info);
     }
@@ -1393,7 +1397,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
      */
     public BufferedImage createBufferedImage(int width, int height,
                                              int imageType,
-                                             ChartRenderingInfo info) {
+                                             jfree.chart.ChartRenderingInfo info) {
         BufferedImage image = new BufferedImage(width, height, imageType);
         Graphics2D g2 = image.createGraphics();
         draw(g2, new Rectangle2D.Double(0, 0, width, height), null, info);
@@ -1419,7 +1423,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
                                              int imageHeight,
                                              double drawWidth,
                                              double drawHeight,
-                                             ChartRenderingInfo info) {
+                                             jfree.chart.ChartRenderingInfo info) {
 
         BufferedImage image = new BufferedImage(imageWidth, imageHeight,
                 BufferedImage.TYPE_INT_ARGB);
@@ -1583,10 +1587,10 @@ public class JFreeChart implements Drawable, TitleChangeListener,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof JFreeChart)) {
+        if (!(obj instanceof jfree.chart.JFreeChart)) {
             return false;
         }
-        JFreeChart that = (JFreeChart) obj;
+        jfree.chart.JFreeChart that = (jfree.chart.JFreeChart) obj;
         if (!this.renderingHints.equals(that.renderingHints)) {
             return false;
         }
@@ -1685,7 +1689,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
      * @param args  no arguments are honored.
      */
     public static void main(String[] args) {
-        System.out.println(JFreeChart.INFO.toString());
+        System.out.println(jfree.chart.JFreeChart.INFO.toString());
     }
 
     /**
@@ -1698,7 +1702,7 @@ public class JFreeChart implements Drawable, TitleChangeListener,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        JFreeChart chart = (JFreeChart) super.clone();
+        jfree.chart.JFreeChart chart = (jfree.chart.JFreeChart) super.clone();
 
         chart.renderingHints = (RenderingHints) this.renderingHints.clone();
         // private boolean borderVisible;

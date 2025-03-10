@@ -57,7 +57,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import org.jfree.data.general.PieDataset;
+import jfree.chart.labels.AbstractPieItemLabelGenerator;
+import jfree.chart.labels.PieSectionLabelGenerator;
+import jfree.data.general.PieDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -227,11 +229,11 @@ public class StandardPieSectionLabelGenerator
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardPieSectionLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.StandardPieSectionLabelGenerator)) {
             return false;
         }
-        StandardPieSectionLabelGenerator that
-                = (StandardPieSectionLabelGenerator) obj;
+        jfree.chart.labels.StandardPieSectionLabelGenerator that
+                = (jfree.chart.labels.StandardPieSectionLabelGenerator) obj;
         if (!this.attributedLabels.equals(that.attributedLabels)) {
             return false;
         }
@@ -247,8 +249,8 @@ public class StandardPieSectionLabelGenerator
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        StandardPieSectionLabelGenerator clone 
-                = (StandardPieSectionLabelGenerator) super.clone();        
+        jfree.chart.labels.StandardPieSectionLabelGenerator clone
+                = (jfree.chart.labels.StandardPieSectionLabelGenerator) super.clone();
         clone.attributedLabels = new HashMap();
         clone.attributedLabels.putAll(this.attributedLabels);
         return clone;

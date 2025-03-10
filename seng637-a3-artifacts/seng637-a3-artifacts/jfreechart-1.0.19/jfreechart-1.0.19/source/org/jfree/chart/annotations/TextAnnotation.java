@@ -63,9 +63,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.annotations.AbstractAnnotation;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.TextAnchor;
 import org.jfree.util.ObjectUtilities;
@@ -293,10 +294,10 @@ public class TextAnnotation extends AbstractAnnotation implements Serializable {
             return true;
         }
         // now try to reject equality...
-        if (!(obj instanceof TextAnnotation)) {
+        if (!(obj instanceof jfree.chart.annotations.TextAnnotation)) {
             return false;
         }
-        TextAnnotation that = (TextAnnotation) obj;
+        jfree.chart.annotations.TextAnnotation that = (jfree.chart.annotations.TextAnnotation) obj;
         if (!ObjectUtilities.equal(this.text, that.getText())) {
             return false;
         }

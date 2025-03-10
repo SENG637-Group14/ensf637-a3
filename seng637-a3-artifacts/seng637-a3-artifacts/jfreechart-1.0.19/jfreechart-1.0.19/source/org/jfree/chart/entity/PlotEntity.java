@@ -46,9 +46,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.entity.ChartEntity;
+import jfree.chart.plot.Plot;
+import jfree.chart.HashUtilities;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.ObjectUtilities;
 
@@ -140,10 +141,10 @@ public class PlotEntity extends ChartEntity {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof PlotEntity)) {
+        if (!(obj instanceof jfree.chart.entity.PlotEntity)) {
             return false;
         }
-        PlotEntity that = (PlotEntity) obj;
+        jfree.chart.entity.PlotEntity that = (jfree.chart.entity.PlotEntity) obj;
         if (!getArea().equals(that.getArea())) {
             return false;
         }

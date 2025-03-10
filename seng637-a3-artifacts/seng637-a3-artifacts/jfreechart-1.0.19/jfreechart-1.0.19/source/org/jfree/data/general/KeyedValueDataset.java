@@ -40,7 +40,8 @@
 
 package org.jfree.data.general;
 
-import org.jfree.data.KeyedValue;
+import jfree.data.KeyedValue;
+import jfree.data.general.Dataset;
 
 /**
  * A dataset containing a single value.

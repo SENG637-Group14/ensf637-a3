@@ -57,8 +57,9 @@ import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.Date;
 
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 
 /**
  * A URL generator for time series charts.
@@ -205,10 +206,10 @@ public class TimeSeriesURLGenerator implements XYURLGenerator, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof TimeSeriesURLGenerator)) {
+        if (!(obj instanceof jfree.chart.urls.TimeSeriesURLGenerator)) {
             return false;
         }
-        TimeSeriesURLGenerator that = (TimeSeriesURLGenerator) obj;
+        jfree.chart.urls.TimeSeriesURLGenerator that = (jfree.chart.urls.TimeSeriesURLGenerator) obj;
         if (!this.dateFormat.equals(that.dateFormat)) {
             return false;
         }

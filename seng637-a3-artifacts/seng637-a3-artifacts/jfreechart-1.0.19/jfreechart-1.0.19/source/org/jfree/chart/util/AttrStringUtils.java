@@ -46,6 +46,8 @@ import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.text.AttributedString;
+
+import jfree.chart.util.ParamChecks;
 import org.jfree.ui.TextAnchor;
 
 /**
@@ -110,7 +112,7 @@ public class AttrStringUtils {
     public static void drawRotatedString(AttributedString text, Graphics2D g2, 
             float textX, float textY, double angle, float rotateX, 
             float rotateY) {
-        ParamChecks.nullNotPermitted(text, "text");
+        jfree.chart.util.ParamChecks.nullNotPermitted(text, "text");
 
         AffineTransform saved = g2.getTransform();
         AffineTransform rotate = AffineTransform.getRotateInstance(angle, 
@@ -141,7 +143,7 @@ public class AttrStringUtils {
     public static void drawRotatedString(AttributedString text, Graphics2D g2, 
             float x, float y, TextAnchor textAnchor, 
             double angle, float rotationX, float rotationY) {
-        ParamChecks.nullNotPermitted(text, "text");
+        jfree.chart.util.ParamChecks.nullNotPermitted(text, "text");
         float[] textAdj = deriveTextBoundsAnchorOffsets(g2, text, textAnchor, 
                 null);
         drawRotatedString(text, g2, x + textAdj[0], y + textAdj[1], angle,

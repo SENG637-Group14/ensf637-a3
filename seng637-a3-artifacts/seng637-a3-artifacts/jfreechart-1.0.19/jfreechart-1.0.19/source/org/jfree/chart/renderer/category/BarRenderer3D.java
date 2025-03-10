@@ -118,24 +118,26 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.Effect3D;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.labels.ItemLabelAnchor;
-import org.jfree.chart.labels.ItemLabelPosition;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Marker;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.ValueMarker;
-import org.jfree.chart.util.PaintAlpha;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.Effect3D;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.labels.ItemLabelAnchor;
+import jfree.chart.labels.ItemLabelPosition;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Marker;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.ValueMarker;
+import jfree.chart.renderer.category.BarRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.util.PaintAlpha;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.LengthAdjustmentType;
@@ -271,14 +273,14 @@ public class BarRenderer3D extends BarRenderer
      * @return The renderer state.
      */
     @Override
-    public CategoryItemRendererState initialise(Graphics2D g2, 
-            Rectangle2D dataArea, CategoryPlot plot, int rendererIndex,
-            PlotRenderingInfo info) {
+    public jfree.chart.renderer.category.CategoryItemRendererState initialise(Graphics2D g2,
+                                                                                   Rectangle2D dataArea, CategoryPlot plot, int rendererIndex,
+                                                                                   PlotRenderingInfo info) {
 
         Rectangle2D adjusted = new Rectangle2D.Double(dataArea.getX(),
                 dataArea.getY() + getYOffset(), dataArea.getWidth()
                 - getXOffset(), dataArea.getHeight() - getYOffset());
-        CategoryItemRendererState state = super.initialise(g2, adjusted, plot,
+        jfree.chart.renderer.category.CategoryItemRendererState state = super.initialise(g2, adjusted, plot,
                 rendererIndex, info);
         return state;
 
@@ -795,10 +797,10 @@ public class BarRenderer3D extends BarRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof BarRenderer3D)) {
+        if (!(obj instanceof jfree.chart.renderer.category.BarRenderer3D)) {
             return false;
         }
-        BarRenderer3D that = (BarRenderer3D) obj;
+        jfree.chart.renderer.category.BarRenderer3D that = (jfree.chart.renderer.category.BarRenderer3D) obj;
         if (this.xOffset != that.xOffset) {
             return false;
         }

@@ -68,14 +68,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.annotations.AbstractXYAnnotation;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleEdge;
@@ -571,10 +572,10 @@ public class XYTextAnnotation extends AbstractXYAnnotation
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYTextAnnotation)) {
+        if (!(obj instanceof jfree.chart.annotations.XYTextAnnotation)) {
             return false;
         }
-        XYTextAnnotation that = (XYTextAnnotation) obj;
+        jfree.chart.annotations.XYTextAnnotation that = (jfree.chart.annotations.XYTextAnnotation) obj;
         if (!this.text.equals(that.text)) {
             return false;
         }

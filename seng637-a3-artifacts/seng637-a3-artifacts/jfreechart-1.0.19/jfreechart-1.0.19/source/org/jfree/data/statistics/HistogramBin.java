@@ -44,6 +44,8 @@
 
 package org.jfree.data.statistics;
 
+import jfree.data.statistics.HistogramDataset;
+
 import java.io.Serializable;
 
 /**
@@ -137,8 +139,8 @@ public class HistogramBin implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof HistogramBin) {
-            HistogramBin bin = (HistogramBin) obj;
+        if (obj instanceof jfree.data.statistics.HistogramBin) {
+            jfree.data.statistics.HistogramBin bin = (jfree.data.statistics.HistogramBin) obj;
             boolean b0 = bin.startBoundary == this.startBoundary;
             boolean b1 = bin.endBoundary == this.endBoundary;
             boolean b2 = bin.count == this.count;

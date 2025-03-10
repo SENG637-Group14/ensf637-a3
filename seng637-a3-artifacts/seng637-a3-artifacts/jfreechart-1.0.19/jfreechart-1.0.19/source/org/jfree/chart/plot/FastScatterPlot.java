@@ -88,15 +88,23 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import org.jfree.chart.axis.AxisSpace;
-import org.jfree.chart.axis.AxisState;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.axis.ValueTick;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.data.Range;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.axis.ValueTick;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.Pannable;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.chart.plot.Zoomable;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.data.Range;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
@@ -215,12 +223,12 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
         this.paint = Color.red;
 
         this.domainGridlinesVisible = true;
-        this.domainGridlinePaint = FastScatterPlot.DEFAULT_GRIDLINE_PAINT;
-        this.domainGridlineStroke = FastScatterPlot.DEFAULT_GRIDLINE_STROKE;
+        this.domainGridlinePaint = jfree.chart.plot.FastScatterPlot.DEFAULT_GRIDLINE_PAINT;
+        this.domainGridlineStroke = jfree.chart.plot.FastScatterPlot.DEFAULT_GRIDLINE_STROKE;
 
         this.rangeGridlinesVisible = true;
-        this.rangeGridlinePaint = FastScatterPlot.DEFAULT_GRIDLINE_PAINT;
-        this.rangeGridlineStroke = FastScatterPlot.DEFAULT_GRIDLINE_STROKE;
+        this.rangeGridlinePaint = jfree.chart.plot.FastScatterPlot.DEFAULT_GRIDLINE_PAINT;
+        this.rangeGridlineStroke = jfree.chart.plot.FastScatterPlot.DEFAULT_GRIDLINE_STROKE;
     }
 
     /**
@@ -260,10 +268,10 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
     /**
      * Returns the orientation of the plot.
      *
-     * @return The orientation (always {@link PlotOrientation#VERTICAL}).
+     * @return The orientation (always {@link jfree.chart.plot.PlotOrientation#VERTICAL}).
      */
     @Override
-    public PlotOrientation getOrientation() {
+    public jfree.chart.plot.PlotOrientation getOrientation() {
         return PlotOrientation.VERTICAL;
     }
 
@@ -522,7 +530,7 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
      */
     @Override
     public void draw(Graphics2D g2, Rectangle2D area, Point2D anchor,
-                     PlotState parentState, PlotRenderingInfo info) {
+                     PlotState parentState, jfree.chart.plot.PlotRenderingInfo info) {
 
         // set up info collection...
         if (info != null) {
@@ -581,7 +589,7 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
      *                        permitted).
      */
     public void render(Graphics2D g2, Rectangle2D dataArea,
-                       PlotRenderingInfo info, CrosshairState crosshairState) {
+                       jfree.chart.plot.PlotRenderingInfo info, CrosshairState crosshairState) {
         g2.setPaint(this.paint);
 
         // if the axes use a linear scale, you can uncomment the code below and
@@ -764,7 +772,7 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param source  the source point.
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo info,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                                Point2D source) {
         this.domainAxis.resizeRange(factor);
     }
@@ -777,12 +785,12 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param source  the source point (in Java2D space).
      * @param useAnchor  use source point as zoom anchor?
      *
-     * @see #zoomRangeAxes(double, PlotRenderingInfo, Point2D, boolean)
+     * @see #zoomRangeAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D, boolean)
      *
      * @since 1.0.7
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo info,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                                Point2D source, boolean useAnchor) {
 
         if (useAnchor) {
@@ -811,7 +819,7 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
      */
     @Override
     public void zoomDomainAxes(double lowerPercent, double upperPercent,
-                               PlotRenderingInfo info, Point2D source) {
+                               jfree.chart.plot.PlotRenderingInfo info, Point2D source) {
         this.domainAxis.zoomRange(lowerPercent, upperPercent);
     }
 
@@ -823,7 +831,7 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param source  the source point.
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo info, 
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
             Point2D source) {
         this.rangeAxis.resizeRange(factor);
     }
@@ -836,12 +844,12 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param source  the source point (in Java2D space).
      * @param useAnchor  use source point as zoom anchor?
      *
-     * @see #zoomDomainAxes(double, PlotRenderingInfo, Point2D, boolean)
+     * @see #zoomDomainAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D, boolean)
      *
      * @since 1.0.7
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo info,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                               Point2D source, boolean useAnchor) {
 
         if (useAnchor) {
@@ -870,7 +878,7 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
      */
     @Override
     public void zoomRangeAxes(double lowerPercent, double upperPercent,
-                              PlotRenderingInfo info, Point2D source) {
+                              jfree.chart.plot.PlotRenderingInfo info, Point2D source) {
         this.rangeAxis.zoomRange(lowerPercent, upperPercent);
     }
 
@@ -954,7 +962,7 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
      * @since 1.0.13
      */
     @Override
-    public void panDomainAxes(double percent, PlotRenderingInfo info,
+    public void panDomainAxes(double percent, jfree.chart.plot.PlotRenderingInfo info,
             Point2D source) {
         if (!isDomainPannable() || this.domainAxis == null) {
             return;
@@ -1010,10 +1018,10 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
         if (!super.equals(obj)) {
             return false;
         }
-        if (!(obj instanceof FastScatterPlot)) {
+        if (!(obj instanceof jfree.chart.plot.FastScatterPlot)) {
             return false;
         }
-        FastScatterPlot that = (FastScatterPlot) obj;
+        jfree.chart.plot.FastScatterPlot that = (jfree.chart.plot.FastScatterPlot) obj;
         if (this.domainPannable != that.domainPannable) {
             return false;
         }
@@ -1068,7 +1076,7 @@ public class FastScatterPlot extends Plot implements ValueAxisPlot, Pannable,
     @Override
     public Object clone() throws CloneNotSupportedException {
 
-        FastScatterPlot clone = (FastScatterPlot) super.clone();
+        jfree.chart.plot.FastScatterPlot clone = (jfree.chart.plot.FastScatterPlot) super.clone();
         if (this.data != null) {
             clone.data = ArrayUtilities.clone(this.data);
         }

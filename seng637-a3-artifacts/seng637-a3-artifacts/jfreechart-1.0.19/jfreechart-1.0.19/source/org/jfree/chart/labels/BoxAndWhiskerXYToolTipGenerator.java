@@ -55,8 +55,10 @@ import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.util.Date;
 
-import org.jfree.data.statistics.BoxAndWhiskerXYDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.labels.StandardXYToolTipGenerator;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.data.statistics.BoxAndWhiskerXYDataset;
+import jfree.data.xy.XYDataset;
 
 /**
  * An item label generator for plots that use data from a
@@ -160,7 +162,7 @@ public class BoxAndWhiskerXYToolTipGenerator extends StandardXYToolTipGenerator
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof BoxAndWhiskerXYToolTipGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.BoxAndWhiskerXYToolTipGenerator)) {
             return false;
         }
         return super.equals(obj);

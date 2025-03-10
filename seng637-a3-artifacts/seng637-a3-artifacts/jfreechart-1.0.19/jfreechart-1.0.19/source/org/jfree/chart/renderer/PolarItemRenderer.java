@@ -45,15 +45,15 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.event.RendererChangeListener;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.PolarPlot;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.event.RendererChangeListener;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PolarPlot;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.data.xy.XYDataset;
 
 /**
  * The interface for a renderer that can be used by the {@link PolarPlot} 

@@ -54,19 +54,20 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.jfree.chart.axis.AxisLocation;
-import org.jfree.chart.axis.AxisSpace;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.block.LengthConstraintType;
-import org.jfree.chart.block.RectangleConstraint;
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.event.AxisChangeListener;
-import org.jfree.chart.event.TitleChangeEvent;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.PaintScale;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
+import jfree.chart.axis.AxisLocation;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.block.LengthConstraintType;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.event.AxisChangeListener;
+import jfree.chart.event.TitleChangeEvent;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.PaintScale;
+import jfree.chart.title.Title;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.Size2D;
@@ -659,10 +660,10 @@ public class PaintScaleLegend extends Title implements AxisChangeListener,
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof PaintScaleLegend)) {
+        if (!(obj instanceof jfree.chart.title.PaintScaleLegend)) {
             return false;
         }
-        PaintScaleLegend that = (PaintScaleLegend) obj;
+        jfree.chart.title.PaintScaleLegend that = (jfree.chart.title.PaintScaleLegend) obj;
         if (!this.scale.equals(that.scale)) {
             return false;
         }

@@ -43,11 +43,13 @@
 
 package org.jfree.chart.event;
 
-import org.jfree.chart.plot.Plot;
+import jfree.chart.event.ChartChangeEvent;
+import jfree.chart.event.PlotChangeListener;
+import jfree.chart.plot.Plot;
 
 /**
  * An event that can be forwarded to any
- * {@link org.jfree.chart.event.PlotChangeListener} to signal a change to a
+ * {@link PlotChangeListener} to signal a change to a
  * plot.
  */
 public class PlotChangeEvent extends ChartChangeEvent {

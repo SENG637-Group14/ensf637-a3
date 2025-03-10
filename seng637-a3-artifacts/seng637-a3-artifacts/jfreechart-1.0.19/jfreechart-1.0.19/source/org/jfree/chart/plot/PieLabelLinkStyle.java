@@ -52,16 +52,16 @@ import java.io.Serializable;
 public final class PieLabelLinkStyle implements Serializable {
 
     /** STANDARD. */
-    public static final PieLabelLinkStyle STANDARD
-            = new PieLabelLinkStyle("PieLabelLinkStyle.STANDARD");
+    public static final jfree.chart.plot.PieLabelLinkStyle STANDARD
+            = new jfree.chart.plot.PieLabelLinkStyle("PieLabelLinkStyle.STANDARD");
 
     /** QUAD_CURVE. */
-    public static final PieLabelLinkStyle QUAD_CURVE
-            = new PieLabelLinkStyle("PieLabelLinkStyle.QUAD_CURVE");
+    public static final jfree.chart.plot.PieLabelLinkStyle QUAD_CURVE
+            = new jfree.chart.plot.PieLabelLinkStyle("PieLabelLinkStyle.QUAD_CURVE");
 
     /** CUBIC_CURVE. */
-    public static final PieLabelLinkStyle CUBIC_CURVE
-            = new PieLabelLinkStyle("PieLabelLinkStyle.CUBIC_CURVE");
+    public static final jfree.chart.plot.PieLabelLinkStyle CUBIC_CURVE
+            = new jfree.chart.plot.PieLabelLinkStyle("PieLabelLinkStyle.CUBIC_CURVE");
 
     /** The name. */
     private String name;
@@ -98,10 +98,10 @@ public final class PieLabelLinkStyle implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof PieLabelLinkStyle)) {
+        if (!(obj instanceof jfree.chart.plot.PieLabelLinkStyle)) {
             return false;
         }
-        PieLabelLinkStyle style = (PieLabelLinkStyle) obj;
+        jfree.chart.plot.PieLabelLinkStyle style = (jfree.chart.plot.PieLabelLinkStyle) obj;
         if (!this.name.equals(style.toString())) {
             return false;
         }
@@ -127,14 +127,14 @@ public final class PieLabelLinkStyle implements Serializable {
      */
     private Object readResolve() throws ObjectStreamException {
         Object result = null;
-        if (this.equals(PieLabelLinkStyle.STANDARD)) {
-            result = PieLabelLinkStyle.STANDARD;
+        if (this.equals(jfree.chart.plot.PieLabelLinkStyle.STANDARD)) {
+            result = jfree.chart.plot.PieLabelLinkStyle.STANDARD;
         }
-        else if (this.equals(PieLabelLinkStyle.QUAD_CURVE)) {
-            result = PieLabelLinkStyle.QUAD_CURVE;
+        else if (this.equals(jfree.chart.plot.PieLabelLinkStyle.QUAD_CURVE)) {
+            result = jfree.chart.plot.PieLabelLinkStyle.QUAD_CURVE;
         }
-        else if (this.equals(PieLabelLinkStyle.CUBIC_CURVE)) {
-            result = PieLabelLinkStyle.CUBIC_CURVE;
+        else if (this.equals(jfree.chart.plot.PieLabelLinkStyle.CUBIC_CURVE)) {
+            result = jfree.chart.plot.PieLabelLinkStyle.CUBIC_CURVE;
         }
         return result;
     }

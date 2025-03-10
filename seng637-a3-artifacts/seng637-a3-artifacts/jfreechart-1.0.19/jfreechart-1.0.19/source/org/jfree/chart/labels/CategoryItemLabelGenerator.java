@@ -59,13 +59,15 @@
 
 package org.jfree.chart.labels;
 
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.data.category.CategoryDataset;
 
 /**
  * A <i>category item label generator</i> is an object that can be assigned to a
- * {@link org.jfree.chart.renderer.category.CategoryItemRenderer} and that
+ * {@link CategoryItemRenderer} and that
  * assumes responsibility for creating text items to be used as labels for the
- * items in a {@link org.jfree.chart.plot.CategoryPlot}.
+ * items in a {@link CategoryPlot}.
  * <p>
  * To assist with cloning charts, classes that implement this interface should
  * also implement the {@link org.jfree.util.PublicCloneable} interface.

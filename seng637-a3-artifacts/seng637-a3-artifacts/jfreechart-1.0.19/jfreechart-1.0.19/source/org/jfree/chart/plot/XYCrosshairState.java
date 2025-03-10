@@ -40,7 +40,9 @@
 
 package org.jfree.chart.plot;
 
-import org.jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYItemRenderer;
 
 /**
  * Crosshair state information for the {@link XYPlot} and {@link XYItemRenderer}

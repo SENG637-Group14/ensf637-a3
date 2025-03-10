@@ -51,17 +51,19 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.CyclicNumberAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.data.DomainOrder;
-import org.jfree.data.general.DatasetChangeListener;
-import org.jfree.data.general.DatasetGroup;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.axis.CyclicNumberAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.StandardXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.data.DomainOrder;
+import jfree.data.general.DatasetChangeListener;
+import jfree.data.general.DatasetGroup;
+import jfree.data.xy.XYDataset;
 
 /**
  * The Cyclic XY item renderer is specially designed to handle cyclic axis.
@@ -141,7 +143,7 @@ public class CyclicXYItemRenderer extends StandardXYItemRenderer
      * @param pass  the current pass index.
      */
     @Override
-    public void drawItem(Graphics2D g2, XYItemRendererState state, 
+    public void drawItem(Graphics2D g2, XYItemRendererState state,
             Rectangle2D dataArea, PlotRenderingInfo info, XYPlot plot,
             ValueAxis domainAxis, ValueAxis rangeAxis, XYDataset dataset,
             int series, int item, CrosshairState crosshairState, int pass) {

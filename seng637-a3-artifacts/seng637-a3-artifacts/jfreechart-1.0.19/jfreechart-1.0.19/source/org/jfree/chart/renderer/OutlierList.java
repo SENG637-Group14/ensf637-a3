@@ -44,6 +44,8 @@
 
 package org.jfree.chart.renderer;
 
+import jfree.chart.renderer.Outlier;
+
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -69,7 +71,7 @@ public class OutlierList {
     private List outliers;
 
     /** The averaged outlier. */
-    private Outlier averagedOutlier;
+    private jfree.chart.renderer.Outlier averagedOutlier;
 
     /**
      * A flag that indicates whether or not there are multiple outliers in the
@@ -82,7 +84,7 @@ public class OutlierList {
      *
      * @param outlier  the outlier.
      */
-    public OutlierList(Outlier outlier) {
+    public OutlierList(jfree.chart.renderer.Outlier outlier) {
         this.outliers = new ArrayList();
         setAveragedOutlier(outlier);
     }
@@ -94,7 +96,7 @@ public class OutlierList {
      *
      * @return A boolean.
      */
-    public boolean add(Outlier outlier) {
+    public boolean add(jfree.chart.renderer.Outlier outlier) {
         return this.outliers.add(outlier);
     }
 
@@ -112,7 +114,7 @@ public class OutlierList {
      *
      * @return The averaged outlier.
      */
-    public Outlier getAveragedOutlier() {
+    public jfree.chart.renderer.Outlier getAveragedOutlier() {
         return this.averagedOutlier;
     }
 
@@ -121,7 +123,7 @@ public class OutlierList {
      *
      * @param averagedOutlier  the averaged outlier.
      */
-    public void setAveragedOutlier(Outlier averagedOutlier) {
+    public void setAveragedOutlier(jfree.chart.renderer.Outlier averagedOutlier) {
         this.averagedOutlier = averagedOutlier;
     }
 
@@ -153,7 +155,7 @@ public class OutlierList {
      *
      * @return A boolean.
      */
-    public boolean isOverlapped(Outlier other) {
+    public boolean isOverlapped(jfree.chart.renderer.Outlier other) {
 
         if (other == null) {
             return false;
@@ -174,7 +176,7 @@ public class OutlierList {
         int size = getItemCount();
         for (Iterator iterator = this.outliers.iterator();
                 iterator.hasNext();) {
-            Outlier o = (Outlier) iterator.next();
+            jfree.chart.renderer.Outlier o = (Outlier) iterator.next();
             totalXCoords += o.getX();
             totalYCoords += o.getY();
         }

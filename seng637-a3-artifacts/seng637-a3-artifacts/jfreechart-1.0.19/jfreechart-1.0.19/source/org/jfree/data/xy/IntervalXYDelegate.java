@@ -55,20 +55,23 @@ package org.jfree.data.xy;
 
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.DomainInfo;
-import org.jfree.data.Range;
-import org.jfree.data.RangeInfo;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetChangeListener;
-import org.jfree.data.general.DatasetUtilities;
+import jfree.chart.HashUtilities;
+import jfree.chart.util.ParamChecks;
+import jfree.data.DomainInfo;
+import jfree.data.Range;
+import jfree.data.RangeInfo;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetChangeListener;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.TableXYDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A delegate that handles the specification or automatic calculation of the
  * interval surrounding the x-values in a dataset.  This is used to extend
- * a regular {@link XYDataset} to support the {@link IntervalXYDataset}
+ * a regular {@link jfree.data.xy.XYDataset} to support the {@link IntervalXYDataset}
  * interface.
  * <p>
  * The decorator pattern was not used because of the several possibly
@@ -91,7 +94,7 @@ public class IntervalXYDelegate implements DatasetChangeListener,
     /**
      * The dataset to enhance.
      */
-    private XYDataset dataset;
+    private jfree.data.xy.XYDataset dataset;
 
     /**
      * A flag to indicate whether the width should be calculated automatically.
@@ -119,7 +122,7 @@ public class IntervalXYDelegate implements DatasetChangeListener,
      *
      * @param dataset  the underlying dataset (<code>null</code> not permitted).
      */
-    public IntervalXYDelegate(XYDataset dataset) {
+    public IntervalXYDelegate(jfree.data.xy.XYDataset dataset) {
         this(dataset, true);
     }
 
@@ -445,10 +448,10 @@ public class IntervalXYDelegate implements DatasetChangeListener,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof IntervalXYDelegate)) {
+        if (!(obj instanceof jfree.data.xy.IntervalXYDelegate)) {
             return false;
         }
-        IntervalXYDelegate that = (IntervalXYDelegate) obj;
+        jfree.data.xy.IntervalXYDelegate that = (jfree.data.xy.IntervalXYDelegate) obj;
         if (this.autoWidth != that.autoWidth) {
             return false;
         }

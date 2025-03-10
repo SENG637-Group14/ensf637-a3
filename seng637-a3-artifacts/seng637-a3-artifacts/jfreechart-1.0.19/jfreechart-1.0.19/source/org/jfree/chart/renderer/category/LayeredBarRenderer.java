@@ -60,13 +60,16 @@ import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.category.BarRenderer;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.data.category.CategoryDataset;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.ObjectList;
@@ -134,7 +137,7 @@ public class LayeredBarRenderer extends BarRenderer implements Serializable {
      */
     @Override
     protected void calculateBarWidth(CategoryPlot plot, Rectangle2D dataArea,
-            int rendererIndex, CategoryItemRendererState state) {
+            int rendererIndex, jfree.chart.renderer.category.CategoryItemRendererState state) {
 
         // calculate the bar width - this calculation differs from the
         // BarRenderer calculation because the bars are layered on top of one
@@ -185,7 +188,7 @@ public class LayeredBarRenderer extends BarRenderer implements Serializable {
      * @param pass  the pass index.
      */
     @Override
-    public void drawItem(Graphics2D g2, CategoryItemRendererState state,
+    public void drawItem(Graphics2D g2, jfree.chart.renderer.category.CategoryItemRendererState state,
             Rectangle2D dataArea, CategoryPlot plot, CategoryAxis domainAxis,
             ValueAxis rangeAxis, CategoryDataset data, int row, int column,
             int pass) {
@@ -216,7 +219,7 @@ public class LayeredBarRenderer extends BarRenderer implements Serializable {
      * @param column  the column index (zero-based).
      */
     protected void drawHorizontalItem(Graphics2D g2,
-                                      CategoryItemRendererState state,
+                                      jfree.chart.renderer.category.CategoryItemRendererState state,
                                       Rectangle2D dataArea,
                                       CategoryPlot plot,
                                       CategoryAxis domainAxis,

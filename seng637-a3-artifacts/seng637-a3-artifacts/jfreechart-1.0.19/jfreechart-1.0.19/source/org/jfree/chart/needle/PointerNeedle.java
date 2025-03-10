@@ -45,6 +45,9 @@
 
 package org.jfree.chart.needle;
 
+import jfree.chart.needle.MeterNeedle;
+import jfree.chart.plot.CompassPlot;
+
 import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
@@ -53,7 +56,7 @@ import java.io.Serializable;
 
 /**
  * A needle in the shape of a pointer, for use with the
- * {@link org.jfree.chart.plot.CompassPlot} class.
+ * {@link CompassPlot} class.
  */
 public class PointerNeedle extends MeterNeedle
                            implements Cloneable, Serializable {
@@ -129,7 +132,7 @@ public class PointerNeedle extends MeterNeedle
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof PointerNeedle)) {
+        if (!(obj instanceof jfree.chart.needle.PointerNeedle)) {
             return false;
         }
         if (!super.equals(obj)) {

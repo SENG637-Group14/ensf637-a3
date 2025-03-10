@@ -45,7 +45,9 @@
 package org.jfree.chart.labels;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.labels.ItemLabelAnchor;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.ui.TextAnchor;
 
@@ -59,7 +61,7 @@ public class ItemLabelPosition implements Serializable {
     private static final long serialVersionUID = 5845390630157034499L;
 
     /** The item label anchor point. */
-    private ItemLabelAnchor itemLabelAnchor;
+    private jfree.chart.labels.ItemLabelAnchor itemLabelAnchor;
 
     /** The text anchor. */
     private TextAnchor textAnchor;
@@ -74,7 +76,7 @@ public class ItemLabelPosition implements Serializable {
      * Creates a new position record with default settings.
      */
     public ItemLabelPosition() {
-        this(ItemLabelAnchor.OUTSIDE12, TextAnchor.BOTTOM_CENTER,
+        this(jfree.chart.labels.ItemLabelAnchor.OUTSIDE12, TextAnchor.BOTTOM_CENTER,
                 TextAnchor.CENTER, 0.0);
     }
 
@@ -85,7 +87,7 @@ public class ItemLabelPosition implements Serializable {
      *                         permitted).
      * @param textAnchor  the text anchor (<code>null</code> not permitted).
      */
-    public ItemLabelPosition(ItemLabelAnchor itemLabelAnchor,
+    public ItemLabelPosition(jfree.chart.labels.ItemLabelAnchor itemLabelAnchor,
                              TextAnchor textAnchor) {
         this(itemLabelAnchor, textAnchor, TextAnchor.CENTER, 0.0);
     }
@@ -103,8 +105,8 @@ public class ItemLabelPosition implements Serializable {
      *                        permitted).
      * @param angle  the rotation angle (in radians).
      */
-    public ItemLabelPosition(ItemLabelAnchor itemLabelAnchor, 
-            TextAnchor textAnchor, TextAnchor rotationAnchor, double angle) {
+    public ItemLabelPosition(jfree.chart.labels.ItemLabelAnchor itemLabelAnchor,
+                             TextAnchor textAnchor, TextAnchor rotationAnchor, double angle) {
 
         ParamChecks.nullNotPermitted(itemLabelAnchor, "itemLabelAnchor");
         ParamChecks.nullNotPermitted(textAnchor, "textAnchor");
@@ -163,10 +165,10 @@ public class ItemLabelPosition implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ItemLabelPosition)) {
+        if (!(obj instanceof jfree.chart.labels.ItemLabelPosition)) {
             return false;
         }
-        ItemLabelPosition that = (ItemLabelPosition) obj;
+        jfree.chart.labels.ItemLabelPosition that = (jfree.chart.labels.ItemLabelPosition) obj;
         if (!this.itemLabelAnchor.equals(that.itemLabelAnchor)) {
             return false;
         }

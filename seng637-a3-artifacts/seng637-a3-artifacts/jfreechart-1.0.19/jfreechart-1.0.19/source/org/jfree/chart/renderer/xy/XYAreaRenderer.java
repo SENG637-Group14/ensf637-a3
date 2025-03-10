@@ -99,20 +99,23 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.XYSeriesLabelGenerator;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.XYSeriesLabelGenerator;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.StandardGradientPaintTransformer;
@@ -138,7 +141,7 @@ public class XYAreaRenderer extends AbstractXYItemRenderer
     /**
      * A state object used by this renderer.
      */
-    static class XYAreaRendererState extends XYItemRendererState {
+    static class XYAreaRendererState extends jfree.chart.renderer.xy.XYItemRendererState {
 
         /** Working storage for the area under one series. */
         public GeneralPath area;
@@ -414,8 +417,8 @@ public class XYAreaRenderer extends AbstractXYItemRenderer
      * @return A state object for use by the renderer.
      */
     @Override
-    public XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
-            XYPlot plot, XYDataset data, PlotRenderingInfo info) {
+    public jfree.chart.renderer.xy.XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
+                                                                       XYPlot plot, XYDataset data, PlotRenderingInfo info) {
         XYAreaRendererState state = new XYAreaRendererState(info);
 
         // in the rendering process, there is special handling for item
@@ -691,7 +694,7 @@ public class XYAreaRenderer extends AbstractXYItemRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        XYAreaRenderer clone = (XYAreaRenderer) super.clone();
+        jfree.chart.renderer.xy.XYAreaRenderer clone = (jfree.chart.renderer.xy.XYAreaRenderer) super.clone();
         clone.legendArea = ShapeUtilities.clone(this.legendArea);
         return clone;
     }
@@ -708,10 +711,10 @@ public class XYAreaRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYAreaRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYAreaRenderer)) {
             return false;
         }
-        XYAreaRenderer that = (XYAreaRenderer) obj;
+        jfree.chart.renderer.xy.XYAreaRenderer that = (jfree.chart.renderer.xy.XYAreaRenderer) obj;
         if (this.plotArea != that.plotArea) {
             return false;
         }

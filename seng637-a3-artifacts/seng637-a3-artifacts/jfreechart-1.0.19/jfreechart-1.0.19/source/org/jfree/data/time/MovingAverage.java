@@ -50,10 +50,14 @@
 
 package org.jfree.data.time;
 
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
+import jfree.chart.util.ParamChecks;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.TimeSeries;
+import jfree.data.time.TimeSeriesCollection;
+import jfree.data.time.TimeSeriesDataItem;
+import jfree.data.xy.XYDataset;
+import jfree.data.xy.XYSeries;
+import jfree.data.xy.XYSeriesCollection;
 
 /**
  * A utility class for calculating moving averages of time series data.
@@ -61,7 +65,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 public class MovingAverage {
 
     /**
-     * Creates a new {@link TimeSeriesCollection} containing a moving average
+     * Creates a new {@link jfree.data.time.TimeSeriesCollection} containing a moving average
      * series for each series in the source collection.
      *
      * @param source  the source collection.
@@ -73,8 +77,8 @@ public class MovingAverage {
      *
      * @return A collection of moving average time series.
      */
-    public static TimeSeriesCollection createMovingAverage(
-            TimeSeriesCollection source, String suffix, int periodCount,
+    public static jfree.data.time.TimeSeriesCollection createMovingAverage(
+            jfree.data.time.TimeSeriesCollection source, String suffix, int periodCount,
             int skip) {
 
         ParamChecks.nullNotPermitted(source, "source");
@@ -83,10 +87,10 @@ public class MovingAverage {
                     + "than or equal to 1.");
         }
 
-        TimeSeriesCollection result = new TimeSeriesCollection();
+        jfree.data.time.TimeSeriesCollection result = new TimeSeriesCollection();
         for (int i = 0; i < source.getSeriesCount(); i++) {
-            TimeSeries sourceSeries = source.getSeries(i);
-            TimeSeries maSeries = createMovingAverage(sourceSeries,
+            jfree.data.time.TimeSeries sourceSeries = source.getSeries(i);
+            jfree.data.time.TimeSeries maSeries = createMovingAverage(sourceSeries,
                     sourceSeries.getKey() + suffix, periodCount, skip);
             result.addSeries(maSeries);
         }
@@ -95,7 +99,7 @@ public class MovingAverage {
     }
 
     /**
-     * Creates a new {@link TimeSeries} containing moving average values for
+     * Creates a new {@link jfree.data.time.TimeSeries} containing moving average values for
      * the given series.  If the series is empty (contains zero items), the
      * result is an empty series.
      *
@@ -107,8 +111,8 @@ public class MovingAverage {
      *
      * @return The moving average series.
      */
-    public static TimeSeries createMovingAverage(TimeSeries source,
-            String name, int periodCount, int skip) {
+    public static jfree.data.time.TimeSeries createMovingAverage(jfree.data.time.TimeSeries source,
+                                                                      String name, int periodCount, int skip) {
 
         ParamChecks.nullNotPermitted(source, "source");
         if (periodCount < 1) {
@@ -116,7 +120,7 @@ public class MovingAverage {
                     + "than or equal to 1.");
         }
 
-        TimeSeries result = new TimeSeries(name);
+        jfree.data.time.TimeSeries result = new jfree.data.time.TimeSeries(name);
 
         if (source.getItemCount() > 0) {
 
@@ -128,7 +132,7 @@ public class MovingAverage {
             for (int i = source.getItemCount() - 1; i >= 0; i--) {
 
                 // get the current data item...
-                RegularTimePeriod period = source.getTimePeriod(i);
+                jfree.data.time.RegularTimePeriod period = source.getTimePeriod(i);
                 long serial = period.getSerialIndex();
 
                 if (serial >= firstSerial) {
@@ -141,9 +145,9 @@ public class MovingAverage {
 
                     while ((offset < periodCount) && (!finished)) {
                         if ((i - offset) >= 0) {
-                            TimeSeriesDataItem item = source.getRawDataItem(
+                            jfree.data.time.TimeSeriesDataItem item = source.getRawDataItem(
                                     i - offset);
-                            RegularTimePeriod p = item.getPeriod();
+                            jfree.data.time.RegularTimePeriod p = item.getPeriod();
                             Number v = item.getValue();
                             long currentIndex = p.getSerialIndex();
                             if (currentIndex > serialLimit) {
@@ -174,7 +178,7 @@ public class MovingAverage {
     }
 
     /**
-     * Creates a new {@link TimeSeries} containing moving average values for
+     * Creates a new {@link jfree.data.time.TimeSeries} containing moving average values for
      * the given series, calculated by number of points (irrespective of the
      * 'age' of those points).  If the series is empty (contains zero items),
      * the result is an empty series.
@@ -188,8 +192,8 @@ public class MovingAverage {
      *
      * @return The moving average series.
      */
-    public static TimeSeries createPointMovingAverage(TimeSeries source,
-            String name, int pointCount) {
+    public static jfree.data.time.TimeSeries createPointMovingAverage(jfree.data.time.TimeSeries source,
+                                                                           String name, int pointCount) {
 
         ParamChecks.nullNotPermitted(source, "source");
         if (pointCount < 2) {
@@ -197,11 +201,11 @@ public class MovingAverage {
                     + "than or equal to 2.");
         }
 
-        TimeSeries result = new TimeSeries(name);
+        jfree.data.time.TimeSeries result = new TimeSeries(name);
         double rollingSumForPeriod = 0.0;
         for (int i = 0; i < source.getItemCount(); i++) {
             // get the current data item...
-            TimeSeriesDataItem current = source.getRawDataItem(i);
+            jfree.data.time.TimeSeriesDataItem current = source.getRawDataItem(i);
             RegularTimePeriod period = current.getPeriod();
             // FIXME: what if value is null on next line?
             rollingSumForPeriod += current.getValue().doubleValue();

@@ -73,16 +73,21 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.axis.AxisSpace;
-import org.jfree.chart.axis.AxisState;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.event.PlotChangeListener;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ShadowGenerator;
-import org.jfree.data.Range;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.event.PlotChangeListener;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ShadowGenerator;
+import jfree.data.Range;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.util.ObjectUtilities;
@@ -90,7 +95,7 @@ import org.jfree.util.ObjectUtilities;
 /**
  * A combined category plot where the domain axis is shared.
  */
-public class CombinedDomainCategoryPlot extends CategoryPlot
+public class CombinedDomainCategoryPlot extends jfree.chart.plot.CategoryPlot
         implements PlotChangeListener {
 
     /** For serialization. */
@@ -158,7 +163,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
      *
      * @param subplot  the subplot (<code>null</code> not permitted).
      */
-    public void add(CategoryPlot subplot) {
+    public void add(jfree.chart.plot.CategoryPlot subplot) {
         add(subplot, 1);
     }
 
@@ -172,7 +177,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
      * @param subplot  the subplot (<code>null</code> not permitted).
      * @param weight  the weight (must be &gt;= 1).
      */
-    public void add(CategoryPlot subplot, int weight) {
+    public void add(jfree.chart.plot.CategoryPlot subplot, int weight) {
         ParamChecks.nullNotPermitted(subplot, "subplot");
         if (weight < 1) {
             throw new IllegalArgumentException("Require weight >= 1.");
@@ -199,7 +204,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
      *
      * @param subplot  the subplot (<code>null</code> not permitted).
      */
-    public void remove(CategoryPlot subplot) {
+    public void remove(jfree.chart.plot.CategoryPlot subplot) {
         ParamChecks.nullNotPermitted(subplot, "subplot");
         int position = -1;
         int size = this.subplots.size();
@@ -246,13 +251,13 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
      *
      * @return A subplot (possibly <code>null</code>).
      */
-    public CategoryPlot findSubplot(PlotRenderingInfo info, Point2D source) {
+    public jfree.chart.plot.CategoryPlot findSubplot(jfree.chart.plot.PlotRenderingInfo info, Point2D source) {
         ParamChecks.nullNotPermitted(info, "info");
         ParamChecks.nullNotPermitted(source, "source");
-        CategoryPlot result = null;
+        jfree.chart.plot.CategoryPlot result = null;
         int subplotIndex = info.getSubplotIndex(source);
         if (subplotIndex >= 0) {
-            result =  (CategoryPlot) this.subplots.get(subplotIndex);
+            result =  (jfree.chart.plot.CategoryPlot) this.subplots.get(subplotIndex);
         }
         return result;
     }
@@ -265,7 +270,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
      * @param source  the source point (<code>null</code> not permitted).
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo info,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                               Point2D source) {
         zoomRangeAxes(factor, info, source, false);
     }
@@ -279,10 +284,10 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
      * @param useAnchor  zoom about the anchor point?
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo info,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                               Point2D source, boolean useAnchor) {
         // delegate 'info' and 'source' argument checks...
-        CategoryPlot subplot = findSubplot(info, source);
+        jfree.chart.plot.CategoryPlot subplot = findSubplot(info, source);
         if (subplot != null) {
             subplot.zoomRangeAxes(factor, info, source, useAnchor);
         }
@@ -291,7 +296,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
             // zoom on all subplots...
             Iterator iterator = getSubplots().iterator();
             while (iterator.hasNext()) {
-                subplot = (CategoryPlot) iterator.next();
+                subplot = (jfree.chart.plot.CategoryPlot) iterator.next();
                 subplot.zoomRangeAxes(factor, info, source, useAnchor);
             }
         }
@@ -307,9 +312,9 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
      */
     @Override
     public void zoomRangeAxes(double lowerPercent, double upperPercent,
-                              PlotRenderingInfo info, Point2D source) {
+                              jfree.chart.plot.PlotRenderingInfo info, Point2D source) {
         // delegate 'info' and 'source' argument checks...
-        CategoryPlot subplot = findSubplot(info, source);
+        jfree.chart.plot.CategoryPlot subplot = findSubplot(info, source);
         if (subplot != null) {
             subplot.zoomRangeAxes(lowerPercent, upperPercent, info, source);
         }
@@ -318,7 +323,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
             // zoom on all subplots...
             Iterator iterator = getSubplots().iterator();
             while (iterator.hasNext()) {
-                subplot = (CategoryPlot) iterator.next();
+                subplot = (jfree.chart.plot.CategoryPlot) iterator.next();
                 subplot.zoomRangeAxes(lowerPercent, upperPercent, info, source);
             }
         }
@@ -337,23 +342,23 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
                                            Rectangle2D plotArea) {
 
         AxisSpace space = new AxisSpace();
-        PlotOrientation orientation = getOrientation();
+        jfree.chart.plot.PlotOrientation orientation = getOrientation();
 
         // work out the space required by the domain axis...
         AxisSpace fixed = getFixedDomainAxisSpace();
         if (fixed != null) {
-            if (orientation == PlotOrientation.HORIZONTAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 space.setLeft(fixed.getLeft());
                 space.setRight(fixed.getRight());
             }
-            else if (orientation == PlotOrientation.VERTICAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 space.setTop(fixed.getTop());
                 space.setBottom(fixed.getBottom());
             }
         }
         else {
             CategoryAxis categoryAxis = getDomainAxis();
-            RectangleEdge categoryEdge = Plot.resolveDomainAxisLocation(
+            RectangleEdge categoryEdge = jfree.chart.plot.Plot.resolveDomainAxisLocation(
                     getDomainAxisLocation(), orientation);
             if (categoryAxis != null) {
                 space = categoryAxis.reserveSpace(g2, this, plotArea,
@@ -373,31 +378,31 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
         int n = this.subplots.size();
         int totalWeight = 0;
         for (int i = 0; i < n; i++) {
-            CategoryPlot sub = (CategoryPlot) this.subplots.get(i);
+            jfree.chart.plot.CategoryPlot sub = (jfree.chart.plot.CategoryPlot) this.subplots.get(i);
             totalWeight += sub.getWeight();
         }
         this.subplotAreas = new Rectangle2D[n];
         double x = adjustedPlotArea.getX();
         double y = adjustedPlotArea.getY();
         double usableSize = 0.0;
-        if (orientation == PlotOrientation.HORIZONTAL) {
+        if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
             usableSize = adjustedPlotArea.getWidth() - this.gap * (n - 1);
         }
-        else if (orientation == PlotOrientation.VERTICAL) {
+        else if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
             usableSize = adjustedPlotArea.getHeight() - this.gap * (n - 1);
         }
 
         for (int i = 0; i < n; i++) {
-            CategoryPlot plot = (CategoryPlot) this.subplots.get(i);
+            jfree.chart.plot.CategoryPlot plot = (jfree.chart.plot.CategoryPlot) this.subplots.get(i);
 
             // calculate sub-plot area
-            if (orientation == PlotOrientation.HORIZONTAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 double w = usableSize * plot.getWeight() / totalWeight;
                 this.subplotAreas[i] = new Rectangle2D.Double(x, y, w,
                         adjustedPlotArea.getHeight());
                 x = x + w + this.gap;
             }
-            else if (orientation == PlotOrientation.VERTICAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 double h = usableSize * plot.getWeight() / totalWeight;
                 this.subplotAreas[i] = new Rectangle2D.Double(x, y,
                         adjustedPlotArea.getWidth(), h);
@@ -428,7 +433,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
      */
     @Override
      public void draw(Graphics2D g2, Rectangle2D area, Point2D anchor,
-            PlotState parentState, PlotRenderingInfo info) {
+                      jfree.chart.plot.PlotState parentState, jfree.chart.plot.PlotRenderingInfo info) {
 
         // set up info collection...
         if (info != null) {
@@ -464,10 +469,10 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
 
         // draw all the subplots
         for (int i = 0; i < this.subplots.size(); i++) {
-            CategoryPlot plot = (CategoryPlot) this.subplots.get(i);
-            PlotRenderingInfo subplotInfo = null;
+            jfree.chart.plot.CategoryPlot plot = (jfree.chart.plot.CategoryPlot) this.subplots.get(i);
+            jfree.chart.plot.PlotRenderingInfo subplotInfo = null;
             if (info != null) {
-                subplotInfo = new PlotRenderingInfo(info.getOwner());
+                subplotInfo = new jfree.chart.plot.PlotRenderingInfo(info.getOwner());
                 info.addSubplotInfo(subplotInfo);
             }
             Point2D subAnchor = null;
@@ -493,7 +498,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
     protected void setFixedRangeAxisSpaceForSubplots(AxisSpace space) {
         Iterator iterator = this.subplots.iterator();
         while (iterator.hasNext()) {
-            CategoryPlot plot = (CategoryPlot) iterator.next();
+            jfree.chart.plot.CategoryPlot plot = (jfree.chart.plot.CategoryPlot) iterator.next();
             plot.setFixedRangeAxisSpace(space, false);
         }
     }
@@ -508,7 +513,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
         super.setOrientation(orientation);
         Iterator iterator = this.subplots.iterator();
         while (iterator.hasNext()) {
-            CategoryPlot plot = (CategoryPlot) iterator.next();
+            jfree.chart.plot.CategoryPlot plot = (jfree.chart.plot.CategoryPlot) iterator.next();
             plot.setOrientation(orientation);
         }
 
@@ -526,7 +531,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
         super.setShadowGenerator(generator);
         Iterator iterator = this.subplots.iterator();
         while (iterator.hasNext()) {
-            CategoryPlot plot = (CategoryPlot) iterator.next();
+            jfree.chart.plot.CategoryPlot plot = (jfree.chart.plot.CategoryPlot) iterator.next();
             plot.setShadowGenerator(generator);
         }
         setNotify(true);
@@ -565,7 +570,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
             if (this.subplots != null) {
                 Iterator iterator = this.subplots.iterator();
                 while (iterator.hasNext()) {
-                    CategoryPlot plot = (CategoryPlot) iterator.next();
+                    jfree.chart.plot.CategoryPlot plot = (jfree.chart.plot.CategoryPlot) iterator.next();
                     LegendItemCollection more = plot.getLegendItems();
                     result.addAll(more);
                 }
@@ -586,7 +591,7 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
         if (this.subplots != null) {
             Iterator iterator = this.subplots.iterator();
             while (iterator.hasNext()) {
-                CategoryPlot plot = (CategoryPlot) iterator.next();
+                jfree.chart.plot.CategoryPlot plot = (jfree.chart.plot.CategoryPlot) iterator.next();
                 List more = plot.getCategories();
                 Iterator moreIterator = more.iterator();
                 while (moreIterator.hasNext()) {
@@ -625,12 +630,12 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
      *
      */
     @Override
-    public void handleClick(int x, int y, PlotRenderingInfo info) {
+    public void handleClick(int x, int y, jfree.chart.plot.PlotRenderingInfo info) {
 
         Rectangle2D dataArea = info.getDataArea();
         if (dataArea.contains(x, y)) {
             for (int i = 0; i < this.subplots.size(); i++) {
-                CategoryPlot subplot = (CategoryPlot) this.subplots.get(i);
+                jfree.chart.plot.CategoryPlot subplot = (CategoryPlot) this.subplots.get(i);
                 PlotRenderingInfo subplotInfo = info.getSubplotInfo(i);
                 subplot.handleClick(x, y, subplotInfo);
             }
@@ -661,10 +666,10 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CombinedDomainCategoryPlot)) {
+        if (!(obj instanceof jfree.chart.plot.CombinedDomainCategoryPlot)) {
             return false;
         }
-        CombinedDomainCategoryPlot that = (CombinedDomainCategoryPlot) obj;
+        jfree.chart.plot.CombinedDomainCategoryPlot that = (jfree.chart.plot.CombinedDomainCategoryPlot) obj;
         if (this.gap != that.gap) {
             return false;
         }
@@ -685,11 +690,11 @@ public class CombinedDomainCategoryPlot extends CategoryPlot
     @Override
     public Object clone() throws CloneNotSupportedException {
 
-        CombinedDomainCategoryPlot result
-            = (CombinedDomainCategoryPlot) super.clone();
+        jfree.chart.plot.CombinedDomainCategoryPlot result
+            = (jfree.chart.plot.CombinedDomainCategoryPlot) super.clone();
         result.subplots = (List) ObjectUtilities.deepClone(this.subplots);
         for (Iterator it = result.subplots.iterator(); it.hasNext();) {
-            Plot child = (Plot) it.next();
+            jfree.chart.plot.Plot child = (Plot) it.next();
             child.setParent(result);
         }
         return result;

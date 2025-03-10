@@ -131,32 +131,34 @@ package org.jfree.data.general;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.DomainInfo;
-import org.jfree.data.DomainOrder;
-import org.jfree.data.KeyToGroupMap;
-import org.jfree.data.KeyedValues;
-import org.jfree.data.Range;
-import org.jfree.data.RangeInfo;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.CategoryRangeInfo;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.category.IntervalCategoryDataset;
-import org.jfree.data.function.Function2D;
-import org.jfree.data.statistics.BoxAndWhiskerCategoryDataset;
-import org.jfree.data.statistics.BoxAndWhiskerXYDataset;
-import org.jfree.data.statistics.MultiValueCategoryDataset;
-import org.jfree.data.statistics.StatisticalCategoryDataset;
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.data.xy.OHLCDataset;
-import org.jfree.data.xy.TableXYDataset;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYDomainInfo;
-import org.jfree.data.xy.XYRangeInfo;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.data.xy.XYZDataset;
+import jfree.data.DomainInfo;
+import jfree.data.DomainOrder;
+import jfree.data.KeyToGroupMap;
+import jfree.data.KeyedValues;
+import jfree.data.Range;
+import jfree.data.RangeInfo;
+import jfree.data.category.CategoryDataset;
+import jfree.data.category.CategoryRangeInfo;
+import jfree.data.category.DefaultCategoryDataset;
+import jfree.data.category.IntervalCategoryDataset;
+import jfree.data.function.Function2D;
+import jfree.data.general.DefaultPieDataset;
+import jfree.data.general.PieDataset;
+import jfree.data.statistics.BoxAndWhiskerCategoryDataset;
+import jfree.data.statistics.BoxAndWhiskerXYDataset;
+import jfree.data.statistics.MultiValueCategoryDataset;
+import jfree.data.statistics.StatisticalCategoryDataset;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.OHLCDataset;
+import jfree.data.xy.TableXYDataset;
+import jfree.data.xy.XYDataset;
+import jfree.data.xy.XYDomainInfo;
+import jfree.data.xy.XYRangeInfo;
+import jfree.data.xy.XYSeries;
+import jfree.data.xy.XYSeriesCollection;
+import jfree.data.xy.XYZDataset;
 import org.jfree.util.ArrayUtilities;
 
 /**
@@ -172,7 +174,7 @@ public final class DatasetUtilities {
     }
 
     /**
-     * Calculates the total of all the values in a {@link PieDataset}.  If
+     * Calculates the total of all the values in a {@link jfree.data.general.PieDataset}.  If
      * the dataset contains negative or <code>null</code> values, they are
      * ignored.
      *
@@ -180,7 +182,7 @@ public final class DatasetUtilities {
      *
      * @return The total.
      */
-    public static double calculatePieDatasetTotal(PieDataset dataset) {
+    public static double calculatePieDatasetTotal(jfree.data.general.PieDataset dataset) {
         ParamChecks.nullNotPermitted(dataset, "dataset");
         List keys = dataset.getKeys();
         double totalValue = 0;
@@ -210,8 +212,8 @@ public final class DatasetUtilities {
      *
      * @return A pie dataset.
      */
-    public static PieDataset createPieDatasetForRow(CategoryDataset dataset,
-                                                    Comparable rowKey) {
+    public static jfree.data.general.PieDataset createPieDatasetForRow(CategoryDataset dataset,
+                                                                            Comparable rowKey) {
         int row = dataset.getRowIndex(rowKey);
         return createPieDatasetForRow(dataset, row);
     }
@@ -225,9 +227,9 @@ public final class DatasetUtilities {
      *
      * @return A pie dataset.
      */
-    public static PieDataset createPieDatasetForRow(CategoryDataset dataset,
-                                                    int row) {
-        DefaultPieDataset result = new DefaultPieDataset();
+    public static jfree.data.general.PieDataset createPieDatasetForRow(CategoryDataset dataset,
+                                                                            int row) {
+        jfree.data.general.DefaultPieDataset result = new jfree.data.general.DefaultPieDataset();
         int columnCount = dataset.getColumnCount();
         for (int current = 0; current < columnCount; current++) {
             Comparable columnKey = dataset.getColumnKey(current);
@@ -245,8 +247,8 @@ public final class DatasetUtilities {
      *
      * @return A pie dataset.
      */
-    public static PieDataset createPieDatasetForColumn(CategoryDataset dataset,
-                                                       Comparable columnKey) {
+    public static jfree.data.general.PieDataset createPieDatasetForColumn(CategoryDataset dataset,
+                                                                               Comparable columnKey) {
         int column = dataset.getColumnIndex(columnKey);
         return createPieDatasetForColumn(dataset, column);
     }
@@ -260,9 +262,9 @@ public final class DatasetUtilities {
      *
      * @return A pie dataset.
      */
-    public static PieDataset createPieDatasetForColumn(CategoryDataset dataset,
-                                                       int column) {
-        DefaultPieDataset result = new DefaultPieDataset();
+    public static jfree.data.general.PieDataset createPieDatasetForColumn(CategoryDataset dataset,
+                                                                               int column) {
+        jfree.data.general.DefaultPieDataset result = new jfree.data.general.DefaultPieDataset();
         int rowCount = dataset.getRowCount();
         for (int i = 0; i < rowCount; i++) {
             Comparable rowKey = dataset.getRowKey(i);
@@ -284,9 +286,9 @@ public final class DatasetUtilities {
      *
      * @return The pie dataset with (possibly) aggregated items.
      */
-    public static PieDataset createConsolidatedPieDataset(PieDataset source,
-            Comparable key, double minimumPercent) {
-        return DatasetUtilities.createConsolidatedPieDataset(source, key,
+    public static jfree.data.general.PieDataset createConsolidatedPieDataset(jfree.data.general.PieDataset source,
+                                                                                  Comparable key, double minimumPercent) {
+        return jfree.data.general.DatasetUtilities.createConsolidatedPieDataset(source, key,
                 minimumPercent, 2);
     }
 
@@ -305,11 +307,11 @@ public final class DatasetUtilities {
      *
      * @return The pie dataset with (possibly) aggregated items.
      */
-    public static PieDataset createConsolidatedPieDataset(PieDataset source,
-            Comparable key, double minimumPercent, int minItems) {
+    public static jfree.data.general.PieDataset createConsolidatedPieDataset(jfree.data.general.PieDataset source,
+                                                                                  Comparable key, double minimumPercent, int minItems) {
 
-        DefaultPieDataset result = new DefaultPieDataset();
-        double total = DatasetUtilities.calculatePieDatasetTotal(source);
+        jfree.data.general.DefaultPieDataset result = new DefaultPieDataset();
+        double total = jfree.data.general.DatasetUtilities.calculatePieDatasetTotal(source);
 
         //  Iterate and find all keys below threshold percentThreshold
         List keys = source.getKeys();
@@ -2304,7 +2306,7 @@ public final class DatasetUtilities {
      *
      * @since 1.0.16
      * 
-     * @see #findYValue(org.jfree.data.xy.XYDataset, int, double) 
+     * @see #findYValue(XYDataset, int, double)
      */
     public static int[] findItemIndicesForX(XYDataset dataset, int series,
             double x) {

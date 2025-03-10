@@ -42,9 +42,9 @@
 
 package org.jfree.chart.labels;
 
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
-import org.jfree.data.contour.ContourDataset;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.data.contour.ContourDataset;
 
 /**
  * Interface for a tooltip generator for plots that use data from a

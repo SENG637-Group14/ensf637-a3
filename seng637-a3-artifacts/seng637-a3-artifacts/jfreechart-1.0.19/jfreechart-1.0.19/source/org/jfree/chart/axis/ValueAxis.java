@@ -131,11 +131,21 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.util.AttrStringUtils;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
+import jfree.chart.axis.Axis;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.DateAxis;
+import jfree.chart.axis.LogTick;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.Tick;
+import jfree.chart.axis.TickType;
+import jfree.chart.axis.TickUnitSource;
+import jfree.chart.axis.ValueTick;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.plot.Plot;
+import jfree.chart.util.AttrStringUtils;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleEdge;
@@ -269,7 +279,7 @@ public abstract class ValueAxis extends Axis
     private boolean autoTickUnitSelection;
 
     /** The standard tick units for the axis. */
-    private TickUnitSource standardTickUnits;
+    private jfree.chart.axis.TickUnitSource standardTickUnits;
 
     /** An index into an array of standard tick values. */
     private int autoTickIndex;
@@ -291,7 +301,7 @@ public abstract class ValueAxis extends Axis
      * @param standardTickUnits  the source for standard tick units
      *                           (<code>null</code> permitted).
      */
-    protected ValueAxis(String label, TickUnitSource standardTickUnits) {
+    protected ValueAxis(String label, jfree.chart.axis.TickUnitSource standardTickUnits) {
 
         super(label);
 
@@ -644,8 +654,8 @@ public abstract class ValueAxis extends Axis
      *
      * @return The x and y coordinates of the anchor point.
      */
-    protected float[] calculateAnchorPoint(ValueTick tick, double cursor,
-            Rectangle2D dataArea, RectangleEdge edge) {
+    protected float[] calculateAnchorPoint(jfree.chart.axis.ValueTick tick, double cursor,
+                                           Rectangle2D dataArea, RectangleEdge edge) {
 
         RectangleInsets insets = getTickLabelInsets();
         float[] result = new float[2];
@@ -680,11 +690,11 @@ public abstract class ValueAxis extends Axis
      *
      * @return The width or height used to draw the axis.
      */
-    protected AxisState drawTickMarksAndLabels(Graphics2D g2,
-            double cursor, Rectangle2D plotArea, Rectangle2D dataArea,
-            RectangleEdge edge) {
+    protected jfree.chart.axis.AxisState drawTickMarksAndLabels(Graphics2D g2,
+                                                                     double cursor, Rectangle2D plotArea, Rectangle2D dataArea,
+                                                                     RectangleEdge edge) {
 
-        AxisState state = new AxisState(cursor);
+        jfree.chart.axis.AxisState state = new jfree.chart.axis.AxisState(cursor);
         if (isAxisLineVisible()) {
             drawAxisLine(g2, cursor, dataArea, edge);
         }
@@ -696,13 +706,13 @@ public abstract class ValueAxis extends Axis
                 RenderingHints.VALUE_STROKE_NORMALIZE);
         Iterator iterator = ticks.iterator();
         while (iterator.hasNext()) {
-            ValueTick tick = (ValueTick) iterator.next();
+            jfree.chart.axis.ValueTick tick = (ValueTick) iterator.next();
             if (isTickLabelsVisible()) {
                 g2.setPaint(getTickLabelPaint());
                 float[] anchorPoint = calculateAnchorPoint(tick, cursor,
                         dataArea, edge);
-                if (tick instanceof LogTick) {
-                    LogTick lt = (LogTick) tick;
+                if (tick instanceof jfree.chart.axis.LogTick) {
+                    jfree.chart.axis.LogTick lt = (jfree.chart.axis.LogTick) tick;
                     if (lt.getAttributedLabel() == null) {
                         continue;
                     }
@@ -722,14 +732,14 @@ public abstract class ValueAxis extends Axis
             }
 
             if ((isTickMarksVisible() && tick.getTickType().equals(
-                    TickType.MAJOR)) || (isMinorTickMarksVisible()
-                    && tick.getTickType().equals(TickType.MINOR))) {
+                    jfree.chart.axis.TickType.MAJOR)) || (isMinorTickMarksVisible()
+                    && tick.getTickType().equals(jfree.chart.axis.TickType.MINOR))) {
 
-                double ol = (tick.getTickType().equals(TickType.MINOR)) 
+                double ol = (tick.getTickType().equals(jfree.chart.axis.TickType.MINOR))
                         ? getMinorTickMarkOutsideLength()
                         : getTickMarkOutsideLength();
 
-                double il = (tick.getTickType().equals(TickType.MINOR)) 
+                double il = (tick.getTickType().equals(TickType.MINOR))
                         ? getMinorTickMarkInsideLength()
                         : getTickMarkInsideLength();
 
@@ -794,8 +804,8 @@ public abstract class ValueAxis extends Axis
      *         space).
      */
     @Override
-    public AxisSpace reserveSpace(Graphics2D g2, Plot plot, 
-            Rectangle2D plotArea, RectangleEdge edge, AxisSpace space) {
+    public jfree.chart.axis.AxisSpace reserveSpace(Graphics2D g2, Plot plot,
+                                                        Rectangle2D plotArea, RectangleEdge edge, jfree.chart.axis.AxisSpace space) {
 
         // create a new space object if one wasn't supplied...
         if (space == null) {
@@ -867,10 +877,10 @@ public abstract class ValueAxis extends Axis
             FontMetrics fm = g2.getFontMetrics(font);
             Iterator iterator = ticks.iterator();
             while (iterator.hasNext()) {
-                Tick tick = (Tick) iterator.next();
+                jfree.chart.axis.Tick tick = (jfree.chart.axis.Tick) iterator.next();
                 Rectangle2D labelBounds = null;
-                if (tick instanceof LogTick) {
-                    LogTick lt = (LogTick) tick;
+                if (tick instanceof jfree.chart.axis.LogTick) {
+                    jfree.chart.axis.LogTick lt = (jfree.chart.axis.LogTick) tick;
                     if (lt.getAttributedLabel() != null) {
                         labelBounds = AttrStringUtils.getTextBounds(
                                 lt.getAttributedLabel(), g2);
@@ -916,10 +926,10 @@ public abstract class ValueAxis extends Axis
             FontMetrics fm = g2.getFontMetrics(font);
             Iterator iterator = ticks.iterator();
             while (iterator.hasNext()) {
-                Tick tick = (Tick) iterator.next();
+                jfree.chart.axis.Tick tick = (Tick) iterator.next();
                 Rectangle2D labelBounds = null;
-                if (tick instanceof LogTick) {
-                    LogTick lt = (LogTick) tick;
+                if (tick instanceof jfree.chart.axis.LogTick) {
+                    jfree.chart.axis.LogTick lt = (LogTick) tick;
                     if (lt.getAttributedLabel() != null) {
                         labelBounds = AttrStringUtils.getTextBounds(
                                 lt.getAttributedLabel(), g2);
@@ -1424,9 +1434,9 @@ public abstract class ValueAxis extends Axis
      *
      * @return The source (possibly <code>null</code>).
      *
-     * @see #setStandardTickUnits(TickUnitSource)
+     * @see #setStandardTickUnits(jfree.chart.axis.TickUnitSource)
      */
-    public TickUnitSource getStandardTickUnits() {
+    public jfree.chart.axis.TickUnitSource getStandardTickUnits() {
         return this.standardTickUnits;
     }
 
@@ -1687,10 +1697,10 @@ public abstract class ValueAxis extends Axis
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ValueAxis)) {
+        if (!(obj instanceof jfree.chart.axis.ValueAxis)) {
             return false;
         }
-        ValueAxis that = (ValueAxis) obj;
+        jfree.chart.axis.ValueAxis that = (jfree.chart.axis.ValueAxis) obj;
         if (this.positiveArrowVisible != that.positiveArrowVisible) {
             return false;
         }
@@ -1748,7 +1758,7 @@ public abstract class ValueAxis extends Axis
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        ValueAxis clone = (ValueAxis) super.clone();
+        jfree.chart.axis.ValueAxis clone = (jfree.chart.axis.ValueAxis) super.clone();
         return clone;
     }
 

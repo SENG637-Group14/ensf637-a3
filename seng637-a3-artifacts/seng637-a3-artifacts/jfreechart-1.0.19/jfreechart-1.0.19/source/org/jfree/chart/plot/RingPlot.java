@@ -71,13 +71,17 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.Format;
 
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.PieSectionEntity;
-import org.jfree.chart.labels.PieToolTipGenerator;
-import org.jfree.chart.urls.PieURLGenerator;
-import org.jfree.chart.util.LineUtilities;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.general.PieDataset;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.PieSectionEntity;
+import jfree.chart.labels.PieToolTipGenerator;
+import jfree.chart.plot.CenterTextMode;
+import jfree.chart.plot.PiePlot;
+import jfree.chart.plot.PiePlotState;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.urls.PieURLGenerator;
+import jfree.chart.util.LineUtilities;
+import jfree.chart.util.ParamChecks;
+import jfree.data.general.PieDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleInsets;
@@ -91,13 +95,13 @@ import org.jfree.util.UnitType;
 /**
  * A customised pie plot that leaves a hole in the middle.
  */
-public class RingPlot extends PiePlot implements Cloneable, Serializable {
+public class RingPlot extends jfree.chart.plot.PiePlot implements Cloneable, Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = 1556064784129676620L;
 
     /** The center text mode. */
-    private CenterTextMode centerTextMode = CenterTextMode.NONE;
+    private jfree.chart.plot.CenterTextMode centerTextMode = jfree.chart.plot.CenterTextMode.NONE;
     
     /** 
      * Text to display in the middle of the chart (used for 
@@ -160,7 +164,7 @@ public class RingPlot extends PiePlot implements Cloneable, Serializable {
      */
     public RingPlot(PieDataset dataset) {
         super(dataset);
-        this.centerTextMode = CenterTextMode.NONE;
+        this.centerTextMode = jfree.chart.plot.CenterTextMode.NONE;
         this.centerText = null;
         this.centerTextFormatter = new DecimalFormat("0.00");
         this.centerTextFont = DEFAULT_LABEL_FONT;
@@ -175,30 +179,30 @@ public class RingPlot extends PiePlot implements Cloneable, Serializable {
 
     /**
      * Returns the mode for displaying text in the center of the plot.  The
-     * default value is {@link CenterTextMode#NONE} therefore no text
+     * default value is {@link jfree.chart.plot.CenterTextMode#NONE} therefore no text
      * will be displayed by default.
      * 
      * @return The mode (never <code>null</code>).
      * 
      * @since 1.0.18
      */
-    public CenterTextMode getCenterTextMode() {
+    public jfree.chart.plot.CenterTextMode getCenterTextMode() {
         return this.centerTextMode;
     }
     
     /**
      * Sets the mode for displaying text in the center of the plot and sends 
      * a change event to all registered listeners.  For
-     * {@link CenterTextMode#FIXED}, the display text will come from the 
+     * {@link jfree.chart.plot.CenterTextMode#FIXED}, the display text will come from the
      * <code>centerText</code> attribute (see {@link #getCenterText()}).
-     * For {@link CenterTextMode#VALUE}, the center text will be the value from
+     * For {@link jfree.chart.plot.CenterTextMode#VALUE}, the center text will be the value from
      * the first section in the dataset.
      * 
      * @param mode  the mode (<code>null</code> not permitted).
      * 
      * @since 1.0.18
      */
-    public void setCenterTextMode(CenterTextMode mode) {
+    public void setCenterTextMode(jfree.chart.plot.CenterTextMode mode) {
         ParamChecks.nullNotPermitted(mode, "mode");
         this.centerTextMode = mode;
         fireChangeEvent();
@@ -206,7 +210,7 @@ public class RingPlot extends PiePlot implements Cloneable, Serializable {
     
     /**
      * Returns the text to display in the center of the plot when the mode
-     * is {@link CenterTextMode#FIXED}.
+     * is {@link jfree.chart.plot.CenterTextMode#FIXED}.
      * 
      * @return The text (possibly <code>null</code>).
      * 
@@ -232,7 +236,7 @@ public class RingPlot extends PiePlot implements Cloneable, Serializable {
     
     /**
      * Returns the formatter used to format the center text value for the mode
-     * {@link CenterTextMode#VALUE}.  The default value is 
+     * {@link jfree.chart.plot.CenterTextMode#VALUE}.  The default value is
      * <code>DecimalFormat("0.00");</code>.
      * 
      * @return The formatter (never <code>null</code>).
@@ -258,7 +262,7 @@ public class RingPlot extends PiePlot implements Cloneable, Serializable {
     
     /**
      * Returns the font used to display the center text.  The default value
-     * is {@link PiePlot#DEFAULT_LABEL_FONT}.
+     * is {@link jfree.chart.plot.PiePlot#DEFAULT_LABEL_FONT}.
      * 
      * @return The font (never <code>null</code>).
      * 
@@ -482,9 +486,9 @@ public class RingPlot extends PiePlot implements Cloneable, Serializable {
      *         chart drawing).
      */
     @Override
-    public PiePlotState initialise(Graphics2D g2, Rectangle2D plotArea,
-            PiePlot plot, Integer index, PlotRenderingInfo info) {
-        PiePlotState state = super.initialise(g2, plotArea, plot, index, info);
+    public jfree.chart.plot.PiePlotState initialise(Graphics2D g2, Rectangle2D plotArea,
+                                                         PiePlot plot, Integer index, PlotRenderingInfo info) {
+        jfree.chart.plot.PiePlotState state = super.initialise(g2, plotArea, plot, index, info);
         state.setPassesRequired(3);
         return state;
     }
@@ -500,7 +504,7 @@ public class RingPlot extends PiePlot implements Cloneable, Serializable {
      */
     @Override
     protected void drawItem(Graphics2D g2, int section, Rectangle2D dataArea,
-            PiePlotState state, int currentPass) {
+                            PiePlotState state, int currentPass) {
 
         PieDataset dataset = getDataset();
         Number n = dataset.getValue(section);
@@ -584,7 +588,7 @@ public class RingPlot extends PiePlot implements Cloneable, Serializable {
                 
                 if (section == 0) {
                     String nstr = null;
-                    if (this.centerTextMode.equals(CenterTextMode.VALUE)) {
+                    if (this.centerTextMode.equals(jfree.chart.plot.CenterTextMode.VALUE)) {
                         nstr = this.centerTextFormatter.format(n);
                     } else if (this.centerTextMode.equals(CenterTextMode.FIXED)) {
                         nstr = this.centerText;
@@ -660,10 +664,10 @@ public class RingPlot extends PiePlot implements Cloneable, Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof RingPlot)) {
+        if (!(obj instanceof jfree.chart.plot.RingPlot)) {
             return false;
         }
-        RingPlot that = (RingPlot) obj;
+        jfree.chart.plot.RingPlot that = (jfree.chart.plot.RingPlot) obj;
         if (!this.centerTextMode.equals(that.centerTextMode)) {
             return false;
         }

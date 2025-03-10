@@ -79,14 +79,16 @@ import java.io.ObjectOutputStream;
 
 import javax.swing.Icon;
 
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.category.AbstractCategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.util.ParamChecks;
+import jfree.data.category.CategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PaintUtilities;
 
@@ -432,10 +434,10 @@ public class MinMaxCategoryRenderer extends AbstractCategoryItemRenderer {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof MinMaxCategoryRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.MinMaxCategoryRenderer)) {
             return false;
         }
-        MinMaxCategoryRenderer that = (MinMaxCategoryRenderer) obj;
+        jfree.chart.renderer.category.MinMaxCategoryRenderer that = (jfree.chart.renderer.category.MinMaxCategoryRenderer) obj;
         if (this.plotLines != that.plotLines) {
             return false;
         }

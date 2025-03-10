@@ -49,8 +49,10 @@ import java.awt.Paint;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import org.jfree.chart.axis.ValueTick;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.chart.axis.ValueTick;
+import jfree.chart.plot.ContourPlot;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
 
 /**
  * Defines palette used by {@link ContourPlot}.
@@ -394,11 +396,11 @@ public abstract class ColorPalette implements Cloneable, Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ColorPalette)) {
+        if (!(o instanceof jfree.chart.plot.ColorPalette)) {
             return false;
         }
 
-        ColorPalette colorPalette = (ColorPalette) o;
+        jfree.chart.plot.ColorPalette colorPalette = (jfree.chart.plot.ColorPalette) o;
 
         if (this.inverse != colorPalette.inverse) {
             return false;
@@ -466,7 +468,7 @@ public abstract class ColorPalette implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        ColorPalette clone = (ColorPalette) super.clone();
+        jfree.chart.plot.ColorPalette clone = (jfree.chart.plot.ColorPalette) super.clone();
         return clone;
     }
 

@@ -42,7 +42,9 @@
 package org.jfree.chart.axis;
 
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.axis.Axis;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.ui.RectangleEdge;
 

@@ -55,15 +55,17 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.CategoryAnchor;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.annotations.CategoryAnnotation;
+import jfree.chart.annotations.TextAnnotation;
+import jfree.chart.axis.CategoryAnchor;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.util.ParamChecks;
+import jfree.data.category.CategoryDataset;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PublicCloneable;
@@ -235,10 +237,10 @@ public class CategoryTextAnnotation extends TextAnnotation
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CategoryTextAnnotation)) {
+        if (!(obj instanceof jfree.chart.annotations.CategoryTextAnnotation)) {
             return false;
         }
-        CategoryTextAnnotation that = (CategoryTextAnnotation) obj;
+        jfree.chart.annotations.CategoryTextAnnotation that = (jfree.chart.annotations.CategoryTextAnnotation) obj;
         if (!super.equals(obj)) {
             return false;
         }

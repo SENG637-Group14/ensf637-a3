@@ -259,10 +259,10 @@ public class BoxAndWhiskerItem implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof BoxAndWhiskerItem)) {
+        if (!(obj instanceof jfree.data.statistics.BoxAndWhiskerItem)) {
             return false;
         }
-        BoxAndWhiskerItem that = (BoxAndWhiskerItem) obj;
+        jfree.data.statistics.BoxAndWhiskerItem that = (jfree.data.statistics.BoxAndWhiskerItem) obj;
         if (!ObjectUtilities.equal(this.mean, that.mean)) {
             return false;
         }

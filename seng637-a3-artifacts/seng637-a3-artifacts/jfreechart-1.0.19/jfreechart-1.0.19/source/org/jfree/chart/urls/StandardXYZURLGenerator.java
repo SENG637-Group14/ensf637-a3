@@ -40,7 +40,9 @@
 
 package org.jfree.chart.urls;
 
-import org.jfree.data.xy.XYZDataset;
+import jfree.chart.urls.StandardXYURLGenerator;
+import jfree.chart.urls.XYZURLGenerator;
+import jfree.data.xy.XYZDataset;
 
 /**
  * A URL generator.

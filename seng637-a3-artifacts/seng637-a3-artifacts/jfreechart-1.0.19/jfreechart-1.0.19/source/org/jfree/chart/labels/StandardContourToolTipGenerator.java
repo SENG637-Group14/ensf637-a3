@@ -48,9 +48,10 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
-import org.jfree.data.contour.ContourDataset;
+import jfree.chart.labels.ContourToolTipGenerator;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.data.contour.ContourDataset;
 
 /**
  * A standard tooltip generator for plots that use data from an
@@ -122,11 +123,11 @@ public class StandardContourToolTipGenerator implements ContourToolTipGenerator,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardContourToolTipGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.StandardContourToolTipGenerator)) {
             return false;
         }
-        StandardContourToolTipGenerator that
-                = (StandardContourToolTipGenerator) obj;
+        jfree.chart.labels.StandardContourToolTipGenerator that
+                = (jfree.chart.labels.StandardContourToolTipGenerator) obj;
         if (this.valueForm != null) {
             return this.valueForm.equals(that.valueForm);
         }

@@ -51,7 +51,9 @@ package org.jfree.chart.axis;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.axis.TickUnit;
+import jfree.chart.util.ParamChecks;
 
 /**
  * A numerical tick unit.
@@ -127,13 +129,13 @@ public class NumberTickUnit extends TickUnit implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof NumberTickUnit)) {
+        if (!(obj instanceof jfree.chart.axis.NumberTickUnit)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        NumberTickUnit that = (NumberTickUnit) obj;
+        jfree.chart.axis.NumberTickUnit that = (jfree.chart.axis.NumberTickUnit) obj;
         if (!this.formatter.equals(that.formatter)) {
             return false;
         }

@@ -45,7 +45,10 @@ package org.jfree.chart.axis;
 
 import java.util.Date;
 
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.axis.DateAxis;
+import jfree.chart.axis.TickType;
+import jfree.chart.axis.ValueTick;
+import jfree.chart.util.ParamChecks;
 import org.jfree.ui.TextAnchor;
 import org.jfree.util.ObjectUtilities;
 
@@ -70,7 +73,7 @@ public class DateTick extends ValueTick {
     public DateTick(Date date, String label,
                     TextAnchor textAnchor, TextAnchor rotationAnchor,
                     double angle) {
-        this(TickType.MAJOR, date, label, textAnchor, rotationAnchor, angle);
+        this(jfree.chart.axis.TickType.MAJOR, date, label, textAnchor, rotationAnchor, angle);
     }
 
     /**
@@ -116,10 +119,10 @@ public class DateTick extends ValueTick {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DateTick)) {
+        if (!(obj instanceof jfree.chart.axis.DateTick)) {
             return false;
         }
-        DateTick that = (DateTick) obj;
+        jfree.chart.axis.DateTick that = (jfree.chart.axis.DateTick) obj;
         if (!ObjectUtilities.equal(this.date, that.date)) {
             return false;
         }

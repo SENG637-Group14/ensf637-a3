@@ -61,7 +61,9 @@ import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import org.jfree.data.general.PieDataset;
+import jfree.chart.labels.AbstractPieItemLabelGenerator;
+import jfree.chart.labels.PieToolTipGenerator;
+import jfree.data.general.PieDataset;
 import org.jfree.util.PublicCloneable;
 
 /**

@@ -45,6 +45,9 @@
 
 package org.jfree.chart.needle;
 
+import jfree.chart.needle.MeterNeedle;
+import jfree.chart.plot.CompassPlot;
+
 import java.awt.Graphics2D;
 import java.awt.geom.Arc2D;
 import java.awt.geom.GeneralPath;
@@ -54,7 +57,7 @@ import java.io.Serializable;
 
 /**
  * A needle in the shape of a ship, for use with the
- * {@link org.jfree.chart.plot.CompassPlot} class.
+ * {@link CompassPlot} class.
  */
 public class ShipNeedle extends MeterNeedle
                         implements Cloneable, Serializable {
@@ -108,7 +111,7 @@ public class ShipNeedle extends MeterNeedle
         if (object == this) {
             return true;
         }
-        if (super.equals(object) && object instanceof ShipNeedle) {
+        if (super.equals(object) && object instanceof jfree.chart.needle.ShipNeedle) {
             return true;
         }
         return false;

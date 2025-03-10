@@ -49,13 +49,16 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
 import java.io.Serializable;
 
+import jfree.chart.renderer.xy.GradientXYBarPainter;
+import jfree.chart.renderer.xy.XYBarPainter;
+import jfree.chart.renderer.xy.XYBarRenderer;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.RectangleEdge;
 
 /**
- * An implementation of the {@link XYBarPainter} interface that preserves the
+ * An implementation of the {@link jfree.chart.renderer.xy.XYBarPainter} interface that preserves the
  * behaviour of bar painting that existed prior to the introduction of the
- * {@link XYBarPainter} interface.
+ * {@link jfree.chart.renderer.xy.XYBarPainter} interface.
  *
  * @see GradientXYBarPainter
  *
@@ -81,8 +84,8 @@ public class StandardXYBarPainter implements XYBarPainter, Serializable {
      *              bar.
      */
     @Override
-    public void paintBar(Graphics2D g2, XYBarRenderer renderer, int row,
-            int column, RectangularShape bar, RectangleEdge base) {
+    public void paintBar(Graphics2D g2, jfree.chart.renderer.xy.XYBarRenderer renderer, int row,
+                         int column, RectangularShape bar, RectangleEdge base) {
 
         Paint itemPaint = renderer.getItemPaint(row, column);
         GradientPaintTransformer t = renderer.getGradientPaintTransformer();
@@ -120,8 +123,8 @@ public class StandardXYBarPainter implements XYBarPainter, Serializable {
      */
     @Override
     public void paintBarShadow(Graphics2D g2, XYBarRenderer renderer, int row,
-            int column, RectangularShape bar, RectangleEdge base,
-            boolean pegShadow) {
+                               int column, RectangularShape bar, RectangleEdge base,
+                               boolean pegShadow) {
 
         // handle a special case - if the bar colour has alpha == 0, it is
         // invisible so we shouldn't draw any shadow
@@ -204,7 +207,7 @@ public class StandardXYBarPainter implements XYBarPainter, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardXYBarPainter)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.StandardXYBarPainter)) {
             return false;
         }
         return true;

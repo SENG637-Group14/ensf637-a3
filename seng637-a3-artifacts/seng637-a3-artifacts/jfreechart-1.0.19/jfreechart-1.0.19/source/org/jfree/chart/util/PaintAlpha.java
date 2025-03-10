@@ -43,6 +43,8 @@
 
 package org.jfree.chart.util;
 
+import jfree.chart.renderer.category.StackedBarRenderer3D;
+
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.LinearGradientPaint;
@@ -64,7 +66,7 @@ import java.util.Hashtable;
  * invisible bars by making them completely transparent.
  * <p>
  * In, for example
- * {@link org.jfree.chart.renderer.category.StackedBarRenderer3D StackedBarRenderer3D},
+ * {@link StackedBarRenderer3D StackedBarRenderer3D},
  * bars are rendered with 6 faces. The front face is rendered with
  * the <code>Paint</code> requested. The other 5 faces are rendered
  * darker to achieve the 3D effect.
@@ -73,7 +75,7 @@ import java.util.Hashtable;
  * which always returns an opaque colour.
  * <p>
  * Additionally there are methods to control the behaviour and
- * in particular a {@link PaintAlpha#cloneImage(BufferedImage) cloneImage(..)}
+ * in particular a {@link jfree.chart.util.PaintAlpha#cloneImage(BufferedImage) cloneImage(..)}
  * method which is needed to darken objects of type {@link TexturePaint}.
  *
  * @author  DaveLaw
@@ -105,8 +107,8 @@ public class PaintAlpha {
      * @return the previous setting
      */
     public static boolean setLegacyAlpha(boolean legacyAlpha) {
-        boolean old = PaintAlpha.legacyAlpha;
-        PaintAlpha.legacyAlpha = legacyAlpha;
+        boolean old = jfree.chart.util.PaintAlpha.legacyAlpha;
+        jfree.chart.util.PaintAlpha.legacyAlpha = legacyAlpha;
         return old;
     }
 

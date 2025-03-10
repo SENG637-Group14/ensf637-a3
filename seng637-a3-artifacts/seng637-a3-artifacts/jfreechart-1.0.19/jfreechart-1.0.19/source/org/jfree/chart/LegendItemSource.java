@@ -40,8 +40,11 @@
 
 package org.jfree.chart;
 
+import jfree.chart.LegendItemCollection;
+import jfree.chart.title.LegendTitle;
+
 /**
- * A source of legend items.  A {@link org.jfree.chart.title.LegendTitle} will
+ * A source of legend items.  A {@link LegendTitle} will
  * maintain a list of sources (often just one) from which it obtains legend
  * items.
  */

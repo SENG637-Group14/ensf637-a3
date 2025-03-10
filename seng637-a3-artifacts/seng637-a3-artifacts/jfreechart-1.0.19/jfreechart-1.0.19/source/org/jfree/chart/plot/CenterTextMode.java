@@ -40,6 +40,8 @@
 
 package org.jfree.chart.plot;
 
+import jfree.chart.plot.RingPlot;
+
 /**
  * The mode for the center text on a {@link RingPlot}.
  * 

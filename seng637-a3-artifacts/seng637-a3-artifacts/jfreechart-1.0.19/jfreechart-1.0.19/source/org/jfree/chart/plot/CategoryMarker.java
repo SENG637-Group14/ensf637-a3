@@ -50,8 +50,10 @@ import java.awt.Paint;
 import java.awt.Stroke;
 import java.io.Serializable;
 
-import org.jfree.chart.event.MarkerChangeEvent;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.event.MarkerChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Marker;
+import jfree.chart.util.ParamChecks;
 import org.jfree.ui.LengthAdjustmentType;
 
 /**
@@ -60,7 +62,7 @@ import org.jfree.ui.LengthAdjustmentType;
  * Note that for serialization to work correctly, the category key must be an
  * instance of a serializable class.
  *
- * @see CategoryPlot#addDomainMarker(CategoryMarker)
+ * @see CategoryPlot#addDomainMarker(jfree.chart.plot.CategoryMarker)
  */
 public class CategoryMarker extends Marker implements Cloneable, Serializable {
 
@@ -167,13 +169,13 @@ public class CategoryMarker extends Marker implements Cloneable, Serializable {
         if (obj == null) {
             return false;
         }
-        if (!(obj instanceof CategoryMarker)) {
+        if (!(obj instanceof jfree.chart.plot.CategoryMarker)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        CategoryMarker that = (CategoryMarker) obj;
+        jfree.chart.plot.CategoryMarker that = (jfree.chart.plot.CategoryMarker) obj;
         if (!this.key.equals(that.key)) {
             return false;
         }

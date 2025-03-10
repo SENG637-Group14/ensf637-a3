@@ -87,27 +87,34 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.axis.Axis;
-import org.jfree.chart.axis.AxisState;
-import org.jfree.chart.axis.NumberTick;
-import org.jfree.chart.axis.NumberTickUnit;
-import org.jfree.chart.axis.TickType;
-import org.jfree.chart.axis.TickUnit;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.axis.ValueTick;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.event.RendererChangeListener;
-import org.jfree.chart.renderer.PolarItemRenderer;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.data.Range;
-import org.jfree.data.general.Dataset;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.axis.Axis;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.NumberTick;
+import jfree.chart.axis.NumberTickUnit;
+import jfree.chart.axis.TickType;
+import jfree.chart.axis.TickUnit;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.axis.ValueTick;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.event.RendererChangeListener;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.plot.PolarAxisLocation;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.chart.plot.Zoomable;
+import jfree.chart.renderer.PolarItemRenderer;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.data.Range;
+import jfree.data.general.Dataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleEdge;
@@ -122,7 +129,7 @@ import org.jfree.util.PublicCloneable;
  * Plots data that is in (theta, radius) pairs where
  * theta equal to zero is due north and increases clockwise.
  */
-public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
+public class PolarPlot extends jfree.chart.plot.Plot implements ValueAxisPlot, jfree.chart.plot.Zoomable,
         RendererChangeListener, Cloneable, Serializable {
 
     /** For serialization. */
@@ -293,14 +300,14 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
 
         // define the default locations for up to 8 axes...
         this.axisLocations = new ObjectList();
-        this.axisLocations.set(0, PolarAxisLocation.EAST_ABOVE);
-        this.axisLocations.set(1, PolarAxisLocation.NORTH_LEFT);
-        this.axisLocations.set(2, PolarAxisLocation.WEST_BELOW);
-        this.axisLocations.set(3, PolarAxisLocation.SOUTH_RIGHT);
-        this.axisLocations.set(4, PolarAxisLocation.EAST_BELOW);
-        this.axisLocations.set(5, PolarAxisLocation.NORTH_RIGHT);
-        this.axisLocations.set(6, PolarAxisLocation.WEST_ABOVE);
-        this.axisLocations.set(7, PolarAxisLocation.SOUTH_LEFT);
+        this.axisLocations.set(0, jfree.chart.plot.PolarAxisLocation.EAST_ABOVE);
+        this.axisLocations.set(1, jfree.chart.plot.PolarAxisLocation.NORTH_LEFT);
+        this.axisLocations.set(2, jfree.chart.plot.PolarAxisLocation.WEST_BELOW);
+        this.axisLocations.set(3, jfree.chart.plot.PolarAxisLocation.SOUTH_RIGHT);
+        this.axisLocations.set(4, jfree.chart.plot.PolarAxisLocation.EAST_BELOW);
+        this.axisLocations.set(5, jfree.chart.plot.PolarAxisLocation.NORTH_RIGHT);
+        this.axisLocations.set(6, jfree.chart.plot.PolarAxisLocation.WEST_ABOVE);
+        this.axisLocations.set(7, jfree.chart.plot.PolarAxisLocation.SOUTH_LEFT);
 
         this.renderers = new ObjectList();
         this.renderers.set(0, renderer);
@@ -329,7 +336,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      */
     @Override
     public String getPlotType() {
-       return PolarPlot.localizationResources.getString("Polar_Plot");
+       return jfree.chart.plot.PolarPlot.localizationResources.getString("Polar_Plot");
     }
 
     /**
@@ -422,11 +429,11 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      *
      * @return The location (never <code>null</code>).
      *
-     * @see #setAxisLocation(PolarAxisLocation)
+     * @see #setAxisLocation(jfree.chart.plot.PolarAxisLocation)
      *
      * @since 1.0.14
      */
-    public PolarAxisLocation getAxisLocation() {
+    public jfree.chart.plot.PolarAxisLocation getAxisLocation() {
         return getAxisLocation(0);
     }
 
@@ -437,14 +444,14 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      *
      * @return The location (never <code>null</code>).
      *
-     * @see #setAxisLocation(int, PolarAxisLocation)
+     * @see #setAxisLocation(int, jfree.chart.plot.PolarAxisLocation)
      *
      * @since 1.0.14
      */
-    public PolarAxisLocation getAxisLocation(int index) {
-        PolarAxisLocation result = null;
+    public jfree.chart.plot.PolarAxisLocation getAxisLocation(int index) {
+        jfree.chart.plot.PolarAxisLocation result = null;
         if (index < this.axisLocations.size()) {
-            result = (PolarAxisLocation) this.axisLocations.get(index);
+            result = (jfree.chart.plot.PolarAxisLocation) this.axisLocations.get(index);
         }
         return result;
     }
@@ -459,7 +466,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      *
      * @since 1.0.14
      */
-    public void setAxisLocation(PolarAxisLocation location) {
+    public void setAxisLocation(jfree.chart.plot.PolarAxisLocation location) {
         // delegate...
         setAxisLocation(0, location, true);
     }
@@ -475,7 +482,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      *
      * @since 1.0.14
      */
-    public void setAxisLocation(PolarAxisLocation location, boolean notify) {
+    public void setAxisLocation(jfree.chart.plot.PolarAxisLocation location, boolean notify) {
         // delegate...
         setAxisLocation(0, location, notify);
     }
@@ -491,7 +498,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      *
      * @since 1.0.14
      */
-    public void setAxisLocation(int index, PolarAxisLocation location) {
+    public void setAxisLocation(int index, jfree.chart.plot.PolarAxisLocation location) {
         // delegate...
         setAxisLocation(index, location, true);
     }
@@ -506,7 +513,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      *
      * @since 1.0.14
      */
-    public void setAxisLocation(int index, PolarAxisLocation location,
+    public void setAxisLocation(int index, jfree.chart.plot.PolarAxisLocation location,
             boolean notify) {
         ParamChecks.nullNotPermitted(location, "location");
         this.axisLocations.set(index, location);
@@ -1326,8 +1333,8 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
         if (result < 0) {
             // try the parent plot
             Plot parent = getParent();
-            if (parent instanceof PolarPlot) {
-                PolarPlot p = (PolarPlot) parent;
+            if (parent instanceof jfree.chart.plot.PolarPlot) {
+                jfree.chart.plot.PolarPlot p = (jfree.chart.plot.PolarPlot) parent;
                 result = p.getAxisIndex(axis);
             }
         }
@@ -1370,7 +1377,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      */
     @Override
     public void draw(Graphics2D g2, Rectangle2D area, Point2D anchor,
-            PlotState parentState, PlotRenderingInfo info) {
+                     PlotState parentState, jfree.chart.plot.PlotRenderingInfo info) {
 
         // if the plot area is too small, just return...
         boolean b1 = (area.getWidth() <= MINIMUM_WIDTH_TO_DRAW);
@@ -1400,8 +1407,8 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
         for (int i = 0; i < axisCount; i++) {
             ValueAxis axis = getAxis(i);
             if (axis != null) {
-                PolarAxisLocation location
-                        = (PolarAxisLocation) this.axisLocations.get(i);
+                jfree.chart.plot.PolarAxisLocation location
+                        = (jfree.chart.plot.PolarAxisLocation) this.axisLocations.get(i);
                 AxisState s = this.drawAxis(axis, location, g2, dataArea);
                 if (i == 0) {
                     state = s;
@@ -1478,7 +1485,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      *
      * @since 1.0.14
      */
-    protected AxisState drawAxis(ValueAxis axis, PolarAxisLocation location,
+    protected AxisState drawAxis(ValueAxis axis, jfree.chart.plot.PolarAxisLocation location,
             Graphics2D g2, Rectangle2D plotArea) {
 
         double centerX = plotArea.getCenterX();
@@ -1490,37 +1497,37 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
 
         Rectangle2D dataArea = null;
         AxisState result = null;
-        if (location == PolarAxisLocation.NORTH_RIGHT) {
+        if (location == jfree.chart.plot.PolarAxisLocation.NORTH_RIGHT) {
             dataArea = new Rectangle2D.Double(x, y, r, r);
             result = axis.draw(g2, centerX, plotArea, dataArea,
                     RectangleEdge.RIGHT, null);
         }
-        else if (location == PolarAxisLocation.NORTH_LEFT) {
+        else if (location == jfree.chart.plot.PolarAxisLocation.NORTH_LEFT) {
             dataArea = new Rectangle2D.Double(centerX, y, r, r);
             result = axis.draw(g2, centerX, plotArea, dataArea,
                     RectangleEdge.LEFT, null);
         }
-        else if (location == PolarAxisLocation.SOUTH_LEFT) {
+        else if (location == jfree.chart.plot.PolarAxisLocation.SOUTH_LEFT) {
             dataArea = new Rectangle2D.Double(centerX, centerY, r, r);
             result = axis.draw(g2, centerX, plotArea, dataArea,
                     RectangleEdge.LEFT, null);
         }
-        else if (location == PolarAxisLocation.SOUTH_RIGHT) {
+        else if (location == jfree.chart.plot.PolarAxisLocation.SOUTH_RIGHT) {
             dataArea = new Rectangle2D.Double(x, centerY, r, r);
             result = axis.draw(g2, centerX, plotArea, dataArea,
                     RectangleEdge.RIGHT, null);
         }
-        else if (location == PolarAxisLocation.EAST_ABOVE) {
+        else if (location == jfree.chart.plot.PolarAxisLocation.EAST_ABOVE) {
             dataArea = new Rectangle2D.Double(centerX, centerY, r, r);
             result = axis.draw(g2, centerY, plotArea, dataArea,
                     RectangleEdge.TOP, null);
         }
-        else if (location == PolarAxisLocation.EAST_BELOW) {
+        else if (location == jfree.chart.plot.PolarAxisLocation.EAST_BELOW) {
             dataArea = new Rectangle2D.Double(centerX, y, r, r);
             result = axis.draw(g2, centerY, plotArea, dataArea,
                     RectangleEdge.BOTTOM, null);
         }
-        else if (location == PolarAxisLocation.WEST_ABOVE) {
+        else if (location == jfree.chart.plot.PolarAxisLocation.WEST_ABOVE) {
             dataArea = new Rectangle2D.Double(x, centerY, r, r);
             result = axis.draw(g2, centerY, plotArea, dataArea,
                     RectangleEdge.TOP, null);
@@ -1544,7 +1551,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      *              information (<code>null</code> permitted).
      */
     protected void render(Graphics2D g2, Rectangle2D dataArea,
-            PlotRenderingInfo info) {
+            jfree.chart.plot.PlotRenderingInfo info) {
 
         // now get the data and plot it (the visual representation will depend
         // on the m_Renderer that has been set)...
@@ -1796,10 +1803,10 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof PolarPlot)) {
+        if (!(obj instanceof jfree.chart.plot.PolarPlot)) {
             return false;
         }
-        PolarPlot that = (PolarPlot) obj;
+        jfree.chart.plot.PolarPlot that = (jfree.chart.plot.PolarPlot) obj;
         if (!this.axes.equals(that.axes)) {
             return false;
         }
@@ -1879,7 +1886,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        PolarPlot clone = (PolarPlot) super.clone();
+        jfree.chart.plot.PolarPlot clone = (jfree.chart.plot.PolarPlot) super.clone();
         clone.axes = (ObjectList) ObjectUtilities.clone(this.axes);
         for (int i = 0; i < this.axes.size(); i++) {
             ValueAxis axis = (ValueAxis) this.axes.get(i);
@@ -1976,7 +1983,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
     }
 
     /**
-     * This method is required by the {@link Zoomable} interface, but since
+     * This method is required by the {@link jfree.chart.plot.Zoomable} interface, but since
      * the plot does not have any domain axes, it does nothing.
      *
      * @param factor  the zoom factor.
@@ -1984,13 +1991,13 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      * @param source  the source point (in Java2D coordinates).
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo state,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                                Point2D source) {
         // do nothing
     }
 
     /**
-     * This method is required by the {@link Zoomable} interface, but since
+     * This method is required by the {@link jfree.chart.plot.Zoomable} interface, but since
      * the plot does not have any domain axes, it does nothing.
      *
      * @param factor  the zoom factor.
@@ -2001,7 +2008,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      * @since 1.0.7
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo state,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                                Point2D source, boolean useAnchor) {
         // do nothing
     }
@@ -2017,7 +2024,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      */
     @Override
     public void zoomDomainAxes(double lowerPercent, double upperPercent,
-                               PlotRenderingInfo state, Point2D source) {
+                               jfree.chart.plot.PlotRenderingInfo state, Point2D source) {
         // do nothing
     }
 
@@ -2029,7 +2036,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      * @param source  the source point (in Java2D coordinates).
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo state,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                               Point2D source) {
         zoom(factor);
     }
@@ -2042,12 +2049,12 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      * @param source  the source point (in Java2D space).
      * @param useAnchor  use source point as zoom anchor?
      *
-     * @see #zoomDomainAxes(double, PlotRenderingInfo, Point2D, boolean)
+     * @see #zoomDomainAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D, boolean)
      *
      * @since 1.0.7
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo info,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                               Point2D source, boolean useAnchor) {
         // get the source coordinate - this plot has always a VERTICAL
         // orientation
@@ -2108,7 +2115,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      * @return The orientation.
      */
     @Override
-    public PlotOrientation getOrientation() {
+    public jfree.chart.plot.PlotOrientation getOrientation() {
         return PlotOrientation.HORIZONTAL;
     }
 
@@ -2175,7 +2182,7 @@ public class PolarPlot extends Plot implements ValueAxisPlot, Zoomable,
      * @return A point in Java2D space.
      *
      * @deprecated Since 1.0.14, use {@link #translateToJava2D(double, double,
-     * org.jfree.chart.axis.ValueAxis, java.awt.geom.Rectangle2D)} instead.
+     * ValueAxis, java.awt.geom.Rectangle2D)} instead.
      */
     public Point translateValueThetaRadiusToJava2D(double angleDegrees,
             double radius, Rectangle2D dataArea) {

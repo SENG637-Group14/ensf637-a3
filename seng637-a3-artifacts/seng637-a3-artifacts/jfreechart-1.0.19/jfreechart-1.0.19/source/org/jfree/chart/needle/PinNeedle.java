@@ -45,6 +45,8 @@
 
 package org.jfree.chart.needle;
 
+import jfree.chart.needle.MeterNeedle;
+
 import java.awt.Graphics2D;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
@@ -120,7 +122,7 @@ public class PinNeedle extends MeterNeedle
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof PinNeedle)) {
+        if (!(obj instanceof jfree.chart.needle.PinNeedle)) {
             return false;
         }
         if (!super.equals(obj)) {

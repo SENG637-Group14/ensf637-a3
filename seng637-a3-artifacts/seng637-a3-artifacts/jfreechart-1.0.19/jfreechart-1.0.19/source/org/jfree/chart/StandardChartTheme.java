@@ -56,69 +56,71 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.annotations.XYAnnotation;
-import org.jfree.chart.annotations.XYTextAnnotation;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.PeriodAxis;
-import org.jfree.chart.axis.PeriodAxisLabelInfo;
-import org.jfree.chart.axis.SubCategoryAxis;
-import org.jfree.chart.axis.SymbolAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.block.Block;
-import org.jfree.chart.block.BlockContainer;
-import org.jfree.chart.block.LabelBlock;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.CombinedDomainCategoryPlot;
-import org.jfree.chart.plot.CombinedDomainXYPlot;
-import org.jfree.chart.plot.CombinedRangeCategoryPlot;
-import org.jfree.chart.plot.CombinedRangeXYPlot;
-import org.jfree.chart.plot.DefaultDrawingSupplier;
-import org.jfree.chart.plot.DrawingSupplier;
-import org.jfree.chart.plot.FastScatterPlot;
-import org.jfree.chart.plot.MeterPlot;
-import org.jfree.chart.plot.MultiplePiePlot;
-import org.jfree.chart.plot.PieLabelLinkStyle;
-import org.jfree.chart.plot.PiePlot;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PolarPlot;
-import org.jfree.chart.plot.SpiderWebPlot;
-import org.jfree.chart.plot.ThermometerPlot;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.AbstractRenderer;
-import org.jfree.chart.renderer.category.BarPainter;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.renderer.category.BarRenderer3D;
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
-import org.jfree.chart.renderer.category.GradientBarPainter;
-import org.jfree.chart.renderer.category.LineRenderer3D;
-import org.jfree.chart.renderer.category.MinMaxCategoryRenderer;
-import org.jfree.chart.renderer.category.StatisticalBarRenderer;
-import org.jfree.chart.renderer.xy.GradientXYBarPainter;
-import org.jfree.chart.renderer.xy.XYBarPainter;
-import org.jfree.chart.renderer.xy.XYBarRenderer;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.chart.title.CompositeTitle;
-import org.jfree.chart.title.LegendTitle;
-import org.jfree.chart.title.PaintScaleLegend;
-import org.jfree.chart.title.TextTitle;
-import org.jfree.chart.title.Title;
-import org.jfree.chart.util.DefaultShadowGenerator;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ShadowGenerator;
+import jfree.chart.ChartTheme;
+import jfree.chart.JFreeChart;
+import jfree.chart.annotations.XYAnnotation;
+import jfree.chart.annotations.XYTextAnnotation;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.PeriodAxis;
+import jfree.chart.axis.PeriodAxisLabelInfo;
+import jfree.chart.axis.SubCategoryAxis;
+import jfree.chart.axis.SymbolAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.block.Block;
+import jfree.chart.block.BlockContainer;
+import jfree.chart.block.LabelBlock;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.CombinedDomainCategoryPlot;
+import jfree.chart.plot.CombinedDomainXYPlot;
+import jfree.chart.plot.CombinedRangeCategoryPlot;
+import jfree.chart.plot.CombinedRangeXYPlot;
+import jfree.chart.plot.DefaultDrawingSupplier;
+import jfree.chart.plot.DrawingSupplier;
+import jfree.chart.plot.FastScatterPlot;
+import jfree.chart.plot.MeterPlot;
+import jfree.chart.plot.MultiplePiePlot;
+import jfree.chart.plot.PieLabelLinkStyle;
+import jfree.chart.plot.PiePlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PolarPlot;
+import jfree.chart.plot.SpiderWebPlot;
+import jfree.chart.plot.ThermometerPlot;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.AbstractRenderer;
+import jfree.chart.renderer.category.BarPainter;
+import jfree.chart.renderer.category.BarRenderer;
+import jfree.chart.renderer.category.BarRenderer3D;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.renderer.category.GradientBarPainter;
+import jfree.chart.renderer.category.LineRenderer3D;
+import jfree.chart.renderer.category.MinMaxCategoryRenderer;
+import jfree.chart.renderer.category.StatisticalBarRenderer;
+import jfree.chart.renderer.xy.GradientXYBarPainter;
+import jfree.chart.renderer.xy.XYBarPainter;
+import jfree.chart.renderer.xy.XYBarRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.title.CompositeTitle;
+import jfree.chart.title.LegendTitle;
+import jfree.chart.title.PaintScaleLegend;
+import jfree.chart.title.TextTitle;
+import jfree.chart.title.Title;
+import jfree.chart.util.DefaultShadowGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ShadowGenerator;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.util.PaintUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A default implementation of the {@link ChartTheme} interface.  This
+ * A default implementation of the {@link jfree.chart.ChartTheme} interface.  This
  * implementation just collects a whole bunch of chart attributes and mimics
  * the manual process of applying each attribute to the right sub-object
  * within the JFreeChart instance.  It's not elegant code, but it works.
  *
  * @since 1.0.11
  */
-public class StandardChartTheme implements ChartTheme, Cloneable,
+public class StandardChartTheme implements jfree.chart.ChartTheme, Cloneable,
         PublicCloneable, Serializable {
 
     /** The name of this theme. */
@@ -248,8 +250,8 @@ public class StandardChartTheme implements ChartTheme, Cloneable,
      *
      * @return A chart theme.
      */
-    public static ChartTheme createJFreeTheme() {
-        return new StandardChartTheme("JFree");
+    public static jfree.chart.ChartTheme createJFreeTheme() {
+        return new jfree.chart.StandardChartTheme("JFree");
     }
 
     /**
@@ -258,8 +260,8 @@ public class StandardChartTheme implements ChartTheme, Cloneable,
      *
      * @return The "Darkness" theme.
      */
-    public static ChartTheme createDarknessTheme() {
-        StandardChartTheme theme = new StandardChartTheme("Darkness");
+    public static jfree.chart.ChartTheme createDarknessTheme() {
+        jfree.chart.StandardChartTheme theme = new jfree.chart.StandardChartTheme("Darkness");
         theme.titlePaint = Color.white;
         theme.subtitlePaint = Color.white;
         theme.legendBackgroundPaint = Color.black;
@@ -295,16 +297,16 @@ public class StandardChartTheme implements ChartTheme, Cloneable,
     }
 
     /**
-     * Creates and returns a {@link ChartTheme} that doesn't apply any changes
+     * Creates and returns a {@link jfree.chart.ChartTheme} that doesn't apply any changes
      * to the JFreeChart defaults.  This produces the "legacy" look for
      * JFreeChart.
      *
      * @return A legacy theme.
      */
     public static ChartTheme createLegacyTheme() {
-        StandardChartTheme theme = new StandardChartTheme("Legacy") {
+        jfree.chart.StandardChartTheme theme = new jfree.chart.StandardChartTheme("Legacy") {
             @Override
-            public void apply(JFreeChart chart) {
+            public void apply(jfree.chart.JFreeChart chart) {
                 // do nothing at all
             }
         };
@@ -1658,10 +1660,10 @@ public class StandardChartTheme implements ChartTheme, Cloneable,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardChartTheme)) {
+        if (!(obj instanceof jfree.chart.StandardChartTheme)) {
             return false;
         }
-        StandardChartTheme that = (StandardChartTheme) obj;
+        jfree.chart.StandardChartTheme that = (jfree.chart.StandardChartTheme) obj;
         if (!this.name.equals(that.name)) {
             return false;
         }

@@ -41,6 +41,9 @@
 
 package org.jfree.chart.imagemap;
 
+import jfree.chart.imagemap.ImageMapUtilities;
+import jfree.chart.imagemap.ToolTipTagFragmentGenerator;
+
 /**
  * Generates tooltips using the HTML title attribute for image map area tags.
  */

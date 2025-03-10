@@ -61,10 +61,12 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import org.jfree.chart.axis.Axis;
-import org.jfree.chart.axis.LogAxis;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.util.ResourceBundleWrapper;
+import jfree.chart.axis.Axis;
+import jfree.chart.axis.LogAxis;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.editor.DefaultLogAxisEditor;
+import jfree.chart.editor.DefaultNumberAxisEditor;
+import jfree.chart.util.ResourceBundleWrapper;
 import org.jfree.layout.LCBLayout;
 import org.jfree.ui.FontChooserPanel;
 import org.jfree.ui.FontDisplayField;
@@ -147,19 +149,19 @@ class DefaultAxisEditor extends JPanel implements ActionListener {
      *
      * @return A panel or {@code null} if axis is {@code null}.
      */
-    public static DefaultAxisEditor getInstance(Axis axis) {
+    public static jfree.chart.editor.DefaultAxisEditor getInstance(Axis axis) {
 
         if (axis != null) {
             // figure out what type of axis we have and instantiate the
             // appropriate panel
             if (axis instanceof NumberAxis) {
-                return new DefaultNumberAxisEditor((NumberAxis) axis);
+                return new jfree.chart.editor.DefaultNumberAxisEditor((NumberAxis) axis);
             }
             if (axis instanceof LogAxis) {
                 return new DefaultLogAxisEditor((LogAxis) axis);
             }
             else {
-                return new DefaultAxisEditor(axis);
+                return new jfree.chart.editor.DefaultAxisEditor(axis);
             }
         }
         else {

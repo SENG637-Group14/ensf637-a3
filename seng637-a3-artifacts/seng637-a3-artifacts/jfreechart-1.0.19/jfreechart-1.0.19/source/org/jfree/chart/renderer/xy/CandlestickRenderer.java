@@ -101,20 +101,23 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.HighLowItemLabelGenerator;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.data.xy.OHLCDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.HighLowItemLabelGenerator;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.OHLCDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PaintUtilities;
@@ -590,8 +593,8 @@ public class CandlestickRenderer extends AbstractXYItemRenderer
      * @return The number of passes the renderer requires.
      */
     @Override
-    public XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
-            XYPlot plot, XYDataset dataset, PlotRenderingInfo info) {
+    public jfree.chart.renderer.xy.XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
+                                                                       XYPlot plot, XYDataset dataset, PlotRenderingInfo info) {
 
         // calculate the maximum allowed candle width from the axis...
         ValueAxis axis = plot.getDomainAxis();
@@ -621,7 +624,7 @@ public class CandlestickRenderer extends AbstractXYItemRenderer
             }
         }
 
-        return new XYItemRendererState(info);
+        return new jfree.chart.renderer.xy.XYItemRendererState(info);
     }
 
     /**
@@ -879,10 +882,10 @@ public class CandlestickRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CandlestickRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.CandlestickRenderer)) {
             return false;
         }
-        CandlestickRenderer that = (CandlestickRenderer) obj;
+        jfree.chart.renderer.xy.CandlestickRenderer that = (jfree.chart.renderer.xy.CandlestickRenderer) obj;
         if (this.candleWidth != that.candleWidth) {
             return false;
         }

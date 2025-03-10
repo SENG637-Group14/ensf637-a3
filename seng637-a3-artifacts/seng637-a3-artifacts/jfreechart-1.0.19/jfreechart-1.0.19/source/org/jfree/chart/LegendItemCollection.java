@@ -49,6 +49,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
+import jfree.chart.LegendItem;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -74,7 +75,7 @@ public class LegendItemCollection implements Cloneable, Serializable {
      *
      * @param item  the item to add.
      */
-    public void add(LegendItem item) {
+    public void add(jfree.chart.LegendItem item) {
         this.items.add(item);
     }
 
@@ -84,7 +85,7 @@ public class LegendItemCollection implements Cloneable, Serializable {
      * @param collection  the other collection (<code>null</code> not
      *     permitted).
      */
-    public void addAll(LegendItemCollection collection) {
+    public void addAll(jfree.chart.LegendItemCollection collection) {
         this.items.addAll(collection.items);
     }
 
@@ -95,7 +96,7 @@ public class LegendItemCollection implements Cloneable, Serializable {
      *
      * @return The legend item.
      */
-    public LegendItem get(int index) {
+    public jfree.chart.LegendItem get(int index) {
         return (LegendItem) this.items.get(index);
     }
 
@@ -129,10 +130,10 @@ public class LegendItemCollection implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LegendItemCollection)) {
+        if (!(obj instanceof jfree.chart.LegendItemCollection)) {
             return false;
         }
-        LegendItemCollection that = (LegendItemCollection) obj;
+        jfree.chart.LegendItemCollection that = (jfree.chart.LegendItemCollection) obj;
         if (!this.items.equals(that.items)) {
             return false;
         }
@@ -149,7 +150,7 @@ public class LegendItemCollection implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        LegendItemCollection clone = (LegendItemCollection) super.clone();
+        jfree.chart.LegendItemCollection clone = (jfree.chart.LegendItemCollection) super.clone();
         clone.items = (List) ObjectUtilities.deepClone(this.items);
         return clone;
     }

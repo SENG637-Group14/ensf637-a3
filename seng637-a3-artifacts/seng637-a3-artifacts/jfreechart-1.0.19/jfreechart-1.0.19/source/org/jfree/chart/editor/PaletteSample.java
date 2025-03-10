@@ -55,9 +55,9 @@ import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
-import org.jfree.chart.plot.ColorPalette;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.chart.plot.ColorPalette;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
 
 
 /**
@@ -102,8 +102,8 @@ public class PaletteSample extends JComponent implements ListCellRenderer {
     @Override
     public Component getListCellRendererComponent(JList list, Object value,
             int index, boolean isSelected, boolean cellHasFocus) {
-        if (value instanceof PaletteSample) {
-            PaletteSample in = (PaletteSample) value;
+        if (value instanceof jfree.chart.editor.PaletteSample) {
+            jfree.chart.editor.PaletteSample in = (jfree.chart.editor.PaletteSample) value;
             setPalette(in.getPalette());
         }
         return this;

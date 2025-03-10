@@ -40,7 +40,8 @@
 
 package org.jfree.data.xy;
 
-import org.jfree.data.ComparableObjectItem;
+import jfree.data.ComparableObjectItem;
+import jfree.data.xy.YInterval;
 
 /**
  * An item representing data in the form (x, y, y-low, y-high).
@@ -58,7 +59,7 @@ public class YIntervalDataItem extends ComparableObjectItem {
      * @param yHigh  the upper bound of the y-interval.
      */
     public YIntervalDataItem(double x, double y, double yLow, double yHigh) {
-        super(new Double(x), new YInterval(y, yLow, yHigh));
+        super(new Double(x), new jfree.data.xy.YInterval(y, yLow, yHigh));
     }
 
     /**
@@ -76,7 +77,7 @@ public class YIntervalDataItem extends ComparableObjectItem {
      * @return The y-value.
      */
     public double getYValue() {
-        YInterval interval = (YInterval) getObject();
+        jfree.data.xy.YInterval interval = (jfree.data.xy.YInterval) getObject();
         if (interval != null) {
             return interval.getY();
         }
@@ -91,7 +92,7 @@ public class YIntervalDataItem extends ComparableObjectItem {
      * @return The lower bound of the y-interval.
      */
     public double getYLowValue() {
-        YInterval interval = (YInterval) getObject();
+        jfree.data.xy.YInterval interval = (jfree.data.xy.YInterval) getObject();
         if (interval != null) {
             return interval.getYLow();
         }
@@ -106,7 +107,7 @@ public class YIntervalDataItem extends ComparableObjectItem {
      * @return The upper bound of the y-interval.
      */
     public double getYHighValue() {
-        YInterval interval = (YInterval) getObject();
+        jfree.data.xy.YInterval interval = (YInterval) getObject();
         if (interval != null) {
             return interval.getYHigh();
         }

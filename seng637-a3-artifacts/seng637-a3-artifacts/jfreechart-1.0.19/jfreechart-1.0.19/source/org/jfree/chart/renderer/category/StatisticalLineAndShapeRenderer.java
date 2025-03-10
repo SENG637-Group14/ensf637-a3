@@ -69,16 +69,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.statistics.StatisticalCategoryDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.renderer.category.LineAndShapeRenderer;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
+import jfree.data.statistics.StatisticalCategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.ObjectUtilities;
@@ -432,11 +434,11 @@ public class StatisticalLineAndShapeRenderer extends LineAndShapeRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StatisticalLineAndShapeRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.StatisticalLineAndShapeRenderer)) {
             return false;
         }
-        StatisticalLineAndShapeRenderer that
-                = (StatisticalLineAndShapeRenderer) obj;
+        jfree.chart.renderer.category.StatisticalLineAndShapeRenderer that
+                = (jfree.chart.renderer.category.StatisticalLineAndShapeRenderer) obj;
         if (!PaintUtilities.equal(this.errorIndicatorPaint,
                 that.errorIndicatorPaint)) {
             return false;

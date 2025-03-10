@@ -46,11 +46,14 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.labels.AbstractCategoryItemLabelGenerator;
+import jfree.chart.labels.CategoryToolTipGenerator;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.data.category.CategoryDataset;
 
 /**
  * A standard tool tip generator that can be used with a
- * {@link org.jfree.chart.renderer.category.CategoryItemRenderer}.
+ * {@link CategoryItemRenderer}.
  */
 public class StandardCategoryToolTipGenerator
         extends AbstractCategoryItemLabelGenerator
@@ -123,7 +126,7 @@ public class StandardCategoryToolTipGenerator
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardCategoryToolTipGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.StandardCategoryToolTipGenerator)) {
             return false;
         }
         return super.equals(obj);

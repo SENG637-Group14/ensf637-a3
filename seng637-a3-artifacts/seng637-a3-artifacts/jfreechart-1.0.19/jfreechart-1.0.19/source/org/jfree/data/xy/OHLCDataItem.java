@@ -44,7 +44,8 @@ package org.jfree.data.xy;
 
 import java.io.Serializable;
 import java.util.Date;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.DefaultOHLCDataset;
 
 /**
  * Represents a single (open-high-low-close) data item in
@@ -162,10 +163,10 @@ public class OHLCDataItem implements Comparable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof OHLCDataItem)) {
+        if (!(obj instanceof jfree.data.xy.OHLCDataItem)) {
             return false;
         }
-        OHLCDataItem that = (OHLCDataItem) obj;
+        jfree.data.xy.OHLCDataItem that = (jfree.data.xy.OHLCDataItem) obj;
         if (!this.date.equals(that.date)) {
             return false;
         }
@@ -196,8 +197,8 @@ public class OHLCDataItem implements Comparable, Serializable {
      */
     @Override
     public int compareTo(Object object) {
-        if (object instanceof OHLCDataItem) {
-            OHLCDataItem item = (OHLCDataItem) object;
+        if (object instanceof jfree.data.xy.OHLCDataItem) {
+            jfree.data.xy.OHLCDataItem item = (jfree.data.xy.OHLCDataItem) object;
             return this.date.compareTo(item.date);
         }
         else {

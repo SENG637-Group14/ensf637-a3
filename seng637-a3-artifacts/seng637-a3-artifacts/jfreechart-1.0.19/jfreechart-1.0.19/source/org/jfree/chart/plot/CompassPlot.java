@@ -85,22 +85,25 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.needle.ArrowNeedle;
-import org.jfree.chart.needle.LineNeedle;
-import org.jfree.chart.needle.LongNeedle;
-import org.jfree.chart.needle.MeterNeedle;
-import org.jfree.chart.needle.MiddlePinNeedle;
-import org.jfree.chart.needle.PinNeedle;
-import org.jfree.chart.needle.PlumNeedle;
-import org.jfree.chart.needle.PointerNeedle;
-import org.jfree.chart.needle.ShipNeedle;
-import org.jfree.chart.needle.WindNeedle;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.data.general.DefaultValueDataset;
-import org.jfree.data.general.ValueDataset;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.needle.ArrowNeedle;
+import jfree.chart.needle.LineNeedle;
+import jfree.chart.needle.LongNeedle;
+import jfree.chart.needle.MeterNeedle;
+import jfree.chart.needle.MiddlePinNeedle;
+import jfree.chart.needle.PinNeedle;
+import jfree.chart.needle.PlumNeedle;
+import jfree.chart.needle.PointerNeedle;
+import jfree.chart.needle.ShipNeedle;
+import jfree.chart.needle.WindNeedle;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.data.general.DefaultValueDataset;
+import jfree.data.general.ValueDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.util.ObjectUtilities;
@@ -752,13 +755,13 @@ public class CompassPlot extends Plot implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CompassPlot)) {
+        if (!(obj instanceof jfree.chart.plot.CompassPlot)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        CompassPlot that = (CompassPlot) obj;
+        jfree.chart.plot.CompassPlot that = (jfree.chart.plot.CompassPlot) obj;
         if (this.labelType != that.labelType) {
             return false;
         }
@@ -803,7 +806,7 @@ public class CompassPlot extends Plot implements Cloneable, Serializable {
     @Override
     public Object clone() throws CloneNotSupportedException {
 
-        CompassPlot clone = (CompassPlot) super.clone();
+        jfree.chart.plot.CompassPlot clone = (jfree.chart.plot.CompassPlot) super.clone();
         if (this.circle1 != null) {
             clone.circle1 = (Ellipse2D) this.circle1.clone();
         }

@@ -40,7 +40,7 @@
 
 package org.jfree.chart.annotations;
 
-import org.jfree.data.Range;
+import jfree.data.Range;
 
 /**
  * An interface that supplies information about the bounds of the annotation.

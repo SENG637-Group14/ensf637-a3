@@ -46,6 +46,8 @@
 
 package org.jfree.data.category;
 
+import jfree.data.category.CategoryDataset;
+
 /**
  * A category dataset that defines a value range for each series/category
  * combination.

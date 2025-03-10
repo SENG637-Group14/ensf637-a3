@@ -66,16 +66,21 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
+import jfree.data.DefaultKeyedValue;
+import jfree.data.KeyedValueComparator;
+import jfree.data.KeyedValueComparatorType;
+import jfree.data.KeyedValues;
+import jfree.data.UnknownKeyException;
 import org.jfree.util.PublicCloneable;
 import org.jfree.util.SortOrder;
 
 /**
  * An ordered list of (key, value) items.  This class provides a default
- * implementation of the {@link KeyedValues} interface.
+ * implementation of the {@link jfree.data.KeyedValues} interface.
  */
-public class DefaultKeyedValues implements KeyedValues, Cloneable,
+public class DefaultKeyedValues implements jfree.data.KeyedValues, Cloneable,
         PublicCloneable, Serializable {
 
     /** For serialization. */
@@ -177,7 +182,7 @@ public class DefaultKeyedValues implements KeyedValues, Cloneable,
      *
      * @return The value (possibly <code>null</code>).
      *
-     * @throws UnknownKeyException if the key is not recognised.
+     * @throws jfree.data.UnknownKeyException if the key is not recognised.
      *
      * @see #getValue(int)
      */
@@ -185,7 +190,7 @@ public class DefaultKeyedValues implements KeyedValues, Cloneable,
     public Number getValue(Comparable key) {
         int index = getIndex(key);
         if (index < 0) {
-            throw new UnknownKeyException("Key not found: " + key);
+            throw new jfree.data.UnknownKeyException("Key not found: " + key);
         }
         return getValue(index);
     }
@@ -326,7 +331,7 @@ public class DefaultKeyedValues implements KeyedValues, Cloneable,
      *
      * @throws IllegalArgumentException if <code>key</code> is
      *     <code>null</code>.
-     * @throws UnknownKeyException if <code>key</code> is not recognised.
+     * @throws jfree.data.UnknownKeyException if <code>key</code> is not recognised.
      */
     public void removeValue(Comparable key) {
         int index = getIndex(key);
@@ -355,20 +360,20 @@ public class DefaultKeyedValues implements KeyedValues, Cloneable,
      */
     public void sortByKeys(SortOrder order) {
         final int size = this.keys.size();
-        final DefaultKeyedValue[] data = new DefaultKeyedValue[size];
+        final jfree.data.DefaultKeyedValue[] data = new jfree.data.DefaultKeyedValue[size];
 
         for (int i = 0; i < size; i++) {
-            data[i] = new DefaultKeyedValue((Comparable) this.keys.get(i),
+            data[i] = new jfree.data.DefaultKeyedValue((Comparable) this.keys.get(i),
                     (Number) this.values.get(i));
         }
 
-        Comparator comparator = new KeyedValueComparator(
-                KeyedValueComparatorType.BY_KEY, order);
+        Comparator comparator = new jfree.data.KeyedValueComparator(
+                jfree.data.KeyedValueComparatorType.BY_KEY, order);
         Arrays.sort(data, comparator);
         clear();
 
         for (int i = 0; i < data.length; i++) {
-            final DefaultKeyedValue value = data[i];
+            final jfree.data.DefaultKeyedValue value = data[i];
             addValue(value.getKey(), value.getValue());
         }
     }
@@ -382,9 +387,9 @@ public class DefaultKeyedValues implements KeyedValues, Cloneable,
      */
     public void sortByValues(SortOrder order) {
         final int size = this.keys.size();
-        final DefaultKeyedValue[] data = new DefaultKeyedValue[size];
+        final jfree.data.DefaultKeyedValue[] data = new jfree.data.DefaultKeyedValue[size];
         for (int i = 0; i < size; i++) {
-            data[i] = new DefaultKeyedValue((Comparable) this.keys.get(i),
+            data[i] = new jfree.data.DefaultKeyedValue((Comparable) this.keys.get(i),
                     (Number) this.values.get(i));
         }
 
@@ -412,11 +417,11 @@ public class DefaultKeyedValues implements KeyedValues, Cloneable,
             return true;
         }
 
-        if (!(obj instanceof KeyedValues)) {
+        if (!(obj instanceof jfree.data.KeyedValues)) {
             return false;
         }
 
-        KeyedValues that = (KeyedValues) obj;
+        jfree.data.KeyedValues that = (KeyedValues) obj;
         int count = getItemCount();
         if (count != that.getItemCount()) {
             return false;
@@ -464,7 +469,7 @@ public class DefaultKeyedValues implements KeyedValues, Cloneable,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultKeyedValues clone = (DefaultKeyedValues) super.clone();
+        jfree.data.DefaultKeyedValues clone = (jfree.data.DefaultKeyedValues) super.clone();
         clone.keys = (ArrayList) this.keys.clone();
         clone.values = (ArrayList) this.values.clone();
         clone.indexMap = (HashMap) this.indexMap.clone();

@@ -53,20 +53,28 @@ package org.jfree.data.time;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
 
-import org.jfree.data.DomainInfo;
-import org.jfree.data.Range;
-import org.jfree.data.xy.AbstractIntervalXYDataset;
-import org.jfree.data.xy.IntervalXYDataset;
+import jfree.chart.plot.XYPlot;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.chart.util.ParamChecks;
+
+import jfree.data.time.TimePeriod;
+import jfree.data.time.TimePeriodAnchor;
+import jfree.data.time.TimePeriodValue;
+import jfree.data.time.TimePeriodValues;
+import jfree.data.xy.XYDataset;
+import jfree.data.DomainInfo;
+import jfree.data.Range;
+import jfree.data.xy.AbstractIntervalXYDataset;
+import jfree.data.xy.IntervalXYDataset;
 import org.jfree.util.ObjectUtilities;
 
 /**
- * A collection of {@link TimePeriodValues} objects.
+ * A collection of {@link jfree.data.time.TimePeriodValues} objects.
  * <P>
- * This class implements the {@link org.jfree.data.xy.XYDataset} interface, as
+ * This class implements the {@link XYDataset} interface, as
  * well as the extended {@link IntervalXYDataset} interface.  This makes it a
- * convenient dataset for use with the {@link org.jfree.chart.plot.XYPlot}
+ * convenient dataset for use with the {@link XYPlot}
  * class.
  */
 public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
@@ -82,7 +90,7 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      * The position within a time period to return as the x-value (START,
      * MIDDLE or END).
      */
-    private TimePeriodAnchor xPosition;
+    private jfree.data.time.TimePeriodAnchor xPosition;
 
     /**
      * A flag that indicates that the domain is 'points in time'.  If this
@@ -95,7 +103,7 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      * Constructs an empty dataset.
      */
     public TimePeriodValuesCollection() {
-        this((TimePeriodValues) null);
+        this((jfree.data.time.TimePeriodValues) null);
     }
 
     /**
@@ -104,9 +112,9 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      *
      * @param series  the series (<code>null</code> ignored).
      */
-    public TimePeriodValuesCollection(TimePeriodValues series) {
+    public TimePeriodValuesCollection(jfree.data.time.TimePeriodValues series) {
         this.data = new java.util.ArrayList();
-        this.xPosition = TimePeriodAnchor.MIDDLE;
+        this.xPosition = jfree.data.time.TimePeriodAnchor.MIDDLE;
         this.domainIsPointsInTime = false;
         if (series != null) {
             this.data.add(series);
@@ -119,9 +127,9 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      *
      * @return The position (never <code>null</code>).
      *
-     * @see #setXPosition(TimePeriodAnchor)
+     * @see #setXPosition(jfree.data.time.TimePeriodAnchor)
      */
-    public TimePeriodAnchor getXPosition() {
+    public jfree.data.time.TimePeriodAnchor getXPosition() {
         return this.xPosition;
     }
 
@@ -132,7 +140,7 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      *
      * @see #getXPosition()
      */
-    public void setXPosition(TimePeriodAnchor position) {
+    public void setXPosition(jfree.data.time.TimePeriodAnchor position) {
         ParamChecks.nullNotPermitted(position, "position");
         this.xPosition = position;
     }
@@ -154,11 +162,11 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      *
      * @return The series.
      */
-    public TimePeriodValues getSeries(int series) {
+    public jfree.data.time.TimePeriodValues getSeries(int series) {
         if ((series < 0) || (series >= getSeriesCount())) {
             throw new IllegalArgumentException("Index 'series' out of range.");
         }
-        return (TimePeriodValues) this.data.get(series);
+        return (jfree.data.time.TimePeriodValues) this.data.get(series);
     }
 
     /**
@@ -176,12 +184,12 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
 
     /**
      * Adds a series to the collection.  A
-     * {@link org.jfree.data.general.DatasetChangeEvent} is sent to all
+     * {@link DatasetChangeEvent} is sent to all
      * registered listeners.
      *
      * @param series  the time series.
      */
-    public void addSeries(TimePeriodValues series) {
+    public void addSeries(jfree.data.time.TimePeriodValues series) {
         ParamChecks.nullNotPermitted(series, "series");
         this.data.add(series);
         series.addChangeListener(this);
@@ -193,7 +201,7 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      *
      * @param series  the series to remove (<code>null</code> not permitted).
      */
-    public void removeSeries(TimePeriodValues series) {
+    public void removeSeries(jfree.data.time.TimePeriodValues series) {
         ParamChecks.nullNotPermitted(series, "series");
         this.data.remove(series);
         series.removeChangeListener(this);
@@ -207,7 +215,7 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      * @param index  the series index (zero-based).
      */
     public void removeSeries(int index) {
-        TimePeriodValues series = getSeries(index);
+        jfree.data.time.TimePeriodValues series = getSeries(index);
         if (series != null) {
             removeSeries(series);
         }
@@ -237,9 +245,9 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public Number getX(int series, int item) {
-        TimePeriodValues ts = (TimePeriodValues) this.data.get(series);
-        TimePeriodValue dp = ts.getDataItem(item);
-        TimePeriod period = dp.getPeriod();
+        jfree.data.time.TimePeriodValues ts = (jfree.data.time.TimePeriodValues) this.data.get(series);
+        jfree.data.time.TimePeriodValue dp = ts.getDataItem(item);
+        jfree.data.time.TimePeriod period = dp.getPeriod();
         return new Long(getX(period));
     }
 
@@ -250,16 +258,16 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      *
      * @return The x-value.
      */
-    private long getX(TimePeriod period) {
+    private long getX(jfree.data.time.TimePeriod period) {
 
-        if (this.xPosition == TimePeriodAnchor.START) {
+        if (this.xPosition == jfree.data.time.TimePeriodAnchor.START) {
             return period.getStart().getTime();
         }
-        else if (this.xPosition == TimePeriodAnchor.MIDDLE) {
+        else if (this.xPosition == jfree.data.time.TimePeriodAnchor.MIDDLE) {
             return period.getStart().getTime()
                 / 2 + period.getEnd().getTime() / 2;
         }
-        else if (this.xPosition == TimePeriodAnchor.END) {
+        else if (this.xPosition == jfree.data.time.TimePeriodAnchor.END) {
             return period.getEnd().getTime();
         }
         else {
@@ -278,8 +286,8 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public Number getStartX(int series, int item) {
-        TimePeriodValues ts = (TimePeriodValues) this.data.get(series);
-        TimePeriodValue dp = ts.getDataItem(item);
+        jfree.data.time.TimePeriodValues ts = (jfree.data.time.TimePeriodValues) this.data.get(series);
+        jfree.data.time.TimePeriodValue dp = ts.getDataItem(item);
         return new Long(dp.getPeriod().getStart().getTime());
     }
 
@@ -293,8 +301,8 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public Number getEndX(int series, int item) {
-        TimePeriodValues ts = (TimePeriodValues) this.data.get(series);
-        TimePeriodValue dp = ts.getDataItem(item);
+        jfree.data.time.TimePeriodValues ts = (jfree.data.time.TimePeriodValues) this.data.get(series);
+        jfree.data.time.TimePeriodValue dp = ts.getDataItem(item);
         return new Long(dp.getPeriod().getEnd().getTime());
     }
 
@@ -308,7 +316,7 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public Number getY(int series, int item) {
-        TimePeriodValues ts = (TimePeriodValues) this.data.get(series);
+        jfree.data.time.TimePeriodValues ts = (jfree.data.time.TimePeriodValues) this.data.get(series);
         TimePeriodValue dp = ts.getDataItem(item);
         return dp.getValue();
     }
@@ -390,25 +398,25 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
         Range temp = null;
         Iterator iterator = this.data.iterator();
         while (iterator.hasNext()) {
-            TimePeriodValues series = (TimePeriodValues) iterator.next();
+            jfree.data.time.TimePeriodValues series = (TimePeriodValues) iterator.next();
             int count = series.getItemCount();
             if (count > 0) {
-                TimePeriod start = series.getTimePeriod(
+                jfree.data.time.TimePeriod start = series.getTimePeriod(
                         series.getMinStartIndex());
-                TimePeriod end = series.getTimePeriod(series.getMaxEndIndex());
+                jfree.data.time.TimePeriod end = series.getTimePeriod(series.getMaxEndIndex());
                 if (!interval) {
-                    if (this.xPosition == TimePeriodAnchor.START) {
-                        TimePeriod maxStart = series.getTimePeriod(
+                    if (this.xPosition == jfree.data.time.TimePeriodAnchor.START) {
+                        jfree.data.time.TimePeriod maxStart = series.getTimePeriod(
                                 series.getMaxStartIndex());
                         temp = new Range(start.getStart().getTime(),
                                 maxStart.getStart().getTime());
                     }
-                    else if (this.xPosition == TimePeriodAnchor.MIDDLE) {
-                        TimePeriod minMiddle = series.getTimePeriod(
+                    else if (this.xPosition == jfree.data.time.TimePeriodAnchor.MIDDLE) {
+                        jfree.data.time.TimePeriod minMiddle = series.getTimePeriod(
                                 series.getMinMiddleIndex());
                         long s1 = minMiddle.getStart().getTime();
                         long e1 = minMiddle.getEnd().getTime();
-                        TimePeriod maxMiddle = series.getTimePeriod(
+                        jfree.data.time.TimePeriod maxMiddle = series.getTimePeriod(
                                 series.getMaxMiddleIndex());
                         long s2 = maxMiddle.getStart().getTime();
                         long e2 = maxMiddle.getEnd().getTime();
@@ -444,10 +452,10 @@ public class TimePeriodValuesCollection extends AbstractIntervalXYDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof TimePeriodValuesCollection)) {
+        if (!(obj instanceof jfree.data.time.TimePeriodValuesCollection)) {
             return false;
         }
-        TimePeriodValuesCollection that = (TimePeriodValuesCollection) obj;
+        jfree.data.time.TimePeriodValuesCollection that = (jfree.data.time.TimePeriodValuesCollection) obj;
         if (this.domainIsPointsInTime != that.domainIsPointsInTime) {
             return false;
         }

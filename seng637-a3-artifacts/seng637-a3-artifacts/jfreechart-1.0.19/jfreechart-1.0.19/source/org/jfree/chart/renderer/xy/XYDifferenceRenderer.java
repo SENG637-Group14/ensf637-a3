@@ -96,19 +96,22 @@ import java.io.ObjectOutputStream;
 import java.util.Collections;
 import java.util.LinkedList;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.XYItemEntity;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.XYItemEntity;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PaintUtilities;
@@ -327,9 +330,9 @@ public class XYDifferenceRenderer extends AbstractXYItemRenderer
      * @return A state object.
      */
     @Override
-    public XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
-            XYPlot plot, XYDataset data, PlotRenderingInfo info) {
-        XYItemRendererState state = super.initialise(g2, dataArea, plot, data,
+    public jfree.chart.renderer.xy.XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
+                                                                       XYPlot plot, XYDataset data, PlotRenderingInfo info) {
+        jfree.chart.renderer.xy.XYItemRendererState state = super.initialise(g2, dataArea, plot, data,
                 info);
         state.setProcessVisibleItemsOnly(false);
         return state;
@@ -1171,13 +1174,13 @@ public class XYDifferenceRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYDifferenceRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYDifferenceRenderer)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        XYDifferenceRenderer that = (XYDifferenceRenderer) obj;
+        jfree.chart.renderer.xy.XYDifferenceRenderer that = (jfree.chart.renderer.xy.XYDifferenceRenderer) obj;
         if (!PaintUtilities.equal(this.positivePaint, that.positivePaint)) {
             return false;
         }
@@ -1205,7 +1208,7 @@ public class XYDifferenceRenderer extends AbstractXYItemRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        XYDifferenceRenderer clone = (XYDifferenceRenderer) super.clone();
+        jfree.chart.renderer.xy.XYDifferenceRenderer clone = (jfree.chart.renderer.xy.XYDifferenceRenderer) super.clone();
         clone.legendLine = ShapeUtilities.clone(this.legendLine);
         return clone;
     }

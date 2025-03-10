@@ -49,15 +49,20 @@
 
 package org.jfree.data.xy;
 
-import org.jfree.data.DefaultKeyedValues2D;
-import org.jfree.data.DomainInfo;
-import org.jfree.data.Range;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetUtilities;
+import jfree.data.DefaultKeyedValues2D;
+import jfree.data.DomainInfo;
+import jfree.data.Range;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.xy.AbstractIntervalXYDataset;
+import jfree.data.xy.DefaultTableXYDataset;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.IntervalXYDelegate;
+import jfree.data.xy.TableXYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
- * An implementation variant of the {@link TableXYDataset} where every series
+ * An implementation variant of the {@link jfree.data.xy.TableXYDataset} where every series
  * shares the same x-values (required for generating stacked area charts).
  * This implementation uses a {@link DefaultKeyedValues2D} Object as backend
  * implementation and is hence more "category oriented" than the {@link
@@ -66,7 +71,7 @@ import org.jfree.util.PublicCloneable;
  * This implementation provides no means to remove data items yet.
  * This is due to the lack of such facility in the DefaultKeyedValues2D class.
  * <p>
- * This class also implements the {@link IntervalXYDataset} interface, but this
+ * This class also implements the {@link jfree.data.xy.IntervalXYDataset} interface, but this
  * implementation is provisional.
  */
 public class CategoryTableXYDataset extends AbstractIntervalXYDataset
@@ -79,14 +84,14 @@ public class CategoryTableXYDataset extends AbstractIntervalXYDataset
     private DefaultKeyedValues2D values;
 
     /** A delegate for controlling the interval width. */
-    private IntervalXYDelegate intervalDelegate;
+    private jfree.data.xy.IntervalXYDelegate intervalDelegate;
 
     /**
      * Creates a new empty CategoryTableXYDataset.
      */
     public CategoryTableXYDataset() {
         this.values = new DefaultKeyedValues2D(true);
-        this.intervalDelegate = new IntervalXYDelegate(this);
+        this.intervalDelegate = new jfree.data.xy.IntervalXYDelegate(this);
         addChangeListener(this.intervalDelegate);
     }
 
@@ -187,7 +192,7 @@ public class CategoryTableXYDataset extends AbstractIntervalXYDataset
 
     /**
      * Returns the number of items in the specified series.
-     * Returns the same as {@link CategoryTableXYDataset#getItemCount()}.
+     * Returns the same as {@link jfree.data.xy.CategoryTableXYDataset#getItemCount()}.
      *
      * @param series  the series index (zero-based).
      *
@@ -392,10 +397,10 @@ public class CategoryTableXYDataset extends AbstractIntervalXYDataset
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof CategoryTableXYDataset)) {
+        if (!(obj instanceof jfree.data.xy.CategoryTableXYDataset)) {
             return false;
         }
-        CategoryTableXYDataset that = (CategoryTableXYDataset) obj;
+        jfree.data.xy.CategoryTableXYDataset that = (jfree.data.xy.CategoryTableXYDataset) obj;
         if (!this.intervalDelegate.equals(that.intervalDelegate)) {
             return false;
         }
@@ -415,7 +420,7 @@ public class CategoryTableXYDataset extends AbstractIntervalXYDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        CategoryTableXYDataset clone = (CategoryTableXYDataset) super.clone();
+        jfree.data.xy.CategoryTableXYDataset clone = (jfree.data.xy.CategoryTableXYDataset) super.clone();
         clone.values = (DefaultKeyedValues2D) this.values.clone();
         clone.intervalDelegate = new IntervalXYDelegate(clone);
         // need to configure the intervalDelegate to match the original

@@ -102,14 +102,17 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.category.AbstractCategoryItemRenderer;
+import jfree.chart.renderer.category.BarRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.data.category.CategoryDataset;
 import org.jfree.util.BooleanList;
 import org.jfree.util.BooleanUtilities;
 import org.jfree.util.ObjectUtilities;
@@ -207,7 +210,7 @@ public class LineAndShapeRenderer extends AbstractCategoryItemRenderer
 
     /**
      * The item margin used for series offsetting - this allows the positioning
-     * to match the bar positions of the {@link BarRenderer} class.
+     * to match the bar positions of the {@link jfree.chart.renderer.category.BarRenderer} class.
      *
      * @since 1.0.7
      */
@@ -1051,11 +1054,11 @@ public class LineAndShapeRenderer extends AbstractCategoryItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LineAndShapeRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.LineAndShapeRenderer)) {
             return false;
         }
 
-        LineAndShapeRenderer that = (LineAndShapeRenderer) obj;
+        jfree.chart.renderer.category.LineAndShapeRenderer that = (jfree.chart.renderer.category.LineAndShapeRenderer) obj;
         if (this.baseLinesVisible != that.baseLinesVisible) {
             return false;
         }
@@ -1107,7 +1110,7 @@ public class LineAndShapeRenderer extends AbstractCategoryItemRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        LineAndShapeRenderer clone = (LineAndShapeRenderer) super.clone();
+        jfree.chart.renderer.category.LineAndShapeRenderer clone = (jfree.chart.renderer.category.LineAndShapeRenderer) super.clone();
         clone.seriesLinesVisible
                 = (BooleanList) this.seriesLinesVisible.clone();
         clone.seriesShapesVisible

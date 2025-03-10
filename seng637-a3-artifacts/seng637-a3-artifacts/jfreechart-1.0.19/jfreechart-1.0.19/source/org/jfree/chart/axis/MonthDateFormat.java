@@ -53,9 +53,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.time.Month;
+import jfree.data.time.Month;
 
 /**
  * A formatter that formats dates to show the initial letter(s) of the month
@@ -233,13 +233,13 @@ public class MonthDateFormat extends DateFormat {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof MonthDateFormat)) {
+        if (!(obj instanceof jfree.chart.axis.MonthDateFormat)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        MonthDateFormat that = (MonthDateFormat) obj;
+        jfree.chart.axis.MonthDateFormat that = (jfree.chart.axis.MonthDateFormat) obj;
         if (!Arrays.equals(this.months, that.months)) {
             return false;
         }

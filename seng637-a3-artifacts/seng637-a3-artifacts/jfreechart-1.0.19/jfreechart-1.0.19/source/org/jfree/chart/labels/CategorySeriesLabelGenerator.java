@@ -42,7 +42,7 @@
 
 package org.jfree.chart.labels;
 
-import org.jfree.data.category.CategoryDataset;
+import jfree.data.category.CategoryDataset;
 
 /**
  * A generator that creates labels for the series in a {@link CategoryDataset}.

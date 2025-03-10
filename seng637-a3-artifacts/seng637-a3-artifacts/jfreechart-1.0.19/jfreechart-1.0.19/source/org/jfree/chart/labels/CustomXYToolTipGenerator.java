@@ -49,7 +49,8 @@ package org.jfree.chart.labels;
 import java.io.Serializable;
 import java.util.List;
 
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -154,8 +155,8 @@ public class CustomXYToolTipGenerator implements XYToolTipGenerator,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        CustomXYToolTipGenerator clone
-            = (CustomXYToolTipGenerator) super.clone();
+        jfree.chart.labels.CustomXYToolTipGenerator clone
+            = (jfree.chart.labels.CustomXYToolTipGenerator) super.clone();
         if (this.toolTipSeries != null) {
             clone.toolTipSeries = new java.util.ArrayList(this.toolTipSeries);
         }
@@ -174,8 +175,8 @@ public class CustomXYToolTipGenerator implements XYToolTipGenerator,
         if (obj == this) {
             return true;
         }
-        if (obj instanceof CustomXYToolTipGenerator) {
-            CustomXYToolTipGenerator generator = (CustomXYToolTipGenerator) obj;
+        if (obj instanceof jfree.chart.labels.CustomXYToolTipGenerator) {
+            jfree.chart.labels.CustomXYToolTipGenerator generator = (jfree.chart.labels.CustomXYToolTipGenerator) obj;
             boolean result = true;
             for (int series = 0; series < getListCount(); series++) {
                 for (int item = 0; item < getToolTipCount(series); item++) {

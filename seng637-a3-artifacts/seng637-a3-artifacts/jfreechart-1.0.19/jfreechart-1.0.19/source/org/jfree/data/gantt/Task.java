@@ -47,10 +47,10 @@ package org.jfree.data.gantt;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.time.SimpleTimePeriod;
-import org.jfree.data.time.TimePeriod;
+import jfree.data.time.SimpleTimePeriod;
+import jfree.data.time.TimePeriod;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
@@ -171,7 +171,7 @@ public class Task implements Cloneable, PublicCloneable, Serializable {
      *
      * @param subtask  the subtask (<code>null</code> not permitted).
      */
-    public void addSubtask(Task subtask) {
+    public void addSubtask(jfree.data.gantt.Task subtask) {
         ParamChecks.nullNotPermitted(subtask, "subtask");
         this.subtasks.add(subtask);
     }
@@ -181,7 +181,7 @@ public class Task implements Cloneable, PublicCloneable, Serializable {
      *
      * @param subtask  the subtask.
      */
-    public void removeSubtask(Task subtask) {
+    public void removeSubtask(jfree.data.gantt.Task subtask) {
         this.subtasks.remove(subtask);
     }
 
@@ -201,8 +201,8 @@ public class Task implements Cloneable, PublicCloneable, Serializable {
      *
      * @return The sub-task.
      */
-    public Task getSubtask(int index) {
-        return (Task) this.subtasks.get(index);
+    public jfree.data.gantt.Task getSubtask(int index) {
+        return (jfree.data.gantt.Task) this.subtasks.get(index);
     }
 
     /**
@@ -217,10 +217,10 @@ public class Task implements Cloneable, PublicCloneable, Serializable {
         if (object == this) {
             return true;
         }
-        if (!(object instanceof Task)) {
+        if (!(object instanceof jfree.data.gantt.Task)) {
             return false;
         }
-        Task that = (Task) object;
+        jfree.data.gantt.Task that = (jfree.data.gantt.Task) object;
         if (!ObjectUtilities.equal(this.description, that.description)) {
             return false;
         }
@@ -247,7 +247,7 @@ public class Task implements Cloneable, PublicCloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        Task clone = (Task) super.clone();
+        jfree.data.gantt.Task clone = (jfree.data.gantt.Task) super.clone();
         return clone;
     }
 

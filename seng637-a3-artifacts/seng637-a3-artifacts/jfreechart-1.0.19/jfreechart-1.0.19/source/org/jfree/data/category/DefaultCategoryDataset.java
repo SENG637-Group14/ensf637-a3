@@ -51,17 +51,18 @@ package org.jfree.data.category;
 import java.io.Serializable;
 import java.util.List;
 
-import org.jfree.data.DefaultKeyedValues2D;
-import org.jfree.data.UnknownKeyException;
-import org.jfree.data.general.AbstractDataset;
-import org.jfree.data.general.DatasetChangeEvent;
+import jfree.data.DefaultKeyedValues2D;
+import jfree.data.UnknownKeyException;
+import jfree.data.category.CategoryDataset;
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.DatasetChangeEvent;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A default implementation of the {@link CategoryDataset} interface.
+ * A default implementation of the {@link jfree.data.category.CategoryDataset} interface.
  */
 public class DefaultCategoryDataset extends AbstractDataset
-        implements CategoryDataset, PublicCloneable, Serializable {
+        implements jfree.data.category.CategoryDataset, PublicCloneable, Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = -8168173757291644622L;
@@ -389,10 +390,10 @@ public class DefaultCategoryDataset extends AbstractDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CategoryDataset)) {
+        if (!(obj instanceof jfree.data.category.CategoryDataset)) {
             return false;
         }
-        CategoryDataset that = (CategoryDataset) obj;
+        jfree.data.category.CategoryDataset that = (CategoryDataset) obj;
         if (!getRowKeys().equals(that.getRowKeys())) {
             return false;
         }
@@ -438,7 +439,7 @@ public class DefaultCategoryDataset extends AbstractDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultCategoryDataset clone = (DefaultCategoryDataset) super.clone();
+        jfree.data.category.DefaultCategoryDataset clone = (jfree.data.category.DefaultCategoryDataset) super.clone();
         clone.data = (DefaultKeyedValues2D) this.data.clone();
         return clone;
     }

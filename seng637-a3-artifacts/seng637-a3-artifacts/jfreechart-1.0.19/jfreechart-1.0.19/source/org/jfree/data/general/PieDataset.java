@@ -46,12 +46,14 @@
 
 package org.jfree.data.general;
 
-import org.jfree.data.KeyedValues;
+import jfree.chart.plot.PiePlot;
+import jfree.data.KeyedValues;
+import jfree.data.general.Dataset;
 
 /**
  * A general purpose dataset where values are associated with keys.  As the
  * name suggests, you can use this dataset to supply data for pie charts (refer
- * to the {@link org.jfree.chart.plot.PiePlot} class).
+ * to the {@link PiePlot} class).
  */
 public interface PieDataset extends KeyedValues, Dataset {
 

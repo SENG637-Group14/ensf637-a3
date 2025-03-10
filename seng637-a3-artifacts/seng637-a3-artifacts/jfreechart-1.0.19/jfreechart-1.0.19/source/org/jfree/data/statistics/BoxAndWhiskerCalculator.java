@@ -51,7 +51,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
+import jfree.data.statistics.BoxAndWhiskerItem;
+import jfree.data.statistics.Statistics;
 
 /**
  * A utility class that calculates the mean, median, quartiles Q1 and Q3, plus
@@ -61,7 +63,7 @@ import org.jfree.chart.util.ParamChecks;
 public abstract class BoxAndWhiskerCalculator {
 
     /**
-     * Calculates the statistics required for a {@link BoxAndWhiskerItem}
+     * Calculates the statistics required for a {@link jfree.data.statistics.BoxAndWhiskerItem}
      * from a list of <code>Number</code> objects.  Any items in the list
      * that are <code>null</code>, not an instance of <code>Number</code>, or
      * equivalent to <code>Double.NaN</code>, will be ignored.
@@ -71,13 +73,13 @@ public abstract class BoxAndWhiskerCalculator {
      *
      * @return A box-and-whisker item.
      */
-    public static BoxAndWhiskerItem calculateBoxAndWhiskerStatistics(
+    public static jfree.data.statistics.BoxAndWhiskerItem calculateBoxAndWhiskerStatistics(
                                         List values) {
         return calculateBoxAndWhiskerStatistics(values, true);
     }
 
     /**
-     * Calculates the statistics required for a {@link BoxAndWhiskerItem}
+     * Calculates the statistics required for a {@link jfree.data.statistics.BoxAndWhiskerItem}
      * from a list of <code>Number</code> objects.  Any items in the list
      * that are <code>null</code>, not an instance of <code>Number</code>, or
      * equivalent to <code>Double.NaN</code>, will be ignored.
@@ -91,7 +93,7 @@ public abstract class BoxAndWhiskerCalculator {
      *
      * @since 1.0.3
      */
-    public static BoxAndWhiskerItem calculateBoxAndWhiskerStatistics(
+    public static jfree.data.statistics.BoxAndWhiskerItem calculateBoxAndWhiskerStatistics(
             List values, boolean stripNullAndNaNItems) {
 
         ParamChecks.nullNotPermitted(values, "values");
@@ -116,8 +118,8 @@ public abstract class BoxAndWhiskerCalculator {
         }
         Collections.sort(vlist);
 
-        double mean = Statistics.calculateMean(vlist, false);
-        double median = Statistics.calculateMedian(vlist, false);
+        double mean = jfree.data.statistics.Statistics.calculateMean(vlist, false);
+        double median = jfree.data.statistics.Statistics.calculateMedian(vlist, false);
         double q1 = calculateQ1(vlist);
         double q3 = calculateQ3(vlist);
 
@@ -186,14 +188,14 @@ public abstract class BoxAndWhiskerCalculator {
         if (count > 0) {
             if (count % 2 == 1) {
                 if (count > 1) {
-                    result = Statistics.calculateMedian(values, 0, count / 2);
+                    result = jfree.data.statistics.Statistics.calculateMedian(values, 0, count / 2);
                 }
                 else {
-                    result = Statistics.calculateMedian(values, 0, 0);
+                    result = jfree.data.statistics.Statistics.calculateMedian(values, 0, 0);
                 }
             }
             else {
-                result = Statistics.calculateMedian(values, 0, count / 2 - 1);
+                result = jfree.data.statistics.Statistics.calculateMedian(values, 0, count / 2 - 1);
             }
 
         }
@@ -218,11 +220,11 @@ public abstract class BoxAndWhiskerCalculator {
         if (count > 0) {
             if (count % 2 == 1) {
                 if (count > 1) {
-                    result = Statistics.calculateMedian(values, count / 2,
+                    result = jfree.data.statistics.Statistics.calculateMedian(values, count / 2,
                             count - 1);
                 }
                 else {
-                    result = Statistics.calculateMedian(values, 0, 0);
+                    result = jfree.data.statistics.Statistics.calculateMedian(values, 0, 0);
                 }
             }
             else {

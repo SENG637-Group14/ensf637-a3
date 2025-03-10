@@ -56,18 +56,26 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.StandardEntityCollection;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.block.AbstractBlock;
+import jfree.chart.block.Arrangement;
+import jfree.chart.block.Block;
+import jfree.chart.block.BlockResult;
+import jfree.chart.block.BorderArrangement;
+import jfree.chart.block.EntityBlockParams;
+import jfree.chart.block.EntityBlockResult;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.StandardEntityCollection;
+import jfree.chart.util.ParamChecks;
 import org.jfree.ui.Size2D;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A container for a collection of {@link Block} objects.  The container uses
- * an {@link Arrangement} object to handle the position of each block.
+ * A container for a collection of {@link jfree.chart.block.Block} objects.  The container uses
+ * an {@link jfree.chart.block.Arrangement} object to handle the position of each block.
  */
 public class BlockContainer extends AbstractBlock
-        implements Block, Cloneable, PublicCloneable, Serializable {
+        implements jfree.chart.block.Block, Cloneable, PublicCloneable, Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = 8199508075695195293L;
@@ -76,7 +84,7 @@ public class BlockContainer extends AbstractBlock
     private List blocks;
 
     /** The object responsible for laying out the blocks. */
-    private Arrangement arrangement;
+    private jfree.chart.block.Arrangement arrangement;
 
     /**
      * Creates a new instance with default settings.
@@ -91,7 +99,7 @@ public class BlockContainer extends AbstractBlock
      * @param arrangement  the arrangement manager (<code>null</code> not
      *                     permitted).
      */
-    public BlockContainer(Arrangement arrangement) {
+    public BlockContainer(jfree.chart.block.Arrangement arrangement) {
         ParamChecks.nullNotPermitted(arrangement, "arrangement");
         this.arrangement = arrangement;
         this.blocks = new ArrayList();
@@ -102,7 +110,7 @@ public class BlockContainer extends AbstractBlock
      *
      * @return The arrangement manager (never <code>null</code>).
      */
-    public Arrangement getArrangement() {
+    public jfree.chart.block.Arrangement getArrangement() {
         return this.arrangement;
     }
 
@@ -127,7 +135,7 @@ public class BlockContainer extends AbstractBlock
     }
 
     /**
-     * Returns an unmodifiable list of the {@link Block} objects managed by
+     * Returns an unmodifiable list of the {@link jfree.chart.block.Block} objects managed by
      * this arrangement.
      *
      * @return A list of blocks.
@@ -141,7 +149,7 @@ public class BlockContainer extends AbstractBlock
      *
      * @param block  the block (<code>null</code> permitted).
      */
-    public void add(Block block) {
+    public void add(jfree.chart.block.Block block) {
         add(block, null);
     }
 
@@ -151,7 +159,7 @@ public class BlockContainer extends AbstractBlock
      * @param block  the block (<code>null</code> permitted).
      * @param key  the key (<code>null</code> permitted).
      */
-    public void add(Block block, Object key) {
+    public void add(jfree.chart.block.Block block, Object key) {
         this.blocks.add(block);
         this.arrangement.add(block, key);
     }
@@ -197,14 +205,14 @@ public class BlockContainer extends AbstractBlock
      * @param params  passed on to blocks within the container
      *                (<code>null</code> permitted).
      *
-     * @return An instance of {@link EntityBlockResult}, or <code>null</code>.
+     * @return An instance of {@link jfree.chart.block.EntityBlockResult}, or <code>null</code>.
      */
     @Override
     public Object draw(Graphics2D g2, Rectangle2D area, Object params) {
         // check if we need to collect chart entities from the container
-        EntityBlockParams ebp;
+        jfree.chart.block.EntityBlockParams ebp;
         StandardEntityCollection sec = null;
-        if (params instanceof EntityBlockParams) {
+        if (params instanceof jfree.chart.block.EntityBlockParams) {
             ebp = (EntityBlockParams) params;
             if (ebp.getGenerateEntities()) {
                 sec = new StandardEntityCollection();
@@ -217,21 +225,21 @@ public class BlockContainer extends AbstractBlock
         contentArea = trimPadding(contentArea);
         Iterator iterator = this.blocks.iterator();
         while (iterator.hasNext()) {
-            Block block = (Block) iterator.next();
+            jfree.chart.block.Block block = (Block) iterator.next();
             Rectangle2D bounds = block.getBounds();
             Rectangle2D drawArea = new Rectangle2D.Double(bounds.getX()
                     + area.getX(), bounds.getY() + area.getY(),
                     bounds.getWidth(), bounds.getHeight());
             Object r = block.draw(g2, drawArea, params);
             if (sec != null) {
-                if (r instanceof EntityBlockResult) {
-                    EntityBlockResult ebr = (EntityBlockResult) r;
+                if (r instanceof jfree.chart.block.EntityBlockResult) {
+                    jfree.chart.block.EntityBlockResult ebr = (EntityBlockResult) r;
                     EntityCollection ec = ebr.getEntityCollection();
                     sec.addAll(ec);
                 }
             }
         }
-        BlockResult result = null;
+        jfree.chart.block.BlockResult result = null;
         if (sec != null) {
             result = new BlockResult();
             result.setEntityCollection(sec);
@@ -251,13 +259,13 @@ public class BlockContainer extends AbstractBlock
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof BlockContainer)) {
+        if (!(obj instanceof jfree.chart.block.BlockContainer)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        BlockContainer that = (BlockContainer) obj;
+        jfree.chart.block.BlockContainer that = (jfree.chart.block.BlockContainer) obj;
         if (!this.arrangement.equals(that.arrangement)) {
             return false;
         }
@@ -276,7 +284,7 @@ public class BlockContainer extends AbstractBlock
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        BlockContainer clone = (BlockContainer) super.clone();
+        jfree.chart.block.BlockContainer clone = (jfree.chart.block.BlockContainer) super.clone();
         // TODO : complete this
         return clone;
     }

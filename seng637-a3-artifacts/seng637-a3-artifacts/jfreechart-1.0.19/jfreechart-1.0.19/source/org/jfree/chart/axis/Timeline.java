@@ -42,6 +42,9 @@
 
 package org.jfree.chart.axis;
 
+import jfree.chart.axis.DateAxis;
+import jfree.chart.axis.SegmentedTimeline;
+
 import java.util.Date;
 
 /**
@@ -51,11 +54,11 @@ import java.util.Date;
  * Timeline must provide transformation methods between domain values and
  * timeline values. In theory many transformations are possible. This interface
  * has been implemented completely in
- * {@link org.jfree.chart.axis.SegmentedTimeline}.
+ * {@link jfree.chart.axis.SegmentedTimeline}.
  * <P>
  * A timeline can be used as parameter to a
- * {@link org.jfree.chart.axis.DateAxis} to define the values that this axis
- * supports. As an example, the {@link org.jfree.chart.axis.SegmentedTimeline}
+ * {@link jfree.chart.axis.DateAxis} to define the values that this axis
+ * supports. As an example, the {@link jfree.chart.axis.SegmentedTimeline}
  * implements a timeline formed by segments of equal length (ex. days, hours,
  * minutes) where some segments can be included in the timeline and others
  * excluded. Therefore timelines like "working days" or "working hours" can be
@@ -68,8 +71,8 @@ import java.util.Date;
  * just the number of milliseconds since January 1, 1970, 00:00:00 GMT as
  * defined by the getTime() method of {@link java.util.Date}.
  *
- * @see org.jfree.chart.axis.SegmentedTimeline
- * @see org.jfree.chart.axis.DateAxis
+ * @see jfree.chart.axis.SegmentedTimeline
+ * @see DateAxis
  */
 public interface Timeline {
 
@@ -100,7 +103,7 @@ public interface Timeline {
      * This is because the original transformation may not be complete
      * reversable.
      *
-     * @see org.jfree.chart.axis.SegmentedTimeline
+     * @see SegmentedTimeline
      *
      * @param timelineValue  a timeline value.
      *

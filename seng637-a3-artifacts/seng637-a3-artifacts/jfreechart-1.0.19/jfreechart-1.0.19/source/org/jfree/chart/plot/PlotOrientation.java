@@ -57,12 +57,12 @@ public final class PlotOrientation implements Serializable {
     private static final long serialVersionUID = -2508771828190337782L;
 
     /** For a plot where the range axis is horizontal. */
-    public static final PlotOrientation HORIZONTAL
-            = new PlotOrientation("PlotOrientation.HORIZONTAL");
+    public static final jfree.chart.plot.PlotOrientation HORIZONTAL
+            = new jfree.chart.plot.PlotOrientation("PlotOrientation.HORIZONTAL");
 
     /** For a plot where the range axis is vertical. */
-    public static final PlotOrientation VERTICAL
-            = new PlotOrientation("PlotOrientation.VERTICAL");
+    public static final jfree.chart.plot.PlotOrientation VERTICAL
+            = new jfree.chart.plot.PlotOrientation("PlotOrientation.VERTICAL");
 
     /** The name. */
     private String name;
@@ -85,7 +85,7 @@ public final class PlotOrientation implements Serializable {
      * @since 1.0.18
      */
     public boolean isHorizontal() {
-        return this.equals(PlotOrientation.HORIZONTAL);
+        return this.equals(jfree.chart.plot.PlotOrientation.HORIZONTAL);
     }
     
     /**
@@ -97,7 +97,7 @@ public final class PlotOrientation implements Serializable {
      * @since 1.0.18
      */
     public boolean isVertical() {
-        return this.equals(PlotOrientation.VERTICAL);
+        return this.equals(jfree.chart.plot.PlotOrientation.VERTICAL);
     }
     
     /**
@@ -123,10 +123,10 @@ public final class PlotOrientation implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof PlotOrientation)) {
+        if (!(obj instanceof jfree.chart.plot.PlotOrientation)) {
             return false;
         }
-        PlotOrientation orientation = (PlotOrientation) obj;
+        jfree.chart.plot.PlotOrientation orientation = (jfree.chart.plot.PlotOrientation) obj;
         if (!this.name.equals(orientation.toString())) {
             return false;
         }
@@ -152,11 +152,11 @@ public final class PlotOrientation implements Serializable {
      */
     private Object readResolve() throws ObjectStreamException {
         Object result = null;
-        if (this.equals(PlotOrientation.HORIZONTAL)) {
-            result = PlotOrientation.HORIZONTAL;
+        if (this.equals(jfree.chart.plot.PlotOrientation.HORIZONTAL)) {
+            result = jfree.chart.plot.PlotOrientation.HORIZONTAL;
         }
-        else if (this.equals(PlotOrientation.VERTICAL)) {
-            result = PlotOrientation.VERTICAL;
+        else if (this.equals(jfree.chart.plot.PlotOrientation.VERTICAL)) {
+            result = jfree.chart.plot.PlotOrientation.VERTICAL;
         }
         return result;
     }

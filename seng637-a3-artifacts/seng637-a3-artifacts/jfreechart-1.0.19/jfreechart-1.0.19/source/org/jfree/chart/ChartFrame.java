@@ -42,6 +42,9 @@
 
 package org.jfree.chart;
 
+import jfree.chart.ChartPanel;
+import jfree.chart.JFreeChart;
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
@@ -52,7 +55,7 @@ import javax.swing.WindowConstants;
 public class ChartFrame extends JFrame {
 
     /** The chart panel. */
-    private ChartPanel chartPanel;
+    private jfree.chart.ChartPanel chartPanel;
 
     /**
      * Constructs a frame for a chart.
@@ -60,7 +63,7 @@ public class ChartFrame extends JFrame {
      * @param title  the frame title.
      * @param chart  the chart.
      */
-    public ChartFrame(String title, JFreeChart chart) {
+    public ChartFrame(String title, jfree.chart.JFreeChart chart) {
         this(title, chart, false);
     }
 
@@ -75,7 +78,7 @@ public class ChartFrame extends JFrame {
     public ChartFrame(String title, JFreeChart chart, boolean scrollPane) {
         super(title);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.chartPanel = new ChartPanel(chart);
+        this.chartPanel = new jfree.chart.ChartPanel(chart);
         if (scrollPane) {
             setContentPane(new JScrollPane(this.chartPanel));
         }

@@ -49,12 +49,13 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.annotations.AbstractXYAnnotation;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.util.ParamChecks;
 import org.jfree.ui.Drawable;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.ObjectUtilities;
@@ -200,10 +201,10 @@ public class XYDrawableAnnotation extends AbstractXYAnnotation
         if (!super.equals(obj)) {
             return false;
         }
-        if (!(obj instanceof XYDrawableAnnotation)) {
+        if (!(obj instanceof jfree.chart.annotations.XYDrawableAnnotation)) {
             return false;
         }
-        XYDrawableAnnotation that = (XYDrawableAnnotation) obj;
+        jfree.chart.annotations.XYDrawableAnnotation that = (jfree.chart.annotations.XYDrawableAnnotation) obj;
         if (this.x != that.x) {
             return false;
         }

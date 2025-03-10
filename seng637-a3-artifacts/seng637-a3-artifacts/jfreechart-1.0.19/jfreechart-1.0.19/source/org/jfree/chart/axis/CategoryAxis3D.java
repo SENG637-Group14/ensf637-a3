@@ -61,17 +61,20 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.Effect3D;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.Effect3D;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.CategoryAnchor;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.ui.RectangleEdge;
 
 /**
  * An axis that displays categories and has a 3D effect.
  * Used for bar charts and line charts.
  */
-public class CategoryAxis3D extends CategoryAxis implements Cloneable, 
+public class CategoryAxis3D extends CategoryAxis implements Cloneable,
         Serializable {
 
     /** For serialization. */
@@ -110,13 +113,13 @@ public class CategoryAxis3D extends CategoryAxis implements Cloneable,
      * @return The axis state (never <code>null</code>).
      */
     @Override
-    public AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
-            Rectangle2D dataArea, RectangleEdge edge, 
-            PlotRenderingInfo plotState) {
+    public jfree.chart.axis.AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
+                                                Rectangle2D dataArea, RectangleEdge edge,
+                                                PlotRenderingInfo plotState) {
 
         // if the axis is not visible, don't draw it...
         if (!isVisible()) {
-            return new AxisState(cursor);
+            return new jfree.chart.axis.AxisState(cursor);
         }
 
         // calculate the adjusted data area taking into account the 3D effect...
@@ -149,7 +152,7 @@ public class CategoryAxis3D extends CategoryAxis implements Cloneable,
             drawAxisLine(g2, cursor, adjustedDataArea, edge);
         }
         // draw the category labels and axis label
-        AxisState state = new AxisState(cursor);
+        jfree.chart.axis.AxisState state = new AxisState(cursor);
         if (isTickMarksVisible()) {
             drawTickMarks(g2, cursor, adjustedDataArea, edge, state);
         }
@@ -177,9 +180,9 @@ public class CategoryAxis3D extends CategoryAxis implements Cloneable,
      * @return The coordinate.
      */
     @Override
-    public double getCategoryJava2DCoordinate(CategoryAnchor anchor, 
-            int category, int categoryCount, Rectangle2D area, 
-            RectangleEdge edge) {
+    public double getCategoryJava2DCoordinate(jfree.chart.axis.CategoryAnchor anchor,
+                                              int category, int categoryCount, Rectangle2D area,
+                                              RectangleEdge edge) {
 
         double result = 0.0;
         Rectangle2D adjustedArea = area;
@@ -202,11 +205,11 @@ public class CategoryAxis3D extends CategoryAxis implements Cloneable,
                     adjustedW, adjustedH);
         }
 
-        if (anchor == CategoryAnchor.START) {
+        if (anchor == jfree.chart.axis.CategoryAnchor.START) {
             result = getCategoryStart(category, categoryCount, adjustedArea,
                     edge);
         }
-        else if (anchor == CategoryAnchor.MIDDLE) {
+        else if (anchor == jfree.chart.axis.CategoryAnchor.MIDDLE) {
             result = getCategoryMiddle(category, categoryCount, adjustedArea,
                     edge);
         }

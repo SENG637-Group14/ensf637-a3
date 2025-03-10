@@ -44,7 +44,8 @@
 package org.jfree.data.time;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
+import jfree.data.time.TimePeriod;
 
 /**
  * Represents a time period and an associated value.
@@ -55,7 +56,7 @@ public class TimePeriodValue implements Cloneable, Serializable {
     private static final long serialVersionUID = 3390443360845711275L;
 
     /** The time period. */
-    private TimePeriod period;
+    private jfree.data.time.TimePeriod period;
 
     /** The value associated with the time period. */
     private Number value;
@@ -69,7 +70,7 @@ public class TimePeriodValue implements Cloneable, Serializable {
      * @throws IllegalArgumentException if <code>period</code> is
      *     <code>null</code>.
      */
-    public TimePeriodValue(TimePeriod period, Number value) {
+    public TimePeriodValue(jfree.data.time.TimePeriod period, Number value) {
         ParamChecks.nullNotPermitted(period, "period");
         this.period = period;
         this.value = value;
@@ -84,7 +85,7 @@ public class TimePeriodValue implements Cloneable, Serializable {
      * @throws IllegalArgumentException if <code>period</code> is
      *     <code>null</code>.
      */
-    public TimePeriodValue(TimePeriod period, double value) {
+    public TimePeriodValue(jfree.data.time.TimePeriod period, double value) {
         this(period, new Double(value));
     }
 
@@ -131,11 +132,11 @@ public class TimePeriodValue implements Cloneable, Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof TimePeriodValue)) {
+        if (!(obj instanceof jfree.data.time.TimePeriodValue)) {
             return false;
         }
 
-        TimePeriodValue timePeriodValue = (TimePeriodValue) obj;
+        jfree.data.time.TimePeriodValue timePeriodValue = (jfree.data.time.TimePeriodValue) obj;
 
         if (this.period != null ? !this.period.equals(timePeriodValue.period)
                 : timePeriodValue.period != null) {

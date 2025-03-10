@@ -50,13 +50,16 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
 import java.io.Serializable;
 
+import jfree.chart.renderer.category.BarPainter;
+import jfree.chart.renderer.category.BarRenderer;
+import jfree.chart.renderer.category.GradientBarPainter;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.RectangleEdge;
 
 /**
- * An implementation of the {@link BarPainter} interface that preserves the
+ * An implementation of the {@link jfree.chart.renderer.category.BarPainter} interface that preserves the
  * behaviour of bar painting that existed prior to the introduction of the
- * {@link BarPainter} interface.
+ * {@link jfree.chart.renderer.category.BarPainter} interface.
  *
  * @see GradientBarPainter
  *
@@ -82,8 +85,8 @@ public class StandardBarPainter implements BarPainter, Serializable {
      *              bar.
      */
     @Override
-    public void paintBar(Graphics2D g2, BarRenderer renderer, int row,
-            int column, RectangularShape bar, RectangleEdge base) {
+    public void paintBar(Graphics2D g2, jfree.chart.renderer.category.BarRenderer renderer, int row,
+                         int column, RectangularShape bar, RectangleEdge base) {
 
         Paint itemPaint = renderer.getItemPaint(row, column);
         GradientPaintTransformer t = renderer.getGradientPaintTransformer();
@@ -121,8 +124,8 @@ public class StandardBarPainter implements BarPainter, Serializable {
      */
     @Override
     public void paintBarShadow(Graphics2D g2, BarRenderer renderer, int row,
-            int column, RectangularShape bar, RectangleEdge base,
-            boolean pegShadow) {
+                               int column, RectangularShape bar, RectangleEdge base,
+                               boolean pegShadow) {
 
         // handle a special case - if the bar colour has alpha == 0, it is
         // invisible so we shouldn't draw any shadow
@@ -205,7 +208,7 @@ public class StandardBarPainter implements BarPainter, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardBarPainter)) {
+        if (!(obj instanceof jfree.chart.renderer.category.StandardBarPainter)) {
             return false;
         }
         return true;

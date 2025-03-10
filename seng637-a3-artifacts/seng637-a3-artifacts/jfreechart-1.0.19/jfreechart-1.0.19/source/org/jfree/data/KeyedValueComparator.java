@@ -45,18 +45,20 @@ package org.jfree.data;
 
 import java.io.Serializable;
 import java.util.Comparator;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
+import jfree.data.KeyedValue;
+import jfree.data.KeyedValueComparatorType;
 import org.jfree.util.SortOrder;
 
 /**
- * A utility class that can compare and order two {@link KeyedValue} instances
+ * A utility class that can compare and order two {@link jfree.data.KeyedValue} instances
  * and sort them into ascending or descending order by key or by value.
  */
 public class KeyedValueComparator implements Comparator, Serializable {
 
     /** The comparator type. */
-    private KeyedValueComparatorType type;
+    private jfree.data.KeyedValueComparatorType type;
 
     /** The sort order. */
     private SortOrder order;
@@ -68,7 +70,7 @@ public class KeyedValueComparator implements Comparator, Serializable {
      *              <code>null</code> not permitted).
      * @param order  the order (<code>null</code> not permitted).
      */
-    public KeyedValueComparator(KeyedValueComparatorType type,
+    public KeyedValueComparator(jfree.data.KeyedValueComparatorType type,
                                 SortOrder order) {
         ParamChecks.nullNotPermitted(type, "type");
         ParamChecks.nullNotPermitted(order, "order");
@@ -81,7 +83,7 @@ public class KeyedValueComparator implements Comparator, Serializable {
      *
      * @return The type (never <code>null</code>).
      */
-    public KeyedValueComparatorType getType() {
+    public jfree.data.KeyedValueComparatorType getType() {
         return this.type;
     }
 
@@ -95,7 +97,7 @@ public class KeyedValueComparator implements Comparator, Serializable {
     }
 
     /**
-     * Compares two {@link KeyedValue} instances and returns an
+     * Compares two {@link jfree.data.KeyedValue} instances and returns an
      * <code>int</code> that indicates the relative order of the two objects.
      *
      * @param o1  object 1.
@@ -115,10 +117,10 @@ public class KeyedValueComparator implements Comparator, Serializable {
 
         int result;
 
-        KeyedValue kv1 = (KeyedValue) o1;
-        KeyedValue kv2 = (KeyedValue) o2;
+        jfree.data.KeyedValue kv1 = (jfree.data.KeyedValue) o1;
+        jfree.data.KeyedValue kv2 = (KeyedValue) o2;
 
-        if (this.type == KeyedValueComparatorType.BY_KEY) {
+        if (this.type == jfree.data.KeyedValueComparatorType.BY_KEY) {
             if (this.order.equals(SortOrder.ASCENDING)) {
                 result = kv1.getKey().compareTo(kv2.getKey());
             }

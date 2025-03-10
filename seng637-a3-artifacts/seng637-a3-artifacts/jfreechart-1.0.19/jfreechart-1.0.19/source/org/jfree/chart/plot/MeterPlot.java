@@ -113,14 +113,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.data.Range;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.ValueDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.plot.DialShape;
+import jfree.chart.plot.MeterInterval;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.data.Range;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.ValueDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleInsets;
@@ -167,7 +172,7 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
     private ValueDataset dataset;
 
     /** The dial shape (background shape). */
-    private DialShape shape;
+    private jfree.chart.plot.DialShape shape;
 
     /** The dial extent (measured in degrees). */
     private int meterAngle;
@@ -220,7 +225,7 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
                     "org.jfree.chart.plot.LocalizationBundle");
 
     /**
-     * A (possibly empty) list of the {@link MeterInterval}s to be highlighted
+     * A (possibly empty) list of the {@link jfree.chart.plot.MeterInterval}s to be highlighted
      * on the dial.
      */
     private List intervals;
@@ -240,32 +245,32 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
      */
     public MeterPlot(ValueDataset dataset) {
         super();
-        this.shape = DialShape.CIRCLE;
+        this.shape = jfree.chart.plot.DialShape.CIRCLE;
         this.meterAngle = DEFAULT_METER_ANGLE;
         this.range = new Range(0.0, 100.0);
         this.tickSize = 10.0;
         this.tickPaint = Color.white;
         this.units = "Units";
-        this.needlePaint = MeterPlot.DEFAULT_NEEDLE_PAINT;
+        this.needlePaint = jfree.chart.plot.MeterPlot.DEFAULT_NEEDLE_PAINT;
         this.tickLabelsVisible = true;
-        this.tickLabelFont = MeterPlot.DEFAULT_LABEL_FONT;
+        this.tickLabelFont = jfree.chart.plot.MeterPlot.DEFAULT_LABEL_FONT;
         this.tickLabelPaint = Color.black;
         this.tickLabelFormat = NumberFormat.getInstance();
-        this.valueFont = MeterPlot.DEFAULT_VALUE_FONT;
-        this.valuePaint = MeterPlot.DEFAULT_VALUE_PAINT;
-        this.dialBackgroundPaint = MeterPlot.DEFAULT_DIAL_BACKGROUND_PAINT;
+        this.valueFont = jfree.chart.plot.MeterPlot.DEFAULT_VALUE_FONT;
+        this.valuePaint = jfree.chart.plot.MeterPlot.DEFAULT_VALUE_PAINT;
+        this.dialBackgroundPaint = jfree.chart.plot.MeterPlot.DEFAULT_DIAL_BACKGROUND_PAINT;
         this.intervals = new java.util.ArrayList();
         setDataset(dataset);
     }
 
     /**
-     * Returns the dial shape.  The default is {@link DialShape#CIRCLE}).
+     * Returns the dial shape.  The default is {@link jfree.chart.plot.DialShape#CIRCLE}).
      *
      * @return The dial shape (never <code>null</code>).
      *
-     * @see #setDialShape(DialShape)
+     * @see #setDialShape(jfree.chart.plot.DialShape)
      */
-    public DialShape getDialShape() {
+    public jfree.chart.plot.DialShape getDialShape() {
         return this.shape;
     }
 
@@ -277,7 +282,7 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
      *
      * @see #getDialShape()
      */
-    public void setDialShape(DialShape shape) {
+    public void setDialShape(jfree.chart.plot.DialShape shape) {
         ParamChecks.nullNotPermitted(shape, "shape");
         this.shape = shape;
         fireChangeEvent();
@@ -720,7 +725,7 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
      *
      * @return A list.
      *
-     * @see #addInterval(MeterInterval)
+     * @see #addInterval(jfree.chart.plot.MeterInterval)
      */
     public List getIntervals() {
         return Collections.unmodifiableList(this.intervals);
@@ -735,7 +740,7 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
      * @see #getIntervals()
      * @see #clearIntervals()
      */
-    public void addInterval(MeterInterval interval) {
+    public void addInterval(jfree.chart.plot.MeterInterval interval) {
         ParamChecks.nullNotPermitted(interval, "interval");
         this.intervals.add(interval);
         fireChangeEvent();
@@ -745,7 +750,7 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
      * Clears the intervals for the plot and sends a {@link PlotChangeEvent} to
      * all registered listeners.
      *
-     * @see #addInterval(MeterInterval)
+     * @see #addInterval(jfree.chart.plot.MeterInterval)
      */
     public void clearIntervals() {
         this.intervals.clear();
@@ -762,7 +767,7 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
         LegendItemCollection result = new LegendItemCollection();
         Iterator iterator = this.intervals.iterator();
         while (iterator.hasNext()) {
-            MeterInterval mi = (MeterInterval) iterator.next();
+            jfree.chart.plot.MeterInterval mi = (jfree.chart.plot.MeterInterval) iterator.next();
             Paint color = mi.getBackgroundPaint();
             if (color == null) {
                 color = mi.getOutlinePaint();
@@ -813,7 +818,7 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
         double meterY = area.getY() + gapVertical / 2;
         double meterW = area.getWidth() - gapHorizontal;
         double meterH = area.getHeight() - gapVertical
-                + ((this.meterAngle <= 180) && (this.shape != DialShape.CIRCLE)
+                + ((this.meterAngle <= 180) && (this.shape != jfree.chart.plot.DialShape.CIRCLE)
                 ? area.getHeight() / 1.25 : 0);
 
         double min = Math.min(meterW, meterH) / 2;
@@ -849,12 +854,12 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
                         this.dialBackgroundPaint, true);
             }
             drawTicks(g2, meterArea, dataMin, dataMax);
-            drawArcForInterval(g2, meterArea, new MeterInterval("", this.range,
+            drawArcForInterval(g2, meterArea, new jfree.chart.plot.MeterInterval("", this.range,
                     this.dialOutlinePaint, new BasicStroke(1.0f), null));
 
             Iterator iterator = this.intervals.iterator();
             while (iterator.hasNext()) {
-                MeterInterval interval = (MeterInterval) iterator.next();
+                jfree.chart.plot.MeterInterval interval = (jfree.chart.plot.MeterInterval) iterator.next();
                 drawArcForInterval(g2, meterArea, interval);
             }
 
@@ -1001,10 +1006,10 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
         double w = area.getWidth();
         double h = area.getHeight();
         int joinType = Arc2D.OPEN;
-        if (this.shape == DialShape.PIE) {
+        if (this.shape == jfree.chart.plot.DialShape.PIE) {
             joinType = Arc2D.PIE;
         }
-        else if (this.shape == DialShape.CHORD) {
+        else if (this.shape == jfree.chart.plot.DialShape.CHORD) {
             if (dial && this.meterAngle > 180) {
                 joinType = Arc2D.CHORD;
             }
@@ -1194,13 +1199,13 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof MeterPlot)) {
+        if (!(obj instanceof jfree.chart.plot.MeterPlot)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        MeterPlot that = (MeterPlot) obj;
+        jfree.chart.plot.MeterPlot that = (jfree.chart.plot.MeterPlot) obj;
         if (!ObjectUtilities.equal(this.units, that.units)) {
             return false;
         }
@@ -1309,7 +1314,7 @@ public class MeterPlot extends Plot implements Serializable, Cloneable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        MeterPlot clone = (MeterPlot) super.clone();
+        jfree.chart.plot.MeterPlot clone = (jfree.chart.plot.MeterPlot) super.clone();
         clone.tickLabelFormat = (NumberFormat) this.tickLabelFormat.clone();
         // the following relies on the fact that the intervals are immutable
         clone.intervals = new java.util.ArrayList(this.intervals);

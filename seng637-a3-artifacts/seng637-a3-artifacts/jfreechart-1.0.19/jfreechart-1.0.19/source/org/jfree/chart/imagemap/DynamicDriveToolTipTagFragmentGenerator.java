@@ -43,6 +43,9 @@
 
 package org.jfree.chart.imagemap;
 
+import jfree.chart.imagemap.ImageMapUtilities;
+import jfree.chart.imagemap.ToolTipTagFragmentGenerator;
+
 /**
  * Generates tooltips using the Dynamic Drive DHTML Tip Message
  * library (http://www.dynamicdrive.com).
@@ -86,7 +89,7 @@ public class DynamicDriveToolTipTagFragmentGenerator
     @Override
     public String generateToolTipFragment(String toolTipText) {
         return " onMouseOver=\"return stm(['"
-            + ImageMapUtilities.javascriptEscape(this.title) + "','"
+            + jfree.chart.imagemap.ImageMapUtilities.javascriptEscape(this.title) + "','"
             + ImageMapUtilities.javascriptEscape(toolTipText) + "'],Style["
             + this.style + "]);\"" + " onMouseOut=\"return htm();\"";
     }

@@ -43,7 +43,7 @@ package org.jfree.chart.axis;
 
 import java.io.ObjectStreamException;
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
 /**
  * Represents the width types for a category label.
@@ -54,12 +54,12 @@ public final class CategoryLabelWidthType implements Serializable {
     private static final long serialVersionUID = -6976024792582949656L;
 
     /** Percentage of category. */
-    public static final CategoryLabelWidthType CATEGORY 
-            = new CategoryLabelWidthType("CategoryLabelWidthType.CATEGORY");
+    public static final jfree.chart.axis.CategoryLabelWidthType CATEGORY
+            = new jfree.chart.axis.CategoryLabelWidthType("CategoryLabelWidthType.CATEGORY");
 
     /** Percentage of range. */
-    public static final CategoryLabelWidthType RANGE 
-            = new CategoryLabelWidthType("CategoryLabelWidthType.RANGE");
+    public static final jfree.chart.axis.CategoryLabelWidthType RANGE
+            = new jfree.chart.axis.CategoryLabelWidthType("CategoryLabelWidthType.RANGE");
 
     /** The name. */
     private String name;
@@ -97,10 +97,10 @@ public final class CategoryLabelWidthType implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof CategoryLabelWidthType)) {
+        if (!(obj instanceof jfree.chart.axis.CategoryLabelWidthType)) {
             return false;
         }
-        CategoryLabelWidthType t = (CategoryLabelWidthType) obj;
+        jfree.chart.axis.CategoryLabelWidthType t = (jfree.chart.axis.CategoryLabelWidthType) obj;
         if (!this.name.equals(t.toString())) {
             return false;
         }
@@ -115,11 +115,11 @@ public final class CategoryLabelWidthType implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(CategoryLabelWidthType.CATEGORY)) {
-            return CategoryLabelWidthType.CATEGORY;
+        if (this.equals(jfree.chart.axis.CategoryLabelWidthType.CATEGORY)) {
+            return jfree.chart.axis.CategoryLabelWidthType.CATEGORY;
         }
-        else if (this.equals(CategoryLabelWidthType.RANGE)) {
-            return CategoryLabelWidthType.RANGE;
+        else if (this.equals(jfree.chart.axis.CategoryLabelWidthType.RANGE)) {
+            return jfree.chart.axis.CategoryLabelWidthType.RANGE;
         }
         return null;
     }

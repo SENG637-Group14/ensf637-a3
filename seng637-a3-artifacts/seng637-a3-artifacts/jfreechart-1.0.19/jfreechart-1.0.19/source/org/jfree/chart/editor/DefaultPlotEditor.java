@@ -65,19 +65,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import org.jfree.chart.axis.Axis;
-import org.jfree.chart.axis.ColorBar;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.ContourPlot;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PolarPlot;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
-import org.jfree.chart.renderer.xy.StandardXYItemRenderer;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.chart.util.ResourceBundleWrapper;
+import jfree.chart.axis.Axis;
+import jfree.chart.axis.ColorBar;
+import jfree.chart.editor.DefaultAxisEditor;
+import jfree.chart.editor.DefaultColorBarEditor;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.ContourPlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PolarPlot;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.renderer.category.LineAndShapeRenderer;
+import jfree.chart.renderer.xy.StandardXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.util.ResourceBundleWrapper;
 import org.jfree.layout.LCBLayout;
 import org.jfree.ui.PaintSample;
 import org.jfree.ui.RectangleInsets;
@@ -107,18 +109,18 @@ class DefaultPlotEditor extends JPanel implements ActionListener {
     /**
      * A panel used to display/edit the properties of the domain axis (if any).
      */
-    private DefaultAxisEditor domainAxisPropertyPanel;
+    private jfree.chart.editor.DefaultAxisEditor domainAxisPropertyPanel;
 
     /**
      * A panel used to display/edit the properties of the range axis (if any).
      */
-    private DefaultAxisEditor rangeAxisPropertyPanel;
+    private jfree.chart.editor.DefaultAxisEditor rangeAxisPropertyPanel;
 
     /**
      * A panel used to display/edit the properties of the colorbar axis (if
      * any).
      */
-    private DefaultColorBarEditor colorBarAxisPropertyPanel;
+    private jfree.chart.editor.DefaultColorBarEditor colorBarAxisPropertyPanel;
 
     /** An array of stroke samples to choose from. */
     private StrokeSample[] availableStrokeSamples;
@@ -333,7 +335,7 @@ class DefaultPlotEditor extends JPanel implements ActionListener {
         else if (plot instanceof XYPlot) {
             domainAxis = ((XYPlot) plot).getDomainAxis();
         }
-        this.domainAxisPropertyPanel = DefaultAxisEditor.getInstance(
+        this.domainAxisPropertyPanel = jfree.chart.editor.DefaultAxisEditor.getInstance(
                 domainAxis);
         if (this.domainAxisPropertyPanel != null) {
             this.domainAxisPropertyPanel.setBorder(
@@ -353,7 +355,7 @@ class DefaultPlotEditor extends JPanel implements ActionListener {
             rangeAxis = ((PolarPlot) plot).getAxis();
         }
 
-        this.rangeAxisPropertyPanel = DefaultAxisEditor.getInstance(rangeAxis);
+        this.rangeAxisPropertyPanel = jfree.chart.editor.DefaultAxisEditor.getInstance(rangeAxis);
         if (this.rangeAxisPropertyPanel != null) {
             this.rangeAxisPropertyPanel.setBorder(
                     BorderFactory.createEmptyBorder(2, 2, 2, 2));
@@ -367,7 +369,7 @@ class DefaultPlotEditor extends JPanel implements ActionListener {
             colorBar = ((ContourPlot) plot).getColorBar();
         }
 
-        this.colorBarAxisPropertyPanel = DefaultColorBarEditor.getInstance(
+        this.colorBarAxisPropertyPanel = jfree.chart.editor.DefaultColorBarEditor.getInstance(
                 colorBar);
         if (this.colorBarAxisPropertyPanel != null) {
             this.colorBarAxisPropertyPanel.setBorder(
@@ -425,7 +427,7 @@ class DefaultPlotEditor extends JPanel implements ActionListener {
      *
      * @return A reference to a panel.
      */
-    public DefaultAxisEditor getDomainAxisPropertyEditPanel() {
+    public jfree.chart.editor.DefaultAxisEditor getDomainAxisPropertyEditPanel() {
         return this.domainAxisPropertyPanel;
     }
 
@@ -435,7 +437,7 @@ class DefaultPlotEditor extends JPanel implements ActionListener {
      *
      * @return A reference to a panel.
      */
-    public DefaultAxisEditor getRangeAxisPropertyEditPanel() {
+    public jfree.chart.editor.DefaultAxisEditor getRangeAxisPropertyEditPanel() {
         return this.rangeAxisPropertyPanel;
     }
 

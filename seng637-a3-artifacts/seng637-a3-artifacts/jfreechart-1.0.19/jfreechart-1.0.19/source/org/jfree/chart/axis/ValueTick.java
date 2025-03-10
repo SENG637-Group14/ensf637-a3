@@ -41,6 +41,8 @@
 
 package org.jfree.chart.axis;
 
+import jfree.chart.axis.Tick;
+import jfree.chart.axis.TickType;
 import org.jfree.ui.TextAnchor;
 
 /**
@@ -56,7 +58,7 @@ public abstract class ValueTick extends Tick {
      *
      * @since 1.0.7
      */
-    private TickType tickType;
+    private jfree.chart.axis.TickType tickType;
 
     /**
      * Creates a new value tick.
@@ -72,7 +74,7 @@ public abstract class ValueTick extends Tick {
                      TextAnchor textAnchor, TextAnchor rotationAnchor,
                      double angle) {
 
-        this(TickType.MAJOR, value, label, textAnchor, rotationAnchor, angle);
+        this(jfree.chart.axis.TickType.MAJOR, value, label, textAnchor, rotationAnchor, angle);
         this.value = value;
 
     }
@@ -91,7 +93,7 @@ public abstract class ValueTick extends Tick {
      *
      * @since 1.0.7
      */
-    public ValueTick(TickType tickType, double value, String label,
+    public ValueTick(jfree.chart.axis.TickType tickType, double value, String label,
                      TextAnchor textAnchor, TextAnchor rotationAnchor,
                      double angle) {
 
@@ -132,10 +134,10 @@ public abstract class ValueTick extends Tick {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ValueTick)) {
+        if (!(obj instanceof jfree.chart.axis.ValueTick)) {
             return false;
         }
-        ValueTick that = (ValueTick) obj;
+        jfree.chart.axis.ValueTick that = (jfree.chart.axis.ValueTick) obj;
         if (this.value != that.value) {
             return false;
         }

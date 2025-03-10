@@ -41,11 +41,14 @@
 package org.jfree.data.general;
 
 import java.io.Serializable;
-import org.jfree.data.DataUtilities;
+import jfree.data.DataUtilities;
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.HeatMapDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A default implementation of the {@link HeatMapDataset} interface.
+ * A default implementation of the {@link jfree.data.general.HeatMapDataset} interface.
  *
  * @since 1.0.13
  */
@@ -249,7 +252,7 @@ public class DefaultHeatMapDataset extends AbstractDataset
     }
 
     /**
-     * Updates a z-value in the dataset and sends a {@link DatasetChangeEvent}
+     * Updates a z-value in the dataset and sends a {@link jfree.data.general.DatasetChangeEvent}
      * to all registered listeners.
      *
      * @param xIndex  the x-index.
@@ -288,10 +291,10 @@ public class DefaultHeatMapDataset extends AbstractDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultHeatMapDataset)) {
+        if (!(obj instanceof jfree.data.general.DefaultHeatMapDataset)) {
             return false;
         }
-        DefaultHeatMapDataset that = (DefaultHeatMapDataset) obj;
+        jfree.data.general.DefaultHeatMapDataset that = (jfree.data.general.DefaultHeatMapDataset) obj;
         if (this.xSamples != that.xSamples) {
             return false;
         }
@@ -327,7 +330,7 @@ public class DefaultHeatMapDataset extends AbstractDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultHeatMapDataset clone = (DefaultHeatMapDataset) super.clone();
+        jfree.data.general.DefaultHeatMapDataset clone = (jfree.data.general.DefaultHeatMapDataset) super.clone();
         clone.zValues = DataUtilities.clone(this.zValues);
         return clone;
     }

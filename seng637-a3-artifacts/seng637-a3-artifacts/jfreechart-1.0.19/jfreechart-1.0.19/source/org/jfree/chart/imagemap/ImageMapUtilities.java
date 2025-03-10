@@ -54,15 +54,21 @@ package org.jfree.chart.imagemap;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import org.jfree.chart.ChartRenderingInfo;
-import org.jfree.chart.entity.ChartEntity;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.ChartUtilities;
+import jfree.chart.ChartRenderingInfo;
+import jfree.chart.entity.ChartEntity;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.imagemap.OverLIBToolTipTagFragmentGenerator;
+import jfree.chart.imagemap.StandardToolTipTagFragmentGenerator;
+import jfree.chart.imagemap.StandardURLTagFragmentGenerator;
+import jfree.chart.imagemap.ToolTipTagFragmentGenerator;
+import jfree.chart.imagemap.URLTagFragmentGenerator;
+import jfree.chart.util.ParamChecks;
 import org.jfree.util.StringUtils;
 
 /**
  * Collection of utility methods related to producing image maps.
- * Functionality was originally in {@link org.jfree.chart.ChartUtilities}.
+ * Functionality was originally in {@link ChartUtilities}.
  */
 public class ImageMapUtilities {
 
@@ -79,9 +85,9 @@ public class ImageMapUtilities {
             ChartRenderingInfo info) throws IOException {
 
         // defer argument checking...
-        ImageMapUtilities.writeImageMap(writer, name, info,
-                new StandardToolTipTagFragmentGenerator(),
-                new StandardURLTagFragmentGenerator());
+        jfree.chart.imagemap.ImageMapUtilities.writeImageMap(writer, name, info,
+                new jfree.chart.imagemap.StandardToolTipTagFragmentGenerator(),
+                new jfree.chart.imagemap.StandardURLTagFragmentGenerator());
 
     }
 
@@ -100,18 +106,18 @@ public class ImageMapUtilities {
             String name, ChartRenderingInfo info,
             boolean useOverLibForToolTips) throws IOException {
 
-        ToolTipTagFragmentGenerator toolTipTagFragmentGenerator;
+        jfree.chart.imagemap.ToolTipTagFragmentGenerator toolTipTagFragmentGenerator;
         if (useOverLibForToolTips) {
             toolTipTagFragmentGenerator
                     = new OverLIBToolTipTagFragmentGenerator();
         }
         else {
             toolTipTagFragmentGenerator
-                    = new StandardToolTipTagFragmentGenerator();
+                    = new jfree.chart.imagemap.StandardToolTipTagFragmentGenerator();
         }
-        ImageMapUtilities.writeImageMap(writer, name, info,
+        jfree.chart.imagemap.ImageMapUtilities.writeImageMap(writer, name, info,
                 toolTipTagFragmentGenerator,
-                new StandardURLTagFragmentGenerator());
+                new jfree.chart.imagemap.StandardURLTagFragmentGenerator());
 
     }
 
@@ -132,11 +138,11 @@ public class ImageMapUtilities {
      */
     public static void writeImageMap(PrintWriter writer, String name,
             ChartRenderingInfo info,
-            ToolTipTagFragmentGenerator toolTipTagFragmentGenerator,
-            URLTagFragmentGenerator urlTagFragmentGenerator)
+            jfree.chart.imagemap.ToolTipTagFragmentGenerator toolTipTagFragmentGenerator,
+            jfree.chart.imagemap.URLTagFragmentGenerator urlTagFragmentGenerator)
         throws IOException {
 
-        writer.println(ImageMapUtilities.getImageMap(name, info,
+        writer.println(jfree.chart.imagemap.ImageMapUtilities.getImageMap(name, info,
                 toolTipTagFragmentGenerator, urlTagFragmentGenerator));
     }
 
@@ -150,7 +156,7 @@ public class ImageMapUtilities {
      * @return The map element.
      */
     public static String getImageMap(String name, ChartRenderingInfo info) {
-        return ImageMapUtilities.getImageMap(name, info,
+        return jfree.chart.imagemap.ImageMapUtilities.getImageMap(name, info,
                 new StandardToolTipTagFragmentGenerator(),
                 new StandardURLTagFragmentGenerator());
     }

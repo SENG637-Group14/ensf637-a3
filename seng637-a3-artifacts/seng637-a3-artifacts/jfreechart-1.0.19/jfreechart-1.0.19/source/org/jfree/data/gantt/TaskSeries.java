@@ -48,13 +48,17 @@ package org.jfree.data.gantt;
 
 import java.util.Collections;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
 
-import org.jfree.data.general.Series;
+import jfree.data.gantt.Task;
+import jfree.data.gantt.TaskSeriesCollection;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.chart.util.ParamChecks;
+
+import jfree.data.general.Series;
 import org.jfree.util.ObjectUtilities;
 
 /**
- * A series that contains zero, one or many {@link Task} objects.
+ * A series that contains zero, one or many {@link jfree.data.gantt.Task} objects.
  * <P>
  * This class is used as a building block for the {@link TaskSeriesCollection}
  * class that can be used to construct basic Gantt charts.
@@ -76,12 +80,12 @@ public class TaskSeries extends Series {
 
     /**
      * Adds a task to the series and sends a
-     * {@link org.jfree.data.general.SeriesChangeEvent} to all registered
+     * {@link SeriesChangeEvent} to all registered
      * listeners.
      *
      * @param task  the task (<code>null</code> not permitted).
      */
-    public void add(Task task) {
+    public void add(jfree.data.gantt.Task task) {
         ParamChecks.nullNotPermitted(task, "task");
         this.tasks.add(task);
         fireSeriesChanged();
@@ -89,19 +93,19 @@ public class TaskSeries extends Series {
 
     /**
      * Removes a task from the series and sends
-     * a {@link org.jfree.data.general.SeriesChangeEvent}
+     * a {@link SeriesChangeEvent}
      * to all registered listeners.
      *
      * @param task  the task.
      */
-    public void remove(Task task) {
+    public void remove(jfree.data.gantt.Task task) {
         this.tasks.remove(task);
         fireSeriesChanged();
     }
 
     /**
      * Removes all tasks from the series and sends
-     * a {@link org.jfree.data.general.SeriesChangeEvent}
+     * a {@link SeriesChangeEvent}
      * to all registered listeners.
      */
     public void removeAll() {
@@ -126,8 +130,8 @@ public class TaskSeries extends Series {
      *
      * @return The task.
      */
-    public Task get(int index) {
-        return (Task) this.tasks.get(index);
+    public jfree.data.gantt.Task get(int index) {
+        return (jfree.data.gantt.Task) this.tasks.get(index);
     }
 
     /**
@@ -137,11 +141,11 @@ public class TaskSeries extends Series {
      *
      * @return The task (possibly <code>null</code>).
      */
-    public Task get(String description) {
-        Task result = null;
+    public jfree.data.gantt.Task get(String description) {
+        jfree.data.gantt.Task result = null;
         int count = this.tasks.size();
         for (int i = 0; i < count; i++) {
-            Task t = (Task) this.tasks.get(i);
+            jfree.data.gantt.Task t = (Task) this.tasks.get(i);
             if (t.getDescription().equals(description)) {
                 result = t;
                 break;
@@ -171,13 +175,13 @@ public class TaskSeries extends Series {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof TaskSeries)) {
+        if (!(obj instanceof jfree.data.gantt.TaskSeries)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        TaskSeries that = (TaskSeries) obj;
+        jfree.data.gantt.TaskSeries that = (jfree.data.gantt.TaskSeries) obj;
         if (!this.tasks.equals(that.tasks)) {
             return false;
         }
@@ -194,7 +198,7 @@ public class TaskSeries extends Series {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        TaskSeries clone = (TaskSeries) super.clone();
+        jfree.data.gantt.TaskSeries clone = (jfree.data.gantt.TaskSeries) super.clone();
         clone.tasks = (List) ObjectUtilities.deepClone(this.tasks);
         return clone;
     }

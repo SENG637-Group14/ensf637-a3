@@ -47,8 +47,10 @@ package org.jfree.data;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
+import jfree.data.KeyedObject;
+import jfree.data.UnknownKeyException;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -89,7 +91,7 @@ public class KeyedObjects implements Cloneable, PublicCloneable, Serializable {
      */
     public Object getObject(int item) {
         Object result = null;
-        KeyedObject kobj = (KeyedObject) this.data.get(item);
+        jfree.data.KeyedObject kobj = (jfree.data.KeyedObject) this.data.get(item);
         if (kobj != null) {
             result = kobj.getObject();
         }
@@ -109,7 +111,7 @@ public class KeyedObjects implements Cloneable, PublicCloneable, Serializable {
      */
     public Comparable getKey(int index) {
         Comparable result = null;
-        KeyedObject item = (KeyedObject) this.data.get(index);
+        jfree.data.KeyedObject item = (jfree.data.KeyedObject) this.data.get(index);
         if (item != null) {
             result = item.getKey();
         }
@@ -130,7 +132,7 @@ public class KeyedObjects implements Cloneable, PublicCloneable, Serializable {
         int i = 0;
         Iterator iterator = this.data.iterator();
         while (iterator.hasNext()) {
-            KeyedObject ko = (KeyedObject) iterator.next();
+            jfree.data.KeyedObject ko = (jfree.data.KeyedObject) iterator.next();
             if (ko.getKey().equals(key)) {
                 return i;
             }
@@ -148,7 +150,7 @@ public class KeyedObjects implements Cloneable, PublicCloneable, Serializable {
         List result = new java.util.ArrayList();
         Iterator iterator = this.data.iterator();
         while (iterator.hasNext()) {
-            KeyedObject ko = (KeyedObject) iterator.next();
+            jfree.data.KeyedObject ko = (jfree.data.KeyedObject) iterator.next();
             result.add(ko.getKey());
         }
         return result;
@@ -167,7 +169,7 @@ public class KeyedObjects implements Cloneable, PublicCloneable, Serializable {
     public Object getObject(Comparable key) {
         int index = getIndex(key);
         if (index < 0) {
-            throw new UnknownKeyException("The key (" + key
+            throw new jfree.data.UnknownKeyException("The key (" + key
                     + ") is not recognised.");
         }
         return getObject(index);
@@ -199,11 +201,11 @@ public class KeyedObjects implements Cloneable, PublicCloneable, Serializable {
     public void setObject(Comparable key, Object object) {
         int keyIndex = getIndex(key);
         if (keyIndex >= 0) {
-            KeyedObject ko = (KeyedObject) this.data.get(keyIndex);
+            jfree.data.KeyedObject ko = (jfree.data.KeyedObject) this.data.get(keyIndex);
             ko.setObject(object);
         }
         else {
-            KeyedObject ko = new KeyedObject(key, object);
+            jfree.data.KeyedObject ko = new jfree.data.KeyedObject(key, object);
             this.data.add(ko);
         }
     }
@@ -229,7 +231,7 @@ public class KeyedObjects implements Cloneable, PublicCloneable, Serializable {
         if (pos >= 0) {
             this.data.remove(pos);
         }
-        KeyedObject item = new KeyedObject(key, value);
+        jfree.data.KeyedObject item = new jfree.data.KeyedObject(key, value);
         if (position <= this.data.size()) {
             this.data.add(position, item);
         }
@@ -256,7 +258,7 @@ public class KeyedObjects implements Cloneable, PublicCloneable, Serializable {
      *
      * @see #removeValue(int)
      *
-     * @throws UnknownKeyException if the key is not recognised.
+     * @throws jfree.data.UnknownKeyException if the key is not recognised.
      */
     public void removeValue(Comparable key) {
         // defer argument checking
@@ -288,11 +290,11 @@ public class KeyedObjects implements Cloneable, PublicCloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        KeyedObjects clone = (KeyedObjects) super.clone();
+        jfree.data.KeyedObjects clone = (jfree.data.KeyedObjects) super.clone();
         clone.data = new java.util.ArrayList();
         Iterator iterator = this.data.iterator();
         while (iterator.hasNext()) {
-            KeyedObject ko = (KeyedObject) iterator.next();
+            jfree.data.KeyedObject ko = (KeyedObject) iterator.next();
             clone.data.add(ko.clone());
         }
         return clone;
@@ -311,10 +313,10 @@ public class KeyedObjects implements Cloneable, PublicCloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof KeyedObjects)) {
+        if (!(obj instanceof jfree.data.KeyedObjects)) {
             return false;
         }
-        KeyedObjects that = (KeyedObjects) obj;
+        jfree.data.KeyedObjects that = (jfree.data.KeyedObjects) obj;
         int count = getItemCount();
         if (count != that.getItemCount()) {
             return false;

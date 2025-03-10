@@ -99,12 +99,18 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.ValueAxisPlot;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.NumberTick;
+import jfree.chart.axis.Tick;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.axis.ValueTick;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleEdge;
@@ -290,11 +296,11 @@ public class SymbolAxis extends NumberAxis implements Serializable {
      * @return The axis state (never <code>null</code>).
      */
     @Override
-    public AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
-            Rectangle2D dataArea, RectangleEdge edge, 
-            PlotRenderingInfo plotState) {
+    public jfree.chart.axis.AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
+                                                Rectangle2D dataArea, RectangleEdge edge,
+                                                PlotRenderingInfo plotState) {
 
-        AxisState info = new AxisState(cursor);
+        jfree.chart.axis.AxisState info = new jfree.chart.axis.AxisState(cursor);
         if (isVisible()) {
             info = super.draw(g2, cursor, plotArea, dataArea, edge, plotState);
         }
@@ -361,10 +367,10 @@ public class SymbolAxis extends NumberAxis implements Serializable {
         }
 
         Iterator iterator = ticks.iterator();
-        ValueTick tick;
+        jfree.chart.axis.ValueTick tick;
         Rectangle2D band;
         while (iterator.hasNext()) {
-            tick = (ValueTick) iterator.next();
+            tick = (jfree.chart.axis.ValueTick) iterator.next();
             xx1 = valueToJava2D(tick.getValue() - 0.5d, dataArea,
                     RectangleEdge.BOTTOM);
             xx2 = valueToJava2D(tick.getValue() + 0.5d, dataArea,
@@ -413,7 +419,7 @@ public class SymbolAxis extends NumberAxis implements Serializable {
         }
 
         Iterator iterator = ticks.iterator();
-        ValueTick tick;
+        jfree.chart.axis.ValueTick tick;
         Rectangle2D band;
         while (iterator.hasNext()) {
             tick = (ValueTick) iterator.next();
@@ -549,7 +555,7 @@ public class SymbolAxis extends NumberAxis implements Serializable {
         double previousDrawnTickLabelPos = 0.0;
         double previousDrawnTickLabelLength = 0.0;
 
-        if (count <= ValueAxis.MAXIMUM_TICK_COUNT) {
+        if (count <= jfree.chart.axis.ValueAxis.MAXIMUM_TICK_COUNT) {
             for (int i = 0; i < count; i++) {
                 double currentTickValue = lowestTickValue + (i * size);
                 double xx = valueToJava2D(currentTickValue, dataArea, edge);
@@ -608,7 +614,7 @@ public class SymbolAxis extends NumberAxis implements Serializable {
                         rotationAnchor = TextAnchor.TOP_CENTER;
                     }
                 }
-                Tick tick = new NumberTick(new Double(currentTickValue),
+                jfree.chart.axis.Tick tick = new jfree.chart.axis.NumberTick(new Double(currentTickValue),
                         tickLabel, anchor, rotationAnchor, angle);
                 ticks.add(tick);
             }
@@ -741,10 +747,10 @@ public class SymbolAxis extends NumberAxis implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof SymbolAxis)) {
+        if (!(obj instanceof jfree.chart.axis.SymbolAxis)) {
             return false;
         }
-        SymbolAxis that = (SymbolAxis) obj;
+        jfree.chart.axis.SymbolAxis that = (jfree.chart.axis.SymbolAxis) obj;
         if (!this.symbols.equals(that.symbols)) {
             return false;
         }

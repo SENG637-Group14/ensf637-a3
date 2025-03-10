@@ -57,8 +57,9 @@ package org.jfree.chart.entity;
 import java.awt.Shape;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.data.general.PieDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.entity.ChartEntity;
+import jfree.data.general.PieDataset;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -209,10 +210,10 @@ public class PieSectionEntity extends ChartEntity
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof PieSectionEntity)) {
+        if (!(obj instanceof jfree.chart.entity.PieSectionEntity)) {
             return false;
         }
-        PieSectionEntity that = (PieSectionEntity) obj;
+        jfree.chart.entity.PieSectionEntity that = (jfree.chart.entity.PieSectionEntity) obj;
         if (!ObjectUtilities.equal(this.dataset, that.dataset)) {
             return false;
         }

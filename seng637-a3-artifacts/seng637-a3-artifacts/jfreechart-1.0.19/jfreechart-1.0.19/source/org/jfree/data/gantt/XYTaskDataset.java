@@ -43,17 +43,20 @@ package org.jfree.data.gantt;
 
 import java.util.Date;
 
-import org.jfree.chart.axis.SymbolAxis;
-import org.jfree.chart.renderer.xy.XYBarRenderer;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetChangeListener;
-import org.jfree.data.time.TimePeriod;
-import org.jfree.data.xy.AbstractXYDataset;
-import org.jfree.data.xy.IntervalXYDataset;
+import jfree.chart.axis.SymbolAxis;
+import jfree.chart.renderer.xy.XYBarRenderer;
+import jfree.chart.util.ParamChecks;
+import jfree.data.gantt.Task;
+import jfree.data.gantt.TaskSeries;
+import jfree.data.gantt.TaskSeriesCollection;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetChangeListener;
+import jfree.data.time.TimePeriod;
+import jfree.data.xy.AbstractXYDataset;
+import jfree.data.xy.IntervalXYDataset;
 
 /**
- * A dataset implementation that wraps a {@link TaskSeriesCollection} and
+ * A dataset implementation that wraps a {@link jfree.data.gantt.TaskSeriesCollection} and
  * presents it as an {@link IntervalXYDataset}, allowing a set of tasks to
  * be displayed using an {@link XYBarRenderer} (and usually a
  * {@link SymbolAxis}).  This is a very specialised dataset implementation
@@ -66,7 +69,7 @@ public class XYTaskDataset extends AbstractXYDataset
         implements IntervalXYDataset, DatasetChangeListener {
 
     /** The underlying tasks. */
-    private TaskSeriesCollection underlying;
+    private jfree.data.gantt.TaskSeriesCollection underlying;
 
     /** The series interval width (typically 0.0 &lt; w &lt;= 1.0). */
     private double seriesWidth;
@@ -79,7 +82,7 @@ public class XYTaskDataset extends AbstractXYDataset
      *
      * @param tasks  the underlying dataset (<code>null</code> not permitted).
      */
-    public XYTaskDataset(TaskSeriesCollection tasks) {
+    public XYTaskDataset(jfree.data.gantt.TaskSeriesCollection tasks) {
         ParamChecks.nullNotPermitted(tasks, "tasks");
         this.underlying = tasks;
         this.seriesWidth = 0.8;
@@ -92,7 +95,7 @@ public class XYTaskDataset extends AbstractXYDataset
      *
      * @return The underlying collection (never <code>null</code>).
      */
-    public TaskSeriesCollection getTasks() {
+    public jfree.data.gantt.TaskSeriesCollection getTasks() {
         return this.underlying;
     }
 
@@ -398,8 +401,8 @@ public class XYTaskDataset extends AbstractXYDataset
     }
 
     private double getItemValue(int series, int item) {
-        TaskSeries s = this.underlying.getSeries(series);
-        Task t = s.get(item);
+        jfree.data.gantt.TaskSeries s = this.underlying.getSeries(series);
+        jfree.data.gantt.Task t = s.get(item);
         TimePeriod duration = t.getDuration();
         Date start = duration.getStart();
         Date end = duration.getEnd();
@@ -407,8 +410,8 @@ public class XYTaskDataset extends AbstractXYDataset
     }
 
     private double getItemStartValue(int series, int item) {
-        TaskSeries s = this.underlying.getSeries(series);
-        Task t = s.get(item);
+        jfree.data.gantt.TaskSeries s = this.underlying.getSeries(series);
+        jfree.data.gantt.Task t = s.get(item);
         TimePeriod duration = t.getDuration();
         Date start = duration.getStart();
         return start.getTime();
@@ -446,10 +449,10 @@ public class XYTaskDataset extends AbstractXYDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYTaskDataset)) {
+        if (!(obj instanceof jfree.data.gantt.XYTaskDataset)) {
             return false;
         }
-        XYTaskDataset that = (XYTaskDataset) obj;
+        jfree.data.gantt.XYTaskDataset that = (jfree.data.gantt.XYTaskDataset) obj;
         if (this.seriesWidth != that.seriesWidth) {
             return false;
         }
@@ -471,7 +474,7 @@ public class XYTaskDataset extends AbstractXYDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        XYTaskDataset clone = (XYTaskDataset) super.clone();
+        jfree.data.gantt.XYTaskDataset clone = (jfree.data.gantt.XYTaskDataset) super.clone();
         clone.underlying = (TaskSeriesCollection) this.underlying.clone();
         return clone;
     }

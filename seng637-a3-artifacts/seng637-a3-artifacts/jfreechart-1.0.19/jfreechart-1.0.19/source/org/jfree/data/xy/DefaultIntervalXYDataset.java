@@ -49,7 +49,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.xy.AbstractIntervalXYDataset;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.XYIntervalSeriesCollection;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -469,10 +472,10 @@ public class DefaultIntervalXYDataset extends AbstractIntervalXYDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultIntervalXYDataset)) {
+        if (!(obj instanceof jfree.data.xy.DefaultIntervalXYDataset)) {
             return false;
         }
-        DefaultIntervalXYDataset that = (DefaultIntervalXYDataset) obj;
+        jfree.data.xy.DefaultIntervalXYDataset that = (jfree.data.xy.DefaultIntervalXYDataset) obj;
         if (!this.seriesKeys.equals(that.seriesKeys)) {
             return false;
         }
@@ -536,8 +539,8 @@ public class DefaultIntervalXYDataset extends AbstractIntervalXYDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultIntervalXYDataset clone
-                = (DefaultIntervalXYDataset) super.clone();
+        jfree.data.xy.DefaultIntervalXYDataset clone
+                = (jfree.data.xy.DefaultIntervalXYDataset) super.clone();
         clone.seriesKeys = new java.util.ArrayList(this.seriesKeys);
         clone.seriesList = new ArrayList(this.seriesList.size());
         for (int i = 0; i < this.seriesList.size(); i++) {

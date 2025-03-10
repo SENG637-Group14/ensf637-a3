@@ -41,7 +41,8 @@
 
 package org.jfree.chart.event;
 
-import org.jfree.chart.axis.Axis;
+import jfree.chart.axis.Axis;
+import jfree.chart.event.ChartChangeEvent;
 
 /**
  * A change event that encapsulates information about a change to an axis.

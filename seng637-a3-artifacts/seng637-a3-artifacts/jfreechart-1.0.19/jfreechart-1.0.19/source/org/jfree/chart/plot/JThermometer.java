@@ -55,12 +55,13 @@ import java.text.DecimalFormat;
 
 import javax.swing.JPanel;
 
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.title.TextTitle;
-import org.jfree.chart.title.Title;
-import org.jfree.data.general.DefaultValueDataset;
+import jfree.chart.ChartPanel;
+import jfree.chart.JFreeChart;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.plot.ThermometerPlot;
+import jfree.chart.title.TextTitle;
+import jfree.chart.title.Title;
+import jfree.data.general.DefaultValueDataset;
 import org.jfree.ui.RectangleInsets;
 
 /**
@@ -82,7 +83,7 @@ public class JThermometer extends JPanel implements Serializable {
     private ChartPanel panel;
 
     /** The thermometer plot. */
-    private ThermometerPlot plot = new ThermometerPlot();
+    private jfree.chart.plot.ThermometerPlot plot = new ThermometerPlot();
 
     /**
      * Default constructor.

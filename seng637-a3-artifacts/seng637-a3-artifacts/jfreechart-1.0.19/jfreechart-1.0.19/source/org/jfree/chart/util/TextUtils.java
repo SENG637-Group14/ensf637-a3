@@ -46,6 +46,8 @@ import java.awt.Graphics2D;
 import java.awt.font.FontRenderContext;
 import java.awt.font.LineMetrics;
 import java.awt.geom.Rectangle2D;
+
+import jfree.chart.util.ParamChecks;
 import org.jfree.ui.TextAnchor;
 
 /**
@@ -254,7 +256,7 @@ public class TextUtils {
      */
     public static Rectangle2D getTextBounds(String text, double x, double y,
             FontMetrics fm) {
-        ParamChecks.nullNotPermitted(text, "text");
+        jfree.chart.util.ParamChecks.nullNotPermitted(text, "text");
         ParamChecks.nullNotPermitted(fm, "fm");
         double width = fm.stringWidth(text);
         double height = fm.getHeight();

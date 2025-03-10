@@ -58,13 +58,15 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.StandardGradientPaintTransformer;
@@ -269,8 +271,8 @@ public class XYSplineRenderer extends XYLineAndShapeRenderer {
      * @return The renderer state.
      */
     @Override
-    public XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
-            XYPlot plot, XYDataset data, PlotRenderingInfo info) {
+    public jfree.chart.renderer.xy.XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
+                                                                       XYPlot plot, XYDataset data, PlotRenderingInfo info) {
 
         setDrawSeriesLineAsPath(true);
         XYSplineState state = new XYSplineState(info);
@@ -298,9 +300,9 @@ public class XYSplineRenderer extends XYLineAndShapeRenderer {
      */
     @Override
     protected void drawPrimaryLineAsPath(XYItemRendererState state,
-            Graphics2D g2, XYPlot plot, XYDataset dataset, int pass,
-            int series, int item, ValueAxis xAxis, ValueAxis yAxis,
-            Rectangle2D dataArea) {
+                                         Graphics2D g2, XYPlot plot, XYDataset dataset, int pass,
+                                         int series, int item, ValueAxis xAxis, ValueAxis yAxis,
+                                         Rectangle2D dataArea) {
 
         XYSplineState s = (XYSplineState) state;
         RectangleEdge xAxisLocation = plot.getDomainAxisEdge();
@@ -493,10 +495,10 @@ public class XYSplineRenderer extends XYLineAndShapeRenderer {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYSplineRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYSplineRenderer)) {
             return false;
         }
-        XYSplineRenderer that = (XYSplineRenderer) obj;
+        jfree.chart.renderer.xy.XYSplineRenderer that = (jfree.chart.renderer.xy.XYSplineRenderer) obj;
         if (this.precision != that.precision) {
             return false;
         }

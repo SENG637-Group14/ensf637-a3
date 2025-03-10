@@ -50,11 +50,13 @@ import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.renderer.xy.XYBubbleRenderer;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYZDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.labels.AbstractXYItemLabelGenerator;
+import jfree.chart.labels.XYItemLabelGenerator;
+import jfree.chart.renderer.xy.XYBubbleRenderer;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
+import jfree.data.xy.XYZDataset;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
@@ -246,13 +248,13 @@ public class BubbleXYItemLabelGenerator extends AbstractXYItemLabelGenerator
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof BubbleXYItemLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.BubbleXYItemLabelGenerator)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        BubbleXYItemLabelGenerator that = (BubbleXYItemLabelGenerator) obj;
+        jfree.chart.labels.BubbleXYItemLabelGenerator that = (jfree.chart.labels.BubbleXYItemLabelGenerator) obj;
         if (!ObjectUtilities.equal(this.zFormat, that.zFormat)) {
             return false;
         }

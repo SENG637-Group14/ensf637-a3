@@ -40,7 +40,9 @@
 
 package org.jfree.chart.event;
 
-import org.jfree.chart.plot.Marker;
+import jfree.chart.event.ChartChangeEvent;
+import jfree.chart.event.MarkerChangeListener;
+import jfree.chart.plot.Marker;
 
 /**
  * An event that can be forwarded to any {@link MarkerChangeListener} to

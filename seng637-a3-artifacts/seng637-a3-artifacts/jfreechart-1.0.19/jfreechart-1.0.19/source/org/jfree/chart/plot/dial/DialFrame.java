@@ -40,6 +40,10 @@
 
 package org.jfree.chart.plot.dial;
 
+import jfree.chart.plot.dial.ArcDialFrame;
+import jfree.chart.plot.dial.DialLayer;
+import jfree.chart.plot.dial.StandardDialFrame;
+
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;

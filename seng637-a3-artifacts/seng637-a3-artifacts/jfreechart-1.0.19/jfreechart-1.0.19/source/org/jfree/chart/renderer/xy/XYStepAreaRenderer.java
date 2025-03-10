@@ -65,16 +65,19 @@ import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 import org.jfree.util.ShapeUtilities;
 
@@ -359,10 +362,10 @@ public class XYStepAreaRenderer extends AbstractXYItemRenderer
      * @return The number of passes required by the renderer.
      */
     @Override
-    public XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
-            XYPlot plot, XYDataset data, PlotRenderingInfo info) {
+    public jfree.chart.renderer.xy.XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
+                                                                       XYPlot plot, XYDataset data, PlotRenderingInfo info) {
 
-        XYItemRendererState state = super.initialise(g2, dataArea, plot, data,
+        jfree.chart.renderer.xy.XYItemRendererState state = super.initialise(g2, dataArea, plot, data,
                 info);
         // disable visible items optimisation - it doesn't work for this
         // renderer...
@@ -390,7 +393,7 @@ public class XYStepAreaRenderer extends AbstractXYItemRenderer
      * @param pass  the pass index.
      */
     @Override
-    public void drawItem(Graphics2D g2, XYItemRendererState state, 
+    public void drawItem(Graphics2D g2, XYItemRendererState state,
             Rectangle2D dataArea, PlotRenderingInfo info, XYPlot plot,
             ValueAxis domainAxis, ValueAxis rangeAxis, XYDataset dataset,
             int series, int item, CrosshairState crosshairState, int pass) {
@@ -582,10 +585,10 @@ public class XYStepAreaRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYStepAreaRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYStepAreaRenderer)) {
             return false;
         }
-        XYStepAreaRenderer that = (XYStepAreaRenderer) obj;
+        jfree.chart.renderer.xy.XYStepAreaRenderer that = (jfree.chart.renderer.xy.XYStepAreaRenderer) obj;
         if (this.showOutline != that.showOutline) {
             return false;
         }

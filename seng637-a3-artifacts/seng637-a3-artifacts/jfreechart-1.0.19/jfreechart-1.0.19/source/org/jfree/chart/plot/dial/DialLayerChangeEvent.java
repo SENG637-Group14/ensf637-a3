@@ -40,25 +40,27 @@
 
 package org.jfree.chart.plot.dial;
 
-import org.jfree.chart.event.ChartChangeEvent;
+import jfree.chart.event.ChartChangeEvent;
+import jfree.chart.plot.dial.DialLayer;
+import jfree.chart.plot.dial.DialLayerChangeListener;
 
 /**
  * An event that can be forwarded to any {@link DialLayerChangeListener} to
- * signal a change to a {@link DialLayer}.
+ * signal a change to a {@link jfree.chart.plot.dial.DialLayer}.
  *
  * @since 1.0.7
  */
 public class DialLayerChangeEvent extends ChartChangeEvent {
 
     /** The dial layer that generated the event. */
-    private DialLayer layer;
+    private jfree.chart.plot.dial.DialLayer layer;
 
     /**
      * Creates a new instance.
      *
      * @param layer  the dial layer that generated the event.
      */
-    public DialLayerChangeEvent(DialLayer layer) {
+    public DialLayerChangeEvent(jfree.chart.plot.dial.DialLayer layer) {
         super(layer);
         this.layer = layer;
     }

@@ -89,15 +89,18 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
-import org.jfree.chart.encoders.EncoderUtil;
-import org.jfree.chart.encoders.ImageFormat;
-import org.jfree.chart.imagemap.ImageMapUtilities;
-import org.jfree.chart.imagemap.OverLIBToolTipTagFragmentGenerator;
-import org.jfree.chart.imagemap.StandardToolTipTagFragmentGenerator;
-import org.jfree.chart.imagemap.StandardURLTagFragmentGenerator;
-import org.jfree.chart.imagemap.ToolTipTagFragmentGenerator;
-import org.jfree.chart.imagemap.URLTagFragmentGenerator;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.ChartFactory;
+import jfree.chart.ChartRenderingInfo;
+import jfree.chart.JFreeChart;
+import jfree.chart.encoders.EncoderUtil;
+import jfree.chart.encoders.ImageFormat;
+import jfree.chart.imagemap.ImageMapUtilities;
+import jfree.chart.imagemap.OverLIBToolTipTagFragmentGenerator;
+import jfree.chart.imagemap.StandardToolTipTagFragmentGenerator;
+import jfree.chart.imagemap.StandardURLTagFragmentGenerator;
+import jfree.chart.imagemap.ToolTipTagFragmentGenerator;
+import jfree.chart.imagemap.URLTagFragmentGenerator;
+import jfree.chart.util.ParamChecks;
 
 /**
  * A collection of utility methods for JFreeChart.  Includes methods for
@@ -111,13 +114,13 @@ public abstract class ChartUtilities {
     /**
      * Applies the current theme to the specified chart.  This method is
      * provided for convenience, the theme itself is stored in the
-     * {@link ChartFactory} class.
+     * {@link jfree.chart.ChartFactory} class.
      *
      * @param chart  the chart (<code>null</code> not permitted).
      *
      * @since 1.0.11
      */
-    public static void applyCurrentTheme(JFreeChart chart) {
+    public static void applyCurrentTheme(jfree.chart.JFreeChart chart) {
         ChartFactory.getChartTheme().apply(chart);
     }
 
@@ -131,7 +134,7 @@ public abstract class ChartUtilities {
      *
      * @throws IOException if there are any I/O errors.
      */
-    public static void writeChartAsPNG(OutputStream out, JFreeChart chart,
+    public static void writeChartAsPNG(OutputStream out, jfree.chart.JFreeChart chart,
             int width, int height) throws IOException {
 
         // defer argument checking...
@@ -151,19 +154,19 @@ public abstract class ChartUtilities {
      *
      * @throws IOException if there are any I/O errors.
      */
-    public static void writeChartAsPNG(OutputStream out, JFreeChart chart,
+    public static void writeChartAsPNG(OutputStream out, jfree.chart.JFreeChart chart,
             int width, int height, boolean encodeAlpha, int compression)
             throws IOException {
 
         // defer argument checking...
-        ChartUtilities.writeChartAsPNG(out, chart, width, height, null,
+        jfree.chart.ChartUtilities.writeChartAsPNG(out, chart, width, height, null,
                 encodeAlpha, compression);
 
     }
 
     /**
      * Writes a chart to an output stream in PNG format.  This method allows
-     * you to pass in a {@link ChartRenderingInfo} object, to collect
+     * you to pass in a {@link jfree.chart.ChartRenderingInfo} object, to collect
      * information about the chart dimensions/entities.  You will need this
      * info if you want to create an HTML image map.
      *
@@ -175,8 +178,8 @@ public abstract class ChartUtilities {
      *
      * @throws IOException if there are any I/O errors.
      */
-    public static void writeChartAsPNG(OutputStream out, JFreeChart chart,
-            int width, int height,  ChartRenderingInfo info)
+    public static void writeChartAsPNG(OutputStream out, jfree.chart.JFreeChart chart,
+            int width, int height,  jfree.chart.ChartRenderingInfo info)
             throws IOException {
 
         ParamChecks.nullNotPermitted(chart, "chart");
@@ -187,7 +190,7 @@ public abstract class ChartUtilities {
 
     /**
      * Writes a chart to an output stream in PNG format.  This method allows
-     * you to pass in a {@link ChartRenderingInfo} object, to collect
+     * you to pass in a {@link jfree.chart.ChartRenderingInfo} object, to collect
      * information about the chart dimensions/entities.  You will need this
      * info if you want to create an HTML image map.
      *
@@ -202,15 +205,15 @@ public abstract class ChartUtilities {
      *
      * @throws IOException if there are any I/O errors.
      */
-    public static void writeChartAsPNG(OutputStream out, JFreeChart chart,
-            int width, int height, ChartRenderingInfo info,
+    public static void writeChartAsPNG(OutputStream out, jfree.chart.JFreeChart chart,
+            int width, int height, jfree.chart.ChartRenderingInfo info,
             boolean encodeAlpha, int compression) throws IOException {
 
         ParamChecks.nullNotPermitted(out, "out");
         ParamChecks.nullNotPermitted(chart, "chart");
         BufferedImage chartImage = chart.createBufferedImage(width, height,
                 BufferedImage.TYPE_INT_ARGB, info);
-        ChartUtilities.writeBufferedImageAsPNG(out, chartImage, encodeAlpha,
+        jfree.chart.ChartUtilities.writeBufferedImageAsPNG(out, chartImage, encodeAlpha,
                 compression);
 
     }
@@ -228,8 +231,8 @@ public abstract class ChartUtilities {
      * @throws IOException if there are any I/O problems.
      */
     public static void writeScaledChartAsPNG(OutputStream out,
-            JFreeChart chart, int width, int height, int widthScaleFactor,
-            int heightScaleFactor) throws IOException {
+                                             jfree.chart.JFreeChart chart, int width, int height, int widthScaleFactor,
+                                             int heightScaleFactor) throws IOException {
 
         ParamChecks.nullNotPermitted(out, "out");
         ParamChecks.nullNotPermitted(chart, "chart");
@@ -278,7 +281,7 @@ public abstract class ChartUtilities {
      *
      * @throws IOException if there are any I/O errors.
      */
-    public static void saveChartAsPNG(File file, JFreeChart chart,
+    public static void saveChartAsPNG(File file, jfree.chart.JFreeChart chart,
             int width, int height) throws IOException {
 
         // defer argument checking...
@@ -288,7 +291,7 @@ public abstract class ChartUtilities {
 
     /**
      * Saves a chart to a file in PNG format.  This method allows you to pass
-     * in a {@link ChartRenderingInfo} object, to collect information about the
+     * in a {@link jfree.chart.ChartRenderingInfo} object, to collect information about the
      * chart dimensions/entities.  You will need this info if you want to
      * create an HTML image map.
      *
@@ -300,14 +303,14 @@ public abstract class ChartUtilities {
      *
      * @throws IOException if there are any I/O errors.
      */
-    public static void saveChartAsPNG(File file, JFreeChart chart,
-            int width, int height, ChartRenderingInfo info)
+    public static void saveChartAsPNG(File file, jfree.chart.JFreeChart chart,
+            int width, int height, jfree.chart.ChartRenderingInfo info)
         throws IOException {
 
         ParamChecks.nullNotPermitted(file, "file");
         OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
         try {
-            ChartUtilities.writeChartAsPNG(out, chart, width, height, info);
+            jfree.chart.ChartUtilities.writeChartAsPNG(out, chart, width, height, info);
         }
         finally {
             out.close();
@@ -316,7 +319,7 @@ public abstract class ChartUtilities {
 
     /**
      * Saves a chart to a file in PNG format.  This method allows you to pass
-     * in a {@link ChartRenderingInfo} object, to collect information about the
+     * in a {@link jfree.chart.ChartRenderingInfo} object, to collect information about the
      * chart dimensions/entities.  You will need this info if you want to
      * create an HTML image map.
      *
@@ -330,9 +333,9 @@ public abstract class ChartUtilities {
      *
      * @throws IOException if there are any I/O errors.
      */
-    public static void saveChartAsPNG(File file, JFreeChart chart,
-           int width, int height, ChartRenderingInfo info, boolean encodeAlpha,
-           int compression) throws IOException {
+    public static void saveChartAsPNG(File file, jfree.chart.JFreeChart chart,
+                                      int width, int height, jfree.chart.ChartRenderingInfo info, boolean encodeAlpha,
+                                      int compression) throws IOException {
 
         ParamChecks.nullNotPermitted(file, "file");
         ParamChecks.nullNotPermitted(chart, "chart");
@@ -359,7 +362,7 @@ public abstract class ChartUtilities {
      * @throws IOException if there are any I/O errors.
      */
     public static void writeChartAsJPEG(OutputStream out,
-            JFreeChart chart, int width, int height) throws IOException {
+                                        jfree.chart.JFreeChart chart, int width, int height) throws IOException {
 
         // defer argument checking...
         writeChartAsJPEG(out, chart, width, height, null);
@@ -379,17 +382,17 @@ public abstract class ChartUtilities {
      * @throws IOException if there are any I/O errors.
      */
     public static void writeChartAsJPEG(OutputStream out, float quality,
-            JFreeChart chart, int width, int height) throws IOException {
+                                        jfree.chart.JFreeChart chart, int width, int height) throws IOException {
 
         // defer argument checking...
-        ChartUtilities.writeChartAsJPEG(out, quality, chart, width, height,
+        jfree.chart.ChartUtilities.writeChartAsJPEG(out, quality, chart, width, height,
                 null);
 
     }
 
     /**
      * Writes a chart to an output stream in JPEG format. This method allows
-     * you to pass in a {@link ChartRenderingInfo} object, to collect
+     * you to pass in a {@link jfree.chart.ChartRenderingInfo} object, to collect
      * information about the chart dimensions/entities.  You will need this
      * info if you want to create an HTML image map.
      *
@@ -401,8 +404,8 @@ public abstract class ChartUtilities {
      *
      * @throws IOException if there are any I/O errors.
      */
-    public static void writeChartAsJPEG(OutputStream out, JFreeChart chart,
-            int width, int height, ChartRenderingInfo info)
+    public static void writeChartAsJPEG(OutputStream out, jfree.chart.JFreeChart chart,
+            int width, int height, jfree.chart.ChartRenderingInfo info)
             throws IOException {
 
         ParamChecks.nullNotPermitted(out, "out");
@@ -415,7 +418,7 @@ public abstract class ChartUtilities {
 
     /**
      * Writes a chart to an output stream in JPEG format.  This method allows
-     * you to pass in a {@link ChartRenderingInfo} object, to collect
+     * you to pass in a {@link jfree.chart.ChartRenderingInfo} object, to collect
      * information about the chart dimensions/entities.  You will need this
      * info if you want to create an HTML image map.
      *
@@ -429,7 +432,7 @@ public abstract class ChartUtilities {
      * @throws IOException if there are any I/O errors.
      */
     public static void writeChartAsJPEG(OutputStream out, float quality,
-            JFreeChart chart, int width, int height, ChartRenderingInfo info)
+                                        jfree.chart.JFreeChart chart, int width, int height, jfree.chart.ChartRenderingInfo info)
             throws IOException {
 
         ParamChecks.nullNotPermitted(out, "out");
@@ -450,7 +453,7 @@ public abstract class ChartUtilities {
      *
      * @throws IOException if there are any I/O errors.
      */
-    public static void saveChartAsJPEG(File file, JFreeChart chart,
+    public static void saveChartAsJPEG(File file, jfree.chart.JFreeChart chart,
             int width, int height) throws IOException {
 
         // defer argument checking...
@@ -470,7 +473,7 @@ public abstract class ChartUtilities {
      * @throws IOException if there are any I/O errors.
      */
     public static void saveChartAsJPEG(File file, float quality,
-            JFreeChart chart, int width, int height) throws IOException {
+                                       jfree.chart.JFreeChart chart, int width, int height) throws IOException {
 
         // defer argument checking...
         saveChartAsJPEG(file, quality, chart, width, height, null);
@@ -479,7 +482,7 @@ public abstract class ChartUtilities {
 
     /**
      * Saves a chart to a file in JPEG format.  This method allows you to pass
-     * in a {@link ChartRenderingInfo} object, to collect information about the
+     * in a {@link jfree.chart.ChartRenderingInfo} object, to collect information about the
      * chart dimensions/entities.  You will need this info if you want to
      * create an HTML image map.
      *
@@ -491,8 +494,8 @@ public abstract class ChartUtilities {
      *
      * @throws IOException if there are any I/O errors.
      */
-    public static void saveChartAsJPEG(File file, JFreeChart chart,
-            int width, int height, ChartRenderingInfo info) throws IOException {
+    public static void saveChartAsJPEG(File file, jfree.chart.JFreeChart chart,
+            int width, int height, jfree.chart.ChartRenderingInfo info) throws IOException {
 
         ParamChecks.nullNotPermitted(file, "file");
         ParamChecks.nullNotPermitted(chart, "chart");
@@ -508,7 +511,7 @@ public abstract class ChartUtilities {
 
     /**
      * Saves a chart to a file in JPEG format.  This method allows you to pass
-     * in a {@link ChartRenderingInfo} object, to collect information about the
+     * in a {@link jfree.chart.ChartRenderingInfo} object, to collect information about the
      * chart dimensions/entities.  You will need this info if you want to
      * create an HTML image map.
      *
@@ -522,8 +525,8 @@ public abstract class ChartUtilities {
      * @throws IOException if there are any I/O errors.
      */
     public static void saveChartAsJPEG(File file, float quality,
-            JFreeChart chart, int width, int height,
-            ChartRenderingInfo info) throws IOException {
+                                       JFreeChart chart, int width, int height,
+                                       jfree.chart.ChartRenderingInfo info) throws IOException {
 
         ParamChecks.nullNotPermitted(file, "file");
         ParamChecks.nullNotPermitted(chart, "chart");
@@ -645,7 +648,7 @@ public abstract class ChartUtilities {
      * @throws IOException if there are any I/O errors.
      */
     public static void writeImageMap(PrintWriter writer, String name,
-            ChartRenderingInfo info, boolean useOverLibForToolTips)
+                                     jfree.chart.ChartRenderingInfo info, boolean useOverLibForToolTips)
             throws IOException {
 
         ToolTipTagFragmentGenerator toolTipTagFragmentGenerator;
@@ -679,7 +682,7 @@ public abstract class ChartUtilities {
      * @throws IOException if there are any I/O errors.
      */
     public static void writeImageMap(PrintWriter writer, String name,
-            ChartRenderingInfo info,
+            jfree.chart.ChartRenderingInfo info,
             ToolTipTagFragmentGenerator toolTipTagFragmentGenerator,
             URLTagFragmentGenerator urlTagFragmentGenerator)
             throws IOException {
@@ -690,7 +693,7 @@ public abstract class ChartUtilities {
 
     /**
      * Creates an HTML image map.  This method maps to
-     * {@link ImageMapUtilities#getImageMap(String, ChartRenderingInfo,
+     * {@link ImageMapUtilities#getImageMap(String, jfree.chart.ChartRenderingInfo,
      * ToolTipTagFragmentGenerator, URLTagFragmentGenerator)}, using default
      * generators.
      *
@@ -699,7 +702,7 @@ public abstract class ChartUtilities {
      *
      * @return The map tag.
      */
-    public static String getImageMap(String name, ChartRenderingInfo info) {
+    public static String getImageMap(String name, jfree.chart.ChartRenderingInfo info) {
         return ImageMapUtilities.getImageMap(name, info,
                 new StandardToolTipTagFragmentGenerator(),
                 new StandardURLTagFragmentGenerator());
@@ -707,7 +710,7 @@ public abstract class ChartUtilities {
 
     /**
      * Creates an HTML image map.  This method maps directly to
-     * {@link ImageMapUtilities#getImageMap(String, ChartRenderingInfo,
+     * {@link ImageMapUtilities#getImageMap(String, jfree.chart.ChartRenderingInfo,
      * ToolTipTagFragmentGenerator, URLTagFragmentGenerator)}.
      *
      * @param name  the map name (<code>null</code> not permitted).

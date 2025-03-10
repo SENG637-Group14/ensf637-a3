@@ -46,6 +46,8 @@
 
 package org.jfree.data.time;
 
+import jfree.data.time.TimePeriod;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -56,7 +58,7 @@ import java.util.Date;
  * This class is intentionally immutable (that is, once constructed, you cannot
  * alter the start and end attributes).
  */
-public class SimpleTimePeriod implements TimePeriod, Comparable, Serializable {
+public class SimpleTimePeriod implements jfree.data.time.TimePeriod, Comparable, Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = 8684672361131829554L;
@@ -135,7 +137,7 @@ public class SimpleTimePeriod implements TimePeriod, Comparable, Serializable {
 
     /**
      * Tests this time period instance for equality with an arbitrary object.
-     * The object is considered equal if it is an instance of {@link TimePeriod}
+     * The object is considered equal if it is an instance of {@link jfree.data.time.TimePeriod}
      * and it has the same start and end dates.
      *
      * @param obj  the other object (<code>null</code> permitted).
@@ -147,10 +149,10 @@ public class SimpleTimePeriod implements TimePeriod, Comparable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof TimePeriod)) {
+        if (!(obj instanceof jfree.data.time.TimePeriod)) {
             return false;
         }
-        TimePeriod that = (TimePeriod) obj;
+        jfree.data.time.TimePeriod that = (jfree.data.time.TimePeriod) obj;
         if (!this.getStart().equals(that.getStart())) {
             return false;
         }
@@ -169,11 +171,11 @@ public class SimpleTimePeriod implements TimePeriod, Comparable, Serializable {
      * @return An integer.
      *
      * @throws ClassCastException if <code>obj</code> is not an instance of
-     *                            {@link TimePeriod}.
+     *                            {@link jfree.data.time.TimePeriod}.
      */
     @Override
     public int compareTo(Object obj) {
-        TimePeriod that = (TimePeriod) obj;
+        jfree.data.time.TimePeriod that = (TimePeriod) obj;
         long t0 = getStart().getTime();
         long t1 = getEnd().getTime();
         long m0 = t0 + (t1 - t0) / 2L;

@@ -50,7 +50,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.ObjectUtilities;
@@ -140,10 +140,10 @@ public class StrokeMap implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StrokeMap)) {
+        if (!(obj instanceof jfree.chart.StrokeMap)) {
             return false;
         }
-        StrokeMap that = (StrokeMap) obj;
+        jfree.chart.StrokeMap that = (jfree.chart.StrokeMap) obj;
         if (this.store.size() != that.store.size()) {
             return false;
         }
@@ -169,7 +169,7 @@ public class StrokeMap implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        StrokeMap clone = (StrokeMap) super.clone();
+        jfree.chart.StrokeMap clone = (jfree.chart.StrokeMap) super.clone();
         clone.store = new TreeMap();
         clone.store.putAll(this.store);
         // TODO: I think we need to make sure the keys are actually cloned,

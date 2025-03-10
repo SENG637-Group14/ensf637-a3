@@ -40,8 +40,8 @@
 package org.jfree.chart.panel;
 
 import java.awt.Graphics2D;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.event.OverlayChangeListener;
+import jfree.chart.ChartPanel;
+import jfree.chart.event.OverlayChangeListener;
 
 /**
  * Defines the interface for an overlay that can be added to a

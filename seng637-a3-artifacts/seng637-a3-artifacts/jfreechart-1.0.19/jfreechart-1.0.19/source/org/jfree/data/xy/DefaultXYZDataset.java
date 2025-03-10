@@ -48,12 +48,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jfree.data.DomainOrder;
-import org.jfree.data.general.DatasetChangeEvent;
+import jfree.data.DomainOrder;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.xy.AbstractXYZDataset;
+import jfree.data.xy.XYZDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A default implementation of the {@link XYZDataset} interface that stores
+ * A default implementation of the {@link jfree.data.xy.XYZDataset} interface that stores
  * data values in arrays of double primitives.
  *
  * @since 1.0.2
@@ -368,10 +370,10 @@ public class DefaultXYZDataset extends AbstractXYZDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultXYZDataset)) {
+        if (!(obj instanceof jfree.data.xy.DefaultXYZDataset)) {
             return false;
         }
-        DefaultXYZDataset that = (DefaultXYZDataset) obj;
+        jfree.data.xy.DefaultXYZDataset that = (jfree.data.xy.DefaultXYZDataset) obj;
         if (!this.seriesKeys.equals(that.seriesKeys)) {
             return false;
         }
@@ -421,7 +423,7 @@ public class DefaultXYZDataset extends AbstractXYZDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultXYZDataset clone = (DefaultXYZDataset) super.clone();
+        jfree.data.xy.DefaultXYZDataset clone = (jfree.data.xy.DefaultXYZDataset) super.clone();
         clone.seriesKeys = new java.util.ArrayList(this.seriesKeys);
         clone.seriesList = new ArrayList(this.seriesList.size());
         for (int i = 0; i < this.seriesList.size(); i++) {

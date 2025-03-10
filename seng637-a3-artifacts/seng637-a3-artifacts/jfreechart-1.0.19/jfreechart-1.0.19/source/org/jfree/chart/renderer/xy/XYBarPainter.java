@@ -43,10 +43,11 @@ package org.jfree.chart.renderer.xy;
 import java.awt.Graphics2D;
 import java.awt.geom.RectangularShape;
 
+import jfree.chart.renderer.xy.XYBarRenderer;
 import org.jfree.ui.RectangleEdge;
 
 /**
- * The interface for plugin painter for the {@link XYBarRenderer} class.  When
+ * The interface for plugin painter for the {@link jfree.chart.renderer.xy.XYBarRenderer} class.  When
  * developing a class that implements this interface, bear in mind the
  * following:
  * <ul>
@@ -72,7 +73,7 @@ public interface XYBarPainter {
      * @param bar  the bounds for the bar.
      * @param base  the base of the bar.
      */
-    public void paintBar(Graphics2D g2, XYBarRenderer renderer,
+    public void paintBar(Graphics2D g2, jfree.chart.renderer.xy.XYBarRenderer renderer,
             int row, int column, RectangularShape bar, RectangleEdge base);
 
     /**

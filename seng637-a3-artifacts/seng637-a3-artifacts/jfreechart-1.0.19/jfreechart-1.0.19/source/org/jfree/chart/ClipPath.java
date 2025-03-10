@@ -54,14 +54,15 @@ import java.awt.Stroke;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.plot.ContourPlot;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
 import org.jfree.ui.RectangleEdge;
 
 /**
  * This class would typically be used with a
- * {@link org.jfree.chart.plot.ContourPlot}.  It allows the user to define a
+ * {@link ContourPlot}.  It allows the user to define a
  * <code>GeneralPath</code> curve in plot coordinates.  This curve can then be
  * used mask off or define regions within the contour plot.  The data must be
  * sorted.
@@ -431,7 +432,7 @@ public class ClipPath implements Cloneable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        ClipPath clone = (ClipPath) super.clone();
+        jfree.chart.ClipPath clone = (jfree.chart.ClipPath) super.clone();
         clone.xValue = (double[]) this.xValue.clone();
         clone.yValue = (double[]) this.yValue.clone();
         return clone;

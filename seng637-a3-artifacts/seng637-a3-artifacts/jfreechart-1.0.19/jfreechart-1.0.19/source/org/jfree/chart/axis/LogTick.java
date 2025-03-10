@@ -41,6 +41,10 @@
 package org.jfree.chart.axis;
 
 import java.text.AttributedString;
+
+import jfree.chart.axis.LogAxis;
+import jfree.chart.axis.TickType;
+import jfree.chart.axis.ValueTick;
 import org.jfree.ui.TextAnchor;
 
 /**
@@ -60,8 +64,8 @@ public class LogTick extends ValueTick {
      * @param label  the label (<code>null</code> permitted).
      * @param textAnchor  the text anchor.
      */
-    public LogTick(TickType type, double value, AttributedString label, 
-            TextAnchor textAnchor) {
+    public LogTick(TickType type, double value, AttributedString label,
+                   TextAnchor textAnchor) {
         super(type, value, null, textAnchor, textAnchor, 0.0);
         this.attributedLabel = label;
     }

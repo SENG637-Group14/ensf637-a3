@@ -40,6 +40,8 @@
 
 package org.jfree.data.xy;
 
+import jfree.data.xy.XYIntervalDataItem;
+
 import java.io.Serializable;
 
 /**
@@ -140,10 +142,10 @@ public class XYInterval implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYInterval)) {
+        if (!(obj instanceof jfree.data.xy.XYInterval)) {
             return false;
         }
-        XYInterval that = (XYInterval) obj;
+        jfree.data.xy.XYInterval that = (jfree.data.xy.XYInterval) obj;
         if (this.xLow != that.xLow) {
             return false;
         }

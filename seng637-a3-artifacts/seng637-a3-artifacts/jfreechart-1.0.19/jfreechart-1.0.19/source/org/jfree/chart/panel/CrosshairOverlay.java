@@ -56,14 +56,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.OverlayChangeEvent;
-import org.jfree.chart.plot.Crosshair;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.ChartPanel;
+import jfree.chart.JFreeChart;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.OverlayChangeEvent;
+import jfree.chart.panel.AbstractOverlay;
+import jfree.chart.panel.Overlay;
+import jfree.chart.plot.Crosshair;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.util.ParamChecks;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleAnchor;
 import org.jfree.ui.RectangleEdge;
@@ -100,8 +102,8 @@ public class CrosshairOverlay extends AbstractOverlay implements Overlay,
      *
      * @param crosshair  the crosshair (<code>null</code> not permitted).
      *
-     * @see #removeDomainCrosshair(org.jfree.chart.plot.Crosshair)
-     * @see #addRangeCrosshair(org.jfree.chart.plot.Crosshair)
+     * @see #removeDomainCrosshair(Crosshair)
+     * @see #addRangeCrosshair(Crosshair)
      */
     public void addDomainCrosshair(Crosshair crosshair) {
         ParamChecks.nullNotPermitted(crosshair, "crosshair");
@@ -116,7 +118,7 @@ public class CrosshairOverlay extends AbstractOverlay implements Overlay,
      *
      * @param crosshair  the crosshair (<code>null</code> not permitted).
      *
-     * @see #addDomainCrosshair(org.jfree.chart.plot.Crosshair)
+     * @see #addDomainCrosshair(Crosshair)
      */
     public void removeDomainCrosshair(Crosshair crosshair) {
         ParamChecks.nullNotPermitted(crosshair, "crosshair");
@@ -171,7 +173,7 @@ public class CrosshairOverlay extends AbstractOverlay implements Overlay,
      *
      * @param crosshair  the crosshair (<code>null</code> not permitted).
      *
-     * @see #addRangeCrosshair(org.jfree.chart.plot.Crosshair)
+     * @see #addRangeCrosshair(Crosshair)
      */
     public void removeRangeCrosshair(Crosshair crosshair) {
         ParamChecks.nullNotPermitted(crosshair, "crosshair");
@@ -560,10 +562,10 @@ public class CrosshairOverlay extends AbstractOverlay implements Overlay,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CrosshairOverlay)) {
+        if (!(obj instanceof jfree.chart.panel.CrosshairOverlay)) {
             return false;
         }
-        CrosshairOverlay that = (CrosshairOverlay) obj;
+        jfree.chart.panel.CrosshairOverlay that = (jfree.chart.panel.CrosshairOverlay) obj;
         if (!this.xCrosshairs.equals(that.xCrosshairs)) {
             return false;
         }
@@ -583,7 +585,7 @@ public class CrosshairOverlay extends AbstractOverlay implements Overlay,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        CrosshairOverlay clone = (CrosshairOverlay) super.clone();
+        jfree.chart.panel.CrosshairOverlay clone = (jfree.chart.panel.CrosshairOverlay) super.clone();
         clone.xCrosshairs = (List) ObjectUtilities.deepClone(this.xCrosshairs);
         clone.yCrosshairs = (List) ObjectUtilities.deepClone(this.yCrosshairs);
         return clone;

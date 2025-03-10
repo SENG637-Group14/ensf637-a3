@@ -144,7 +144,7 @@ public class Outlier implements Comparable {
      */
     @Override
     public int compareTo(Object o) {
-        Outlier outlier = (Outlier) o;
+        jfree.chart.renderer.Outlier outlier = (jfree.chart.renderer.Outlier) o;
         Point2D p1 = getPoint();
         Point2D p2 = outlier.getPoint();
         if (p1.equals(p2)) {
@@ -168,7 +168,7 @@ public class Outlier implements Comparable {
      * @return A <code>boolean</code> indicating whether or not an overlap has
      *         occurred.
      */
-    public boolean overlaps(Outlier other) {
+    public boolean overlaps(jfree.chart.renderer.Outlier other) {
         return ((other.getX() >= getX() - (this.radius * 1.1))
                 && (other.getX() <= getX() + (this.radius * 1.1))
                 && (other.getY() >= getY() - (this.radius * 1.1))
@@ -187,10 +187,10 @@ public class Outlier implements Comparable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Outlier)) {
+        if (!(obj instanceof jfree.chart.renderer.Outlier)) {
             return false;
         }
-        Outlier that = (Outlier) obj;
+        jfree.chart.renderer.Outlier that = (jfree.chart.renderer.Outlier) obj;
         if (!this.point.equals(that.point)) {
             return false;
         }

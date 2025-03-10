@@ -56,14 +56,21 @@ import java.io.ObjectOutputStream;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.PlotState;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.ValueDataset;
+import jfree.chart.JFreeChart;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.plot.dial.ArcDialFrame;
+import jfree.chart.plot.dial.DialFrame;
+import jfree.chart.plot.dial.DialLayer;
+import jfree.chart.plot.dial.DialLayerChangeEvent;
+import jfree.chart.plot.dial.DialLayerChangeListener;
+import jfree.chart.plot.dial.DialPointer;
+import jfree.chart.plot.dial.DialScale;
+import jfree.chart.util.ParamChecks;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.ValueDataset;
 import org.jfree.util.ObjectList;
 import org.jfree.util.ObjectUtilities;
 
@@ -82,17 +89,17 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
     /**
      * The background layer (optional).
      */
-    private DialLayer background;
+    private jfree.chart.plot.dial.DialLayer background;
 
     /**
      * The needle cap (optional).
      */
-    private DialLayer cap;
+    private jfree.chart.plot.dial.DialLayer cap;
 
     /**
      * The dial frame.
      */
-    private DialFrame dialFrame;
+    private jfree.chart.plot.dial.DialFrame dialFrame;
 
     /**
      * The dataset(s) for the dial plot.
@@ -172,9 +179,9 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @return The background (possibly <code>null</code>).
      *
-     * @see #setBackground(DialLayer)
+     * @see #setBackground(jfree.chart.plot.dial.DialLayer)
      */
-    public DialLayer getBackground() {
+    public jfree.chart.plot.dial.DialLayer getBackground() {
         return this.background;
     }
 
@@ -186,7 +193,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @see #getBackground()
      */
-    public void setBackground(DialLayer background) {
+    public void setBackground(jfree.chart.plot.dial.DialLayer background) {
         if (this.background != null) {
             this.background.removeChangeListener(this);
         }
@@ -202,9 +209,9 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @return The cap (possibly <code>null</code>).
      *
-     * @see #setCap(DialLayer)
+     * @see #setCap(jfree.chart.plot.dial.DialLayer)
      */
-    public DialLayer getCap() {
+    public jfree.chart.plot.dial.DialLayer getCap() {
         return this.cap;
     }
 
@@ -216,7 +223,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @see #getCap()
      */
-    public void setCap(DialLayer cap) {
+    public void setCap(jfree.chart.plot.dial.DialLayer cap) {
         if (this.cap != null) {
             this.cap.removeChangeListener(this);
         }
@@ -232,9 +239,9 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @return The dial's frame (never <code>null</code>).
      *
-     * @see #setDialFrame(DialFrame)
+     * @see #setDialFrame(jfree.chart.plot.dial.DialFrame)
      */
-    public DialFrame getDialFrame() {
+    public jfree.chart.plot.dial.DialFrame getDialFrame() {
         return this.dialFrame;
     }
 
@@ -330,7 +337,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @param layer  the layer (<code>null</code> not permitted).
      */
-    public void addLayer(DialLayer layer) {
+    public void addLayer(jfree.chart.plot.dial.DialLayer layer) {
         ParamChecks.nullNotPermitted(layer, "layer");
         this.layers.add(layer);
         layer.addChangeListener(this);
@@ -344,7 +351,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @return The layer index.
      */
-    public int getLayerIndex(DialLayer layer) {
+    public int getLayerIndex(jfree.chart.plot.dial.DialLayer layer) {
         ParamChecks.nullNotPermitted(layer, "layer");
         return this.layers.indexOf(layer);
     }
@@ -356,7 +363,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      * @param index  the index.
      */
     public void removeLayer(int index) {
-        DialLayer layer = (DialLayer) this.layers.get(index);
+        jfree.chart.plot.dial.DialLayer layer = (jfree.chart.plot.dial.DialLayer) this.layers.get(index);
         if (layer != null) {
             layer.removeChangeListener(this);
         }
@@ -370,7 +377,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @param layer  the layer (<code>null</code> not permitted).
      */
-    public void removeLayer(DialLayer layer) {
+    public void removeLayer(jfree.chart.plot.dial.DialLayer layer) {
         // defer argument checking
         removeLayer(getLayerIndex(layer));
     }
@@ -381,7 +388,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @param pointer  the pointer (<code>null</code> not permitted).
      */
-    public void addPointer(DialPointer pointer) {
+    public void addPointer(jfree.chart.plot.dial.DialPointer pointer) {
         ParamChecks.nullNotPermitted(pointer, "pointer");
         this.pointers.add(pointer);
         pointer.addChangeListener(this);
@@ -395,7 +402,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @return The pointer index.
      */
-    public int getPointerIndex(DialPointer pointer) {
+    public int getPointerIndex(jfree.chart.plot.dial.DialPointer pointer) {
         ParamChecks.nullNotPermitted(pointer, "pointer");
         return this.pointers.indexOf(pointer);
     }
@@ -407,7 +414,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      * @param index  the index.
      */
     public void removePointer(int index) {
-        DialPointer pointer = (DialPointer) this.pointers.get(index);
+        jfree.chart.plot.dial.DialPointer pointer = (jfree.chart.plot.dial.DialPointer) this.pointers.get(index);
         if (pointer != null) {
             pointer.removeChangeListener(this);
         }
@@ -421,7 +428,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @param pointer  the pointer (<code>null</code> not permitted).
      */
-    public void removePointer(DialPointer pointer) {
+    public void removePointer(jfree.chart.plot.dial.DialPointer pointer) {
         // defer argument checking
         removeLayer(getPointerIndex(pointer));
     }
@@ -434,11 +441,11 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @return The pointer.
      */
-    public DialPointer getPointerForDataset(int datasetIndex) {
-        DialPointer result = null;
+    public jfree.chart.plot.dial.DialPointer getPointerForDataset(int datasetIndex) {
+        jfree.chart.plot.dial.DialPointer result = null;
         Iterator iterator = this.pointers.iterator();
         while (iterator.hasNext()) {
-            DialPointer p = (DialPointer) iterator.next();
+            jfree.chart.plot.dial.DialPointer p = (jfree.chart.plot.dial.DialPointer) iterator.next();
             if (p.getDatasetIndex() == datasetIndex) {
                 return p;
             }
@@ -550,7 +557,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
 
         Iterator iterator = this.layers.iterator();
         while (iterator.hasNext()) {
-            DialLayer current = (DialLayer) iterator.next();
+            jfree.chart.plot.dial.DialLayer current = (DialLayer) iterator.next();
             if (current.isVisible()) {
                 if (current.isClippedToWindow()) {
                     Shape savedClip = g2.getClip();
@@ -567,7 +574,7 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
         // draw the pointers
         iterator = this.pointers.iterator();
         while (iterator.hasNext()) {
-            DialPointer current = (DialPointer) iterator.next();
+            jfree.chart.plot.dial.DialPointer current = (DialPointer) iterator.next();
             if (current.isVisible()) {
                 if (current.isClippedToWindow()) {
                     Shape savedClip = g2.getClip();
@@ -643,9 +650,9 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      * @param index  the scale index.
      * @param scale  the scale (<code>null</code> not permitted).
      */
-    public void addScale(int index, DialScale scale) {
+    public void addScale(int index, jfree.chart.plot.dial.DialScale scale) {
         ParamChecks.nullNotPermitted(scale, "scale");
-        DialScale existing = (DialScale) this.scales.get(index);
+        jfree.chart.plot.dial.DialScale existing = (jfree.chart.plot.dial.DialScale) this.scales.get(index);
         if (existing != null) {
             removeLayer(existing);
         }
@@ -662,10 +669,10 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @return The scale (possibly <code>null</code>).
      */
-    public DialScale getScale(int index) {
-        DialScale result = null;
+    public jfree.chart.plot.dial.DialScale getScale(int index) {
+        jfree.chart.plot.dial.DialScale result = null;
         if (this.scales.size() > index) {
-            result = (DialScale) this.scales.get(index);
+            result = (jfree.chart.plot.dial.DialScale) this.scales.get(index);
         }
         return result;
     }
@@ -688,8 +695,8 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
      *
      * @return The dial scale.
      */
-    public DialScale getScaleForDataset(int datasetIndex) {
-        DialScale result = (DialScale) this.scales.get(0);
+    public jfree.chart.plot.dial.DialScale getScaleForDataset(int datasetIndex) {
+        jfree.chart.plot.dial.DialScale result = (DialScale) this.scales.get(0);
         Integer scaleIndex = (Integer) this.datasetToScaleMap.get(datasetIndex);
         if (scaleIndex != null) {
             result = getScale(scaleIndex.intValue());
@@ -741,10 +748,10 @@ public class DialPlot extends Plot implements DialLayerChangeListener {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DialPlot)) {
+        if (!(obj instanceof jfree.chart.plot.dial.DialPlot)) {
             return false;
         }
-        DialPlot that = (DialPlot) obj;
+        jfree.chart.plot.dial.DialPlot that = (jfree.chart.plot.dial.DialPlot) obj;
         if (!ObjectUtilities.equal(this.background, that.background)) {
             return false;
         }

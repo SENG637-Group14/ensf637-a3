@@ -41,6 +41,8 @@
 
 package org.jfree.chart.util;
 
+import jfree.chart.util.ParamChecks;
+
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 

@@ -78,9 +78,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.AttributedString;
 import java.text.CharacterIterator;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.general.Dataset;
+import jfree.data.general.Dataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.StandardGradientPaintTransformer;
@@ -1018,10 +1018,10 @@ public class LegendItem implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LegendItem)) {
+        if (!(obj instanceof jfree.chart.LegendItem)) {
             return false;
         }
-        LegendItem that = (LegendItem) obj;
+        jfree.chart.LegendItem that = (jfree.chart.LegendItem) obj;
         if (this.datasetIndex != that.datasetIndex) {
             return false;
         }
@@ -1097,7 +1097,7 @@ public class LegendItem implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        LegendItem clone = (LegendItem) super.clone();
+        jfree.chart.LegendItem clone = (jfree.chart.LegendItem) super.clone();
         if (this.seriesKey instanceof PublicCloneable) {
             PublicCloneable pc = (PublicCloneable) this.seriesKey;
             clone.seriesKey = (Comparable) pc.clone();

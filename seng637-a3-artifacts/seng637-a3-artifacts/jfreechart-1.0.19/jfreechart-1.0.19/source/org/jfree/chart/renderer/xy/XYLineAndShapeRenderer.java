@@ -84,17 +84,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.LineUtilities;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.util.LineUtilities;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.BooleanList;
@@ -777,7 +780,7 @@ public class XYLineAndShapeRenderer extends AbstractXYItemRenderer
      * information between calls to the drawItem() method for a single chart
      * drawing.
      */
-    public static class State extends XYItemRendererState {
+    public static class State extends jfree.chart.renderer.xy.XYItemRendererState {
 
         /** The path for the current series. */
         public GeneralPath seriesPath;
@@ -857,8 +860,8 @@ public class XYLineAndShapeRenderer extends AbstractXYItemRenderer
      * @return The renderer state.
      */
     @Override
-    public XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
-            XYPlot plot, XYDataset data, PlotRenderingInfo info) {
+    public jfree.chart.renderer.xy.XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
+                                                                       XYPlot plot, XYDataset data, PlotRenderingInfo info) {
         return new State(info);
     }
 
@@ -881,7 +884,7 @@ public class XYLineAndShapeRenderer extends AbstractXYItemRenderer
      * @param pass  the pass index.
      */
     @Override
-    public void drawItem(Graphics2D g2, XYItemRendererState state,
+    public void drawItem(Graphics2D g2, jfree.chart.renderer.xy.XYItemRendererState state,
             Rectangle2D dataArea, PlotRenderingInfo info, XYPlot plot,
             ValueAxis domainAxis, ValueAxis rangeAxis, XYDataset dataset,
             int series, int item, CrosshairState crosshairState, int pass) {
@@ -958,7 +961,7 @@ public class XYLineAndShapeRenderer extends AbstractXYItemRenderer
      * @param series  the series index (zero-based).
      * @param item  the item index (zero-based).
      */
-    protected void drawPrimaryLine(XYItemRendererState state,
+    protected void drawPrimaryLine(jfree.chart.renderer.xy.XYItemRendererState state,
                                    Graphics2D g2,
                                    XYPlot plot,
                                    XYDataset dataset,
@@ -1050,9 +1053,9 @@ public class XYLineAndShapeRenderer extends AbstractXYItemRenderer
      * @param dataArea  the area within which the data is being drawn.
      */
     protected void drawPrimaryLineAsPath(XYItemRendererState state,
-            Graphics2D g2, XYPlot plot, XYDataset dataset, int pass,
-            int series, int item, ValueAxis domainAxis, ValueAxis rangeAxis,
-            Rectangle2D dataArea) {
+                                         Graphics2D g2, XYPlot plot, XYDataset dataset, int pass,
+                                         int series, int item, ValueAxis domainAxis, ValueAxis rangeAxis,
+                                         Rectangle2D dataArea) {
 
         RectangleEdge xAxisLocation = plot.getDomainAxisEdge();
         RectangleEdge yAxisLocation = plot.getRangeAxisEdge();
@@ -1264,7 +1267,7 @@ public class XYLineAndShapeRenderer extends AbstractXYItemRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        XYLineAndShapeRenderer clone = (XYLineAndShapeRenderer) super.clone();
+        jfree.chart.renderer.xy.XYLineAndShapeRenderer clone = (jfree.chart.renderer.xy.XYLineAndShapeRenderer) super.clone();
         clone.seriesLinesVisible
                 = (BooleanList) this.seriesLinesVisible.clone();
         if (this.legendLine != null) {
@@ -1289,13 +1292,13 @@ public class XYLineAndShapeRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYLineAndShapeRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYLineAndShapeRenderer)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        XYLineAndShapeRenderer that = (XYLineAndShapeRenderer) obj;
+        jfree.chart.renderer.xy.XYLineAndShapeRenderer that = (jfree.chart.renderer.xy.XYLineAndShapeRenderer) obj;
         if (!ObjectUtilities.equal(this.linesVisible, that.linesVisible)) {
             return false;
         }

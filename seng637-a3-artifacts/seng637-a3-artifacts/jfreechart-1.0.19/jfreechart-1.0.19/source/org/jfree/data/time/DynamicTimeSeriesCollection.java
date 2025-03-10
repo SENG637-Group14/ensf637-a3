@@ -65,12 +65,17 @@ package org.jfree.data.time;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import org.jfree.data.DomainInfo;
-import org.jfree.data.Range;
-import org.jfree.data.RangeInfo;
-import org.jfree.data.general.SeriesChangeEvent;
-import org.jfree.data.xy.AbstractIntervalXYDataset;
-import org.jfree.data.xy.IntervalXYDataset;
+import jfree.data.DomainInfo;
+import jfree.data.Range;
+import jfree.data.RangeInfo;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.time.Hour;
+import jfree.data.time.Millisecond;
+import jfree.data.time.Minute;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.Second;
+import jfree.data.xy.AbstractIntervalXYDataset;
+import jfree.data.xy.IntervalXYDataset;
 
 /**
  * A dynamic dataset.
@@ -113,10 +118,10 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
     private Comparable[] seriesKeys;
 
     /** The time period class - barely used, and could be removed (DG). */
-    private Class timePeriodClass = Minute.class;   // default value;
+    private Class timePeriodClass = jfree.data.time.Minute.class;   // default value;
 
     /** Storage for the x-values. */
-    protected RegularTimePeriod[] pointsInTime;
+    protected jfree.data.time.RegularTimePeriod[] pointsInTime;
 
     /** The number of series. */
     private int seriesCount;
@@ -133,7 +138,7 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
          * Default constructor:
          */
         public ValueSequence() {
-            this(DynamicTimeSeriesCollection.this.maximumItemCount);
+            this(jfree.data.time.DynamicTimeSeriesCollection.this.maximumItemCount);
         }
 
         /**
@@ -229,7 +234,7 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
      * @param nMoments the number of TimePeriods to be spanned.
      */
     public DynamicTimeSeriesCollection(int nSeries, int nMoments) {
-        this(nSeries, nMoments, new Millisecond(), TimeZone.getDefault());
+        this(nSeries, nMoments, new jfree.data.time.Millisecond(), TimeZone.getDefault());
         this.newestAt = nMoments - 1;
     }
 
@@ -242,7 +247,7 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
      */
     public DynamicTimeSeriesCollection(int nSeries, int nMoments,
             TimeZone zone) {
-        this(nSeries, nMoments, new Millisecond(), zone);
+        this(nSeries, nMoments, new jfree.data.time.Millisecond(), zone);
         this.newestAt = nMoments - 1;
     }
 
@@ -254,7 +259,7 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
      * @param timeSample  a time period sample.
      */
     public DynamicTimeSeriesCollection(int nSeries, int nMoments,
-            RegularTimePeriod timeSample) {
+            jfree.data.time.RegularTimePeriod timeSample) {
         this(nSeries, nMoments, timeSample, TimeZone.getDefault());
     }
 
@@ -267,7 +272,7 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
      * @param zone  the time zone.
      */
     public DynamicTimeSeriesCollection(int nSeries, int nMoments,
-            RegularTimePeriod timeSample, TimeZone zone) {
+                                       jfree.data.time.RegularTimePeriod timeSample, TimeZone zone) {
 
         // the first initialization must precede creation of the ValueSet array:
         this.maximumItemCount = nMoments;  // establishes length of each array
@@ -282,13 +287,13 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
         this.timePeriodClass = timeSample.getClass();
 
         /// Expand the following for all defined TimePeriods:
-        if (this.timePeriodClass == Millisecond.class) {
+        if (this.timePeriodClass == jfree.data.time.Millisecond.class) {
             this.pointsInTime = new Millisecond[nMoments];
-        } else if (this.timePeriodClass == Second.class) {
+        } else if (this.timePeriodClass == jfree.data.time.Second.class) {
             this.pointsInTime = new Second[nMoments];
-        } else if (this.timePeriodClass == Minute.class) {
+        } else if (this.timePeriodClass == jfree.data.time.Minute.class) {
             this.pointsInTime = new Minute[nMoments];
-        } else if (this.timePeriodClass == Hour.class) {
+        } else if (this.timePeriodClass == jfree.data.time.Hour.class) {
             this.pointsInTime = new Hour[nMoments];
         }
         ///  .. etc....
@@ -308,7 +313,7 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
      *
      * @return ??.
      */
-    public synchronized long setTimeBase(RegularTimePeriod start) {
+    public synchronized long setTimeBase(jfree.data.time.RegularTimePeriod start) {
         if (this.pointsInTime[0] == null) {
             this.pointsInTime[0] = start;
             for (int i = 1; i < this.historyCount; i++) {
@@ -549,8 +554,8 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
      *
      * @return The new time period.
      */
-    public synchronized RegularTimePeriod advanceTime() {
-        RegularTimePeriod nextInstant = this.pointsInTime[this.newestAt].next();
+    public synchronized jfree.data.time.RegularTimePeriod advanceTime() {
+        jfree.data.time.RegularTimePeriod nextInstant = this.pointsInTime[this.newestAt].next();
         this.newestAt = this.oldestAt;  // newestAt takes value previously held
                                         // by oldestAT
         /***
@@ -702,7 +707,7 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
      *
      * @return The newest time.
      */
-    public RegularTimePeriod getNewestTime() {
+    public jfree.data.time.RegularTimePeriod getNewestTime() {
         return this.pointsInTime[this.newestAt];
     }
 
@@ -711,7 +716,7 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
      *
      * @return The oldest time.
      */
-    public RegularTimePeriod getOldestTime() {
+    public jfree.data.time.RegularTimePeriod getOldestTime() {
         return this.pointsInTime[this.oldestAt];
     }
 
@@ -727,7 +732,7 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
     // Don't synchronize this!! Instead, synchronize the loop that calls it.
     @Override
     public Number getX(int series, int item) {
-        RegularTimePeriod tp = this.pointsInTime[translateGet(item)];
+        jfree.data.time.RegularTimePeriod tp = this.pointsInTime[translateGet(item)];
         return new Long(getX(tp));
     }
 
@@ -770,7 +775,7 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public Number getStartX(int series, int item) {
-        RegularTimePeriod tp = this.pointsInTime[translateGet(item)];
+        jfree.data.time.RegularTimePeriod tp = this.pointsInTime[translateGet(item)];
         return new Long(tp.getFirstMillisecond(this.workingCalendar));
     }
 
@@ -784,7 +789,7 @@ public class DynamicTimeSeriesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public Number getEndX(int series, int item) {
-        RegularTimePeriod tp = this.pointsInTime[translateGet(item)];
+        jfree.data.time.RegularTimePeriod tp = this.pointsInTime[translateGet(item)];
         return new Long(tp.getLastMillisecond(this.workingCalendar));
     }
 

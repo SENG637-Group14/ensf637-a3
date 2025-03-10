@@ -265,38 +265,51 @@ import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TreeMap;
-import org.jfree.chart.JFreeChart;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.annotations.Annotation;
-import org.jfree.chart.annotations.XYAnnotation;
-import org.jfree.chart.annotations.XYAnnotationBoundsInfo;
-import org.jfree.chart.axis.Axis;
-import org.jfree.chart.axis.AxisCollection;
-import org.jfree.chart.axis.AxisLocation;
-import org.jfree.chart.axis.AxisSpace;
-import org.jfree.chart.axis.AxisState;
-import org.jfree.chart.axis.TickType;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.axis.ValueTick;
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.event.ChartChangeEventType;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.event.RendererChangeListener;
-import org.jfree.chart.renderer.RendererUtilities;
-import org.jfree.chart.renderer.xy.AbstractXYItemRenderer;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.chart.renderer.xy.XYItemRendererState;
-import org.jfree.chart.util.CloneUtils;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.chart.util.ShadowGenerator;
-import org.jfree.data.Range;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.ChartFactory;
+import jfree.chart.JFreeChart;
+
+import jfree.chart.LegendItem;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.annotations.Annotation;
+import jfree.chart.annotations.XYAnnotation;
+import jfree.chart.annotations.XYAnnotationBoundsInfo;
+import jfree.chart.axis.Axis;
+import jfree.chart.axis.AxisCollection;
+import jfree.chart.axis.AxisLocation;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.TickType;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.axis.ValueTick;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.event.ChartChangeEventType;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.event.RendererChangeListener;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.DatasetRenderingOrder;
+import jfree.chart.plot.Marker;
+import jfree.chart.plot.Pannable;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.plot.SeriesRenderingOrder;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.chart.plot.Zoomable;
+import jfree.chart.renderer.RendererUtilities;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.util.CloneUtils;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.chart.util.ShadowGenerator;
+import jfree.data.Range;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.Layer;
 import org.jfree.ui.RectangleEdge;
@@ -313,10 +326,10 @@ import org.jfree.util.PublicCloneable;
  * on the plot.  By using different renderers, various chart types can be
  * produced.
  * <p>
- * The {@link org.jfree.chart.ChartFactory} class contains static methods for
+ * The {@link ChartFactory} class contains static methods for
  * creating pre-configured charts.
  */
-public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
+public class XYPlot extends jfree.chart.plot.Plot implements ValueAxisPlot, Pannable, Zoomable,
         RendererChangeListener, Cloneable, PublicCloneable, Serializable {
 
     /** For serialization. */
@@ -346,7 +359,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
                     "org.jfree.chart.plot.LocalizationBundle");
 
     /** The plot orientation. */
-    private PlotOrientation orientation;
+    private jfree.chart.plot.PlotOrientation orientation;
 
     /** The offset between the data area and the axes. */
     private RectangleInsets axisOffset;
@@ -561,15 +574,15 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * The order of the dataset rendering (REVERSE draws the primary dataset
      * last so that it appears to be on top).
      */
-    private DatasetRenderingOrder datasetRenderingOrder
-            = DatasetRenderingOrder.REVERSE;
+    private jfree.chart.plot.DatasetRenderingOrder datasetRenderingOrder
+            = jfree.chart.plot.DatasetRenderingOrder.REVERSE;
 
     /**
      * The order of the series rendering (REVERSE draws the primary series
      * last so that it appears to be on top).
      */
-    private SeriesRenderingOrder seriesRenderingOrder
-            = SeriesRenderingOrder.REVERSE;
+    private jfree.chart.plot.SeriesRenderingOrder seriesRenderingOrder
+            = jfree.chart.plot.SeriesRenderingOrder.REVERSE;
 
     /**
      * The weight for this plot (only relevant if this is a subplot in a
@@ -628,7 +641,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
     public XYPlot(XYDataset dataset, ValueAxis domainAxis, ValueAxis rangeAxis,
             XYItemRenderer renderer) {
         super();
-        this.orientation = PlotOrientation.VERTICAL;
+        this.orientation = jfree.chart.plot.PlotOrientation.VERTICAL;
         this.weight = 1;  // only relevant when this is a subplot
         this.axisOffset = RectangleInsets.ZERO_INSETS;
 
@@ -732,10 +745,10 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @return The orientation (never <code>null</code>).
      *
-     * @see #setOrientation(PlotOrientation)
+     * @see #setOrientation(jfree.chart.plot.PlotOrientation)
      */
     @Override
-    public PlotOrientation getOrientation() {
+    public jfree.chart.plot.PlotOrientation getOrientation() {
         return this.orientation;
     }
 
@@ -747,7 +760,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @see #getOrientation()
      */
-    public void setOrientation(PlotOrientation orientation) {
+    public void setOrientation(jfree.chart.plot.PlotOrientation orientation) {
         ParamChecks.nullNotPermitted(orientation, "orientation");
         if (orientation != this.orientation) {
             this.orientation = orientation;
@@ -807,9 +820,9 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
     public ValueAxis getDomainAxis(int index) {
         ValueAxis result = this.domainAxes.get(index);
         if (result == null) {
-            Plot parent = getParent();
-            if (parent instanceof XYPlot) {
-                XYPlot xy = (XYPlot) parent;
+            jfree.chart.plot.Plot parent = getParent();
+            if (parent instanceof jfree.chart.plot.XYPlot) {
+                jfree.chart.plot.XYPlot xy = (jfree.chart.plot.XYPlot) parent;
                 result = xy.getDomainAxis(index);
             }
         }
@@ -934,7 +947,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @see #getOrientation()
      */
     public RectangleEdge getDomainAxisEdge() {
-        return Plot.resolveDomainAxisLocation(getDomainAxisLocation(),
+        return jfree.chart.plot.Plot.resolveDomainAxisLocation(getDomainAxisLocation(),
                 this.orientation);
     }
 
@@ -1047,7 +1060,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      */
     public RectangleEdge getDomainAxisEdge(int index) {
         AxisLocation location = getDomainAxisLocation(index);
-        return Plot.resolveDomainAxisLocation(location, this.orientation);
+        return jfree.chart.plot.Plot.resolveDomainAxisLocation(location, this.orientation);
     }
 
     /**
@@ -1137,7 +1150,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @see #getOrientation()
      */
     public RectangleEdge getRangeAxisEdge() {
-        return Plot.resolveRangeAxisLocation(getRangeAxisLocation(),
+        return jfree.chart.plot.Plot.resolveRangeAxisLocation(getRangeAxisLocation(),
                 this.orientation);
     }
 
@@ -1154,9 +1167,9 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
     public ValueAxis getRangeAxis(int index) {
         ValueAxis result = this.rangeAxes.get(index);
         if (result == null) {
-            Plot parent = getParent();
-            if (parent instanceof XYPlot) {
-                XYPlot xy = (XYPlot) parent;
+            jfree.chart.plot.Plot parent = getParent();
+            if (parent instanceof jfree.chart.plot.XYPlot) {
+                jfree.chart.plot.XYPlot xy = (jfree.chart.plot.XYPlot) parent;
                 result = xy.getRangeAxis(index);
             }
         }
@@ -1330,7 +1343,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      */
     public RectangleEdge getRangeAxisEdge(int index) {
         AxisLocation location = getRangeAxisLocation(index);
-        return Plot.resolveRangeAxisLocation(location, this.orientation);
+        return jfree.chart.plot.Plot.resolveRangeAxisLocation(location, this.orientation);
     }
 
     /**
@@ -1628,9 +1641,9 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @return The order (never <code>null</code>).
      *
-     * @see #setDatasetRenderingOrder(DatasetRenderingOrder)
+     * @see #setDatasetRenderingOrder(jfree.chart.plot.DatasetRenderingOrder)
      */
-    public DatasetRenderingOrder getDatasetRenderingOrder() {
+    public jfree.chart.plot.DatasetRenderingOrder getDatasetRenderingOrder() {
         return this.datasetRenderingOrder;
     }
 
@@ -1644,7 +1657,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @see #getDatasetRenderingOrder()
      */
-    public void setDatasetRenderingOrder(DatasetRenderingOrder order) {
+    public void setDatasetRenderingOrder(jfree.chart.plot.DatasetRenderingOrder order) {
         ParamChecks.nullNotPermitted(order, "order");
         this.datasetRenderingOrder = order;
         fireChangeEvent();
@@ -1655,9 +1668,9 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @return the order (never <code>null</code>).
      *
-     * @see #setSeriesRenderingOrder(SeriesRenderingOrder)
+     * @see #setSeriesRenderingOrder(jfree.chart.plot.SeriesRenderingOrder)
      */
-    public SeriesRenderingOrder getSeriesRenderingOrder() {
+    public jfree.chart.plot.SeriesRenderingOrder getSeriesRenderingOrder() {
         return this.seriesRenderingOrder;
     }
 
@@ -1671,7 +1684,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @see #getSeriesRenderingOrder()
      */
-    public void setSeriesRenderingOrder(SeriesRenderingOrder order) {
+    public void setSeriesRenderingOrder(jfree.chart.plot.SeriesRenderingOrder order) {
         ParamChecks.nullNotPermitted(order, "order");
         this.seriesRenderingOrder = order;
         fireChangeEvent();
@@ -2391,10 +2404,10 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @param marker  the marker (<code>null</code> not permitted).
      *
-     * @see #addDomainMarker(Marker, Layer)
+     * @see #addDomainMarker(jfree.chart.plot.Marker, Layer)
      * @see #clearDomainMarkers()
      */
-    public void addDomainMarker(Marker marker) {
+    public void addDomainMarker(jfree.chart.plot.Marker marker) {
         // defer argument checking...
         addDomainMarker(marker, Layer.FOREGROUND);
     }
@@ -2409,9 +2422,9 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param marker  the marker (<code>null</code> not permitted).
      * @param layer  the layer (foreground or background).
      *
-     * @see #addDomainMarker(int, Marker, Layer)
+     * @see #addDomainMarker(int, jfree.chart.plot.Marker, Layer)
      */
-    public void addDomainMarker(Marker marker, Layer layer) {
+    public void addDomainMarker(jfree.chart.plot.Marker marker, Layer layer) {
         addDomainMarker(0, marker, layer);
     }
 
@@ -2419,7 +2432,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * Clears all the (foreground and background) domain markers and sends a
      * {@link PlotChangeEvent} to all registered listeners.
      *
-     * @see #addDomainMarker(int, Marker, Layer)
+     * @see #addDomainMarker(int, jfree.chart.plot.Marker, Layer)
      */
     public void clearDomainMarkers() {
         if (this.backgroundDomainMarkers != null) {
@@ -2455,7 +2468,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
             if (markers != null) {
                 Iterator iterator = markers.iterator();
                 while (iterator.hasNext()) {
-                    Marker m = (Marker) iterator.next();
+                    jfree.chart.plot.Marker m = (jfree.chart.plot.Marker) iterator.next();
                     m.removeChangeListener(this);
                 }
                 markers.clear();
@@ -2467,7 +2480,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
             if (markers != null) {
                 Iterator iterator = markers.iterator();
                 while (iterator.hasNext()) {
-                    Marker m = (Marker) iterator.next();
+                    jfree.chart.plot.Marker m = (jfree.chart.plot.Marker) iterator.next();
                     m.removeChangeListener(this);
                 }
                 markers.clear();
@@ -2489,9 +2502,9 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param layer  the layer (foreground or background).
      *
      * @see #clearDomainMarkers(int)
-     * @see #addRangeMarker(int, Marker, Layer)
+     * @see #addRangeMarker(int, jfree.chart.plot.Marker, Layer)
      */
-    public void addDomainMarker(int index, Marker marker, Layer layer) {
+    public void addDomainMarker(int index, jfree.chart.plot.Marker marker, Layer layer) {
         addDomainMarker(index, marker, layer, true);
     }
 
@@ -2510,8 +2523,8 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @since 1.0.10
      */
-    public void addDomainMarker(int index, Marker marker, Layer layer,
-            boolean notify) {
+    public void addDomainMarker(int index, jfree.chart.plot.Marker marker, Layer layer,
+                                boolean notify) {
         ParamChecks.nullNotPermitted(marker, "marker");
         ParamChecks.nullNotPermitted(layer, "layer");
         Collection markers;
@@ -2550,7 +2563,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @since 1.0.7
      */
-    public boolean removeDomainMarker(Marker marker) {
+    public boolean removeDomainMarker(jfree.chart.plot.Marker marker) {
         return removeDomainMarker(marker, Layer.FOREGROUND);
     }
 
@@ -2566,7 +2579,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @since 1.0.7
      */
-    public boolean removeDomainMarker(Marker marker, Layer layer) {
+    public boolean removeDomainMarker(jfree.chart.plot.Marker marker, Layer layer) {
         return removeDomainMarker(0, marker, layer);
     }
 
@@ -2583,7 +2596,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @since 1.0.7
      */
-    public boolean removeDomainMarker(int index, Marker marker, Layer layer) {
+    public boolean removeDomainMarker(int index, jfree.chart.plot.Marker marker, Layer layer) {
         return removeDomainMarker(index, marker, layer, true);
     }
 
@@ -2601,8 +2614,8 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @since 1.0.10
      */
-    public boolean removeDomainMarker(int index, Marker marker, Layer layer,
-            boolean notify) {
+    public boolean removeDomainMarker(int index, jfree.chart.plot.Marker marker, Layer layer,
+                                      boolean notify) {
         ArrayList markers;
         if (layer == Layer.FOREGROUND) {
             markers = (ArrayList) this.foregroundDomainMarkers.get(
@@ -2631,9 +2644,9 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @param marker  the marker (<code>null</code> not permitted).
      *
-     * @see #addRangeMarker(Marker, Layer)
+     * @see #addRangeMarker(jfree.chart.plot.Marker, Layer)
      */
-    public void addRangeMarker(Marker marker) {
+    public void addRangeMarker(jfree.chart.plot.Marker marker) {
         addRangeMarker(marker, Layer.FOREGROUND);
     }
 
@@ -2647,9 +2660,9 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param marker  the marker (<code>null</code> not permitted).
      * @param layer  the layer (foreground or background).
      *
-     * @see #addRangeMarker(int, Marker, Layer)
+     * @see #addRangeMarker(int, jfree.chart.plot.Marker, Layer)
      */
-    public void addRangeMarker(Marker marker, Layer layer) {
+    public void addRangeMarker(jfree.chart.plot.Marker marker, Layer layer) {
         addRangeMarker(0, marker, layer);
     }
 
@@ -2689,9 +2702,9 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param layer  the layer (foreground or background).
      *
      * @see #clearRangeMarkers(int)
-     * @see #addDomainMarker(int, Marker, Layer)
+     * @see #addDomainMarker(int, jfree.chart.plot.Marker, Layer)
      */
-    public void addRangeMarker(int index, Marker marker, Layer layer) {
+    public void addRangeMarker(int index, jfree.chart.plot.Marker marker, Layer layer) {
         addRangeMarker(index, marker, layer, true);
     }
 
@@ -2709,8 +2722,8 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @since 1.0.10
      */
-    public void addRangeMarker(int index, Marker marker, Layer layer,
-            boolean notify) {
+    public void addRangeMarker(int index, jfree.chart.plot.Marker marker, Layer layer,
+                               boolean notify) {
         Collection markers;
         if (layer == Layer.FOREGROUND) {
             markers = (Collection) this.foregroundRangeMarkers.get(
@@ -2750,7 +2763,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
             if (markers != null) {
                 Iterator iterator = markers.iterator();
                 while (iterator.hasNext()) {
-                    Marker m = (Marker) iterator.next();
+                    jfree.chart.plot.Marker m = (jfree.chart.plot.Marker) iterator.next();
                     m.removeChangeListener(this);
                 }
                 markers.clear();
@@ -2762,7 +2775,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
             if (markers != null) {
                 Iterator iterator = markers.iterator();
                 while (iterator.hasNext()) {
-                    Marker m = (Marker) iterator.next();
+                    jfree.chart.plot.Marker m = (jfree.chart.plot.Marker) iterator.next();
                     m.removeChangeListener(this);
                 }
                 markers.clear();
@@ -2782,7 +2795,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @since 1.0.7
      */
-    public boolean removeRangeMarker(Marker marker) {
+    public boolean removeRangeMarker(jfree.chart.plot.Marker marker) {
         return removeRangeMarker(marker, Layer.FOREGROUND);
     }
 
@@ -2798,7 +2811,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @since 1.0.7
      */
-    public boolean removeRangeMarker(Marker marker, Layer layer) {
+    public boolean removeRangeMarker(jfree.chart.plot.Marker marker, Layer layer) {
         return removeRangeMarker(0, marker, layer);
     }
 
@@ -2815,7 +2828,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @since 1.0.7
      */
-    public boolean removeRangeMarker(int index, Marker marker, Layer layer) {
+    public boolean removeRangeMarker(int index, jfree.chart.plot.Marker marker, Layer layer) {
         return removeRangeMarker(index, marker, layer, true);
     }
 
@@ -2833,8 +2846,8 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      *
      * @since 1.0.10
      */
-    public boolean removeRangeMarker(int index, Marker marker, Layer layer,
-            boolean notify) {
+    public boolean removeRangeMarker(int index, jfree.chart.plot.Marker marker, Layer layer,
+                                     boolean notify) {
         ParamChecks.nullNotPermitted(marker, "marker");
         ParamChecks.nullNotPermitted(layer, "layer");
         List markers;
@@ -3009,13 +3022,13 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
 
         // reserve some space for the domain axis...
         if (this.fixedDomainAxisSpace != null) {
-            if (this.orientation == PlotOrientation.HORIZONTAL) {
+            if (this.orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 space.ensureAtLeast(this.fixedDomainAxisSpace.getLeft(),
                         RectangleEdge.LEFT);
                 space.ensureAtLeast(this.fixedDomainAxisSpace.getRight(),
                         RectangleEdge.RIGHT);
             }
-            else if (this.orientation == PlotOrientation.VERTICAL) {
+            else if (this.orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 space.ensureAtLeast(this.fixedDomainAxisSpace.getTop(),
                         RectangleEdge.TOP);
                 space.ensureAtLeast(this.fixedDomainAxisSpace.getBottom(),
@@ -3055,13 +3068,13 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
 
         // reserve some space for the range axis...
         if (this.fixedRangeAxisSpace != null) {
-            if (this.orientation == PlotOrientation.HORIZONTAL) {
+            if (this.orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 space.ensureAtLeast(this.fixedRangeAxisSpace.getTop(),
                         RectangleEdge.TOP);
                 space.ensureAtLeast(this.fixedRangeAxisSpace.getBottom(),
                         RectangleEdge.BOTTOM);
             }
-            else if (this.orientation == PlotOrientation.VERTICAL) {
+            else if (this.orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 space.ensureAtLeast(this.fixedRangeAxisSpace.getLeft(),
                         RectangleEdge.LEFT);
                 space.ensureAtLeast(this.fixedRangeAxisSpace.getRight(),
@@ -3111,7 +3124,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      */
     @Override
     public void draw(Graphics2D g2, Rectangle2D area, Point2D anchor,
-            PlotState parentState, PlotRenderingInfo info) {
+                     PlotState parentState, jfree.chart.plot.PlotRenderingInfo info) {
 
         // if the plot area is too small, just return...
         boolean b1 = (area.getWidth() <= MINIMUM_WIDTH_TO_DRAW);
@@ -3146,14 +3159,14 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         drawBackground(g2, dataArea);
         Map axisStateMap = drawAxes(g2, area, dataArea, info);
 
-        PlotOrientation orient = getOrientation();
+        jfree.chart.plot.PlotOrientation orient = getOrientation();
 
         // the anchor point is typically the point where the mouse last
         // clicked - the crosshairs will be driven off this point...
         if (anchor != null && !dataArea.contains(anchor)) {
             anchor = null;
         }
-        CrosshairState crosshairState = new CrosshairState();
+        jfree.chart.plot.CrosshairState crosshairState = new jfree.chart.plot.CrosshairState();
         crosshairState.setCrosshairDistance(Double.POSITIVE_INFINITY);
         crosshairState.setAnchor(anchor);
 
@@ -3163,7 +3176,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
             ValueAxis domainAxis = getDomainAxis();
             if (domainAxis != null) {
                 double x;
-                if (orient == PlotOrientation.VERTICAL) {
+                if (orient == jfree.chart.plot.PlotOrientation.VERTICAL) {
                     x = domainAxis.java2DToValue(anchor.getX(), dataArea,
                             getDomainAxisEdge());
                 }
@@ -3176,7 +3189,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
             ValueAxis rangeAxis = getRangeAxis();
             if (rangeAxis != null) {
                 double y;
-                if (orient == PlotOrientation.VERTICAL) {
+                if (orient == jfree.chart.plot.PlotOrientation.VERTICAL) {
                     y = rangeAxis.java2DToValue(anchor.getY(), dataArea,
                             getRangeAxisEdge());
                 }
@@ -3251,7 +3264,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
 
         // now draw annotations and render data items...
         boolean foundData = false;
-        DatasetRenderingOrder order = getDatasetRenderingOrder();
+        jfree.chart.plot.DatasetRenderingOrder order = getDatasetRenderingOrder();
         List<Integer> rendererIndices = getRendererIndices(order);
         List<Integer> datasetIndices = getDatasetIndices(order);
             // draw background annotations
@@ -3289,7 +3302,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         RectangleEdge xAxisEdge = getDomainAxisEdge(getDomainAxisIndex(xAxis));
         if (!this.domainCrosshairLockedOnData && anchor != null) {
             double xx;
-            if (orient == PlotOrientation.VERTICAL) {
+            if (orient == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 xx = xAxis.java2DToValue(anchor.getX(), dataArea, xAxisEdge);
             }
             else {
@@ -3310,7 +3323,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         RectangleEdge yAxisEdge = getRangeAxisEdge(getRangeAxisIndex(yAxis));
         if (!this.rangeCrosshairLockedOnData && anchor != null) {
             double yy;
-            if (orient == PlotOrientation.VERTICAL) {
+            if (orient == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 yy = yAxis.java2DToValue(anchor.getY(), dataArea, yAxisEdge);
             } else {
                 yy = yAxis.java2DToValue(anchor.getX(), dataArea, yAxisEdge);
@@ -3362,7 +3375,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * 
      * @return The list of indices. 
      */
-    private List<Integer> getDatasetIndices(DatasetRenderingOrder order) {
+    private List<Integer> getDatasetIndices(jfree.chart.plot.DatasetRenderingOrder order) {
         List<Integer> result = new ArrayList<Integer>();
         for (Entry<Integer, XYDataset> entry : this.datasets.entrySet()) {
             if (entry.getValue() != null) {
@@ -3370,13 +3383,13 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
             }
         }
         Collections.sort(result);
-        if (order == DatasetRenderingOrder.REVERSE) {
+        if (order == jfree.chart.plot.DatasetRenderingOrder.REVERSE) {
             Collections.reverse(result);
         }
         return result;
     }
     
-    private List<Integer> getRendererIndices(DatasetRenderingOrder order) {
+    private List<Integer> getRendererIndices(jfree.chart.plot.DatasetRenderingOrder order) {
         List<Integer> result = new ArrayList<Integer>();
         for (Entry<Integer, XYItemRenderer> entry : this.renderers.entrySet()) {
             if (entry.getValue() != null) {
@@ -3447,7 +3460,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         Rectangle2D[] r = new Rectangle2D[] {null, null, null, null};
         if (this.quadrantPaint[0] != null) {
             if (x > xmin && y < ymax) {
-                if (this.orientation == PlotOrientation.HORIZONTAL) {
+                if (this.orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                     r[0] = new Rectangle2D.Double(Math.min(yymax, yy),
                             Math.min(xxmin, xx), Math.abs(yy - yymax),
                             Math.abs(xx - xxmin));
@@ -3462,7 +3475,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         }
         if (this.quadrantPaint[1] != null) {
             if (x < xmax && y < ymax) {
-                if (this.orientation == PlotOrientation.HORIZONTAL) {
+                if (this.orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                     r[1] = new Rectangle2D.Double(Math.min(yymax, yy),
                             Math.min(xxmax, xx), Math.abs(yy - yymax),
                             Math.abs(xx - xxmax));
@@ -3477,7 +3490,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         }
         if (this.quadrantPaint[2] != null) {
             if (x > xmin && y > ymin) {
-                if (this.orientation == PlotOrientation.HORIZONTAL) {
+                if (this.orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                     r[2] = new Rectangle2D.Double(Math.min(yymin, yy),
                             Math.min(xxmin, xx), Math.abs(yy - yymin),
                             Math.abs(xx - xxmin));
@@ -3492,7 +3505,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         }
         if (this.quadrantPaint[3] != null) {
             if (x < xmax && y > ymin) {
-                if (this.orientation == PlotOrientation.HORIZONTAL) {
+                if (this.orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                     r[3] = new Rectangle2D.Double(Math.min(yymin, yy),
                             Math.min(xxmax, xx), Math.abs(yy - yymin),
                             Math.abs(xx - xxmax));
@@ -3601,7 +3614,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @return A map containing the state for each axis drawn.
      */
     protected Map<Axis, AxisState> drawAxes(Graphics2D g2, Rectangle2D plotArea,
-            Rectangle2D dataArea, PlotRenderingInfo plotState) {
+            Rectangle2D dataArea, jfree.chart.plot.PlotRenderingInfo plotState) {
 
         AxisCollection axisCollection = new AxisCollection();
 
@@ -3691,7 +3704,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @return A flag that indicates whether any data was actually rendered.
      */
     public boolean render(Graphics2D g2, Rectangle2D dataArea, int index,
-            PlotRenderingInfo info, CrosshairState crosshairState) {
+                          jfree.chart.plot.PlotRenderingInfo info, CrosshairState crosshairState) {
 
         boolean foundData = false;
         XYDataset dataset = getDataset(index);
@@ -3714,7 +3727,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
                     dataset, info);
             int passCount = renderer.getPassCount();
 
-            SeriesRenderingOrder seriesOrder = getSeriesRenderingOrder();
+            jfree.chart.plot.SeriesRenderingOrder seriesOrder = getSeriesRenderingOrder();
             if (seriesOrder == SeriesRenderingOrder.REVERSE) {
                 //render series in reverse order
                 for (int pass = 0; pass < passCount; pass++) {
@@ -3965,7 +3978,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param info  the chart rendering info.
      */
     public void drawAnnotations(Graphics2D g2, Rectangle2D dataArea,
-                                PlotRenderingInfo info) {
+                                jfree.chart.plot.PlotRenderingInfo info) {
 
         Iterator iterator = this.annotations.iterator();
         while (iterator.hasNext()) {
@@ -4003,7 +4016,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         if (markers != null && axis != null) {
             Iterator iterator = markers.iterator();
             while (iterator.hasNext()) {
-                Marker marker = (Marker) iterator.next();
+                jfree.chart.plot.Marker marker = (jfree.chart.plot.Marker) iterator.next();
                 r.drawDomainMarker(g2, this, axis, marker, dataArea);
             }
         }
@@ -4036,7 +4049,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         if (markers != null && axis != null) {
             Iterator iterator = markers.iterator();
             while (iterator.hasNext()) {
-                Marker marker = (Marker) iterator.next();
+                jfree.chart.plot.Marker marker = (Marker) iterator.next();
                 r.drawRangeMarker(g2, this, axis, marker, dataArea);
             }
         }
@@ -4135,7 +4148,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
                                       Paint paint) {
 
         ValueAxis axis = getRangeAxis();
-        if (getOrientation() == PlotOrientation.HORIZONTAL) {
+        if (getOrientation() == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
             axis = getDomainAxis();
         }
         if (axis.getRange().contains(value)) {
@@ -4163,14 +4176,14 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @since 1.0.4
      */
     protected void drawDomainCrosshair(Graphics2D g2, Rectangle2D dataArea,
-            PlotOrientation orientation, double value, ValueAxis axis,
-            Stroke stroke, Paint paint) {
+                                       jfree.chart.plot.PlotOrientation orientation, double value, ValueAxis axis,
+                                       Stroke stroke, Paint paint) {
 
         if (!axis.getRange().contains(value)) {
             return;
         }
         Line2D line;
-        if (orientation == PlotOrientation.VERTICAL) {
+        if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
             double xx = axis.valueToJava2D(value, dataArea,
                     RectangleEdge.BOTTOM);
             line = new Line2D.Double(xx, dataArea.getMinY(), xx,
@@ -4203,7 +4216,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
                                     double value, Stroke stroke, Paint paint) {
 
         ValueAxis axis = getDomainAxis();
-        if (getOrientation() == PlotOrientation.HORIZONTAL) {
+        if (getOrientation() == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
             axis = getRangeAxis();
         }
         if (axis.getRange().contains(value)) {
@@ -4232,8 +4245,8 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @since 1.0.4
      */
     protected void drawRangeCrosshair(Graphics2D g2, Rectangle2D dataArea,
-            PlotOrientation orientation, double value, ValueAxis axis,
-            Stroke stroke, Paint paint) {
+                                      jfree.chart.plot.PlotOrientation orientation, double value, ValueAxis axis,
+                                      Stroke stroke, Paint paint) {
 
         if (!axis.getRange().contains(value)) {
             return;
@@ -4242,7 +4255,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         g2.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, 
                 RenderingHints.VALUE_STROKE_NORMALIZE);
         Line2D line;
-        if (orientation == PlotOrientation.HORIZONTAL) {
+        if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
             double xx = axis.valueToJava2D(value, dataArea, 
                     RectangleEdge.BOTTOM);
             line = new Line2D.Double(xx, dataArea.getMinY(), xx,
@@ -4266,7 +4279,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param info  object containing information about the plot dimensions.
      */
     @Override
-    public void handleClick(int x, int y, PlotRenderingInfo info) {
+    public void handleClick(int x, int y, jfree.chart.plot.PlotRenderingInfo info) {
 
         Rectangle2D dataArea = info.getDataArea();
         if (dataArea.contains(x, y)) {
@@ -4355,9 +4368,9 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         int result = findDomainAxisIndex(axis);
         if (result < 0) {
             // try the parent plot
-            Plot parent = getParent();
-            if (parent instanceof XYPlot) {
-                XYPlot p = (XYPlot) parent;
+            jfree.chart.plot.Plot parent = getParent();
+            if (parent instanceof jfree.chart.plot.XYPlot) {
+                jfree.chart.plot.XYPlot p = (jfree.chart.plot.XYPlot) parent;
                 result = p.getDomainAxisIndex(axis);
             }
         }
@@ -4387,8 +4400,8 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         if (result < 0) {
             // try the parent plot
             Plot parent = getParent();
-            if (parent instanceof XYPlot) {
-                XYPlot p = (XYPlot) parent;
+            if (parent instanceof jfree.chart.plot.XYPlot) {
+                jfree.chart.plot.XYPlot p = (jfree.chart.plot.XYPlot) parent;
                 result = p.getRangeAxisIndex(axis);
             }
         }
@@ -5009,7 +5022,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @since 1.0.13
      */
     @Override
-    public void panDomainAxes(double percent, PlotRenderingInfo info,
+    public void panDomainAxes(double percent, jfree.chart.plot.PlotRenderingInfo info,
             Point2D source) {
         if (!isDomainPannable()) {
             return;
@@ -5037,7 +5050,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @since 1.0.13
      */
     @Override
-    public void panRangeAxes(double percent, PlotRenderingInfo info,
+    public void panRangeAxes(double percent, jfree.chart.plot.PlotRenderingInfo info,
             Point2D source) {
         if (!isRangePannable()) {
             return;
@@ -5062,10 +5075,10 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param info  the plot rendering info.
      * @param source  the source point (in Java2D space).
      *
-     * @see #zoomRangeAxes(double, PlotRenderingInfo, Point2D)
+     * @see #zoomRangeAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D)
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo info,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                                Point2D source) {
         // delegate to other method
         zoomDomainAxes(factor, info, source, false);
@@ -5079,12 +5092,12 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param source  the source point (in Java2D space).
      * @param useAnchor  use source point as zoom anchor?
      *
-     * @see #zoomRangeAxes(double, PlotRenderingInfo, Point2D, boolean)
+     * @see #zoomRangeAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D, boolean)
      *
      * @since 1.0.7
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo info,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                                Point2D source, boolean useAnchor) {
 
         // perform the zoom on each domain axis
@@ -5095,7 +5108,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
             if (useAnchor) {
                 // get the relevant source coordinate given the plot orientation
                 double sourceX = source.getX();
-                if (this.orientation == PlotOrientation.HORIZONTAL) {
+                if (this.orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                     sourceX = source.getY();
                 }
                 double anchorX = xAxis.java2DToValue(sourceX,
@@ -5119,11 +5132,11 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param info  the plot rendering info.
      * @param source  the source point (ignored).
      *
-     * @see #zoomRangeAxes(double, double, PlotRenderingInfo, Point2D)
+     * @see #zoomRangeAxes(double, double, jfree.chart.plot.PlotRenderingInfo, Point2D)
      */
     @Override
     public void zoomDomainAxes(double lowerPercent, double upperPercent,
-                               PlotRenderingInfo info, Point2D source) {
+                               jfree.chart.plot.PlotRenderingInfo info, Point2D source) {
         for (ValueAxis xAxis : this.domainAxes.values()) {
             if (xAxis != null) {
                 xAxis.zoomRange(lowerPercent, upperPercent);
@@ -5138,10 +5151,10 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param info  the plot rendering info.
      * @param source  the source point.
      *
-     * @see #zoomDomainAxes(double, PlotRenderingInfo, Point2D, boolean)
+     * @see #zoomDomainAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D, boolean)
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo info,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                               Point2D source) {
         // delegate to other method
         zoomRangeAxes(factor, info, source, false);
@@ -5156,12 +5169,12 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param useAnchor  a flag that controls whether or not the source point
      *         is used for the zoom anchor.
      *
-     * @see #zoomDomainAxes(double, PlotRenderingInfo, Point2D, boolean)
+     * @see #zoomDomainAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D, boolean)
      *
      * @since 1.0.7
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo info,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                               Point2D source, boolean useAnchor) {
 
         // perform the zoom on each range axis
@@ -5192,7 +5205,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      * @param info  the plot rendering info.
      * @param source  the source point.
      *
-     * @see #zoomDomainAxes(double, double, PlotRenderingInfo, Point2D)
+     * @see #zoomDomainAxes(double, double, jfree.chart.plot.PlotRenderingInfo, Point2D)
      */
     @Override
     public void zoomRangeAxes(double lowerPercent, double upperPercent,
@@ -5321,10 +5334,10 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYPlot)) {
+        if (!(obj instanceof jfree.chart.plot.XYPlot)) {
             return false;
         }
-        XYPlot that = (XYPlot) obj;
+        jfree.chart.plot.XYPlot that = (jfree.chart.plot.XYPlot) obj;
         if (this.weight != that.weight) {
             return false;
         }
@@ -5534,7 +5547,7 @@ public class XYPlot extends Plot implements ValueAxisPlot, Pannable, Zoomable,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        XYPlot clone = (XYPlot) super.clone();
+        jfree.chart.plot.XYPlot clone = (jfree.chart.plot.XYPlot) super.clone();
         clone.domainAxes = CloneUtils.cloneMapValues(this.domainAxes);
         for (ValueAxis axis : clone.domainAxes.values()) {
             if (axis != null) {

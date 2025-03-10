@@ -50,10 +50,13 @@ import java.util.List;
 
 import javax.swing.event.EventListenerList;
 
-import org.jfree.chart.HashUtilities;
+import jfree.chart.HashUtilities;
+import jfree.chart.plot.dial.DialLayer;
+import jfree.chart.plot.dial.DialLayerChangeEvent;
+import jfree.chart.plot.dial.DialLayerChangeListener;
 
 /**
- * A base class that can be used to implement a {@link DialLayer}.  It includes
+ * A base class that can be used to implement a {@link jfree.chart.plot.dial.DialLayer}.  It includes
  * an event notification mechanism.
  *
  * @since 1.0.7
@@ -89,7 +92,7 @@ public abstract class AbstractDialLayer implements DialLayer {
 
     /**
      * Sets the flag that determines whether or not this layer is drawn by
-     * the plot, and sends a {@link DialLayerChangeEvent} to all registered
+     * the plot, and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered
      * listeners.
      *
      * @param visible  the flag.
@@ -98,7 +101,7 @@ public abstract class AbstractDialLayer implements DialLayer {
      */
     public void setVisible(boolean visible) {
         this.visible = visible;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -113,10 +116,10 @@ public abstract class AbstractDialLayer implements DialLayer {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AbstractDialLayer)) {
+        if (!(obj instanceof jfree.chart.plot.dial.AbstractDialLayer)) {
             return false;
         }
-        AbstractDialLayer that = (AbstractDialLayer) obj;
+        jfree.chart.plot.dial.AbstractDialLayer that = (jfree.chart.plot.dial.AbstractDialLayer) obj;
         return this.visible == that.visible;
     }
 
@@ -142,7 +145,7 @@ public abstract class AbstractDialLayer implements DialLayer {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        AbstractDialLayer clone = (AbstractDialLayer) super.clone();
+        jfree.chart.plot.dial.AbstractDialLayer clone = (jfree.chart.plot.dial.AbstractDialLayer) super.clone();
         // we don't clone the listeners
         clone.listenerList = new EventListenerList();
         return clone;
@@ -153,11 +156,11 @@ public abstract class AbstractDialLayer implements DialLayer {
      *
      * @param listener  the object that is being registered.
      *
-     * @see #removeChangeListener(DialLayerChangeListener)
+     * @see #removeChangeListener(jfree.chart.plot.dial.DialLayerChangeListener)
      */
     @Override
-    public void addChangeListener(DialLayerChangeListener listener) {
-        this.listenerList.add(DialLayerChangeListener.class, listener);
+    public void addChangeListener(jfree.chart.plot.dial.DialLayerChangeListener listener) {
+        this.listenerList.add(jfree.chart.plot.dial.DialLayerChangeListener.class, listener);
     }
 
     /**
@@ -165,11 +168,11 @@ public abstract class AbstractDialLayer implements DialLayer {
      *
      * @param listener  the object to deregister.
      *
-     * @see #addChangeListener(DialLayerChangeListener)
+     * @see #addChangeListener(jfree.chart.plot.dial.DialLayerChangeListener)
      */
     @Override
-    public void removeChangeListener(DialLayerChangeListener listener) {
-        this.listenerList.remove(DialLayerChangeListener.class, listener);
+    public void removeChangeListener(jfree.chart.plot.dial.DialLayerChangeListener listener) {
+        this.listenerList.remove(jfree.chart.plot.dial.DialLayerChangeListener.class, listener);
     }
 
     /**
@@ -189,14 +192,14 @@ public abstract class AbstractDialLayer implements DialLayer {
 
     /**
      * Notifies all registered listeners that the dial layer has changed.
-     * The {@link DialLayerChangeEvent} provides information about the change.
+     * The {@link jfree.chart.plot.dial.DialLayerChangeEvent} provides information about the change.
      *
      * @param event  information about the change to the axis.
      */
     protected void notifyListeners(DialLayerChangeEvent event) {
         Object[] listeners = this.listenerList.getListenerList();
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == DialLayerChangeListener.class) {
+            if (listeners[i] == jfree.chart.plot.dial.DialLayerChangeListener.class) {
                 ((DialLayerChangeListener) listeners[i + 1]).dialLayerChanged(
                         event);
             }

@@ -56,11 +56,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.block.BlockContainer;
-import org.jfree.chart.block.BorderArrangement;
-import org.jfree.chart.block.RectangleConstraint;
-import org.jfree.chart.event.TitleChangeEvent;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.block.BlockContainer;
+import jfree.chart.block.BorderArrangement;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.event.TitleChangeEvent;
+import jfree.chart.title.Title;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.Size2D;
 import org.jfree.util.PaintUtilities;
@@ -208,10 +209,10 @@ public class CompositeTitle extends Title implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CompositeTitle)) {
+        if (!(obj instanceof jfree.chart.title.CompositeTitle)) {
             return false;
         }
-        CompositeTitle that = (CompositeTitle) obj;
+        jfree.chart.title.CompositeTitle that = (jfree.chart.title.CompositeTitle) obj;
         if (!this.container.equals(that.container)) {
             return false;
         }

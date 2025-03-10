@@ -53,16 +53,16 @@ public class HistogramType implements Serializable {
     private static final long serialVersionUID = 2618927186251997727L;
 
     /** Frequency histogram. */
-    public static final HistogramType FREQUENCY
-        = new HistogramType("FREQUENCY");
+    public static final jfree.data.statistics.HistogramType FREQUENCY
+        = new jfree.data.statistics.HistogramType("FREQUENCY");
 
     /** Relative frequency. */
-    public static final HistogramType RELATIVE_FREQUENCY
-        = new HistogramType("RELATIVE_FREQUENCY");
+    public static final jfree.data.statistics.HistogramType RELATIVE_FREQUENCY
+        = new jfree.data.statistics.HistogramType("RELATIVE_FREQUENCY");
 
     /** Scale area to one. */
-    public static final HistogramType SCALE_AREA_TO_1
-        = new HistogramType("SCALE_AREA_TO_1");
+    public static final jfree.data.statistics.HistogramType SCALE_AREA_TO_1
+        = new jfree.data.statistics.HistogramType("SCALE_AREA_TO_1");
 
     /** The type name. */
     private String name;
@@ -104,11 +104,11 @@ public class HistogramType implements Serializable {
             return true;
         }
 
-        if (!(obj instanceof HistogramType)) {
+        if (!(obj instanceof jfree.data.statistics.HistogramType)) {
             return false;
         }
 
-        HistogramType t = (HistogramType) obj;
+        jfree.data.statistics.HistogramType t = (jfree.data.statistics.HistogramType) obj;
         if (!this.name.equals(t.name)) {
             return false;
         }
@@ -135,14 +135,14 @@ public class HistogramType implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(HistogramType.FREQUENCY)) {
-            return HistogramType.FREQUENCY;
+        if (this.equals(jfree.data.statistics.HistogramType.FREQUENCY)) {
+            return jfree.data.statistics.HistogramType.FREQUENCY;
         }
-        else if (this.equals(HistogramType.RELATIVE_FREQUENCY)) {
-            return HistogramType.RELATIVE_FREQUENCY;
+        else if (this.equals(jfree.data.statistics.HistogramType.RELATIVE_FREQUENCY)) {
+            return jfree.data.statistics.HistogramType.RELATIVE_FREQUENCY;
         }
-        else if (this.equals(HistogramType.SCALE_AREA_TO_1)) {
-            return HistogramType.SCALE_AREA_TO_1;
+        else if (this.equals(jfree.data.statistics.HistogramType.SCALE_AREA_TO_1)) {
+            return jfree.data.statistics.HistogramType.SCALE_AREA_TO_1;
         }
         return null;
     }

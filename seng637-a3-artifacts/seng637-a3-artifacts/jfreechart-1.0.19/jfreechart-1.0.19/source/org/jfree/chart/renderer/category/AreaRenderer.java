@@ -82,16 +82,18 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.AreaRendererEndType;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.AreaRendererEndType;
+import jfree.chart.renderer.category.AbstractCategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.util.ParamChecks;
+import jfree.data.category.CategoryDataset;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PublicCloneable;
 
@@ -345,10 +347,10 @@ public class AreaRenderer extends AbstractCategoryItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AreaRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.AreaRenderer)) {
             return false;
         }
-        AreaRenderer that = (AreaRenderer) obj;
+        jfree.chart.renderer.category.AreaRenderer that = (jfree.chart.renderer.category.AreaRenderer) obj;
         if (!this.endType.equals(that.endType)) {
             return false;
         }

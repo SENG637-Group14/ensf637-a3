@@ -53,15 +53,15 @@ public final class RangeType implements Serializable {
     private static final long serialVersionUID = -9073319010650549239L;
 
     /** Full range (positive and negative). */
-    public static final RangeType FULL = new RangeType("RangeType.FULL");
+    public static final jfree.data.RangeType FULL = new jfree.data.RangeType("RangeType.FULL");
 
     /** Positive range. */
-    public static final RangeType POSITIVE
-        = new RangeType("RangeType.POSITIVE");
+    public static final jfree.data.RangeType POSITIVE
+        = new jfree.data.RangeType("RangeType.POSITIVE");
 
     /** Negative range. */
-    public static final RangeType NEGATIVE
-        = new RangeType("RangeType.NEGATIVE");
+    public static final jfree.data.RangeType NEGATIVE
+        = new jfree.data.RangeType("RangeType.NEGATIVE");
 
     /** The name. */
     private String name;
@@ -99,10 +99,10 @@ public final class RangeType implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof RangeType)) {
+        if (!(obj instanceof jfree.data.RangeType)) {
             return false;
         }
-        RangeType that = (RangeType) obj;
+        jfree.data.RangeType that = (jfree.data.RangeType) obj;
         if (!this.name.equals(that.toString())) {
             return false;
         }
@@ -127,14 +127,14 @@ public final class RangeType implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(RangeType.FULL)) {
-            return RangeType.FULL;
+        if (this.equals(jfree.data.RangeType.FULL)) {
+            return jfree.data.RangeType.FULL;
         }
-        else if (this.equals(RangeType.POSITIVE)) {
-            return RangeType.POSITIVE;
+        else if (this.equals(jfree.data.RangeType.POSITIVE)) {
+            return jfree.data.RangeType.POSITIVE;
         }
-        else if (this.equals(RangeType.NEGATIVE)) {
-            return RangeType.NEGATIVE;
+        else if (this.equals(jfree.data.RangeType.NEGATIVE)) {
+            return jfree.data.RangeType.NEGATIVE;
         }
         return null;
     }

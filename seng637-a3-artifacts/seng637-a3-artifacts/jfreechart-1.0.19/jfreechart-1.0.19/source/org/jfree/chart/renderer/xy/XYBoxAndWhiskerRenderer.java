@@ -96,21 +96,24 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.BoxAndWhiskerXYToolTipGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.Outlier;
-import org.jfree.chart.renderer.OutlierList;
-import org.jfree.chart.renderer.OutlierListCollection;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.statistics.BoxAndWhiskerXYDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.BoxAndWhiskerXYToolTipGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.Outlier;
+import jfree.chart.renderer.OutlierList;
+import jfree.chart.renderer.OutlierListCollection;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.statistics.BoxAndWhiskerXYDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PaintUtilities;
@@ -787,13 +790,13 @@ public class XYBoxAndWhiskerRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYBoxAndWhiskerRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYBoxAndWhiskerRenderer)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        XYBoxAndWhiskerRenderer that = (XYBoxAndWhiskerRenderer) obj;
+        jfree.chart.renderer.xy.XYBoxAndWhiskerRenderer that = (jfree.chart.renderer.xy.XYBoxAndWhiskerRenderer) obj;
         if (this.boxWidth != that.getBoxWidth()) {
             return false;
         }

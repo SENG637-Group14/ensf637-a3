@@ -56,14 +56,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PublicCloneable;
@@ -140,7 +143,7 @@ public class SamplingXYLineRenderer extends AbstractXYItemRenderer
      * information between calls to the drawItem() method for a single chart
      * drawing.
      */
-    public static class State extends XYItemRendererState {
+    public static class State extends jfree.chart.renderer.xy.XYItemRendererState {
 
         /** The path for the current series. */
         GeneralPath seriesPath;
@@ -227,9 +230,9 @@ public class SamplingXYLineRenderer extends AbstractXYItemRenderer
      * @return The renderer state.
      */
     @Override
-    public XYItemRendererState initialise(Graphics2D g2,
-            Rectangle2D dataArea, XYPlot plot, XYDataset data,
-            PlotRenderingInfo info) {
+    public jfree.chart.renderer.xy.XYItemRendererState initialise(Graphics2D g2,
+                                                                       Rectangle2D dataArea, XYPlot plot, XYDataset data,
+                                                                       PlotRenderingInfo info) {
 
         double dpi = 72;
     //        Integer dpiVal = (Integer) g2.getRenderingHint(HintKey.DPI);
@@ -262,7 +265,7 @@ public class SamplingXYLineRenderer extends AbstractXYItemRenderer
      * @param pass  the pass index.
      */
     @Override
-    public void drawItem(Graphics2D g2, XYItemRendererState state, 
+    public void drawItem(Graphics2D g2, XYItemRendererState state,
             Rectangle2D dataArea, PlotRenderingInfo info, XYPlot plot,
             ValueAxis domainAxis, ValueAxis rangeAxis, XYDataset dataset,
             int series, int item, CrosshairState crosshairState, int pass) {
@@ -347,7 +350,7 @@ public class SamplingXYLineRenderer extends AbstractXYItemRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        SamplingXYLineRenderer clone = (SamplingXYLineRenderer) super.clone();
+        jfree.chart.renderer.xy.SamplingXYLineRenderer clone = (jfree.chart.renderer.xy.SamplingXYLineRenderer) super.clone();
         if (this.legendLine != null) {
             clone.legendLine = ShapeUtilities.clone(this.legendLine);
         }
@@ -366,13 +369,13 @@ public class SamplingXYLineRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof SamplingXYLineRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.SamplingXYLineRenderer)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        SamplingXYLineRenderer that = (SamplingXYLineRenderer) obj;
+        jfree.chart.renderer.xy.SamplingXYLineRenderer that = (jfree.chart.renderer.xy.SamplingXYLineRenderer) obj;
         if (!ShapeUtilities.equal(this.legendLine, that.legendLine)) {
             return false;
         }

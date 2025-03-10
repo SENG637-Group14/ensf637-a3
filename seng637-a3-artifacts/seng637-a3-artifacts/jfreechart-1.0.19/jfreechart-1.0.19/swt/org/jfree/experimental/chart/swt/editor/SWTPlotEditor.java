@@ -52,11 +52,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
-import org.jfree.chart.axis.Axis;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.ResourceBundleWrapper;
+import jfree.chart.axis.Axis;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.util.ResourceBundleWrapper;
 import org.jfree.experimental.swt.SWTUtils;
 
 /**

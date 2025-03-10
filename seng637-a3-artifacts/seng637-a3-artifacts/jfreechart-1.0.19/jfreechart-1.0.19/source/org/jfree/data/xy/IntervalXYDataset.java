@@ -43,8 +43,10 @@
 
 package org.jfree.data.xy;
 
+import jfree.data.xy.XYDataset;
+
 /**
- * An extension of the {@link XYDataset} interface that allows an x-interval
+ * An extension of the {@link jfree.data.xy.XYDataset} interface that allows an x-interval
  * and a y-interval to be defined.  Note that the x and y values defined
  * by the parent interface are NOT required to fall within these intervals.
  * This interface is used to support (among other things) bar plots against

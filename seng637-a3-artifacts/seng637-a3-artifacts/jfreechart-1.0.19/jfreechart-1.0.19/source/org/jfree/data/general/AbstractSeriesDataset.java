@@ -44,10 +44,15 @@
 
 package org.jfree.data.general;
 
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.general.SeriesChangeListener;
+import jfree.data.general.SeriesDataset;
+
 import java.io.Serializable;
 
 /**
- * An abstract implementation of the {@link SeriesDataset} interface,
+ * An abstract implementation of the {@link jfree.data.general.SeriesDataset} interface,
  * containing a mechanism for registering change listeners.
  */
 public abstract class AbstractSeriesDataset extends AbstractDataset

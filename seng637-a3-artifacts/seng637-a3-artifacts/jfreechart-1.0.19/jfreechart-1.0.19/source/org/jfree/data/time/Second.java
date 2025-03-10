@@ -67,13 +67,17 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
+import jfree.data.time.Day;
+import jfree.data.time.Hour;
+import jfree.data.time.Minute;
+import jfree.data.time.RegularTimePeriod;
 
 /**
  * Represents a second in a particular day.  This class is immutable, which is
- * a requirement for all {@link RegularTimePeriod} subclasses.
+ * a requirement for all {@link jfree.data.time.RegularTimePeriod} subclasses.
  */
-public class Second extends RegularTimePeriod implements Serializable {
+public class Second extends jfree.data.time.RegularTimePeriod implements Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = -6536564190712383466L;
@@ -85,7 +89,7 @@ public class Second extends RegularTimePeriod implements Serializable {
     public static final int LAST_SECOND_IN_MINUTE = 59;
 
     /** The day. */
-    private Day day;
+    private jfree.data.time.Day day;
 
     /** The hour of the day. */
     private byte hour;
@@ -115,7 +119,7 @@ public class Second extends RegularTimePeriod implements Serializable {
      * @param second  the second (0 to 24*60*60-1).
      * @param minute  the minute (<code>null</code> not permitted).
      */
-    public Second(int second, Minute minute) {
+    public Second(int second, jfree.data.time.Minute minute) {
         ParamChecks.nullNotPermitted(minute, "minute");
         this.day = minute.getDay();
         this.hour = (byte) minute.getHourValue();
@@ -136,7 +140,7 @@ public class Second extends RegularTimePeriod implements Serializable {
      */
     public Second(int second, int minute, int hour,
                   int day, int month, int year) {
-        this(second, new Minute(minute, hour, day, month, year));
+        this(second, new jfree.data.time.Minute(minute, hour, day, month, year));
     }
 
     /**
@@ -179,7 +183,7 @@ public class Second extends RegularTimePeriod implements Serializable {
         this.second = (byte) calendar.get(Calendar.SECOND);
         this.minute = (byte) calendar.get(Calendar.MINUTE);
         this.hour = (byte) calendar.get(Calendar.HOUR_OF_DAY);
-        this.day = new Day(time, zone, locale);
+        this.day = new jfree.data.time.Day(time, zone, locale);
         peg(calendar);
     }
 
@@ -197,8 +201,8 @@ public class Second extends RegularTimePeriod implements Serializable {
      *
      * @return The minute (never <code>null</code>).
      */
-    public Minute getMinute() {
-        return new Minute(this.minute, new Hour(this.hour, this.day));
+    public jfree.data.time.Minute getMinute() {
+        return new jfree.data.time.Minute(this.minute, new jfree.data.time.Hour(this.hour, this.day));
     }
 
     /**
@@ -250,15 +254,15 @@ public class Second extends RegularTimePeriod implements Serializable {
      * @return The second preceding this one.
      */
     @Override
-    public RegularTimePeriod previous() {
-        Second result = null;
+    public jfree.data.time.RegularTimePeriod previous() {
+        jfree.data.time.Second result = null;
         if (this.second != FIRST_SECOND_IN_MINUTE) {
-            result = new Second(this.second - 1, getMinute());
+            result = new jfree.data.time.Second(this.second - 1, getMinute());
         }
         else {
-            Minute previous = (Minute) getMinute().previous();
+            jfree.data.time.Minute previous = (jfree.data.time.Minute) getMinute().previous();
             if (previous != null) {
-                result = new Second(LAST_SECOND_IN_MINUTE, previous);
+                result = new jfree.data.time.Second(LAST_SECOND_IN_MINUTE, previous);
             }
         }
         return result;
@@ -270,15 +274,15 @@ public class Second extends RegularTimePeriod implements Serializable {
      * @return The second following this one.
      */
     @Override
-    public RegularTimePeriod next() {
-        Second result = null;
+    public jfree.data.time.RegularTimePeriod next() {
+        jfree.data.time.Second result = null;
         if (this.second != LAST_SECOND_IN_MINUTE) {
-            result = new Second(this.second + 1, getMinute());
+            result = new jfree.data.time.Second(this.second + 1, getMinute());
         }
         else {
-            Minute next = (Minute) getMinute().next();
+            jfree.data.time.Minute next = (jfree.data.time.Minute) getMinute().next();
             if (next != null) {
-                result = new Second(FIRST_SECOND_IN_MINUTE, next);
+                result = new jfree.data.time.Second(FIRST_SECOND_IN_MINUTE, next);
             }
         }
         return result;
@@ -348,10 +352,10 @@ public class Second extends RegularTimePeriod implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Second)) {
+        if (!(obj instanceof jfree.data.time.Second)) {
             return false;
         }
-        Second that = (Second) obj;
+        jfree.data.time.Second that = (jfree.data.time.Second) obj;
         if (this.second != that.second) {
             return false;
         }
@@ -401,8 +405,8 @@ public class Second extends RegularTimePeriod implements Serializable {
 
         // CASE 1 : Comparing to another Second object
         // -------------------------------------------
-        if (o1 instanceof Second) {
-            Second s = (Second) o1;
+        if (o1 instanceof jfree.data.time.Second) {
+            jfree.data.time.Second s = (jfree.data.time.Second) o1;
             if (this.firstMillisecond < s.firstMillisecond) {
                 return -1;
             }
@@ -440,11 +444,11 @@ public class Second extends RegularTimePeriod implements Serializable {
      *
      * @return The second, or <code>null</code> if the string is not parseable.
      */
-    public static Second parseSecond(String s) {
-        Second result = null;
+    public static jfree.data.time.Second parseSecond(String s) {
+        jfree.data.time.Second result = null;
         s = s.trim();
         String daystr = s.substring(0, Math.min(10, s.length()));
-        Day day = Day.parseDay(daystr);
+        jfree.data.time.Day day = Day.parseDay(daystr);
         if (day != null) {
             String hmsstr = s.substring(Math.min(daystr.length() + 1,
                     s.length()), s.length());
@@ -461,10 +465,10 @@ public class Second extends RegularTimePeriod implements Serializable {
                 int minute = Integer.parseInt(minstr);
                 if ((minute >= 0) && (minute <= 59)) {
 
-                    Minute m = new Minute(minute, new Hour(hour, day));
+                    jfree.data.time.Minute m = new Minute(minute, new Hour(hour, day));
                     int second = Integer.parseInt(secstr);
                     if ((second >= 0) && (second <= 59)) {
-                        result = new Second(second, m);
+                        result = new jfree.data.time.Second(second, m);
                     }
                 }
             }

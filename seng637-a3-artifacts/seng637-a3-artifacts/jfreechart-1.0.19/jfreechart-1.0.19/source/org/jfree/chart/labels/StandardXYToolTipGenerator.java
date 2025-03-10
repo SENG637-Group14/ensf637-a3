@@ -46,12 +46,15 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.labels.AbstractXYItemLabelGenerator;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A standard tool tip generator for use with an
- * {@link org.jfree.chart.renderer.xy.XYItemRenderer}.
+ * {@link XYItemRenderer}.
  */
 public class StandardXYToolTipGenerator extends AbstractXYItemLabelGenerator
         implements XYToolTipGenerator, Cloneable, PublicCloneable,
@@ -69,8 +72,8 @@ public class StandardXYToolTipGenerator extends AbstractXYItemLabelGenerator
      *
      * @return A tool tip generator (never <code>null</code>).
      */
-    public static StandardXYToolTipGenerator getTimeSeriesInstance() {
-        return new StandardXYToolTipGenerator(DEFAULT_TOOL_TIP_FORMAT,
+    public static jfree.chart.labels.StandardXYToolTipGenerator getTimeSeriesInstance() {
+        return new jfree.chart.labels.StandardXYToolTipGenerator(DEFAULT_TOOL_TIP_FORMAT,
                 DateFormat.getInstance(), NumberFormat.getInstance());
     }
 
@@ -178,7 +181,7 @@ public class StandardXYToolTipGenerator extends AbstractXYItemLabelGenerator
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardXYToolTipGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.StandardXYToolTipGenerator)) {
             return false;
         }
         return super.equals(obj);

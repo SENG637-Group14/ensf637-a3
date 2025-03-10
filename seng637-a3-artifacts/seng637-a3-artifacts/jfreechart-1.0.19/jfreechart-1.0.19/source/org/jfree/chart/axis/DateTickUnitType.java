@@ -40,6 +40,8 @@
 
 package org.jfree.chart.axis;
 
+import jfree.chart.axis.DateTickUnit;
+
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -52,34 +54,34 @@ import java.util.Calendar;
 public class DateTickUnitType implements Serializable {
 
     /** Year. */
-    public static final DateTickUnitType YEAR
-            = new DateTickUnitType("DateTickUnitType.YEAR", Calendar.YEAR);
+    public static final jfree.chart.axis.DateTickUnitType YEAR
+            = new jfree.chart.axis.DateTickUnitType("DateTickUnitType.YEAR", Calendar.YEAR);
 
     /** Month. */
-    public static final DateTickUnitType MONTH
-            = new DateTickUnitType("DateTickUnitType.MONTH", Calendar.MONTH);
+    public static final jfree.chart.axis.DateTickUnitType MONTH
+            = new jfree.chart.axis.DateTickUnitType("DateTickUnitType.MONTH", Calendar.MONTH);
 
     /** Day. */
-    public static final DateTickUnitType DAY
-            = new DateTickUnitType("DateTickUnitType.DAY", Calendar.DATE);
+    public static final jfree.chart.axis.DateTickUnitType DAY
+            = new jfree.chart.axis.DateTickUnitType("DateTickUnitType.DAY", Calendar.DATE);
 
 
     /** Hour. */
-    public static final DateTickUnitType HOUR
-            = new DateTickUnitType("DateTickUnitType.HOUR",
+    public static final jfree.chart.axis.DateTickUnitType HOUR
+            = new jfree.chart.axis.DateTickUnitType("DateTickUnitType.HOUR",
                     Calendar.HOUR_OF_DAY);
 
     /** Minute. */
-    public static final DateTickUnitType MINUTE
-            = new DateTickUnitType("DateTickUnitType.MINUTE", Calendar.MINUTE);
+    public static final jfree.chart.axis.DateTickUnitType MINUTE
+            = new jfree.chart.axis.DateTickUnitType("DateTickUnitType.MINUTE", Calendar.MINUTE);
 
     /** Second. */
-    public static final DateTickUnitType SECOND
-            = new DateTickUnitType("DateTickUnitType.SECOND", Calendar.SECOND);
+    public static final jfree.chart.axis.DateTickUnitType SECOND
+            = new jfree.chart.axis.DateTickUnitType("DateTickUnitType.SECOND", Calendar.SECOND);
 
     /** Millisecond. */
-    public static final DateTickUnitType MILLISECOND
-            = new DateTickUnitType("DateTickUnitType.MILLISECOND",
+    public static final jfree.chart.axis.DateTickUnitType MILLISECOND
+            = new jfree.chart.axis.DateTickUnitType("DateTickUnitType.MILLISECOND",
                     Calendar.MILLISECOND);
 
     /** The name. */
@@ -131,10 +133,10 @@ public class DateTickUnitType implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof DateTickUnitType)) {
+        if (!(obj instanceof jfree.chart.axis.DateTickUnitType)) {
             return false;
         }
-        DateTickUnitType t = (DateTickUnitType) obj;
+        jfree.chart.axis.DateTickUnitType t = (jfree.chart.axis.DateTickUnitType) obj;
         if (!this.name.equals(t.toString())) {
             return false;
         }
@@ -149,26 +151,26 @@ public class DateTickUnitType implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(DateTickUnitType.YEAR)) {
-            return DateTickUnitType.YEAR;
+        if (this.equals(jfree.chart.axis.DateTickUnitType.YEAR)) {
+            return jfree.chart.axis.DateTickUnitType.YEAR;
         }
-        else if (this.equals(DateTickUnitType.MONTH)) {
-            return DateTickUnitType.MONTH;
+        else if (this.equals(jfree.chart.axis.DateTickUnitType.MONTH)) {
+            return jfree.chart.axis.DateTickUnitType.MONTH;
         }
-        else if (this.equals(DateTickUnitType.DAY)) {
-            return DateTickUnitType.DAY;
+        else if (this.equals(jfree.chart.axis.DateTickUnitType.DAY)) {
+            return jfree.chart.axis.DateTickUnitType.DAY;
         }
-        else if (this.equals(DateTickUnitType.HOUR)) {
-            return DateTickUnitType.HOUR;
+        else if (this.equals(jfree.chart.axis.DateTickUnitType.HOUR)) {
+            return jfree.chart.axis.DateTickUnitType.HOUR;
         }
-        else if (this.equals(DateTickUnitType.MINUTE)) {
-            return DateTickUnitType.MINUTE;
+        else if (this.equals(jfree.chart.axis.DateTickUnitType.MINUTE)) {
+            return jfree.chart.axis.DateTickUnitType.MINUTE;
         }
-        else if (this.equals(DateTickUnitType.SECOND)) {
-            return DateTickUnitType.SECOND;
+        else if (this.equals(jfree.chart.axis.DateTickUnitType.SECOND)) {
+            return jfree.chart.axis.DateTickUnitType.SECOND;
         }
-        else if (this.equals(DateTickUnitType.MILLISECOND)) {
-            return DateTickUnitType.MILLISECOND;
+        else if (this.equals(jfree.chart.axis.DateTickUnitType.MILLISECOND)) {
+            return jfree.chart.axis.DateTickUnitType.MILLISECOND;
         }
         return null;
     }

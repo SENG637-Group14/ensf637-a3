@@ -72,18 +72,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.Effect3D;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Marker;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.ValueMarker;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.Effect3D;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Marker;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.ValueMarker;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.renderer.category.LineAndShapeRenderer;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PaintUtilities;
 import org.jfree.util.ShapeUtilities;
@@ -625,10 +627,10 @@ public class LineRenderer3D extends LineAndShapeRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LineRenderer3D)) {
+        if (!(obj instanceof jfree.chart.renderer.category.LineRenderer3D)) {
             return false;
         }
-        LineRenderer3D that = (LineRenderer3D) obj;
+        jfree.chart.renderer.category.LineRenderer3D that = (jfree.chart.renderer.category.LineRenderer3D) obj;
         if (this.xOffset != that.xOffset) {
             return false;
         }

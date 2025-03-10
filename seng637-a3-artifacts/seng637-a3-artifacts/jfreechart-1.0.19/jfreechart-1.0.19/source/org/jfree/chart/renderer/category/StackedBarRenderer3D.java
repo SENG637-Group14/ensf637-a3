@@ -102,19 +102,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.util.PaintAlpha;
-import org.jfree.data.DataUtilities;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.general.DatasetUtilities;
+import jfree.chart.HashUtilities;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.category.BarRenderer3D;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.util.PaintAlpha;
+import jfree.data.DataUtilities;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
+import jfree.data.general.DatasetUtilities;
 import org.jfree.util.BooleanUtilities;
 import org.jfree.util.PublicCloneable;
 
@@ -277,7 +279,7 @@ public class StackedBarRenderer3D extends BarRenderer3D
      */
     @Override
     protected void calculateBarWidth(CategoryPlot plot, Rectangle2D dataArea,
-            int rendererIndex, CategoryItemRendererState state) {
+            int rendererIndex, jfree.chart.renderer.category.CategoryItemRendererState state) {
 
         // calculate the bar width
         CategoryAxis domainAxis = getDomainAxis(plot, rendererIndex);
@@ -418,7 +420,7 @@ public class StackedBarRenderer3D extends BarRenderer3D
      * @param pass  the pass index.
      */
     @Override
-    public void drawItem(Graphics2D g2, CategoryItemRendererState state,
+    public void drawItem(Graphics2D g2, jfree.chart.renderer.category.CategoryItemRendererState state,
             Rectangle2D dataArea, CategoryPlot plot, CategoryAxis domainAxis,
             ValueAxis rangeAxis, CategoryDataset dataset, int row, int column,
             int pass) {
@@ -470,7 +472,7 @@ public class StackedBarRenderer3D extends BarRenderer3D
      * @since 1.0.4
      */
     protected void drawStackHorizontal(List values, Comparable category,
-            Graphics2D g2, CategoryItemRendererState state,
+            Graphics2D g2, jfree.chart.renderer.category.CategoryItemRendererState state,
             Rectangle2D dataArea, CategoryPlot plot,
             CategoryAxis domainAxis, ValueAxis rangeAxis,
             CategoryDataset dataset) {
@@ -853,10 +855,10 @@ public class StackedBarRenderer3D extends BarRenderer3D
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StackedBarRenderer3D)) {
+        if (!(obj instanceof jfree.chart.renderer.category.StackedBarRenderer3D)) {
             return false;
         }
-        StackedBarRenderer3D that = (StackedBarRenderer3D) obj;
+        jfree.chart.renderer.category.StackedBarRenderer3D that = (jfree.chart.renderer.category.StackedBarRenderer3D) obj;
         if (this.renderAsPercentages != that.getRenderAsPercentages()) {
             return false;
         }

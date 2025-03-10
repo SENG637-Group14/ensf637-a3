@@ -52,7 +52,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PaintUtilities;
@@ -145,10 +145,10 @@ public class PaintMap implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof PaintMap)) {
+        if (!(obj instanceof jfree.chart.PaintMap)) {
             return false;
         }
-        PaintMap that = (PaintMap) obj;
+        jfree.chart.PaintMap that = (jfree.chart.PaintMap) obj;
         if (this.store.size() != that.store.size()) {
             return false;
         }
@@ -174,7 +174,7 @@ public class PaintMap implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        PaintMap clone = (PaintMap) super.clone();
+        jfree.chart.PaintMap clone = (jfree.chart.PaintMap) super.clone();
         clone.store = new HashMap();
         clone.store.putAll(this.store);
         // TODO: I think we need to make sure the keys are actually cloned,

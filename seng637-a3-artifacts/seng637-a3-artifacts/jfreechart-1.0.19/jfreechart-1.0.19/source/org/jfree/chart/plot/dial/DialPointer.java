@@ -61,14 +61,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.plot.dial.AbstractDialLayer;
+import jfree.chart.plot.dial.DialLayer;
+import jfree.chart.plot.dial.DialLayerChangeEvent;
+import jfree.chart.plot.dial.DialPlot;
+import jfree.chart.plot.dial.DialScale;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PaintUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A base class for the pointer in a {@link DialPlot}.
+ * A base class for the pointer in a {@link jfree.chart.plot.dial.DialPlot}.
  *
  * @since 1.0.7
  */
@@ -113,7 +118,7 @@ public abstract class DialPointer extends AbstractDialLayer
 
     /**
      * Sets the dataset index for the pointer and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param index  the index.
      *
@@ -121,7 +126,7 @@ public abstract class DialPointer extends AbstractDialLayer
      */
     public void setDatasetIndex(int index) {
         this.datasetIndex = index;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -138,7 +143,7 @@ public abstract class DialPointer extends AbstractDialLayer
 
     /**
      * Sets the radius of the pointer and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param radius  the radius.
      *
@@ -146,7 +151,7 @@ public abstract class DialPointer extends AbstractDialLayer
      */
     public void setRadius(double radius) {
         this.radius = radius;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -172,10 +177,10 @@ public abstract class DialPointer extends AbstractDialLayer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DialPointer)) {
+        if (!(obj instanceof jfree.chart.plot.dial.DialPointer)) {
             return false;
         }
-        DialPointer that = (DialPointer) obj;
+        jfree.chart.plot.dial.DialPointer that = (jfree.chart.plot.dial.DialPointer) obj;
         if (this.datasetIndex != that.datasetIndex) {
             return false;
         }
@@ -213,7 +218,7 @@ public abstract class DialPointer extends AbstractDialLayer
     /**
      * A dial pointer that draws a thin line (like a pin).
      */
-    public static class Pin extends DialPointer {
+    public static class Pin extends jfree.chart.plot.dial.DialPointer {
 
         /** For serialization. */
         static final long serialVersionUID = -8445860485367689750L;
@@ -255,7 +260,7 @@ public abstract class DialPointer extends AbstractDialLayer
         }
 
         /**
-         * Sets the paint and sends a {@link DialLayerChangeEvent} to all
+         * Sets the paint and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all
          * registered listeners.
          *
          * @param paint  the paint (<code>null</code> not permitted).
@@ -265,7 +270,7 @@ public abstract class DialPointer extends AbstractDialLayer
         public void setPaint(Paint paint) {
             ParamChecks.nullNotPermitted(paint, "paint");
             this.paint = paint;
-            notifyListeners(new DialLayerChangeEvent(this));
+            notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
         }
 
         /**
@@ -280,7 +285,7 @@ public abstract class DialPointer extends AbstractDialLayer
         }
 
         /**
-         * Sets the stroke and sends a {@link DialLayerChangeEvent} to all
+         * Sets the stroke and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all
          * registered listeners.
          *
          * @param stroke  the stroke (<code>null</code> not permitted).
@@ -290,7 +295,7 @@ public abstract class DialPointer extends AbstractDialLayer
         public void setStroke(Stroke stroke) {
             ParamChecks.nullNotPermitted(stroke, "stroke");
             this.stroke = stroke;
-            notifyListeners(new DialLayerChangeEvent(this));
+            notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
         }
 
         /**
@@ -302,16 +307,16 @@ public abstract class DialPointer extends AbstractDialLayer
          * @param view  the dial's view.
          */
         @Override
-        public void draw(Graphics2D g2, DialPlot plot, Rectangle2D frame,
-            Rectangle2D view) {
+        public void draw(Graphics2D g2, jfree.chart.plot.dial.DialPlot plot, Rectangle2D frame,
+                         Rectangle2D view) {
 
             g2.setPaint(this.paint);
             g2.setStroke(this.stroke);
-            Rectangle2D arcRect = DialPlot.rectangleByRadius(frame,
+            Rectangle2D arcRect = jfree.chart.plot.dial.DialPlot.rectangleByRadius(frame,
                     this.radius, this.radius);
 
             double value = plot.getValue(this.datasetIndex);
-            DialScale scale = plot.getScaleForDataset(this.datasetIndex);
+            jfree.chart.plot.dial.DialScale scale = plot.getScaleForDataset(this.datasetIndex);
             double angle = scale.valueToAngle(value);
 
             Arc2D arc = new Arc2D.Double(arcRect, angle, 0, Arc2D.OPEN);
@@ -334,10 +339,10 @@ public abstract class DialPointer extends AbstractDialLayer
             if (obj == this) {
                 return true;
             }
-            if (!(obj instanceof DialPointer.Pin)) {
+            if (!(obj instanceof jfree.chart.plot.dial.DialPointer.Pin)) {
                 return false;
             }
-            DialPointer.Pin that = (DialPointer.Pin) obj;
+            jfree.chart.plot.dial.DialPointer.Pin that = (jfree.chart.plot.dial.DialPointer.Pin) obj;
             if (!PaintUtilities.equal(this.paint, that.paint)) {
                 return false;
             }
@@ -393,7 +398,7 @@ public abstract class DialPointer extends AbstractDialLayer
     /**
      * A dial pointer.
      */
-    public static class Pointer extends DialPointer {
+    public static class Pointer extends jfree.chart.plot.dial.DialPointer {
 
         /** For serialization. */
         static final long serialVersionUID = -4180500011963176960L;
@@ -448,7 +453,7 @@ public abstract class DialPointer extends AbstractDialLayer
         }
 
         /**
-         * Sets the width radius and sends a {@link DialLayerChangeEvent} to
+         * Sets the width radius and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
          * all registered listeners.
          *
          * @param radius  the radius
@@ -457,7 +462,7 @@ public abstract class DialPointer extends AbstractDialLayer
          */
         public void setWidthRadius(double radius) {
             this.widthRadius = radius;
-            notifyListeners(new DialLayerChangeEvent(this));
+            notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
         }
 
         /**
@@ -474,7 +479,7 @@ public abstract class DialPointer extends AbstractDialLayer
         }
 
         /**
-         * Sets the fill paint and sends a {@link DialLayerChangeEvent} to all
+         * Sets the fill paint and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all
          * registered listeners.
          *
          * @param paint  the paint (<code>null</code> not permitted).
@@ -486,7 +491,7 @@ public abstract class DialPointer extends AbstractDialLayer
         public void setFillPaint(Paint paint) {
             ParamChecks.nullNotPermitted(paint, "paint");
             this.fillPaint = paint;
-            notifyListeners(new DialLayerChangeEvent(this));
+            notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
         }
 
         /**
@@ -503,7 +508,7 @@ public abstract class DialPointer extends AbstractDialLayer
         }
 
         /**
-         * Sets the outline paint and sends a {@link DialLayerChangeEvent} to
+         * Sets the outline paint and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
          * all registered listeners.
          *
          * @param paint  the paint (<code>null</code> not permitted).
@@ -527,12 +532,12 @@ public abstract class DialPointer extends AbstractDialLayer
          * @param view  the dial's view.
          */
         @Override
-        public void draw(Graphics2D g2, DialPlot plot, Rectangle2D frame,
-                Rectangle2D view) {
+        public void draw(Graphics2D g2, jfree.chart.plot.dial.DialPlot plot, Rectangle2D frame,
+                         Rectangle2D view) {
 
             g2.setPaint(Color.blue);
             g2.setStroke(new BasicStroke(1.0f));
-            Rectangle2D lengthRect = DialPlot.rectangleByRadius(frame,
+            Rectangle2D lengthRect = jfree.chart.plot.dial.DialPlot.rectangleByRadius(frame,
                     this.radius, this.radius);
             Rectangle2D widthRect = DialPlot.rectangleByRadius(frame,
                     this.widthRadius, this.widthRadius);
@@ -592,10 +597,10 @@ public abstract class DialPointer extends AbstractDialLayer
             if (obj == this) {
                 return true;
             }
-            if (!(obj instanceof DialPointer.Pointer)) {
+            if (!(obj instanceof jfree.chart.plot.dial.DialPointer.Pointer)) {
                 return false;
             }
-            DialPointer.Pointer that = (DialPointer.Pointer) obj;
+            jfree.chart.plot.dial.DialPointer.Pointer that = (jfree.chart.plot.dial.DialPointer.Pointer) obj;
 
             if (this.widthRadius != that.widthRadius) {
                 return false;

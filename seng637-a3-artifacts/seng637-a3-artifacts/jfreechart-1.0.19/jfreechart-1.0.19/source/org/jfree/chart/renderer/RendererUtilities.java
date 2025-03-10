@@ -44,9 +44,9 @@
 
 package org.jfree.chart.renderer;
 
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.DomainOrder;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.util.ParamChecks;
+import jfree.data.DomainOrder;
+import jfree.data.xy.XYDataset;
 
 /**
  * Utility methods related to the rendering process.

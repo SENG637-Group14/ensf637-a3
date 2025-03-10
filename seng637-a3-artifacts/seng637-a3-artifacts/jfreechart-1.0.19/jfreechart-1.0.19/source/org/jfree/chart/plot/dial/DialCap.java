@@ -53,8 +53,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.plot.dial.AbstractDialLayer;
+import jfree.chart.plot.dial.DialLayer;
+import jfree.chart.plot.dial.DialLayerChangeEvent;
+import jfree.chart.plot.dial.DialPlot;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PaintUtilities;
 import org.jfree.util.PublicCloneable;
@@ -121,7 +125,7 @@ public class DialCap extends AbstractDialLayer implements DialLayer, Cloneable,
 
     /**
      * Sets the radius of the cap, as a percentage of the dial's framing
-     * rectangle, and sends a {@link DialLayerChangeEvent} to all registered
+     * rectangle, and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered
      * listeners.
      *
      * @param radius  the radius (must be greater than zero).
@@ -133,7 +137,7 @@ public class DialCap extends AbstractDialLayer implements DialLayer, Cloneable,
             throw new IllegalArgumentException("Requires radius > 0.0.");
         }
         this.radius = radius;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -149,7 +153,7 @@ public class DialCap extends AbstractDialLayer implements DialLayer, Cloneable,
 
     /**
      * Sets the paint for the cap background and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
      *
@@ -158,7 +162,7 @@ public class DialCap extends AbstractDialLayer implements DialLayer, Cloneable,
     public void setFillPaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.fillPaint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -174,7 +178,7 @@ public class DialCap extends AbstractDialLayer implements DialLayer, Cloneable,
 
     /**
      * Sets the paint used to draw the outline of the cap and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
      *
@@ -183,7 +187,7 @@ public class DialCap extends AbstractDialLayer implements DialLayer, Cloneable,
     public void setOutlinePaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.outlinePaint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -199,7 +203,7 @@ public class DialCap extends AbstractDialLayer implements DialLayer, Cloneable,
 
     /**
      * Sets the stroke used to draw the outline of the cap and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param stroke  the stroke (<code>null</code> not permitted).
      *
@@ -233,8 +237,8 @@ public class DialCap extends AbstractDialLayer implements DialLayer, Cloneable,
      * @param view  the view rectangle (<code>null</code> not permitted).
      */
     @Override
-    public void draw(Graphics2D g2, DialPlot plot, Rectangle2D frame,
-            Rectangle2D view) {
+    public void draw(Graphics2D g2, jfree.chart.plot.dial.DialPlot plot, Rectangle2D frame,
+                     Rectangle2D view) {
 
         g2.setPaint(this.fillPaint);
 
@@ -261,10 +265,10 @@ public class DialCap extends AbstractDialLayer implements DialLayer, Cloneable,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DialCap)) {
+        if (!(obj instanceof jfree.chart.plot.dial.DialCap)) {
             return false;
         }
-        DialCap that = (DialCap) obj;
+        jfree.chart.plot.dial.DialCap that = (jfree.chart.plot.dial.DialCap) obj;
         if (this.radius != that.radius) {
             return false;
         }

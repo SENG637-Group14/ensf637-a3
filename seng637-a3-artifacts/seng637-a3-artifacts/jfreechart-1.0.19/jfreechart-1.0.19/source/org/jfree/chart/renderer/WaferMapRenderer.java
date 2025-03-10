@@ -55,11 +55,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.plot.DrawingSupplier;
-import org.jfree.chart.plot.WaferMapPlot;
-import org.jfree.data.general.WaferMapDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.plot.DrawingSupplier;
+import jfree.chart.plot.WaferMapPlot;
+import jfree.chart.renderer.AbstractRenderer;
+import jfree.data.general.WaferMapDataset;
 
 /**
  * A renderer for wafer map plots.  Provides color managment facilities.

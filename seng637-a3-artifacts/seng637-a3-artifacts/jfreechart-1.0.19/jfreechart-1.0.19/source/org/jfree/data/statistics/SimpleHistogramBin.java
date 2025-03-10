@@ -42,6 +42,7 @@ package org.jfree.data.statistics;
 
 import java.io.Serializable;
 
+import jfree.data.statistics.SimpleHistogramDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -176,7 +177,7 @@ public class SimpleHistogramBin implements Comparable,
      *
      * @return A boolean.
      */
-    public boolean overlapsWith(SimpleHistogramBin bin) {
+    public boolean overlapsWith(jfree.data.statistics.SimpleHistogramBin bin) {
         if (this.upperBound < bin.lowerBound) {
             return false;
         }
@@ -203,10 +204,10 @@ public class SimpleHistogramBin implements Comparable,
      */
     @Override
     public int compareTo(Object obj) {
-        if (!(obj instanceof SimpleHistogramBin)) {
+        if (!(obj instanceof jfree.data.statistics.SimpleHistogramBin)) {
             return 0;
         }
-        SimpleHistogramBin bin = (SimpleHistogramBin) obj;
+        jfree.data.statistics.SimpleHistogramBin bin = (jfree.data.statistics.SimpleHistogramBin) obj;
         if (this.lowerBound < bin.lowerBound) {
             return -1;
         }
@@ -232,10 +233,10 @@ public class SimpleHistogramBin implements Comparable,
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof SimpleHistogramBin)) {
+        if (!(obj instanceof jfree.data.statistics.SimpleHistogramBin)) {
             return false;
         }
-        SimpleHistogramBin that = (SimpleHistogramBin) obj;
+        jfree.data.statistics.SimpleHistogramBin that = (jfree.data.statistics.SimpleHistogramBin) obj;
         if (this.lowerBound != that.lowerBound) {
             return false;
         }

@@ -61,9 +61,9 @@ import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.util.Date;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -302,10 +302,10 @@ public class AbstractXYItemLabelGenerator implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AbstractXYItemLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.AbstractXYItemLabelGenerator)) {
             return false;
         }
-        AbstractXYItemLabelGenerator that = (AbstractXYItemLabelGenerator) obj;
+        jfree.chart.labels.AbstractXYItemLabelGenerator that = (jfree.chart.labels.AbstractXYItemLabelGenerator) obj;
         if (!this.formatString.equals(that.formatString)) {
             return false;
         }
@@ -352,8 +352,8 @@ public class AbstractXYItemLabelGenerator implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        AbstractXYItemLabelGenerator clone
-                = (AbstractXYItemLabelGenerator) super.clone();
+        jfree.chart.labels.AbstractXYItemLabelGenerator clone
+                = (jfree.chart.labels.AbstractXYItemLabelGenerator) super.clone();
         if (this.xFormat != null) {
             clone.xFormat = (NumberFormat) this.xFormat.clone();
         }

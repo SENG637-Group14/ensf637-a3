@@ -42,7 +42,8 @@ package org.jfree.chart.event;
 
 import java.util.EventListener;
 
-import org.jfree.chart.annotations.Annotation;
+import jfree.chart.annotations.Annotation;
+import jfree.chart.event.AnnotationChangeEvent;
 
 /**
  * The interface that must be supported by classes that wish to receive

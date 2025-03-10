@@ -217,38 +217,49 @@ import java.util.Map.Entry;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TreeMap;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.annotations.Annotation;
-import org.jfree.chart.annotations.CategoryAnnotation;
-import org.jfree.chart.axis.Axis;
-import org.jfree.chart.axis.AxisCollection;
-import org.jfree.chart.axis.AxisLocation;
-import org.jfree.chart.axis.AxisSpace;
-import org.jfree.chart.axis.AxisState;
-import org.jfree.chart.axis.CategoryAnchor;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.TickType;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.axis.ValueTick;
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.event.AnnotationChangeListener;
-import org.jfree.chart.event.ChartChangeEventType;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.event.RendererChangeListener;
-import org.jfree.chart.renderer.category.AbstractCategoryItemRenderer;
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
-import org.jfree.chart.renderer.category.CategoryItemRendererState;
-import org.jfree.chart.util.CloneUtils;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.chart.util.ShadowGenerator;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.general.Dataset;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetUtilities;
+import jfree.chart.JFreeChart;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.annotations.Annotation;
+import jfree.chart.annotations.CategoryAnnotation;
+import jfree.chart.axis.Axis;
+import jfree.chart.axis.AxisCollection;
+import jfree.chart.axis.AxisLocation;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.CategoryAnchor;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.TickType;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.axis.ValueTick;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.event.AnnotationChangeListener;
+import jfree.chart.event.ChartChangeEventType;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.event.RendererChangeListener;
+import jfree.chart.plot.CategoryCrosshairState;
+import jfree.chart.plot.CategoryMarker;
+import jfree.chart.plot.DatasetRenderingOrder;
+import jfree.chart.plot.Marker;
+import jfree.chart.plot.Pannable;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.chart.plot.Zoomable;
+import jfree.chart.renderer.category.AbstractCategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.util.CloneUtils;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.chart.util.ShadowGenerator;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
+import jfree.data.general.Dataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetUtilities;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.Layer;
 import org.jfree.ui.RectangleEdge;
@@ -263,7 +274,7 @@ import org.jfree.util.SortOrder;
  * A general plotting class that uses data from a {@link CategoryDataset} and
  * renders each data item using a {@link CategoryItemRenderer}.
  */
-public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
+public class CategoryPlot extends jfree.chart.plot.Plot implements ValueAxisPlot, Pannable,
         Zoomable, AnnotationChangeListener, RendererChangeListener,
         Cloneable, PublicCloneable, Serializable {
 
@@ -322,7 +333,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
             "org.jfree.chart.plot.LocalizationBundle");
 
     /** The plot orientation. */
-    private PlotOrientation orientation;
+    private jfree.chart.plot.PlotOrientation orientation;
 
     /** The offset between the data area and the axes. */
     private RectangleInsets axisOffset;
@@ -358,8 +369,8 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
     private Map<Integer, CategoryItemRenderer> renderers;
 
     /** The dataset rendering order. */
-    private DatasetRenderingOrder renderingOrder
-            = DatasetRenderingOrder.REVERSE;
+    private jfree.chart.plot.DatasetRenderingOrder renderingOrder
+            = jfree.chart.plot.DatasetRenderingOrder.REVERSE;
 
     /**
      * Controls the order in which the columns are traversed when rendering the
@@ -581,7 +592,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
 
         super();
 
-        this.orientation = PlotOrientation.VERTICAL;
+        this.orientation = jfree.chart.plot.PlotOrientation.VERTICAL;
 
         // allocate storage for dataset, axes and renderers
         this.domainAxes = new HashMap<Integer, CategoryAxis>();
@@ -682,10 +693,10 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @return The orientation of the plot (never <code>null</code>).
      *
-     * @see #setOrientation(PlotOrientation)
+     * @see #setOrientation(jfree.chart.plot.PlotOrientation)
      */
     @Override
-    public PlotOrientation getOrientation() {
+    public jfree.chart.plot.PlotOrientation getOrientation() {
         return this.orientation;
     }
 
@@ -697,7 +708,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @see #getOrientation()
      */
-    public void setOrientation(PlotOrientation orientation) {
+    public void setOrientation(jfree.chart.plot.PlotOrientation orientation) {
         ParamChecks.nullNotPermitted(orientation, "orientation");
         this.orientation = orientation;
         fireChangeEvent();
@@ -753,9 +764,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
     public CategoryAxis getDomainAxis(int index) {
         CategoryAxis result = (CategoryAxis) this.domainAxes.get(index);
         if (result == null) {
-            Plot parent = getParent();
-            if (parent instanceof CategoryPlot) {
-                CategoryPlot cp = (CategoryPlot) parent;
+            jfree.chart.plot.Plot parent = getParent();
+            if (parent instanceof jfree.chart.plot.CategoryPlot) {
+                jfree.chart.plot.CategoryPlot cp = (jfree.chart.plot.CategoryPlot) parent;
                 result = cp.getDomainAxis(index);
             }
         }
@@ -966,7 +977,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
         RectangleEdge result;
         AxisLocation location = getDomainAxisLocation(index);
         if (location != null) {
-            result = Plot.resolveDomainAxisLocation(location, this.orientation);
+            result = jfree.chart.plot.Plot.resolveDomainAxisLocation(location, this.orientation);
         } else {
             result = RectangleEdge.opposite(getDomainAxisEdge(0));
         }
@@ -1028,9 +1039,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
     public ValueAxis getRangeAxis(int index) {
         ValueAxis result = this.rangeAxes.get(index);
         if (result == null) {
-            Plot parent = getParent();
-            if (parent instanceof CategoryPlot) {
-                CategoryPlot cp = (CategoryPlot) parent;
+            jfree.chart.plot.Plot parent = getParent();
+            if (parent instanceof jfree.chart.plot.CategoryPlot) {
+                jfree.chart.plot.CategoryPlot cp = (jfree.chart.plot.CategoryPlot) parent;
                 result = cp.getRangeAxis(index);
             }
         }
@@ -1116,9 +1127,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
         ParamChecks.nullNotPermitted(axis, "axis");
         int result = findRangeAxisIndex(axis);
         if (result < 0) { // try the parent plot
-            Plot parent = getParent();
-            if (parent instanceof CategoryPlot) {
-                CategoryPlot p = (CategoryPlot) parent;
+            jfree.chart.plot.Plot parent = getParent();
+            if (parent instanceof jfree.chart.plot.CategoryPlot) {
+                jfree.chart.plot.CategoryPlot p = (jfree.chart.plot.CategoryPlot) parent;
                 result = p.getRangeAxisIndex(axis);
             }
         }
@@ -1242,7 +1253,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      */
     public RectangleEdge getRangeAxisEdge(int index) {
         AxisLocation location = getRangeAxisLocation(index);
-        return Plot.resolveRangeAxisLocation(location, this.orientation);
+        return jfree.chart.plot.Plot.resolveRangeAxisLocation(location, this.orientation);
     }
 
     /**
@@ -1692,9 +1703,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @return The order (never <code>null</code>).
      *
-     * @see #setDatasetRenderingOrder(DatasetRenderingOrder)
+     * @see #setDatasetRenderingOrder(jfree.chart.plot.DatasetRenderingOrder)
      */
-    public DatasetRenderingOrder getDatasetRenderingOrder() {
+    public jfree.chart.plot.DatasetRenderingOrder getDatasetRenderingOrder() {
         return this.renderingOrder;
     }
 
@@ -1708,7 +1719,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @see #getDatasetRenderingOrder()
      */
-    public void setDatasetRenderingOrder(DatasetRenderingOrder order) {
+    public void setDatasetRenderingOrder(jfree.chart.plot.DatasetRenderingOrder order) {
         ParamChecks.nullNotPermitted(order, "order");
         this.renderingOrder = order;
         fireChangeEvent();
@@ -2196,18 +2207,18 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      */
     @Override
-    public void handleClick(int x, int y, PlotRenderingInfo info) {
+    public void handleClick(int x, int y, jfree.chart.plot.PlotRenderingInfo info) {
 
         Rectangle2D dataArea = info.getDataArea();
         if (dataArea.contains(x, y)) {
             // set the anchor value for the range axis...
             double java2D = 0.0;
-            if (this.orientation == PlotOrientation.HORIZONTAL) {
+            if (this.orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 java2D = x;
-            } else if (this.orientation == PlotOrientation.VERTICAL) {
+            } else if (this.orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 java2D = y;
             }
-            RectangleEdge edge = Plot.resolveRangeAxisLocation(
+            RectangleEdge edge = jfree.chart.plot.Plot.resolveRangeAxisLocation(
                     getRangeAxisLocation(), this.orientation);
             double value = getRangeAxis().java2DToValue(
                     java2D, info.getDataArea(), edge);
@@ -2288,7 +2299,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      */
     @Override
     public void rendererChanged(RendererChangeEvent event) {
-        Plot parent = getParent();
+        jfree.chart.plot.Plot parent = getParent();
         if (parent != null) {
             if (parent instanceof RendererChangeListener) {
                 RendererChangeListener rcl = (RendererChangeListener) parent;
@@ -2314,9 +2325,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @param marker  the marker (<code>null</code> not permitted).
      *
-     * @see #removeDomainMarker(Marker)
+     * @see #removeDomainMarker(jfree.chart.plot.Marker)
      */
-    public void addDomainMarker(CategoryMarker marker) {
+    public void addDomainMarker(jfree.chart.plot.CategoryMarker marker) {
         addDomainMarker(marker, Layer.FOREGROUND);
     }
 
@@ -2330,9 +2341,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param layer  the layer (foreground or background) (<code>null</code>
      *               not permitted).
      *
-     * @see #removeDomainMarker(Marker, Layer)
+     * @see #removeDomainMarker(jfree.chart.plot.Marker, Layer)
      */
-    public void addDomainMarker(CategoryMarker marker, Layer layer) {
+    public void addDomainMarker(jfree.chart.plot.CategoryMarker marker, Layer layer) {
         addDomainMarker(0, marker, layer);
     }
 
@@ -2347,9 +2358,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param marker  the marker (<code>null</code> not permitted).
      * @param layer  the layer (<code>null</code> not permitted).
      *
-     * @see #removeDomainMarker(int, Marker, Layer)
+     * @see #removeDomainMarker(int, jfree.chart.plot.Marker, Layer)
      */
-    public void addDomainMarker(int index, CategoryMarker marker, Layer layer) {
+    public void addDomainMarker(int index, jfree.chart.plot.CategoryMarker marker, Layer layer) {
         addDomainMarker(index, marker, layer, true);
     }
 
@@ -2367,10 +2378,10 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @since 1.0.10
      *
-     * @see #removeDomainMarker(int, Marker, Layer, boolean)
+     * @see #removeDomainMarker(int, jfree.chart.plot.Marker, Layer, boolean)
      */
-    public void addDomainMarker(int index, CategoryMarker marker, Layer layer,
-            boolean notify) {
+    public void addDomainMarker(int index, jfree.chart.plot.CategoryMarker marker, Layer layer,
+                                boolean notify) {
         ParamChecks.nullNotPermitted(marker, "marker");
         ParamChecks.nullNotPermitted(layer, "layer");
         Collection markers;
@@ -2475,7 +2486,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
             if (markers != null) {
                 Iterator iterator = markers.iterator();
                 while (iterator.hasNext()) {
-                    Marker m = (Marker) iterator.next();
+                    jfree.chart.plot.Marker m = (jfree.chart.plot.Marker) iterator.next();
                     m.removeChangeListener(this);
                 }
                 markers.clear();
@@ -2487,7 +2498,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
             if (markers != null) {
                 Iterator iterator = markers.iterator();
                 while (iterator.hasNext()) {
-                    Marker m = (Marker) iterator.next();
+                    jfree.chart.plot.Marker m = (jfree.chart.plot.Marker) iterator.next();
                     m.removeChangeListener(this);
                 }
                 markers.clear();
@@ -2507,7 +2518,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @since 1.0.7
      */
-    public boolean removeDomainMarker(Marker marker) {
+    public boolean removeDomainMarker(jfree.chart.plot.Marker marker) {
         return removeDomainMarker(marker, Layer.FOREGROUND);
     }
 
@@ -2523,7 +2534,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @since 1.0.7
      */
-    public boolean removeDomainMarker(Marker marker, Layer layer) {
+    public boolean removeDomainMarker(jfree.chart.plot.Marker marker, Layer layer) {
         return removeDomainMarker(0, marker, layer);
     }
 
@@ -2540,7 +2551,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @since 1.0.7
      */
-    public boolean removeDomainMarker(int index, Marker marker, Layer layer) {
+    public boolean removeDomainMarker(int index, jfree.chart.plot.Marker marker, Layer layer) {
         return removeDomainMarker(index, marker, layer, true);
     }
 
@@ -2558,8 +2569,8 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @since 1.0.10
      */
-    public boolean removeDomainMarker(int index, Marker marker, Layer layer,
-            boolean notify) {
+    public boolean removeDomainMarker(int index, jfree.chart.plot.Marker marker, Layer layer,
+                                      boolean notify) {
         ArrayList markers;
         if (layer == Layer.FOREGROUND) {
             markers = (ArrayList) this.foregroundDomainMarkers.get(new Integer(
@@ -2586,9 +2597,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @param marker  the marker (<code>null</code> not permitted).
      *
-     * @see #removeRangeMarker(Marker)
+     * @see #removeRangeMarker(jfree.chart.plot.Marker)
      */
-    public void addRangeMarker(Marker marker) {
+    public void addRangeMarker(jfree.chart.plot.Marker marker) {
         addRangeMarker(marker, Layer.FOREGROUND);
     }
 
@@ -2602,9 +2613,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param layer  the layer (foreground or background) (<code>null</code>
      *               not permitted).
      *
-     * @see #removeRangeMarker(Marker, Layer)
+     * @see #removeRangeMarker(jfree.chart.plot.Marker, Layer)
      */
-    public void addRangeMarker(Marker marker, Layer layer) {
+    public void addRangeMarker(jfree.chart.plot.Marker marker, Layer layer) {
         addRangeMarker(0, marker, layer);
     }
 
@@ -2619,9 +2630,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param marker  the marker.
      * @param layer  the layer.
      *
-     * @see #removeRangeMarker(int, Marker, Layer)
+     * @see #removeRangeMarker(int, jfree.chart.plot.Marker, Layer)
      */
-    public void addRangeMarker(int index, Marker marker, Layer layer) {
+    public void addRangeMarker(int index, jfree.chart.plot.Marker marker, Layer layer) {
         addRangeMarker(index, marker, layer, true);
     }
 
@@ -2639,10 +2650,10 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @since 1.0.10
      *
-     * @see #removeRangeMarker(int, Marker, Layer, boolean)
+     * @see #removeRangeMarker(int, jfree.chart.plot.Marker, Layer, boolean)
      */
-    public void addRangeMarker(int index, Marker marker, Layer layer,
-            boolean notify) {
+    public void addRangeMarker(int index, jfree.chart.plot.Marker marker, Layer layer,
+                               boolean notify) {
         Collection markers;
         if (layer == Layer.FOREGROUND) {
             markers = (Collection) this.foregroundRangeMarkers.get(
@@ -2747,7 +2758,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
             if (markers != null) {
                 Iterator iterator = markers.iterator();
                 while (iterator.hasNext()) {
-                    Marker m = (Marker) iterator.next();
+                    jfree.chart.plot.Marker m = (jfree.chart.plot.Marker) iterator.next();
                     m.removeChangeListener(this);
                 }
                 markers.clear();
@@ -2759,7 +2770,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
             if (markers != null) {
                 Iterator iterator = markers.iterator();
                 while (iterator.hasNext()) {
-                    Marker m = (Marker) iterator.next();
+                    jfree.chart.plot.Marker m = (jfree.chart.plot.Marker) iterator.next();
                     m.removeChangeListener(this);
                 }
                 markers.clear();
@@ -2779,9 +2790,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @since 1.0.7
      *
-     * @see #addRangeMarker(Marker)
+     * @see #addRangeMarker(jfree.chart.plot.Marker)
      */
-    public boolean removeRangeMarker(Marker marker) {
+    public boolean removeRangeMarker(jfree.chart.plot.Marker marker) {
         return removeRangeMarker(marker, Layer.FOREGROUND);
     }
 
@@ -2797,9 +2808,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @since 1.0.7
      *
-     * @see #addRangeMarker(Marker, Layer)
+     * @see #addRangeMarker(jfree.chart.plot.Marker, Layer)
      */
-    public boolean removeRangeMarker(Marker marker, Layer layer) {
+    public boolean removeRangeMarker(jfree.chart.plot.Marker marker, Layer layer) {
         return removeRangeMarker(0, marker, layer);
     }
 
@@ -2816,9 +2827,9 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @since 1.0.7
      *
-     * @see #addRangeMarker(int, Marker, Layer)
+     * @see #addRangeMarker(int, jfree.chart.plot.Marker, Layer)
      */
-    public boolean removeRangeMarker(int index, Marker marker, Layer layer) {
+    public boolean removeRangeMarker(int index, jfree.chart.plot.Marker marker, Layer layer) {
         return removeRangeMarker(index, marker, layer, true);
     }
 
@@ -2836,10 +2847,10 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      *
      * @since 1.0.10
      *
-     * @see #addRangeMarker(int, Marker, Layer, boolean)
+     * @see #addRangeMarker(int, jfree.chart.plot.Marker, Layer, boolean)
      */
-    public boolean removeRangeMarker(int index, Marker marker, Layer layer,
-            boolean notify) {
+    public boolean removeRangeMarker(int index, jfree.chart.plot.Marker marker, Layer layer,
+                                     boolean notify) {
         ParamChecks.nullNotPermitted(marker, "marker");
         ArrayList markers;
         if (layer == Layer.FOREGROUND) {
@@ -3410,7 +3421,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
                         RectangleEdge.TOP);
                 space.ensureAtLeast(this.fixedRangeAxisSpace.getBottom(),
                         RectangleEdge.BOTTOM);
-            } else if (this.orientation == PlotOrientation.VERTICAL) {
+            } else if (this.orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 space.ensureAtLeast(this.fixedRangeAxisSpace.getLeft(),
                         RectangleEdge.LEFT);
                 space.ensureAtLeast(this.fixedRangeAxisSpace.getRight(),
@@ -3465,7 +3476,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * Draws the plot on a Java 2D graphics device (such as the screen or a
      * printer).
      * <P>
-     * At your option, you may supply an instance of {@link PlotRenderingInfo}.
+     * At your option, you may supply an instance of {@link jfree.chart.plot.PlotRenderingInfo}.
      * If you do, it will be populated with information about the drawing,
      * including various plot dimensions and tooltip info.
      *
@@ -3479,7 +3490,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      */
     @Override
     public void draw(Graphics2D g2, Rectangle2D area, Point2D anchor,
-            PlotState parentState, PlotRenderingInfo state) {
+                     PlotState parentState, jfree.chart.plot.PlotRenderingInfo state) {
 
         // if the plot area is too small, just return...
         boolean b1 = (area.getWidth() <= MINIMUM_WIDTH_TO_DRAW);
@@ -3493,7 +3504,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
             // if the incoming state is null, no information will be passed
             // back to the caller - but we create a temporary state to record
             // the plot area, since that is used later by the axes
-            state = new PlotRenderingInfo(null);
+            state = new jfree.chart.plot.PlotRenderingInfo(null);
         }
         state.setPlotArea(area);
 
@@ -3528,7 +3539,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
             anchor = ShapeUtilities.getPointInRectangle(anchor.getX(),
                     anchor.getY(), dataArea);
         }
-        CategoryCrosshairState crosshairState = new CategoryCrosshairState();
+        jfree.chart.plot.CategoryCrosshairState crosshairState = new jfree.chart.plot.CategoryCrosshairState();
         crosshairState.setCrosshairDistance(Double.POSITIVE_INFINITY);
         crosshairState.setAnchor(anchor);
 
@@ -3541,7 +3552,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
             ValueAxis rangeAxis = getRangeAxis();
             if (rangeAxis != null) {
                 double y;
-                if (getOrientation() == PlotOrientation.VERTICAL) {
+                if (getOrientation() == jfree.chart.plot.PlotOrientation.VERTICAL) {
                     y = rangeAxis.java2DToValue(anchor.getY(), dataArea,
                             getRangeAxisEdge());
                 }
@@ -3604,7 +3615,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
         g2.setComposite(AlphaComposite.getInstance(
                 AlphaComposite.SRC_OVER, getForegroundAlpha()));
 
-        DatasetRenderingOrder order = getDatasetRenderingOrder();
+        jfree.chart.plot.DatasetRenderingOrder order = getDatasetRenderingOrder();
         List<Integer> datasetIndices = getDatasetIndices(order);
         for (int i : datasetIndices) {
             foundData = render(g2, dataArea, i, state, crosshairState)
@@ -3661,7 +3672,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
         RectangleEdge yAxisEdge = getRangeAxisEdge();
         if (!this.rangeCrosshairLockedOnData && anchor != null) {
             double yy;
-            if (getOrientation() == PlotOrientation.VERTICAL) {
+            if (getOrientation() == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 yy = yAxis.java2DToValue(anchor.getY(), dataArea, yAxisEdge);
             }
             else {
@@ -3697,7 +3708,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * 
      * @return The list of indices. 
      */
-    private List<Integer> getDatasetIndices(DatasetRenderingOrder order) {
+    private List<Integer> getDatasetIndices(jfree.chart.plot.DatasetRenderingOrder order) {
         List<Integer> result = new ArrayList<Integer>();
         for (Map.Entry<Integer, CategoryDataset> entry : 
                 this.datasets.entrySet()) {
@@ -3706,7 +3717,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
             }
         }
         Collections.sort(result);
-        if (order == DatasetRenderingOrder.REVERSE) {
+        if (order == jfree.chart.plot.DatasetRenderingOrder.REVERSE) {
             Collections.reverse(result);
         }
         return result;
@@ -3720,7 +3731,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * 
      * @return A list of indices.
      */
-    private List<Integer> getRendererIndices(DatasetRenderingOrder order) {
+    private List<Integer> getRendererIndices(jfree.chart.plot.DatasetRenderingOrder order) {
         List<Integer> result = new ArrayList<Integer>();
         for (Map.Entry<Integer, CategoryItemRenderer> entry: 
                 this.renderers.entrySet()) {
@@ -3763,7 +3774,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @return A map containing the axis states.
      */
     protected Map drawAxes(Graphics2D g2, Rectangle2D plotArea, 
-            Rectangle2D dataArea, PlotRenderingInfo plotState) {
+            Rectangle2D dataArea, jfree.chart.plot.PlotRenderingInfo plotState) {
 
         AxisCollection axisCollection = new AxisCollection();
 
@@ -3861,7 +3872,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @since 1.0.11
      */
     public boolean render(Graphics2D g2, Rectangle2D dataArea, int index,
-            PlotRenderingInfo info, CategoryCrosshairState crosshairState) {
+                          jfree.chart.plot.PlotRenderingInfo info, CategoryCrosshairState crosshairState) {
 
         boolean foundData = false;
         CategoryDataset currentDataset = getDataset(index);
@@ -4088,7 +4099,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
         if (markers != null && axis != null) {
             Iterator iterator = markers.iterator();
             while (iterator.hasNext()) {
-                CategoryMarker marker = (CategoryMarker) iterator.next();
+                jfree.chart.plot.CategoryMarker marker = (CategoryMarker) iterator.next();
                 r.drawDomainMarker(g2, this, axis, marker, dataArea);
             }
         }
@@ -4119,7 +4130,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
         if (markers != null && axis != null) {
             Iterator iterator = markers.iterator();
             while (iterator.hasNext()) {
-                Marker marker = (Marker) iterator.next();
+                jfree.chart.plot.Marker marker = (Marker) iterator.next();
                 r.drawRangeMarker(g2, this, axis, marker, dataArea);
             }
         }
@@ -4142,11 +4153,11 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
         double java2D = getRangeAxis().valueToJava2D(value, dataArea,
                 getRangeAxisEdge());
         Line2D line = null;
-        if (this.orientation == PlotOrientation.HORIZONTAL) {
+        if (this.orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
             line = new Line2D.Double(java2D, dataArea.getMinY(), java2D,
                     dataArea.getMaxY());
         }
-        else if (this.orientation == PlotOrientation.VERTICAL) {
+        else if (this.orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
             line = new Line2D.Double(dataArea.getMinX(), java2D,
                     dataArea.getMaxX(), java2D);
         }
@@ -4168,21 +4179,21 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param stroke  the stroke used to draw the crosshair line.
      * @param paint  the paint used to draw the crosshair line.
      *
-     * @see #drawRangeCrosshair(Graphics2D, Rectangle2D, PlotOrientation,
+     * @see #drawRangeCrosshair(Graphics2D, Rectangle2D, jfree.chart.plot.PlotOrientation,
      *     double, ValueAxis, Stroke, Paint)
      *
      * @since 1.0.11
      */
     protected void drawDomainCrosshair(Graphics2D g2, Rectangle2D dataArea,
-            PlotOrientation orientation, int datasetIndex,
-            Comparable rowKey, Comparable columnKey, Stroke stroke,
-            Paint paint) {
+                                       jfree.chart.plot.PlotOrientation orientation, int datasetIndex,
+                                       Comparable rowKey, Comparable columnKey, Stroke stroke,
+                                       Paint paint) {
 
         CategoryDataset dataset = getDataset(datasetIndex);
         CategoryAxis axis = getDomainAxisForDataset(datasetIndex);
         CategoryItemRenderer renderer = getRenderer(datasetIndex);
         Line2D line;
-        if (orientation == PlotOrientation.VERTICAL) {
+        if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
             double xx = renderer.getItemMiddle(rowKey, columnKey, dataset, axis,
                     dataArea, RectangleEdge.BOTTOM);
             line = new Line2D.Double(xx, dataArea.getMinY(), xx,
@@ -4211,14 +4222,14 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param stroke  the stroke used to draw the crosshair line.
      * @param paint  the paint used to draw the crosshair line.
      *
-     * @see #drawDomainCrosshair(Graphics2D, Rectangle2D, PlotOrientation, int,
+     * @see #drawDomainCrosshair(Graphics2D, Rectangle2D, jfree.chart.plot.PlotOrientation, int,
      *      Comparable, Comparable, Stroke, Paint)
      *
      * @since 1.0.5
      */
     protected void drawRangeCrosshair(Graphics2D g2, Rectangle2D dataArea,
-            PlotOrientation orientation, double value, ValueAxis axis,
-            Stroke stroke, Paint paint) {
+                                      jfree.chart.plot.PlotOrientation orientation, double value, ValueAxis axis,
+                                      Stroke stroke, Paint paint) {
 
         if (!axis.getRange().contains(value)) {
             return;
@@ -4562,7 +4573,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @since 1.0.13
      */
     @Override
-    public void panDomainAxes(double percent, PlotRenderingInfo info,
+    public void panDomainAxes(double percent, jfree.chart.plot.PlotRenderingInfo info,
             Point2D source) {
         // do nothing, because the plot is not pannable along the domain axes
     }
@@ -4577,7 +4588,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @since 1.0.13
      */
     @Override
-    public void panRangeAxes(double percent, PlotRenderingInfo info,
+    public void panRangeAxes(double percent, jfree.chart.plot.PlotRenderingInfo info,
             Point2D source) {
         if (!isRangePannable()) {
             return;
@@ -4630,7 +4641,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param source  the source point (in Java2D space) for the zoom.
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo state,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                                Point2D source) {
         // can't zoom domain axis
     }
@@ -4646,7 +4657,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      */
     @Override
     public void zoomDomainAxes(double lowerPercent, double upperPercent,
-                               PlotRenderingInfo state, Point2D source) {
+                               jfree.chart.plot.PlotRenderingInfo state, Point2D source) {
         // can't zoom domain axis
     }
 
@@ -4659,12 +4670,12 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param source  the source point (in Java2D space).
      * @param useAnchor  use source point as zoom anchor?
      *
-     * @see #zoomRangeAxes(double, PlotRenderingInfo, Point2D, boolean)
+     * @see #zoomRangeAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D, boolean)
      *
      * @since 1.0.7
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo info,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                                Point2D source, boolean useAnchor) {
         // can't zoom domain axis
     }
@@ -4677,7 +4688,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param source  the source point (in Java2D space) for the zoom.
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo state,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                               Point2D source) {
         // delegate to other method
         zoomRangeAxes(factor, state, source, false);
@@ -4692,12 +4703,12 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      * @param useAnchor  a flag that controls whether or not the source point
      *         is used for the zoom anchor.
      *
-     * @see #zoomDomainAxes(double, PlotRenderingInfo, Point2D, boolean)
+     * @see #zoomDomainAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D, boolean)
      *
      * @since 1.0.7
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo info,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                               Point2D source, boolean useAnchor) {
 
         // perform the zoom on each range axis
@@ -4730,7 +4741,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      */
     @Override
     public void zoomRangeAxes(double lowerPercent, double upperPercent,
-            PlotRenderingInfo state, Point2D source) {
+                              PlotRenderingInfo state, Point2D source) {
         for (ValueAxis yAxis : this.rangeAxes.values()) {
             if (yAxis != null) {
                 yAxis.zoomRange(lowerPercent, upperPercent);
@@ -4789,10 +4800,10 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CategoryPlot)) {
+        if (!(obj instanceof jfree.chart.plot.CategoryPlot)) {
             return false;
         }
-        CategoryPlot that = (CategoryPlot) obj;
+        jfree.chart.plot.CategoryPlot that = (jfree.chart.plot.CategoryPlot) obj;
         if (this.orientation != that.orientation) {
             return false;
         }
@@ -4975,7 +4986,7 @@ public class CategoryPlot extends Plot implements ValueAxisPlot, Pannable,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        CategoryPlot clone = (CategoryPlot) super.clone();
+        jfree.chart.plot.CategoryPlot clone = (jfree.chart.plot.CategoryPlot) super.clone();
         clone.domainAxes = CloneUtils.cloneMapValues(this.domainAxes);
         for (CategoryAxis axis : clone.domainAxes.values()) {
             if (axis != null) {

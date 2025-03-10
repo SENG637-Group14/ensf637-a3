@@ -58,10 +58,15 @@ package org.jfree.data.general;
 
 import java.util.List;
 
-import org.jfree.data.xy.AbstractIntervalXYDataset;
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.data.xy.OHLCDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.data.general.CombinationDataset;
+import jfree.data.general.Dataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.SeriesDataset;
+import jfree.data.general.SubSeriesDataset;
+import jfree.data.xy.AbstractIntervalXYDataset;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.OHLCDataset;
+import jfree.data.xy.XYDataset;
 
 /**
  * This class can combine instances of {@link XYDataset}, {@link OHLCDataset}
@@ -74,7 +79,7 @@ import org.jfree.data.xy.XYDataset;
  */
 public class CombinedDataset extends AbstractIntervalXYDataset
         implements XYDataset, OHLCDataset, IntervalXYDataset,
-        CombinationDataset {
+        jfree.data.general.CombinationDataset {
 
     /** Storage for the datasets we combine. */
     private List datasetInfo = new java.util.ArrayList();
@@ -92,7 +97,7 @@ public class CombinedDataset extends AbstractIntervalXYDataset
      * @param data  array of SeriesDataset that contains the SeriesDatasets to
      *              combine.
      */
-    public CombinedDataset(SeriesDataset[] data) {
+    public CombinedDataset(jfree.data.general.SeriesDataset[] data) {
         add(data);
     }
 
@@ -102,9 +107,9 @@ public class CombinedDataset extends AbstractIntervalXYDataset
      *
      * @param data  the SeriesDataset to add.
      */
-    public void add(SeriesDataset data) {
+    public void add(jfree.data.general.SeriesDataset data) {
         fastAdd(data);
-        DatasetChangeEvent event = new DatasetChangeEvent(this, this);
+        jfree.data.general.DatasetChangeEvent event = new jfree.data.general.DatasetChangeEvent(this, this);
         notifyListeners(event);
     }
 
@@ -114,12 +119,12 @@ public class CombinedDataset extends AbstractIntervalXYDataset
      *
      * @param data  array of SeriesDataset to add
      */
-    public void add(SeriesDataset[] data) {
+    public void add(jfree.data.general.SeriesDataset[] data) {
 
         for (int i = 0; i < data.length; i++) {
             fastAdd(data[i]);
         }
-        DatasetChangeEvent event = new DatasetChangeEvent(this, this);
+        jfree.data.general.DatasetChangeEvent event = new DatasetChangeEvent(this, this);
         notifyListeners(event);
 
     }
@@ -131,7 +136,7 @@ public class CombinedDataset extends AbstractIntervalXYDataset
      * @param data  the SeriesDataset where series is contained
      * @param series  series to add
      */
-    public void add(SeriesDataset data, int series) {
+    public void add(jfree.data.general.SeriesDataset data, int series) {
         add(new SubSeriesDataset(data, series));
     }
 
@@ -140,7 +145,7 @@ public class CombinedDataset extends AbstractIntervalXYDataset
      *
      * @param data  SeriesDataset to add
      */
-    private void fastAdd(SeriesDataset data) {
+    private void fastAdd(jfree.data.general.SeriesDataset data) {
         for (int i = 0; i < data.getSeriesCount(); i++) {
             this.datasetInfo.add(new DatasetInfo(data, i));
         }
@@ -503,14 +508,14 @@ public class CombinedDataset extends AbstractIntervalXYDataset
      * @return The parent Dataset of this combination or <code>null</code>.
      */
     @Override
-    public SeriesDataset getParent() {
+    public jfree.data.general.SeriesDataset getParent() {
 
-        SeriesDataset parent = null;
+        jfree.data.general.SeriesDataset parent = null;
         for (int i = 0; i < this.datasetInfo.size(); i++) {
-            SeriesDataset child = getDatasetInfo(i).data;
-            if (child instanceof CombinationDataset) {
-                SeriesDataset childParent
-                    = ((CombinationDataset) child).getParent();
+            jfree.data.general.SeriesDataset child = getDatasetInfo(i).data;
+            if (child instanceof jfree.data.general.CombinationDataset) {
+                jfree.data.general.SeriesDataset childParent
+                    = ((jfree.data.general.CombinationDataset) child).getParent();
                 if (parent == null) {
                     parent = childParent;
                 }
@@ -541,8 +546,8 @@ public class CombinedDataset extends AbstractIntervalXYDataset
 
         int[] map = null;
         for (int i = 0; i < this.datasetInfo.size(); i++) {
-            SeriesDataset child = getDatasetInfo(i).data;
-            if (child instanceof CombinationDataset) {
+            jfree.data.general.SeriesDataset child = getDatasetInfo(i).data;
+            if (child instanceof jfree.data.general.CombinationDataset) {
                 int[] childMap = ((CombinationDataset) child).getMap();
                 if (childMap == null) {
                     return null;
@@ -571,9 +576,9 @@ public class CombinedDataset extends AbstractIntervalXYDataset
 
         int n = 0;
         for (int i = 0; i < this.datasetInfo.size(); i++) {
-            SeriesDataset childDataset = getDatasetInfo(i).data;
-            if (childDataset instanceof CombinedDataset) {
-                int m = ((CombinedDataset) childDataset)
+            jfree.data.general.SeriesDataset childDataset = getDatasetInfo(i).data;
+            if (childDataset instanceof jfree.data.general.CombinedDataset) {
+                int m = ((jfree.data.general.CombinedDataset) childDataset)
                     .getChildPosition(child);
                 if (m >= 0) {
                     return n + m;
@@ -633,7 +638,7 @@ public class CombinedDataset extends AbstractIntervalXYDataset
     private class DatasetInfo {
 
         /** The dataset. */
-        private SeriesDataset data;
+        private jfree.data.general.SeriesDataset data;
 
         /** The series. */
         private int series;

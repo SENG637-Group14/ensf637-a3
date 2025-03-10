@@ -62,11 +62,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.jfree.chart.block.AbstractBlock;
-import org.jfree.chart.block.Block;
-import org.jfree.chart.block.LengthConstraintType;
-import org.jfree.chart.block.RectangleConstraint;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.block.AbstractBlock;
+import jfree.chart.block.Block;
+import jfree.chart.block.LengthConstraintType;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.RectangleAnchor;
@@ -637,10 +637,10 @@ public class LegendGraphic extends AbstractBlock
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof LegendGraphic)) {
+        if (!(obj instanceof jfree.chart.title.LegendGraphic)) {
             return false;
         }
-        LegendGraphic that = (LegendGraphic) obj;
+        jfree.chart.title.LegendGraphic that = (jfree.chart.title.LegendGraphic) obj;
         if (this.shapeVisible != that.shapeVisible) {
             return false;
         }
@@ -709,7 +709,7 @@ public class LegendGraphic extends AbstractBlock
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        LegendGraphic clone = (LegendGraphic) super.clone();
+        jfree.chart.title.LegendGraphic clone = (jfree.chart.title.LegendGraphic) super.clone();
         clone.shape = ShapeUtilities.clone(this.shape);
         clone.line = ShapeUtilities.clone(this.line);
         return clone;

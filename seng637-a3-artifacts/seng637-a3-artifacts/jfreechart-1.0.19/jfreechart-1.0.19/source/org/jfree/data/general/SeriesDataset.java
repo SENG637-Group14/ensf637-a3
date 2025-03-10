@@ -43,11 +43,12 @@
 
 package org.jfree.data.general;
 
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.data.xy.IntervalXYZDataset;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYZDataset;
+import jfree.data.category.CategoryDataset;
+import jfree.data.general.Dataset;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.IntervalXYZDataset;
+import jfree.data.xy.XYDataset;
+import jfree.data.xy.XYZDataset;
 
 /**
  * The interface for a dataset consisting of one or many series of data.

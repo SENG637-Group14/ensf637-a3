@@ -55,9 +55,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
 
-import org.jfree.data.Range;
+import jfree.chart.block.Block;
+import jfree.chart.block.BlockBorder;
+import jfree.chart.block.BlockFrame;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.util.ParamChecks;
+
+import jfree.data.Range;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.ui.Size2D;
@@ -81,7 +86,7 @@ public class AbstractBlock implements Cloneable, Serializable {
     private RectangleInsets margin;
 
     /** The frame (or border) for the block. */
-    private BlockFrame frame;
+    private jfree.chart.block.BlockFrame frame;
 
     /** The padding between the block content and the border. */
     private RectangleInsets padding;
@@ -112,7 +117,7 @@ public class AbstractBlock implements Cloneable, Serializable {
         this.height = 0.0;
         this.bounds = new Rectangle2D.Float();
         this.margin = RectangleInsets.ZERO_INSETS;
-        this.frame = BlockBorder.NONE;
+        this.frame = jfree.chart.block.BlockBorder.NONE;
         this.padding = RectangleInsets.ZERO_INSETS;
     }
 
@@ -232,9 +237,9 @@ public class AbstractBlock implements Cloneable, Serializable {
      *
      * @deprecated Use {@link #getFrame()} instead.
      */
-    public BlockBorder getBorder() {
-        if (this.frame instanceof BlockBorder) {
-            return (BlockBorder) this.frame;
+    public jfree.chart.block.BlockBorder getBorder() {
+        if (this.frame instanceof jfree.chart.block.BlockBorder) {
+            return (jfree.chart.block.BlockBorder) this.frame;
         }
         else {
             return null;
@@ -242,16 +247,16 @@ public class AbstractBlock implements Cloneable, Serializable {
     }
 
     /**
-     * Sets the border for the block (use {@link BlockBorder#NONE} for
+     * Sets the border for the block (use {@link jfree.chart.block.BlockBorder#NONE} for
      * no border).
      *
      * @param border  the border (<code>null</code> not permitted).
      *
      * @see #getBorder()
      *
-     * @deprecated Use {@link #setFrame(BlockFrame)} instead.
+     * @deprecated Use {@link #setFrame(jfree.chart.block.BlockFrame)} instead.
      */
-    public void setBorder(BlockBorder border) {
+    public void setBorder(jfree.chart.block.BlockBorder border) {
         setFrame(border);
     }
 
@@ -274,9 +279,9 @@ public class AbstractBlock implements Cloneable, Serializable {
      * @return The frame.
      *
      * @since 1.0.5
-     * @see #setFrame(BlockFrame)
+     * @see #setFrame(jfree.chart.block.BlockFrame)
      */
-    public BlockFrame getFrame() {
+    public jfree.chart.block.BlockFrame getFrame() {
         return this.frame;
     }
 
@@ -288,7 +293,7 @@ public class AbstractBlock implements Cloneable, Serializable {
      * @since 1.0.5
      * @see #getFrame()
      */
-    public void setFrame(BlockFrame frame) {
+    public void setFrame(jfree.chart.block.BlockFrame frame) {
         ParamChecks.nullNotPermitted(frame, "frame");
         this.frame = frame;
     }
@@ -363,7 +368,7 @@ public class AbstractBlock implements Cloneable, Serializable {
      * @return The block size (in Java2D units, never <code>null</code>).
      */
     public Size2D arrange(Graphics2D g2) {
-        return arrange(g2, RectangleConstraint.NONE);
+        return arrange(g2, jfree.chart.block.RectangleConstraint.NONE);
     }
 
     /**
@@ -375,7 +380,7 @@ public class AbstractBlock implements Cloneable, Serializable {
      *
      * @return The block size (in Java2D units, never <code>null</code>).
      */
-    public Size2D arrange(Graphics2D g2, RectangleConstraint constraint) {
+    public Size2D arrange(Graphics2D g2, jfree.chart.block.RectangleConstraint constraint) {
         Size2D base = new Size2D(getWidth(), getHeight());
         return constraint.calculateConstrainedSize(base);
     }
@@ -447,9 +452,9 @@ public class AbstractBlock implements Cloneable, Serializable {
      *
      * @return The content constraint.
      */
-    protected RectangleConstraint toContentConstraint(RectangleConstraint c) {
+    protected jfree.chart.block.RectangleConstraint toContentConstraint(jfree.chart.block.RectangleConstraint c) {
         ParamChecks.nullNotPermitted(c, "c");
-        if (c.equals(RectangleConstraint.NONE)) {
+        if (c.equals(jfree.chart.block.RectangleConstraint.NONE)) {
             return c;
         }
         double w = c.getWidth();
@@ -588,10 +593,10 @@ public class AbstractBlock implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AbstractBlock)) {
+        if (!(obj instanceof jfree.chart.block.AbstractBlock)) {
             return false;
         }
-        AbstractBlock that = (AbstractBlock) obj;
+        jfree.chart.block.AbstractBlock that = (jfree.chart.block.AbstractBlock) obj;
         if (!ObjectUtilities.equal(this.id, that.id)) {
             return false;
         }
@@ -626,7 +631,7 @@ public class AbstractBlock implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        AbstractBlock clone = (AbstractBlock) super.clone();
+        jfree.chart.block.AbstractBlock clone = (jfree.chart.block.AbstractBlock) super.clone();
         clone.bounds = (Rectangle2D) ShapeUtilities.clone(this.bounds);
         if (this.frame instanceof PublicCloneable) {
             PublicCloneable pc = (PublicCloneable) this.frame;

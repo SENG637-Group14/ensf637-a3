@@ -46,8 +46,10 @@ import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.util.Date;
 
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.labels.AbstractXYItemLabelGenerator;
+import jfree.chart.labels.XYItemLabelGenerator;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -263,7 +265,7 @@ public class IntervalXYItemLabelGenerator extends AbstractXYItemLabelGenerator
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof IntervalXYItemLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.IntervalXYItemLabelGenerator)) {
             return false;
         }
         return super.equals(obj);

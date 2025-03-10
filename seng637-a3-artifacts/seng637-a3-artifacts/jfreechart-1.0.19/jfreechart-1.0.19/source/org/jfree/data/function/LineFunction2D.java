@@ -44,7 +44,8 @@ package org.jfree.data.function;
 
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
+import jfree.chart.HashUtilities;
+import jfree.data.function.Function2D;
 
 /**
  * A function in the form y = a + bx.
@@ -111,10 +112,10 @@ public class LineFunction2D implements Function2D, Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof LineFunction2D)) {
+        if (!(obj instanceof jfree.data.function.LineFunction2D)) {
             return false;
         }
-        LineFunction2D that = (LineFunction2D) obj;
+        jfree.data.function.LineFunction2D that = (jfree.data.function.LineFunction2D) obj;
         if (this.a != that.a) {
             return false;
         }

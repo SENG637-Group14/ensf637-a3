@@ -51,7 +51,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -159,10 +160,10 @@ public class CustomXYURLGenerator implements XYURLGenerator, Cloneable,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CustomXYURLGenerator)) {
+        if (!(obj instanceof jfree.chart.urls.CustomXYURLGenerator)) {
             return false;
         }
-        CustomXYURLGenerator that = (CustomXYURLGenerator) obj;
+        jfree.chart.urls.CustomXYURLGenerator that = (jfree.chart.urls.CustomXYURLGenerator) obj;
         int listCount = getListCount();
         if (listCount != that.getListCount()) {
             return false;
@@ -203,7 +204,7 @@ public class CustomXYURLGenerator implements XYURLGenerator, Cloneable,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        CustomXYURLGenerator clone = (CustomXYURLGenerator) super.clone();
+        jfree.chart.urls.CustomXYURLGenerator clone = (jfree.chart.urls.CustomXYURLGenerator) super.clone();
         clone.urlSeries = new java.util.ArrayList(this.urlSeries);
         return clone;
     }

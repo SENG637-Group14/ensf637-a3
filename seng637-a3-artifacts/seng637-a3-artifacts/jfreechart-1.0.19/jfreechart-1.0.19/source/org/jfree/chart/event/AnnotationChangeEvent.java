@@ -40,8 +40,10 @@
 
 package org.jfree.chart.event;
 
-import org.jfree.chart.annotations.Annotation;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.annotations.Annotation;
+import jfree.chart.event.AnnotationChangeListener;
+import jfree.chart.event.ChartChangeEvent;
+import jfree.chart.util.ParamChecks;
 
 /**
  * An event that can be forwarded to any {@link AnnotationChangeListener} to

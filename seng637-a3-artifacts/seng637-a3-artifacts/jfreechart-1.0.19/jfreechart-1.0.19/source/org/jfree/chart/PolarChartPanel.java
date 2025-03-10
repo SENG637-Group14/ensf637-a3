@@ -50,8 +50,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PolarPlot;
+import jfree.chart.ChartPanel;
+import jfree.chart.JFreeChart;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PolarPlot;
 
 /**
  * <code>PolarChartPanel</code> is the top level object for using the
@@ -97,7 +99,7 @@ public class PolarChartPanel extends ChartPanel {
      *
      * @param chart  the chart.
      */
-    public PolarChartPanel(JFreeChart chart) {
+    public PolarChartPanel(jfree.chart.JFreeChart chart) {
         this(chart, true);
     }
 
@@ -107,7 +109,7 @@ public class PolarChartPanel extends ChartPanel {
      * @param chart  the chart.
      * @param useBuffer  buffered?
      */
-    public PolarChartPanel(JFreeChart chart, boolean useBuffer) {
+    public PolarChartPanel(jfree.chart.JFreeChart chart, boolean useBuffer) {
         super(chart, useBuffer);
         checkChart(chart);
         setMinimumDrawWidth(200);
@@ -125,7 +127,7 @@ public class PolarChartPanel extends ChartPanel {
      * @param chart  The chart.
      */
     @Override
-    public void setChart(JFreeChart chart) {
+    public void setChart(jfree.chart.JFreeChart chart) {
         checkChart(chart);
         super.setChart(chart);
     }

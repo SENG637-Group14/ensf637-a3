@@ -43,7 +43,8 @@
 package org.jfree.data.function;
 
 import java.io.Serializable;
-import org.jfree.chart.HashUtilities;
+import jfree.chart.HashUtilities;
+import jfree.data.function.Function2D;
 
 /**
  * A function of the form y = a * x ^ b.
@@ -110,10 +111,10 @@ public class PowerFunction2D implements Function2D, Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof PowerFunction2D)) {
+        if (!(obj instanceof jfree.data.function.PowerFunction2D)) {
             return false;
         }
-        PowerFunction2D that = (PowerFunction2D) obj;
+        jfree.data.function.PowerFunction2D that = (jfree.data.function.PowerFunction2D) obj;
         if (this.a != that.a) {
             return false;
         }

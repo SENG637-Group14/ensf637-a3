@@ -40,11 +40,15 @@
 
 package org.jfree.chart.plot.dial;
 
+import jfree.chart.plot.dial.DialLayer;
+import jfree.chart.plot.dial.DialLayerChangeEvent;
+import jfree.chart.plot.dial.DialPlot;
+
 import java.util.EventListener;
 
 /**
  * The interface via which an object is notified of changes to a
- * {@link DialLayer}.  The {@link DialPlot} class listens for changes to its
+ * {@link jfree.chart.plot.dial.DialLayer}.  The {@link DialPlot} class listens for changes to its
  * layers in this way.
  *
  * @since 1.0.7

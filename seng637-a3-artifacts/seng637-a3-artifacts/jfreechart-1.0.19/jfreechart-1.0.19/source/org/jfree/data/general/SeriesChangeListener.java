@@ -42,6 +42,8 @@
 
 package org.jfree.data.general;
 
+import jfree.data.general.SeriesChangeEvent;
+
 import java.util.EventListener;
 
 /**

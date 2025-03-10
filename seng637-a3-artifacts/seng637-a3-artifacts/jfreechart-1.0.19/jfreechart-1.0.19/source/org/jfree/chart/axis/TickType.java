@@ -51,10 +51,10 @@ import java.io.Serializable;
 public final class TickType implements Serializable {
 
     /** Major tick. */
-    public static final TickType MAJOR = new TickType("MAJOR");
+    public static final jfree.chart.axis.TickType MAJOR = new jfree.chart.axis.TickType("MAJOR");
 
     /** Minor tick. */
-    public static final TickType MINOR = new TickType("MINOR");
+    public static final jfree.chart.axis.TickType MINOR = new jfree.chart.axis.TickType("MINOR");
 
     /** The name. */
     private String name;
@@ -91,11 +91,11 @@ public final class TickType implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof TickType)) {
+        if (!(obj instanceof jfree.chart.axis.TickType)) {
             return false;
         }
 
-        TickType that = (TickType) obj;
+        jfree.chart.axis.TickType that = (jfree.chart.axis.TickType) obj;
         if (!this.name.equals(that.name)) {
             return false;
         }
@@ -111,11 +111,11 @@ public final class TickType implements Serializable {
      */
     private Object readResolve() throws ObjectStreamException {
         Object result = null;
-        if (this.equals(TickType.MAJOR)) {
-            result = TickType.MAJOR;
+        if (this.equals(jfree.chart.axis.TickType.MAJOR)) {
+            result = jfree.chart.axis.TickType.MAJOR;
         }
-        else if (this.equals(TickType.MINOR)) {
-            result = TickType.MINOR;
+        else if (this.equals(jfree.chart.axis.TickType.MINOR)) {
+            result = jfree.chart.axis.TickType.MINOR;
         }
         return result;
     }

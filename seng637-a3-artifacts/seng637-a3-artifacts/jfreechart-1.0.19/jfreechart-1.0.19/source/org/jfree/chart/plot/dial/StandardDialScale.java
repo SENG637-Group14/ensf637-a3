@@ -63,7 +63,12 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.plot.dial.AbstractDialLayer;
+import jfree.chart.plot.dial.DialLayerChangeEvent;
+import jfree.chart.plot.dial.DialPlot;
+import jfree.chart.plot.dial.DialScale;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
@@ -72,7 +77,7 @@ import org.jfree.util.PaintUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A scale for a {@link DialPlot}.
+ * A scale for a {@link jfree.chart.plot.dial.DialPlot}.
  *
  * @since 1.0.7
  */
@@ -245,7 +250,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the lower bound for the scale and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param lower  the lower bound.
      *
@@ -255,7 +260,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
      */
     public void setLowerBound(double lower) {
         this.lowerBound = lower;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -273,7 +278,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the upper bound for the scale and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param upper  the upper bound.
      *
@@ -283,7 +288,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
      */
     public void setUpperBound(double upper) {
         this.upperBound = upper;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -300,7 +305,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the start angle for the scale and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param angle  the angle (in degrees).
      *
@@ -308,7 +313,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
      */
     public void setStartAngle(double angle) {
         this.startAngle = angle;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -323,7 +328,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
     }
 
     /**
-     * Sets the extent and sends a {@link DialLayerChangeEvent} to all
+     * Sets the extent and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all
      * registered listeners.
      *
      * @param extent  the extent.
@@ -332,7 +337,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
      */
     public void setExtent(double extent) {
         this.extent = extent;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -348,7 +353,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
     }
 
     /**
-     * Sets the tick radius and sends a {@link DialLayerChangeEvent} to all
+     * Sets the tick radius and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all
      * registered listeners.
      *
      * @param radius  the radius.
@@ -361,7 +366,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
                     "The 'radius' must be positive.");
         }
         this.tickRadius = radius;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -377,7 +382,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the increment (in data units) between major tick labels and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param increment  the increment (must be &gt; 0).
      *
@@ -389,7 +394,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
                     "The 'increment' must be positive.");
         }
         this.majorTickIncrement = increment;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -407,7 +412,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the length factor for the major tick marks and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param length  the length.
      *
@@ -418,7 +423,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
             throw new IllegalArgumentException("Negative 'length' argument.");
         }
         this.majorTickLength = length;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -433,7 +438,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
     }
 
     /**
-     * Sets the major tick paint and sends a {@link DialLayerChangeEvent} to
+     * Sets the major tick paint and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
@@ -443,7 +448,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
     public void setMajorTickPaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.majorTickPaint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -459,7 +464,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the stroke used to draw the major tick marks and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param stroke  the stroke (<code>null</code> not permitted).
      *
@@ -468,7 +473,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
     public void setMajorTickStroke(Stroke stroke) {
         ParamChecks.nullNotPermitted(stroke, "stroke");
         this.majorTickStroke = stroke;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -484,7 +489,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the number of minor tick marks between major tick marks and sends
-     * a {@link DialLayerChangeEvent} to all registered listeners.
+     * a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param count  the count.
      *
@@ -496,7 +501,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
                     "The 'count' cannot be negative.");
         }
         this.minorTickCount = count;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -514,7 +519,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the length factor for the minor tick marks and sends
-     * a {@link DialLayerChangeEvent} to all registered listeners.
+     * a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param length  the length.
      *
@@ -525,7 +530,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
             throw new IllegalArgumentException("Negative 'length' argument.");
         }
         this.minorTickLength = length;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -541,7 +546,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the paint used to draw the minor tick marks and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
      *
@@ -550,7 +555,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
     public void setMinorTickPaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.minorTickPaint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -568,7 +573,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the stroke used to draw the minor tick marks and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param stroke  the stroke (<code>null</code> not permitted).
      *
@@ -579,7 +584,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
     public void setMinorTickStroke(Stroke stroke) {
         ParamChecks.nullNotPermitted(stroke, "stroke");
         this.minorTickStroke = stroke;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -594,7 +599,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
     }
 
     /**
-     * Sets the tick label offset and sends a {@link DialLayerChangeEvent} to
+     * Sets the tick label offset and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param offset  the offset.
@@ -603,7 +608,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
      */
     public void setTickLabelOffset(double offset) {
         this.tickLabelOffset = offset;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -619,7 +624,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the font used to display the tick labels and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param font  the font (<code>null</code> not permitted).
      *
@@ -628,7 +633,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
     public void setTickLabelFont(Font font) {
         ParamChecks.nullNotPermitted(font, "font");
         this.tickLabelFont = font;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -644,14 +649,14 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the paint used to draw the tick labels and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
      */
     public void setTickLabelPaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.tickLabelPaint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -668,7 +673,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the flag that controls whether or not the tick labels are
-     * displayed, and sends a {@link DialLayerChangeEvent} to all registered
+     * displayed, and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered
      * listeners.
      *
      * @param visible  the new flag value.
@@ -677,7 +682,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
      */
     public void setTickLabelsVisible(boolean visible) {
         this.tickLabelsVisible = visible;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -694,7 +699,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets the number formatter used to convert the tick label values to
-     * strings, and sends a {@link DialLayerChangeEvent} to all registered
+     * strings, and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered
      * listeners.
      *
      * @param formatter  the formatter (<code>null</code> not permitted).
@@ -704,7 +709,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
     public void setTickLabelFormatter(NumberFormat formatter) {
         ParamChecks.nullNotPermitted(formatter, "formatter");
         this.tickLabelFormatter = formatter;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -721,7 +726,7 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
 
     /**
      * Sets a flag that controls whether or not the first tick label is
-     * visible, and sends a {@link DialLayerChangeEvent} to all registered
+     * visible, and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered
      * listeners.
      *
      * @param visible  the new flag value.
@@ -755,17 +760,17 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
      *     permitted).
      */
     @Override
-    public void draw(Graphics2D g2, DialPlot plot, Rectangle2D frame,
-            Rectangle2D view) {
+    public void draw(Graphics2D g2, jfree.chart.plot.dial.DialPlot plot, Rectangle2D frame,
+                     Rectangle2D view) {
 
-        Rectangle2D arcRect = DialPlot.rectangleByRadius(frame,
+        Rectangle2D arcRect = jfree.chart.plot.dial.DialPlot.rectangleByRadius(frame,
                 this.tickRadius, this.tickRadius);
-        Rectangle2D arcRectMajor = DialPlot.rectangleByRadius(frame,
+        Rectangle2D arcRectMajor = jfree.chart.plot.dial.DialPlot.rectangleByRadius(frame,
                 this.tickRadius - this.majorTickLength,
                 this.tickRadius - this.majorTickLength);
         Rectangle2D arcRectMinor = arcRect;
         if (this.minorTickCount > 0 && this.minorTickLength > 0.0) {
-            arcRectMinor = DialPlot.rectangleByRadius(frame,
+            arcRectMinor = jfree.chart.plot.dial.DialPlot.rectangleByRadius(frame,
                     this.tickRadius - this.minorTickLength,
                     this.tickRadius - this.minorTickLength);
         }
@@ -878,10 +883,10 @@ public class StandardDialScale extends AbstractDialLayer implements DialScale,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardDialScale)) {
+        if (!(obj instanceof jfree.chart.plot.dial.StandardDialScale)) {
             return false;
         }
-        StandardDialScale that = (StandardDialScale) obj;
+        jfree.chart.plot.dial.StandardDialScale that = (jfree.chart.plot.dial.StandardDialScale) obj;
         if (this.lowerBound != that.lowerBound) {
             return false;
         }

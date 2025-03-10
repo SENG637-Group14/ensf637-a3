@@ -111,20 +111,25 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.PieSectionEntity;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.labels.PieToolTipGenerator;
-import org.jfree.chart.util.PaintAlpha;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.general.PieDataset;
+import jfree.chart.JFreeChart;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.PieSectionEntity;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.labels.PieToolTipGenerator;
+import jfree.chart.plot.PiePlot;
+import jfree.chart.plot.PiePlotState;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.util.PaintAlpha;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.general.PieDataset;
 import org.jfree.ui.RectangleInsets;
 
 /**
  * A plot that displays data in the form of a 3D pie chart, using data from
  * any class that implements the {@link PieDataset} interface.
  * <P>
- * Although this class extends {@link PiePlot}, it does not currently support
+ * Although this class extends {@link jfree.chart.plot.PiePlot}, it does not currently support
  * exploded sections.
  */
 public class PiePlot3D extends PiePlot implements Serializable {
@@ -220,7 +225,7 @@ public class PiePlot3D extends PiePlot implements Serializable {
     /**
      * Draws the plot on a Java 2D graphics device (such as the screen or a
      * printer).  This method is called by the
-     * {@link org.jfree.chart.JFreeChart} class, you don't normally need
+     * {@link JFreeChart} class, you don't normally need
      * to call it yourself.
      *
      * @param g2  the graphics device.
@@ -1039,10 +1044,10 @@ public class PiePlot3D extends PiePlot implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof PiePlot3D)) {
+        if (!(obj instanceof jfree.chart.plot.PiePlot3D)) {
             return false;
         }
-        PiePlot3D that = (PiePlot3D) obj;
+        jfree.chart.plot.PiePlot3D that = (jfree.chart.plot.PiePlot3D) obj;
         if (this.depthFactor != that.depthFactor) {
             return false;
         }

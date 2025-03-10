@@ -54,14 +54,16 @@
 
 package org.jfree.data.general;
 
-import org.jfree.data.xy.AbstractIntervalXYDataset;
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.data.xy.OHLCDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.data.general.CombinationDataset;
+import jfree.data.general.SeriesDataset;
+import jfree.data.xy.AbstractIntervalXYDataset;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.OHLCDataset;
+import jfree.data.xy.XYDataset;
 
 /**
  * This class will create a dataset with one or more series from another
- * {@link SeriesDataset}.
+ * {@link jfree.data.general.SeriesDataset}.
  *
  * @deprecated As of version 1.0.13.  This class will be removed from
  *     JFreeChart 1.2.0 onwards.  Anyone needing this facility will need to
@@ -71,7 +73,7 @@ public class SubSeriesDataset extends AbstractIntervalXYDataset
         implements OHLCDataset, IntervalXYDataset, CombinationDataset {
 
     /** The parent dataset. */
-    private SeriesDataset parent = null;
+    private jfree.data.general.SeriesDataset parent = null;
 
     /** Storage for map. */
     private int[] map;  // maps our series into our parent's
@@ -83,7 +85,7 @@ public class SubSeriesDataset extends AbstractIntervalXYDataset
      * @param parent  underlying dataset
      * @param map  int[] of series from parent to include in this Dataset
      */
-    public SubSeriesDataset(SeriesDataset parent, int[] map) {
+    public SubSeriesDataset(jfree.data.general.SeriesDataset parent, int[] map) {
         this.parent = parent;
         this.map = map;
     }
@@ -95,7 +97,7 @@ public class SubSeriesDataset extends AbstractIntervalXYDataset
      * @param parent  underlying dataset
      * @param series  series from parent to include in this Dataset
      */
-    public SubSeriesDataset(SeriesDataset parent, int series) {
+    public SubSeriesDataset(jfree.data.general.SeriesDataset parent, int series) {
         this(parent, new int[] {series});
     }
 

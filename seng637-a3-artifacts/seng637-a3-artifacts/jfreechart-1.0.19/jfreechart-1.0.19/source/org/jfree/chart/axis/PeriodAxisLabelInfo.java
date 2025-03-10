@@ -60,9 +60,11 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-import org.jfree.chart.util.ParamChecks;
 
-import org.jfree.data.time.RegularTimePeriod;
+import jfree.chart.axis.PeriodAxis;
+import jfree.chart.util.ParamChecks;
+
+import jfree.data.time.RegularTimePeriod;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleInsets;
 
@@ -292,8 +294,8 @@ public class PeriodAxisLabelInfo implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (obj instanceof PeriodAxisLabelInfo) {
-            PeriodAxisLabelInfo info = (PeriodAxisLabelInfo) obj;
+        if (obj instanceof jfree.chart.axis.PeriodAxisLabelInfo) {
+            jfree.chart.axis.PeriodAxisLabelInfo info = (jfree.chart.axis.PeriodAxisLabelInfo) obj;
             if (!info.periodClass.equals(this.periodClass)) {
                 return false;
             }
@@ -345,7 +347,7 @@ public class PeriodAxisLabelInfo implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        PeriodAxisLabelInfo clone = (PeriodAxisLabelInfo) super.clone();
+        jfree.chart.axis.PeriodAxisLabelInfo clone = (jfree.chart.axis.PeriodAxisLabelInfo) super.clone();
         return clone;
     }
 

@@ -53,15 +53,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.jfree.chart.axis.Axis;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.NumberTickUnit;
+import jfree.chart.axis.Axis;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.NumberTickUnit;
+import jfree.chart.editor.DefaultValueAxisEditor;
 import org.jfree.layout.LCBLayout;
 
 /**
  * A panel for editing the properties of a value axis.
  */
-class DefaultNumberAxisEditor extends DefaultValueAxisEditor
+class DefaultNumberAxisEditor extends jfree.chart.editor.DefaultValueAxisEditor
     implements FocusListener {
 
     private double manualTickUnitValue;

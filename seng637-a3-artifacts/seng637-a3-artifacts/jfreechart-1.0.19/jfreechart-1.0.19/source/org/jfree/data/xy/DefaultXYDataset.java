@@ -47,12 +47,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jfree.data.DomainOrder;
-import org.jfree.data.general.DatasetChangeEvent;
+import jfree.data.DomainOrder;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.xy.AbstractXYDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A default implementation of the {@link XYDataset} interface that stores
+ * A default implementation of the {@link jfree.data.xy.XYDataset} interface that stores
  * data values in arrays of double primitives.
  *
  * @since 1.0.2
@@ -320,10 +322,10 @@ public class DefaultXYDataset extends AbstractXYDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultXYDataset)) {
+        if (!(obj instanceof jfree.data.xy.DefaultXYDataset)) {
             return false;
         }
-        DefaultXYDataset that = (DefaultXYDataset) obj;
+        jfree.data.xy.DefaultXYDataset that = (jfree.data.xy.DefaultXYDataset) obj;
         if (!this.seriesKeys.equals(that.seriesKeys)) {
             return false;
         }
@@ -368,7 +370,7 @@ public class DefaultXYDataset extends AbstractXYDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultXYDataset clone = (DefaultXYDataset) super.clone();
+        jfree.data.xy.DefaultXYDataset clone = (jfree.data.xy.DefaultXYDataset) super.clone();
         clone.seriesKeys = new java.util.ArrayList(this.seriesKeys);
         clone.seriesList = new ArrayList(this.seriesList.size());
         for (int i = 0; i < this.seriesList.size(); i++) {

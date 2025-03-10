@@ -48,8 +48,9 @@
 package org.jfree.data.xy;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
+import jfree.data.xy.XYSeries;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -179,8 +180,8 @@ public class XYDataItem implements Cloneable, Comparable, Serializable {
 
         // CASE 1 : Comparing to another TimeSeriesDataPair object
         // -------------------------------------------------------
-        if (o1 instanceof XYDataItem) {
-            XYDataItem dataItem = (XYDataItem) o1;
+        if (o1 instanceof jfree.data.xy.XYDataItem) {
+            jfree.data.xy.XYDataItem dataItem = (jfree.data.xy.XYDataItem) o1;
             double compare = this.x.doubleValue()
                              - dataItem.getX().doubleValue();
             if (compare > 0.0) {
@@ -237,10 +238,10 @@ public class XYDataItem implements Cloneable, Comparable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYDataItem)) {
+        if (!(obj instanceof jfree.data.xy.XYDataItem)) {
             return false;
         }
-        XYDataItem that = (XYDataItem) obj;
+        jfree.data.xy.XYDataItem that = (jfree.data.xy.XYDataItem) obj;
         if (!this.x.equals(that.x)) {
             return false;
         }

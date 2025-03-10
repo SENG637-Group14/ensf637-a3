@@ -52,15 +52,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.data.Range;
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import jfree.data.Range;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.ObjectUtilities;
@@ -407,10 +409,10 @@ public class XYErrorRenderer extends XYLineAndShapeRenderer {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYErrorRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYErrorRenderer)) {
             return false;
         }
-        XYErrorRenderer that = (XYErrorRenderer) obj;
+        jfree.chart.renderer.xy.XYErrorRenderer that = (jfree.chart.renderer.xy.XYErrorRenderer) obj;
         if (this.drawXError != that.drawXError) {
             return false;
         }

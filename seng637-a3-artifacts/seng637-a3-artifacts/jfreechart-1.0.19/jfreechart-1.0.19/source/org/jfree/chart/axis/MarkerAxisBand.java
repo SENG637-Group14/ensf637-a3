@@ -59,7 +59,8 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.plot.IntervalMarker;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.plot.IntervalMarker;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.ObjectUtilities;
@@ -73,7 +74,7 @@ public class MarkerAxisBand implements Serializable {
     private static final long serialVersionUID = -1729482413886398919L;
 
     /** The axis that the band belongs to. */
-    private NumberAxis axis;
+    private jfree.chart.axis.NumberAxis axis;
 
     /** The top outer gap. */
     private double topOuterGap;
@@ -235,10 +236,10 @@ public class MarkerAxisBand implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof MarkerAxisBand)) {
+        if (!(obj instanceof jfree.chart.axis.MarkerAxisBand)) {
             return false;
         }
-        MarkerAxisBand that = (MarkerAxisBand) obj;
+        jfree.chart.axis.MarkerAxisBand that = (jfree.chart.axis.MarkerAxisBand) obj;
         if (this.topOuterGap != that.topOuterGap) {
             return false;
         }

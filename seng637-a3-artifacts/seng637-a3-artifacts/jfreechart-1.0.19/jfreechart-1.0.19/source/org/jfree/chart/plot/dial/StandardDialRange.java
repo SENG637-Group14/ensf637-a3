@@ -55,8 +55,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.plot.dial.AbstractDialLayer;
+import jfree.chart.plot.dial.DialLayer;
+import jfree.chart.plot.dial.DialLayerChangeEvent;
+import jfree.chart.plot.dial.DialPlot;
+import jfree.chart.plot.dial.DialScale;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PaintUtilities;
 import org.jfree.util.PublicCloneable;
@@ -135,7 +140,7 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
     }
 
     /**
-     * Sets the scale index and sends a {@link DialLayerChangeEvent} to all
+     * Sets the scale index and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all
      * registered listeners.
      *
      * @param index  the scale index.
@@ -144,7 +149,7 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
      */
     public void setScaleIndex(int index) {
         this.scaleIndex = index;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -160,7 +165,7 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
 
     /**
      * Sets the lower bound of the dial range and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param bound  the lower bound.
      *
@@ -172,7 +177,7 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
                     "Lower bound must be less than upper bound.");
         }
         this.lowerBound = bound;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -188,7 +193,7 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
 
     /**
      * Sets the upper bound of the dial range and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param bound  the upper bound.
      *
@@ -200,11 +205,11 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
                     "Lower bound must be less than upper bound.");
         }
         this.upperBound = bound;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
-     * Sets the bounds for the range and sends a {@link DialLayerChangeEvent}
+     * Sets the bounds for the range and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent}
      * to all registered listeners.
      *
      * @param lower  the lower bound.
@@ -217,7 +222,7 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
         }
         this.lowerBound = lower;
         this.upperBound = upper;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -233,7 +238,7 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
 
     /**
      * Sets the paint used to highlight the range and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
      *
@@ -242,7 +247,7 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
     public void setPaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.paint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -257,7 +262,7 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
     }
 
     /**
-     * Sets the inner radius and sends a {@link DialLayerChangeEvent} to all
+     * Sets the inner radius and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all
      * registered listeners.
      *
      * @param radius  the radius.
@@ -266,7 +271,7 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
      */
     public void setInnerRadius(double radius) {
         this.innerRadius = radius;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -281,7 +286,7 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
     }
 
     /**
-     * Sets the outer radius and sends a {@link DialLayerChangeEvent} to all
+     * Sets the outer radius and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all
      * registered listeners.
      *
      * @param radius  the radius.
@@ -313,10 +318,10 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
      * @param view  the dial's view rectangle (in Java2D space).
      */
     @Override
-    public void draw(Graphics2D g2, DialPlot plot, Rectangle2D frame,
-            Rectangle2D view) {
+    public void draw(Graphics2D g2, jfree.chart.plot.dial.DialPlot plot, Rectangle2D frame,
+                     Rectangle2D view) {
 
-        Rectangle2D arcRectInner = DialPlot.rectangleByRadius(frame,
+        Rectangle2D arcRectInner = jfree.chart.plot.dial.DialPlot.rectangleByRadius(frame,
                 this.innerRadius, this.innerRadius);
         Rectangle2D arcRectOuter = DialPlot.rectangleByRadius(frame,
                 this.outerRadius, this.outerRadius);
@@ -352,10 +357,10 @@ public class StandardDialRange extends AbstractDialLayer implements DialLayer,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardDialRange)) {
+        if (!(obj instanceof jfree.chart.plot.dial.StandardDialRange)) {
             return false;
         }
-        StandardDialRange that = (StandardDialRange) obj;
+        jfree.chart.plot.dial.StandardDialRange that = (jfree.chart.plot.dial.StandardDialRange) obj;
         if (this.scaleIndex != that.scaleIndex) {
             return false;
         }

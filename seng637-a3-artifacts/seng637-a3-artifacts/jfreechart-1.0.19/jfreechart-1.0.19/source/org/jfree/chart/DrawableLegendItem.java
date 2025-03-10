@@ -47,6 +47,8 @@
 
 package org.jfree.chart;
 
+import jfree.chart.LegendItem;
+
 import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
@@ -63,7 +65,7 @@ public class DrawableLegendItem {
      * The legend item (encapsulates information about the label, color and
      * shape).
      */
-    private LegendItem item;
+    private jfree.chart.LegendItem item;
 
     /** The x-coordinate for the item's location. */
     private double x;
@@ -91,7 +93,7 @@ public class DrawableLegendItem {
      *
      * @param item  the legend item for display.
      */
-    public DrawableLegendItem(LegendItem item) {
+    public DrawableLegendItem(jfree.chart.LegendItem item) {
         this.item = item;
     }
 

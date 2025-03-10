@@ -42,13 +42,16 @@
 
 package org.jfree.chart.plot;
 
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.XYPlot;
+
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 
 /**
  * Defines the tokens that indicate the rendering order for datasets in a
- * {@link org.jfree.chart.plot.CategoryPlot} or an
- * {@link org.jfree.chart.plot.XYPlot}.
+ * {@link CategoryPlot} or an
+ * {@link XYPlot}.
  */
 public final class DatasetRenderingOrder implements Serializable {
 
@@ -59,15 +62,15 @@ public final class DatasetRenderingOrder implements Serializable {
      * Render datasets in the order 0, 1, 2, ..., N-1, where N is the number
      * of datasets.
      */
-    public static final DatasetRenderingOrder FORWARD
-            = new DatasetRenderingOrder("DatasetRenderingOrder.FORWARD");
+    public static final jfree.chart.plot.DatasetRenderingOrder FORWARD
+            = new jfree.chart.plot.DatasetRenderingOrder("DatasetRenderingOrder.FORWARD");
 
     /**
      * Render datasets in the order N-1, N-2, ..., 2, 1, 0, where N is the
      * number of datasets.
      */
-    public static final DatasetRenderingOrder REVERSE
-            = new DatasetRenderingOrder("DatasetRenderingOrder.REVERSE");
+    public static final jfree.chart.plot.DatasetRenderingOrder REVERSE
+            = new jfree.chart.plot.DatasetRenderingOrder("DatasetRenderingOrder.REVERSE");
 
     /** The name. */
     private String name;
@@ -104,10 +107,10 @@ public final class DatasetRenderingOrder implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof DatasetRenderingOrder)) {
+        if (!(obj instanceof jfree.chart.plot.DatasetRenderingOrder)) {
             return false;
         }
-        DatasetRenderingOrder order = (DatasetRenderingOrder) obj;
+        jfree.chart.plot.DatasetRenderingOrder order = (jfree.chart.plot.DatasetRenderingOrder) obj;
         if (!this.name.equals(order.toString())) {
             return false;
         }
@@ -132,11 +135,11 @@ public final class DatasetRenderingOrder implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(DatasetRenderingOrder.FORWARD)) {
-            return DatasetRenderingOrder.FORWARD;
+        if (this.equals(jfree.chart.plot.DatasetRenderingOrder.FORWARD)) {
+            return jfree.chart.plot.DatasetRenderingOrder.FORWARD;
         }
-        else if (this.equals(DatasetRenderingOrder.REVERSE)) {
-            return DatasetRenderingOrder.REVERSE;
+        else if (this.equals(jfree.chart.plot.DatasetRenderingOrder.REVERSE)) {
+            return jfree.chart.plot.DatasetRenderingOrder.REVERSE;
         }
         return null;
     }

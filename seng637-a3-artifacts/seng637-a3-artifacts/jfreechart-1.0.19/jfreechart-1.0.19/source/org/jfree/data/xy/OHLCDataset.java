@@ -48,6 +48,8 @@
 
 package org.jfree.data.xy;
 
+import jfree.data.xy.XYDataset;
+
 /**
  * An interface that defines data in the form of (x, high, low, open, close)
  * tuples.

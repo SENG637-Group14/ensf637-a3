@@ -42,12 +42,13 @@
 
 package org.jfree.data.contour;
 
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
-import org.jfree.data.Range;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.data.Range;
+import jfree.data.contour.DefaultContourDataset;
 
 /**
- * A convenience class that extends the {@link DefaultContourDataset} to
+ * A convenience class that extends the {@link jfree.data.contour.DefaultContourDataset} to
  * accommodate non-grid data.
  *
  * @deprecated This class is no longer supported (as of version 1.0.4).  If

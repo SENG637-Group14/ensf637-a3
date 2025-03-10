@@ -71,10 +71,14 @@ import java.util.EventListener;
 import java.util.List;
 
 import javax.swing.event.EventListenerList;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
+import jfree.data.general.Dataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetChangeListener;
+import jfree.data.general.DatasetGroup;
 
 /**
- * An abstract implementation of the {@link Dataset} interface, containing a
+ * An abstract implementation of the {@link jfree.data.general.Dataset} interface, containing a
  * mechanism for registering change listeners.
  */
 public abstract class AbstractDataset implements Dataset, Cloneable,
@@ -84,7 +88,7 @@ public abstract class AbstractDataset implements Dataset, Cloneable,
     private static final long serialVersionUID = 1918768939869230744L;
 
     /** The group that the dataset belongs to. */
-    private DatasetGroup group;
+    private jfree.data.general.DatasetGroup group;
 
     /** Storage for registered change listeners. */
     private transient EventListenerList listenerList;
@@ -100,7 +104,7 @@ public abstract class AbstractDataset implements Dataset, Cloneable,
      * group.
      */
     protected AbstractDataset() {
-        this.group = new DatasetGroup();
+        this.group = new jfree.data.general.DatasetGroup();
         this.listenerList = new EventListenerList();
         this.notify = true;
     }
@@ -110,10 +114,10 @@ public abstract class AbstractDataset implements Dataset, Cloneable,
      *
      * @return The group (never <code>null</code>).
      *
-     * @see #setGroup(DatasetGroup)
+     * @see #setGroup(jfree.data.general.DatasetGroup)
      */
     @Override
-    public DatasetGroup getGroup() {
+    public jfree.data.general.DatasetGroup getGroup() {
         return this.group;
     }
 
@@ -166,11 +170,11 @@ public abstract class AbstractDataset implements Dataset, Cloneable,
      *
      * @param listener  the object to register.
      *
-     * @see #removeChangeListener(DatasetChangeListener)
+     * @see #removeChangeListener(jfree.data.general.DatasetChangeListener)
      */
     @Override
-    public void addChangeListener(DatasetChangeListener listener) {
-        this.listenerList.add(DatasetChangeListener.class, listener);
+    public void addChangeListener(jfree.data.general.DatasetChangeListener listener) {
+        this.listenerList.add(jfree.data.general.DatasetChangeListener.class, listener);
     }
 
     /**
@@ -179,11 +183,11 @@ public abstract class AbstractDataset implements Dataset, Cloneable,
      *
      * @param listener  the object to deregister.
      *
-     * @see #addChangeListener(DatasetChangeListener)
+     * @see #addChangeListener(jfree.data.general.DatasetChangeListener)
      */
     @Override
-    public void removeChangeListener(DatasetChangeListener listener) {
-        this.listenerList.remove(DatasetChangeListener.class, listener);
+    public void removeChangeListener(jfree.data.general.DatasetChangeListener listener) {
+        this.listenerList.remove(jfree.data.general.DatasetChangeListener.class, listener);
     }
 
     /**
@@ -195,8 +199,8 @@ public abstract class AbstractDataset implements Dataset, Cloneable,
      *
      * @return A boolean.
      *
-     * @see #addChangeListener(DatasetChangeListener)
-     * @see #removeChangeListener(DatasetChangeListener)
+     * @see #addChangeListener(jfree.data.general.DatasetChangeListener)
+     * @see #removeChangeListener(jfree.data.general.DatasetChangeListener)
      */
     public boolean hasListener(EventListener listener) {
         List list = Arrays.asList(this.listenerList.getListenerList());
@@ -208,11 +212,11 @@ public abstract class AbstractDataset implements Dataset, Cloneable,
      * provided that the <code>notify</code> flag has not been set to 
      * <code>false</code>.
      *
-     * @see #addChangeListener(DatasetChangeListener)
+     * @see #addChangeListener(jfree.data.general.DatasetChangeListener)
      */
     protected void fireDatasetChanged() {
         if (this.notify) {
-            notifyListeners(new DatasetChangeEvent(this, this));
+            notifyListeners(new jfree.data.general.DatasetChangeEvent(this, this));
         }
     }
 
@@ -222,14 +226,14 @@ public abstract class AbstractDataset implements Dataset, Cloneable,
      * @param event  contains information about the event that triggered the
      *               notification.
      *
-     * @see #addChangeListener(DatasetChangeListener)
-     * @see #removeChangeListener(DatasetChangeListener)
+     * @see #addChangeListener(jfree.data.general.DatasetChangeListener)
+     * @see #removeChangeListener(jfree.data.general.DatasetChangeListener)
      */
     protected void notifyListeners(DatasetChangeEvent event) {
         Object[] listeners = this.listenerList.getListenerList();
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
-            if (listeners[i] == DatasetChangeListener.class) {
-                ((DatasetChangeListener) listeners[i + 1]).datasetChanged(
+            if (listeners[i] == jfree.data.general.DatasetChangeListener.class) {
+                ((jfree.data.general.DatasetChangeListener) listeners[i + 1]).datasetChanged(
                         event);
             }
         }
@@ -247,7 +251,7 @@ public abstract class AbstractDataset implements Dataset, Cloneable,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        AbstractDataset clone = (AbstractDataset) super.clone();
+        jfree.data.general.AbstractDataset clone = (jfree.data.general.AbstractDataset) super.clone();
         clone.listenerList = new EventListenerList();
         return clone;
     }

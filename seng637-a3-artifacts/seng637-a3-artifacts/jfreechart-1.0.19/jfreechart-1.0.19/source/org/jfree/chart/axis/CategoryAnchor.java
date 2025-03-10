@@ -53,16 +53,16 @@ public final class CategoryAnchor implements Serializable {
     private static final long serialVersionUID = -2604142742210173810L;
 
     /** Start of period. */
-    public static final CategoryAnchor START
-        = new CategoryAnchor("CategoryAnchor.START");
+    public static final jfree.chart.axis.CategoryAnchor START
+        = new jfree.chart.axis.CategoryAnchor("CategoryAnchor.START");
 
     /** Middle of period. */
-    public static final CategoryAnchor MIDDLE
-        = new CategoryAnchor("CategoryAnchor.MIDDLE");
+    public static final jfree.chart.axis.CategoryAnchor MIDDLE
+        = new jfree.chart.axis.CategoryAnchor("CategoryAnchor.MIDDLE");
 
     /** End of period. */
-    public static final CategoryAnchor END
-        = new CategoryAnchor("CategoryAnchor.END");
+    public static final jfree.chart.axis.CategoryAnchor END
+        = new jfree.chart.axis.CategoryAnchor("CategoryAnchor.END");
 
     /** The name. */
     private String name;
@@ -99,10 +99,10 @@ public final class CategoryAnchor implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof CategoryAnchor)) {
+        if (!(obj instanceof jfree.chart.axis.CategoryAnchor)) {
             return false;
         }
-        CategoryAnchor position = (CategoryAnchor) obj;
+        jfree.chart.axis.CategoryAnchor position = (jfree.chart.axis.CategoryAnchor) obj;
         if (!this.name.equals(position.toString())) {
             return false;
         }
@@ -117,14 +117,14 @@ public final class CategoryAnchor implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(CategoryAnchor.START)) {
-            return CategoryAnchor.START;
+        if (this.equals(jfree.chart.axis.CategoryAnchor.START)) {
+            return jfree.chart.axis.CategoryAnchor.START;
         }
-        else if (this.equals(CategoryAnchor.MIDDLE)) {
-            return CategoryAnchor.MIDDLE;
+        else if (this.equals(jfree.chart.axis.CategoryAnchor.MIDDLE)) {
+            return jfree.chart.axis.CategoryAnchor.MIDDLE;
         }
-        else if (this.equals(CategoryAnchor.END)) {
-            return CategoryAnchor.END;
+        else if (this.equals(jfree.chart.axis.CategoryAnchor.END)) {
+            return jfree.chart.axis.CategoryAnchor.END;
         }
         return null;
     }

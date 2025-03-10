@@ -45,6 +45,8 @@
 
 package org.jfree.chart.needle;
 
+import jfree.chart.needle.MeterNeedle;
+
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.GeneralPath;
@@ -159,7 +161,7 @@ public class LongNeedle extends MeterNeedle
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LongNeedle)) {
+        if (!(obj instanceof jfree.chart.needle.LongNeedle)) {
             return false;
         }
         return super.equals(obj);

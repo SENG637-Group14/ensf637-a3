@@ -45,8 +45,8 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
+import jfree.data.category.CategoryDataset;
+import jfree.data.category.DefaultCategoryDataset;
 
 /**
  * A utility class for reading {@link CategoryDataset} data from a CSV file.

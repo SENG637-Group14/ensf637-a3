@@ -65,16 +65,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.gantt.GanttCategoryDataset;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.renderer.category.IntervalBarRenderer;
+import jfree.chart.util.ParamChecks;
+import jfree.data.category.CategoryDataset;
+import jfree.data.gantt.GanttCategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PaintUtilities;
@@ -240,7 +242,7 @@ public class GanttRenderer extends IntervalBarRenderer
      * @param pass  the pass index.
      */
     @Override
-    public void drawItem(Graphics2D g2, CategoryItemRendererState state,
+    public void drawItem(Graphics2D g2, jfree.chart.renderer.category.CategoryItemRendererState state,
             Rectangle2D dataArea, CategoryPlot plot, CategoryAxis domainAxis,
             ValueAxis rangeAxis, CategoryDataset dataset, int row,
             int column, int pass) {
@@ -271,7 +273,7 @@ public class GanttRenderer extends IntervalBarRenderer
      * @param column  the column index (zero-based).
      */
     protected void drawTasks(Graphics2D g2,
-                             CategoryItemRendererState state,
+                             jfree.chart.renderer.category.CategoryItemRendererState state,
                              Rectangle2D dataArea,
                              CategoryPlot plot,
                              CategoryAxis domainAxis,
@@ -584,10 +586,10 @@ public class GanttRenderer extends IntervalBarRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof GanttRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.GanttRenderer)) {
             return false;
         }
-        GanttRenderer that = (GanttRenderer) obj;
+        jfree.chart.renderer.category.GanttRenderer that = (jfree.chart.renderer.category.GanttRenderer) obj;
         if (!PaintUtilities.equal(this.completePaint, that.completePaint)) {
             return false;
         }

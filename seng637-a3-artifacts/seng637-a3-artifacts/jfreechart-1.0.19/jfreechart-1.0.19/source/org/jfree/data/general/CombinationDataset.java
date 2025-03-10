@@ -42,6 +42,8 @@
 
 package org.jfree.data.general;
 
+import jfree.data.general.SeriesDataset;
+
 /**
  * Interface that describes the new methods that any combined dataset needs to
  * implement. A combined dataset object will combine one or more datasets and

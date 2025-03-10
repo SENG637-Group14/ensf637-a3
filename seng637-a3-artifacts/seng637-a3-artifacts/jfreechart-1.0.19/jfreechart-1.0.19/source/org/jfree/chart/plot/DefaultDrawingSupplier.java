@@ -62,13 +62,15 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import org.jfree.chart.ChartColor;
+import jfree.chart.ChartColor;
+import jfree.chart.plot.DrawingSupplier;
+import jfree.chart.plot.Plot;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PublicCloneable;
 import org.jfree.util.ShapeUtilities;
 
 /**
- * A default implementation of the {@link DrawingSupplier} interface.  All
+ * A default implementation of the {@link jfree.chart.plot.DrawingSupplier} interface.  All
  * {@link Plot} instances have a new instance of this class installed by
  * default.
  */
@@ -353,10 +355,10 @@ public class DefaultDrawingSupplier implements DrawingSupplier, Cloneable,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultDrawingSupplier)) {
+        if (!(obj instanceof jfree.chart.plot.DefaultDrawingSupplier)) {
             return false;
         }
-        DefaultDrawingSupplier that = (DefaultDrawingSupplier) obj;
+        jfree.chart.plot.DefaultDrawingSupplier that = (jfree.chart.plot.DefaultDrawingSupplier) obj;
         if (!Arrays.equals(this.paintSequence, that.paintSequence)) {
             return false;
         }
@@ -543,7 +545,7 @@ public class DefaultDrawingSupplier implements DrawingSupplier, Cloneable,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultDrawingSupplier clone = (DefaultDrawingSupplier) super.clone();
+        jfree.chart.plot.DefaultDrawingSupplier clone = (jfree.chart.plot.DefaultDrawingSupplier) super.clone();
         return clone;
     }
 }

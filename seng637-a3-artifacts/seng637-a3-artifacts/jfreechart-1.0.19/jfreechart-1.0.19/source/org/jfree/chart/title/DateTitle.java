@@ -55,6 +55,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import jfree.chart.title.TextTitle;
+import jfree.chart.title.Title;
 import org.jfree.ui.HorizontalAlignment;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;

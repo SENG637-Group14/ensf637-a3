@@ -45,8 +45,10 @@ package org.jfree.data.time;
 
 import javax.swing.table.AbstractTableModel;
 
-import org.jfree.data.general.SeriesChangeEvent;
-import org.jfree.data.general.SeriesChangeListener;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.general.SeriesChangeListener;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.TimeSeries;
 
 /**
  * Wrapper around a time series to convert it to a table model for use in
@@ -56,7 +58,7 @@ public class TimeSeriesTableModel extends AbstractTableModel
         implements SeriesChangeListener {
 
     /** The series. */
-    private TimeSeries series;
+    private jfree.data.time.TimeSeries series;
 
     /** A flag that controls whether the series is editable. */
     private boolean editable;
@@ -71,7 +73,7 @@ public class TimeSeriesTableModel extends AbstractTableModel
      * Default constructor.
      */
     public TimeSeriesTableModel() {
-        this(new TimeSeries("Untitled"));
+        this(new jfree.data.time.TimeSeries("Untitled"));
     }
 
     /**
@@ -79,7 +81,7 @@ public class TimeSeriesTableModel extends AbstractTableModel
      *
      * @param series  the time series.
      */
-    public TimeSeriesTableModel(TimeSeries series) {
+    public TimeSeriesTableModel(jfree.data.time.TimeSeries series) {
         this(series, false);
     }
 

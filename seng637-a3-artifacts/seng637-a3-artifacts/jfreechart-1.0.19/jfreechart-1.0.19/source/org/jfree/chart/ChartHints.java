@@ -62,12 +62,12 @@ public final class ChartHints {
      * should be a string containing the element id or, alternatively, a Map 
      * containing the 'id' (String) and 'ref' (String in JSON format).
      */
-    public static final Key KEY_BEGIN_ELEMENT = new ChartHints.Key(0);
+    public static final Key KEY_BEGIN_ELEMENT = new jfree.chart.ChartHints.Key(0);
     
     /**
      * The key for a hint that ends an element.
      */
-    public static final Key KEY_END_ELEMENT = new ChartHints.Key(1);
+    public static final Key KEY_END_ELEMENT = new jfree.chart.ChartHints.Key(1);
     
     /**
      * A key for rendering hints that can be used with JFreeChart (in 

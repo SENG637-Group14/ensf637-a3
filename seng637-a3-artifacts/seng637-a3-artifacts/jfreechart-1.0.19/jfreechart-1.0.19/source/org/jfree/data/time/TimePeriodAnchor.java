@@ -54,16 +54,16 @@ public final class TimePeriodAnchor implements Serializable {
     private static final long serialVersionUID = 2011955697457548862L;
 
     /** Start of period. */
-    public static final TimePeriodAnchor START
-        = new TimePeriodAnchor("TimePeriodAnchor.START");
+    public static final jfree.data.time.TimePeriodAnchor START
+        = new jfree.data.time.TimePeriodAnchor("TimePeriodAnchor.START");
 
     /** Middle of period. */
-    public static final TimePeriodAnchor MIDDLE
-        = new TimePeriodAnchor("TimePeriodAnchor.MIDDLE");
+    public static final jfree.data.time.TimePeriodAnchor MIDDLE
+        = new jfree.data.time.TimePeriodAnchor("TimePeriodAnchor.MIDDLE");
 
     /** End of period. */
-    public static final TimePeriodAnchor END
-        = new TimePeriodAnchor("TimePeriodAnchor.END");
+    public static final jfree.data.time.TimePeriodAnchor END
+        = new jfree.data.time.TimePeriodAnchor("TimePeriodAnchor.END");
 
     /** The name. */
     private String name;
@@ -101,11 +101,11 @@ public final class TimePeriodAnchor implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof TimePeriodAnchor)) {
+        if (!(obj instanceof jfree.data.time.TimePeriodAnchor)) {
             return false;
         }
 
-        TimePeriodAnchor position = (TimePeriodAnchor) obj;
+        jfree.data.time.TimePeriodAnchor position = (jfree.data.time.TimePeriodAnchor) obj;
         if (!this.name.equals(position.name)) {
             return false;
         }
@@ -131,14 +131,14 @@ public final class TimePeriodAnchor implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(TimePeriodAnchor.START)) {
-            return TimePeriodAnchor.START;
+        if (this.equals(jfree.data.time.TimePeriodAnchor.START)) {
+            return jfree.data.time.TimePeriodAnchor.START;
         }
-        else if (this.equals(TimePeriodAnchor.MIDDLE)) {
-            return TimePeriodAnchor.MIDDLE;
+        else if (this.equals(jfree.data.time.TimePeriodAnchor.MIDDLE)) {
+            return jfree.data.time.TimePeriodAnchor.MIDDLE;
         }
-        else if (this.equals(TimePeriodAnchor.END)) {
-            return TimePeriodAnchor.END;
+        else if (this.equals(jfree.data.time.TimePeriodAnchor.END)) {
+            return jfree.data.time.TimePeriodAnchor.END;
         }
         return null;
     }

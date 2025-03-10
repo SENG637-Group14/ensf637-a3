@@ -45,7 +45,7 @@
 
 package org.jfree.data.statistics;
 
-import org.jfree.data.category.CategoryDataset;
+import jfree.data.category.CategoryDataset;
 
 /**
  * A category dataset that defines a mean and standard deviation value for

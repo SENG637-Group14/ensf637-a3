@@ -46,11 +46,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PiePlot;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
+import jfree.chart.ChartFactory;
+import jfree.chart.JFreeChart;
+import jfree.chart.plot.PiePlot;
+import jfree.data.general.DefaultPieDataset;
+import jfree.data.general.PieDataset;
 import org.jfree.experimental.chart.swt.ChartComposite;
 
 /**

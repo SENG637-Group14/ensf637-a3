@@ -43,8 +43,9 @@ package org.jfree.chart.entity;
 
 import java.awt.Shape;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.axis.CategoryAxis;
+import jfree.chart.HashUtilities;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.entity.TickLabelEntity;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -92,10 +93,10 @@ public class CategoryLabelEntity extends TickLabelEntity {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CategoryLabelEntity)) {
+        if (!(obj instanceof jfree.chart.entity.CategoryLabelEntity)) {
             return false;
         }
-        CategoryLabelEntity that = (CategoryLabelEntity) obj;
+        jfree.chart.entity.CategoryLabelEntity that = (jfree.chart.entity.CategoryLabelEntity) obj;
         if (!ObjectUtilities.equal(this.key, that.key)) {
             return false;
         }

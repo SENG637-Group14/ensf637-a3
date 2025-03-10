@@ -46,9 +46,11 @@
 
 package org.jfree.data.xy;
 
-import org.jfree.data.ComparableObjectItem;
-import org.jfree.data.ComparableObjectSeries;
-import org.jfree.data.general.SeriesChangeEvent;
+import jfree.data.ComparableObjectItem;
+import jfree.data.ComparableObjectSeries;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.xy.VectorDataItem;
+import jfree.data.xy.VectorSeriesCollection;
 
 /**
  * A list of (x,y, deltaX, deltaY) data items.
@@ -92,7 +94,7 @@ public class VectorSeries extends ComparableObjectSeries {
      * @param deltaY  the vector y.
      */
     public void add(double x, double y, double deltaX, double deltaY) {
-        add(new VectorDataItem(x, y, deltaX, deltaY), true);
+        add(new jfree.data.xy.VectorDataItem(x, y, deltaX, deltaY), true);
     }
     
     /**
@@ -104,7 +106,7 @@ public class VectorSeries extends ComparableObjectSeries {
      * 
      * @since 1.0.18
      */
-    public void add(VectorDataItem item, boolean notify) {
+    public void add(jfree.data.xy.VectorDataItem item, boolean notify) {
         super.add(item, notify);
     }
 
@@ -118,7 +120,7 @@ public class VectorSeries extends ComparableObjectSeries {
      */
     @Override
     public ComparableObjectItem remove(int index) {
-        VectorDataItem result = (VectorDataItem) this.data.remove(index);
+        jfree.data.xy.VectorDataItem result = (jfree.data.xy.VectorDataItem) this.data.remove(index);
         fireSeriesChanged();
         return result;
     }
@@ -131,7 +133,7 @@ public class VectorSeries extends ComparableObjectSeries {
      * @return The x-value.
      */
     public double getXValue(int index) {
-        VectorDataItem item = (VectorDataItem) this.getDataItem(index);
+        jfree.data.xy.VectorDataItem item = (jfree.data.xy.VectorDataItem) this.getDataItem(index);
         return item.getXValue();
     }
 
@@ -143,7 +145,7 @@ public class VectorSeries extends ComparableObjectSeries {
      * @return The y-value.
      */
     public double getYValue(int index) {
-        VectorDataItem item = (VectorDataItem) getDataItem(index);
+        jfree.data.xy.VectorDataItem item = (jfree.data.xy.VectorDataItem) getDataItem(index);
         return item.getYValue();
     }
 
@@ -155,7 +157,7 @@ public class VectorSeries extends ComparableObjectSeries {
      * @return The x-component of the vector.
      */
     public double getVectorXValue(int index) {
-        VectorDataItem item = (VectorDataItem) getDataItem(index);
+        jfree.data.xy.VectorDataItem item = (jfree.data.xy.VectorDataItem) getDataItem(index);
         return item.getVectorX();
     }
 
@@ -167,7 +169,7 @@ public class VectorSeries extends ComparableObjectSeries {
      * @return The y-component of the vector.
      */
     public double getVectorYValue(int index) {
-        VectorDataItem item = (VectorDataItem) getDataItem(index);
+        jfree.data.xy.VectorDataItem item = (VectorDataItem) getDataItem(index);
         return item.getVectorY();
     }
 

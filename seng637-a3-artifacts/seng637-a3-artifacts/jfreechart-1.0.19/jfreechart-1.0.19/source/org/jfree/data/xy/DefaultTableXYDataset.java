@@ -67,13 +67,19 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.DomainInfo;
-import org.jfree.data.Range;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.general.SeriesChangeEvent;
+import jfree.data.DomainInfo;
+import jfree.data.Range;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.xy.AbstractIntervalXYDataset;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.IntervalXYDelegate;
+import jfree.data.xy.TableXYDataset;
+import jfree.data.xy.XYDataset;
+import jfree.data.xy.XYSeries;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
@@ -101,7 +107,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
     private boolean autoPrune = false;
 
     /** The delegate used to control the interval width. */
-    private IntervalXYDelegate intervalDelegate;
+    private jfree.data.xy.IntervalXYDelegate intervalDelegate;
 
     /**
      * Creates a new empty dataset.
@@ -121,7 +127,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
         this.autoPrune = autoPrune;
         this.data = new ArrayList();
         this.xPoints = new HashSet();
-        this.intervalDelegate = new IntervalXYDelegate(this, false);
+        this.intervalDelegate = new jfree.data.xy.IntervalXYDelegate(this, false);
         addChangeListener(this.intervalDelegate);
     }
 
@@ -142,7 +148,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
      *
      * @param series  the series (<code>null</code> not permitted).
      */
-    public void addSeries(XYSeries series) {
+    public void addSeries(jfree.data.xy.XYSeries series) {
         ParamChecks.nullNotPermitted(series, "series");
         if (series.getAllowDuplicateXValues()) {
             throw new IllegalArgumentException(
@@ -162,7 +168,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
      *
      * @param series  the series (<code>null</code> not permitted).
      */
-    private void updateXPoints(XYSeries series) {
+    private void updateXPoints(jfree.data.xy.XYSeries series) {
         ParamChecks.nullNotPermitted(series, "series");
         HashSet seriesXPoints = new HashSet();
         boolean savedState = this.propagateEvents;
@@ -174,7 +180,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
                 this.xPoints.add(xValue);
                 int seriesCount = this.data.size();
                 for (int seriesNo = 0; seriesNo < seriesCount; seriesNo++) {
-                    XYSeries dataSeries = (XYSeries) this.data.get(seriesNo);
+                    jfree.data.xy.XYSeries dataSeries = (jfree.data.xy.XYSeries) this.data.get(seriesNo);
                     if (!dataSeries.equals(series)) {
                         dataSeries.add(xValue, null);
                     }
@@ -197,7 +203,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
     public void updateXPoints() {
         this.propagateEvents = false;
         for (int s = 0; s < this.data.size(); s++) {
-            updateXPoints((XYSeries) this.data.get(s));
+            updateXPoints((jfree.data.xy.XYSeries) this.data.get(s));
         }
         if (this.autoPrune) {
             prune();
@@ -237,11 +243,11 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
      *
      * @return The series (never <code>null</code>).
      */
-    public XYSeries getSeries(int series) {
+    public jfree.data.xy.XYSeries getSeries(int series) {
         if ((series < 0) || (series >= getSeriesCount())) {
             throw new IllegalArgumentException("Index outside valid range.");
         }
-        return (XYSeries) this.data.get(series);
+        return (jfree.data.xy.XYSeries) this.data.get(series);
     }
 
     /**
@@ -280,7 +286,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
      */
     @Override
     public Number getX(int series, int item) {
-        XYSeries s = (XYSeries) this.data.get(series);
+        jfree.data.xy.XYSeries s = (jfree.data.xy.XYSeries) this.data.get(series);
         return s.getX(item);
 
     }
@@ -322,7 +328,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
      */
     @Override
     public Number getY(int series, int index) {
-        XYSeries s = (XYSeries) this.data.get(series);
+        jfree.data.xy.XYSeries s = (jfree.data.xy.XYSeries) this.data.get(series);
         return s.getY(index);
     }
 
@@ -361,7 +367,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
         // Unregister the collection as a change listener to each series in
         // the collection.
         for (int i = 0; i < this.data.size(); i++) {
-            XYSeries series = (XYSeries) this.data.get(i);
+            jfree.data.xy.XYSeries series = (jfree.data.xy.XYSeries) this.data.get(i);
             series.removeChangeListener(this);
         }
 
@@ -377,7 +383,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
      *
      * @param series  the series (<code>null</code> not permitted).
      */
-    public void removeSeries(XYSeries series) {
+    public void removeSeries(jfree.data.xy.XYSeries series) {
         ParamChecks.nullNotPermitted(series, "series");
         if (this.data.contains(series)) {
             series.removeChangeListener(this);
@@ -403,7 +409,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
         }
 
         // fetch the series, remove the change listener, then remove the series.
-        XYSeries s = (XYSeries) this.data.get(series);
+        jfree.data.xy.XYSeries s = (jfree.data.xy.XYSeries) this.data.get(series);
         s.removeChangeListener(this);
         this.data.remove(series);
         if (this.data.isEmpty()) {
@@ -426,7 +432,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
         boolean savedState = this.propagateEvents;
         this.propagateEvents = false;
         for (int s = 0; s < this.data.size(); s++) {
-            XYSeries series = (XYSeries) this.data.get(s);
+            jfree.data.xy.XYSeries series = (jfree.data.xy.XYSeries) this.data.get(s);
             series.remove(x);
         }
         this.propagateEvents = savedState;
@@ -444,7 +450,7 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
      */
     protected boolean canPrune(Number x) {
         for (int s = 0; s < this.data.size(); s++) {
-            XYSeries series = (XYSeries) this.data.get(s);
+            jfree.data.xy.XYSeries series = (jfree.data.xy.XYSeries) this.data.get(s);
             if (series.getY(series.indexOf(x)) != null) {
                 return false;
             }
@@ -493,10 +499,10 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultTableXYDataset)) {
+        if (!(obj instanceof jfree.data.xy.DefaultTableXYDataset)) {
             return false;
         }
-        DefaultTableXYDataset that = (DefaultTableXYDataset) obj;
+        jfree.data.xy.DefaultTableXYDataset that = (jfree.data.xy.DefaultTableXYDataset) obj;
         if (this.autoPrune != that.autoPrune) {
             return false;
         }
@@ -538,11 +544,11 @@ public class DefaultTableXYDataset extends AbstractIntervalXYDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultTableXYDataset clone = (DefaultTableXYDataset) super.clone();
+        jfree.data.xy.DefaultTableXYDataset clone = (jfree.data.xy.DefaultTableXYDataset) super.clone();
         int seriesCount = this.data.size();
         clone.data = new java.util.ArrayList(seriesCount);
         for (int i = 0; i < seriesCount; i++) {
-            XYSeries series = (XYSeries) this.data.get(i);
+            jfree.data.xy.XYSeries series = (XYSeries) this.data.get(i);
             clone.data.add(series.clone());
         }
 

@@ -111,7 +111,7 @@ public class KeyedObject implements Cloneable, PublicCloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        KeyedObject clone = (KeyedObject) super.clone();
+        jfree.data.KeyedObject clone = (jfree.data.KeyedObject) super.clone();
         if (this.object instanceof PublicCloneable) {
             PublicCloneable pc = (PublicCloneable) this.object;
             clone.object = pc.clone();
@@ -133,10 +133,10 @@ public class KeyedObject implements Cloneable, PublicCloneable, Serializable {
             return true;
         }
 
-        if (!(obj instanceof KeyedObject)) {
+        if (!(obj instanceof jfree.data.KeyedObject)) {
             return false;
         }
-        KeyedObject that = (KeyedObject) obj;
+        jfree.data.KeyedObject that = (jfree.data.KeyedObject) obj;
         if (!ObjectUtilities.equal(this.key, that.key)) {
             return false;
         }

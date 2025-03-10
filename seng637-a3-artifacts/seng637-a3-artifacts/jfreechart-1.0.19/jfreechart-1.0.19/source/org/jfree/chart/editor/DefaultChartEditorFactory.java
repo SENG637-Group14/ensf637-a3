@@ -40,10 +40,13 @@
 
 package org.jfree.chart.editor;
 
-import org.jfree.chart.JFreeChart;
+import jfree.chart.JFreeChart;
+import jfree.chart.editor.ChartEditor;
+import jfree.chart.editor.ChartEditorFactory;
+import jfree.chart.editor.DefaultChartEditor;
 
 /**
- * A default implementation of the {@link ChartEditorFactory} interface.
+ * A default implementation of the {@link jfree.chart.editor.ChartEditorFactory} interface.
  */
 public class DefaultChartEditorFactory implements ChartEditorFactory {
 
@@ -54,7 +57,7 @@ public class DefaultChartEditorFactory implements ChartEditorFactory {
     }
 
     /**
-     * Returns a new instance of a {@link ChartEditor}.
+     * Returns a new instance of a {@link jfree.chart.editor.ChartEditor}.
      *
      * @param chart  the chart.
      *
@@ -62,7 +65,7 @@ public class DefaultChartEditorFactory implements ChartEditorFactory {
      */
     @Override
     public ChartEditor createEditor(JFreeChart chart) {
-        return new DefaultChartEditor(chart);
+        return new jfree.chart.editor.DefaultChartEditor(chart);
     }
 
 }

@@ -77,17 +77,20 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.data.xy.XYDataset;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PublicCloneable;
 
@@ -101,7 +104,7 @@ import org.jfree.util.PublicCloneable;
  * <img src="../../../../../images/XYStepRendererSample.png"
  * alt="XYStepRendererSample.png">
  */
-public class XYStepRenderer extends XYLineAndShapeRenderer
+public class XYStepRenderer extends jfree.chart.renderer.xy.XYLineAndShapeRenderer
         implements XYItemRenderer, Cloneable, PublicCloneable, Serializable {
 
     /** For serialization. */
@@ -334,7 +337,7 @@ public class XYStepRenderer extends XYLineAndShapeRenderer
         if (!(obj instanceof XYLineAndShapeRenderer)) {
             return false;
         }
-        XYStepRenderer that = (XYStepRenderer) obj;
+        jfree.chart.renderer.xy.XYStepRenderer that = (jfree.chart.renderer.xy.XYStepRenderer) obj;
         if (this.stepPoint != that.stepPoint) {
             return false;
         }

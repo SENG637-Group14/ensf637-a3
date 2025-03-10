@@ -62,9 +62,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.jfree.chart.entity.ChartEntity;
-import org.jfree.chart.entity.StandardEntityCollection;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.block.AbstractBlock;
+import jfree.chart.block.Block;
+import jfree.chart.block.BlockResult;
+import jfree.chart.block.EntityBlockParams;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.entity.ChartEntity;
+import jfree.chart.entity.StandardEntityCollection;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextBlock;
 import org.jfree.text.TextBlockAnchor;
@@ -343,10 +348,10 @@ public class LabelBlock extends AbstractBlock
         area = trimPadding(area);
 
         // check if we need to collect chart entities from the container
-        EntityBlockParams ebp = null;
+        jfree.chart.block.EntityBlockParams ebp = null;
         StandardEntityCollection sec = null;
         Shape entityArea = null;
-        if (params instanceof EntityBlockParams) {
+        if (params instanceof jfree.chart.block.EntityBlockParams) {
             ebp = (EntityBlockParams) params;
             if (ebp.getGenerateEntities()) {
                 sec = new StandardEntityCollection();
@@ -358,7 +363,7 @@ public class LabelBlock extends AbstractBlock
         Point2D pt = RectangleAnchor.coordinates(area, this.textAnchor);
         this.label.draw(g2, (float) pt.getX(), (float) pt.getY(),
                 this.contentAlignmentPoint);
-        BlockResult result = null;
+        jfree.chart.block.BlockResult result = null;
         if (ebp != null && sec != null) {
             if (this.toolTipText != null || this.urlText != null) {
                 ChartEntity entity = new ChartEntity(entityArea,
@@ -381,10 +386,10 @@ public class LabelBlock extends AbstractBlock
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof LabelBlock)) {
+        if (!(obj instanceof jfree.chart.block.LabelBlock)) {
             return false;
         }
-        LabelBlock that = (LabelBlock) obj;
+        jfree.chart.block.LabelBlock that = (jfree.chart.block.LabelBlock) obj;
         if (!this.text.equals(that.text)) {
             return false;
         }

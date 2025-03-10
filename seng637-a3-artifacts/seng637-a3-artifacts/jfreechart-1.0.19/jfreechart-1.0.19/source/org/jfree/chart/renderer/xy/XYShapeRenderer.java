@@ -59,20 +59,24 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.LookupPaintScale;
-import org.jfree.chart.renderer.PaintScale;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYZDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.LookupPaintScale;
+import jfree.chart.renderer.PaintScale;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.xy.XYDataset;
+import jfree.data.xy.XYZDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PublicCloneable;
 import org.jfree.util.ShapeUtilities;
@@ -546,10 +550,10 @@ public class XYShapeRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYShapeRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYShapeRenderer)) {
             return false;
         }
-        XYShapeRenderer that = (XYShapeRenderer) obj;
+        jfree.chart.renderer.xy.XYShapeRenderer that = (jfree.chart.renderer.xy.XYShapeRenderer) obj;
         if (!this.paintScale.equals(that.paintScale)) {
             return false;
         }
@@ -584,7 +588,7 @@ public class XYShapeRenderer extends AbstractXYItemRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        XYShapeRenderer clone = (XYShapeRenderer) super.clone();
+        jfree.chart.renderer.xy.XYShapeRenderer clone = (jfree.chart.renderer.xy.XYShapeRenderer) super.clone();
         if (this.paintScale instanceof PublicCloneable) {
             PublicCloneable pc = (PublicCloneable) this.paintScale;
             clone.paintScale = (PaintScale) pc.clone();

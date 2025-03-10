@@ -53,16 +53,18 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.data.DataUtilities;
-import org.jfree.data.UnknownKeyException;
-import org.jfree.data.general.AbstractSeriesDataset;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.data.DataUtilities;
+import jfree.data.UnknownKeyException;
+import jfree.data.category.CategoryDataset;
+import jfree.data.category.IntervalCategoryDataset;
+import jfree.data.general.AbstractSeriesDataset;
 
 /**
  * A convenience class that provides a default implementation of the
- * {@link IntervalCategoryDataset} interface.
+ * {@link jfree.data.category.IntervalCategoryDataset} interface.
  * <p>
  * The standard constructor accepts data in a two dimensional array where the
  * first dimension is the series, and the second dimension is the category.
@@ -309,7 +311,7 @@ public class DefaultIntervalCategoryDataset extends AbstractSeriesDataset
 
     /**
      * Returns a list of the categories in the dataset.  This method supports
-     * the {@link CategoryDataset} interface.
+     * the {@link jfree.data.category.CategoryDataset} interface.
      *
      * @return A list of the categories in the dataset.
      *
@@ -654,7 +656,7 @@ public class DefaultIntervalCategoryDataset extends AbstractSeriesDataset
 
     /**
      * Returns a list of the series in the dataset.  This method supports the
-     * {@link CategoryDataset} interface.
+     * {@link jfree.data.category.CategoryDataset} interface.
      *
      * @return A list of the series in the dataset.
      *
@@ -729,11 +731,11 @@ public class DefaultIntervalCategoryDataset extends AbstractSeriesDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultIntervalCategoryDataset)) {
+        if (!(obj instanceof jfree.data.category.DefaultIntervalCategoryDataset)) {
             return false;
         }
-        DefaultIntervalCategoryDataset that
-                = (DefaultIntervalCategoryDataset) obj;
+        jfree.data.category.DefaultIntervalCategoryDataset that
+                = (jfree.data.category.DefaultIntervalCategoryDataset) obj;
         if (!Arrays.equals(this.seriesKeys, that.seriesKeys)) {
             return false;
         }
@@ -760,8 +762,8 @@ public class DefaultIntervalCategoryDataset extends AbstractSeriesDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultIntervalCategoryDataset clone
-                = (DefaultIntervalCategoryDataset) super.clone();
+        jfree.data.category.DefaultIntervalCategoryDataset clone
+                = (jfree.data.category.DefaultIntervalCategoryDataset) super.clone();
         clone.categoryKeys = (Comparable[]) this.categoryKeys.clone();
         clone.seriesKeys = (Comparable[]) this.seriesKeys.clone();
         clone.startData = clone(this.startData);

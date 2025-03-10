@@ -50,9 +50,11 @@
 package org.jfree.chart.urls;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
 
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.chart.util.ParamChecks;
+
+import jfree.data.xy.XYDataset;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -152,10 +154,10 @@ public class StandardXYURLGenerator implements XYURLGenerator, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardXYURLGenerator)) {
+        if (!(obj instanceof jfree.chart.urls.StandardXYURLGenerator)) {
             return false;
         }
-        StandardXYURLGenerator that = (StandardXYURLGenerator) obj;
+        jfree.chart.urls.StandardXYURLGenerator that = (jfree.chart.urls.StandardXYURLGenerator) obj;
         if (!ObjectUtilities.equal(that.prefix, this.prefix)) {
             return false;
         }

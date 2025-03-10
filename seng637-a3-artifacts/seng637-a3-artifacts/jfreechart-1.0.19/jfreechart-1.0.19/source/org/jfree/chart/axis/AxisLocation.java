@@ -48,7 +48,7 @@ package org.jfree.chart.axis;
 
 import java.io.ObjectStreamException;
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
 /**
  * Used to indicate the location of an axis on a 2D plot, prior to knowing the
@@ -60,19 +60,19 @@ public final class AxisLocation implements Serializable {
     private static final long serialVersionUID = -3276922179323563410L;
 
     /** Axis at the top or left. */
-    public static final AxisLocation TOP_OR_LEFT = new AxisLocation(
+    public static final jfree.chart.axis.AxisLocation TOP_OR_LEFT = new jfree.chart.axis.AxisLocation(
             "AxisLocation.TOP_OR_LEFT");
 
     /** Axis at the top or right. */
-    public static final AxisLocation TOP_OR_RIGHT = new AxisLocation(
+    public static final jfree.chart.axis.AxisLocation TOP_OR_RIGHT = new jfree.chart.axis.AxisLocation(
             "AxisLocation.TOP_OR_RIGHT");
 
     /** Axis at the bottom or left. */
-    public static final AxisLocation BOTTOM_OR_LEFT = new AxisLocation(
+    public static final jfree.chart.axis.AxisLocation BOTTOM_OR_LEFT = new jfree.chart.axis.AxisLocation(
             "AxisLocation.BOTTOM_OR_LEFT");
 
     /** Axis at the bottom or right. */
-    public static final AxisLocation BOTTOM_OR_RIGHT = new AxisLocation(
+    public static final jfree.chart.axis.AxisLocation BOTTOM_OR_RIGHT = new jfree.chart.axis.AxisLocation(
             "AxisLocation.BOTTOM_OR_RIGHT");
 
     /** The name. */
@@ -94,7 +94,7 @@ public final class AxisLocation implements Serializable {
      *
      * @since 1.0.5
      */
-    public AxisLocation getOpposite() {
+    public jfree.chart.axis.AxisLocation getOpposite() {
         return getOpposite(this);
     }
 
@@ -121,10 +121,10 @@ public final class AxisLocation implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof AxisLocation)) {
+        if (!(obj instanceof jfree.chart.axis.AxisLocation)) {
             return false;
         }
-        AxisLocation location = (AxisLocation) obj;
+        jfree.chart.axis.AxisLocation location = (jfree.chart.axis.AxisLocation) obj;
         if (!this.name.equals(location.toString())) {
             return false;
         }
@@ -150,20 +150,20 @@ public final class AxisLocation implements Serializable {
      *
      * @return The opposite location.
      */
-    public static AxisLocation getOpposite(AxisLocation location) {
+    public static jfree.chart.axis.AxisLocation getOpposite(jfree.chart.axis.AxisLocation location) {
         ParamChecks.nullNotPermitted(location, "location");
-        AxisLocation result = null;
-        if (location == AxisLocation.TOP_OR_LEFT) {
-            result = AxisLocation.BOTTOM_OR_RIGHT;
+        jfree.chart.axis.AxisLocation result = null;
+        if (location == jfree.chart.axis.AxisLocation.TOP_OR_LEFT) {
+            result = jfree.chart.axis.AxisLocation.BOTTOM_OR_RIGHT;
         }
-        else if (location == AxisLocation.TOP_OR_RIGHT) {
-            result = AxisLocation.BOTTOM_OR_LEFT;
+        else if (location == jfree.chart.axis.AxisLocation.TOP_OR_RIGHT) {
+            result = jfree.chart.axis.AxisLocation.BOTTOM_OR_LEFT;
         }
-        else if (location == AxisLocation.BOTTOM_OR_LEFT) {
-            result = AxisLocation.TOP_OR_RIGHT;
+        else if (location == jfree.chart.axis.AxisLocation.BOTTOM_OR_LEFT) {
+            result = jfree.chart.axis.AxisLocation.TOP_OR_RIGHT;
         }
-        else if (location == AxisLocation.BOTTOM_OR_RIGHT) {
-            result = AxisLocation.TOP_OR_LEFT;
+        else if (location == jfree.chart.axis.AxisLocation.BOTTOM_OR_RIGHT) {
+            result = jfree.chart.axis.AxisLocation.TOP_OR_LEFT;
         }
         else {
             throw new IllegalStateException("AxisLocation not recognised.");
@@ -179,17 +179,17 @@ public final class AxisLocation implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(AxisLocation.TOP_OR_RIGHT)) {
-            return AxisLocation.TOP_OR_RIGHT;
+        if (this.equals(jfree.chart.axis.AxisLocation.TOP_OR_RIGHT)) {
+            return jfree.chart.axis.AxisLocation.TOP_OR_RIGHT;
         }
-        else if (this.equals(AxisLocation.BOTTOM_OR_RIGHT)) {
-            return AxisLocation.BOTTOM_OR_RIGHT;
+        else if (this.equals(jfree.chart.axis.AxisLocation.BOTTOM_OR_RIGHT)) {
+            return jfree.chart.axis.AxisLocation.BOTTOM_OR_RIGHT;
         }
-        else if (this.equals(AxisLocation.TOP_OR_LEFT)) {
-            return AxisLocation.TOP_OR_LEFT;
+        else if (this.equals(jfree.chart.axis.AxisLocation.TOP_OR_LEFT)) {
+            return jfree.chart.axis.AxisLocation.TOP_OR_LEFT;
         }
-        else if (this.equals(AxisLocation.BOTTOM_OR_LEFT)) {
-            return AxisLocation.BOTTOM_OR_LEFT;
+        else if (this.equals(jfree.chart.axis.AxisLocation.BOTTOM_OR_LEFT)) {
+            return jfree.chart.axis.AxisLocation.BOTTOM_OR_LEFT;
         }
         return null;
     }

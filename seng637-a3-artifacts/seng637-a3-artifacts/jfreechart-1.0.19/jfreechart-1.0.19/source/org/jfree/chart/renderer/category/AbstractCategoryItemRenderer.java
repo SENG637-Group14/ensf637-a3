@@ -130,35 +130,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.CategoryItemEntity;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.labels.CategorySeriesLabelGenerator;
-import org.jfree.chart.labels.CategoryToolTipGenerator;
-import org.jfree.chart.labels.ItemLabelPosition;
-import org.jfree.chart.labels.StandardCategorySeriesLabelGenerator;
-import org.jfree.chart.plot.CategoryCrosshairState;
-import org.jfree.chart.plot.CategoryMarker;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.DrawingSupplier;
-import org.jfree.chart.plot.IntervalMarker;
-import org.jfree.chart.plot.Marker;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.ValueMarker;
-import org.jfree.chart.renderer.AbstractRenderer;
-import org.jfree.chart.urls.CategoryURLGenerator;
-import org.jfree.chart.util.CloneUtils;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.TextUtils;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.general.DatasetUtilities;
+import jfree.chart.LegendItem;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.CategoryItemEntity;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.labels.CategorySeriesLabelGenerator;
+import jfree.chart.labels.CategoryToolTipGenerator;
+import jfree.chart.labels.ItemLabelPosition;
+import jfree.chart.labels.StandardCategorySeriesLabelGenerator;
+import jfree.chart.plot.CategoryCrosshairState;
+import jfree.chart.plot.CategoryMarker;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.DrawingSupplier;
+import jfree.chart.plot.IntervalMarker;
+import jfree.chart.plot.Marker;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.ValueMarker;
+import jfree.chart.renderer.AbstractRenderer;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.urls.CategoryURLGenerator;
+import jfree.chart.util.CloneUtils;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.TextUtils;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
+import jfree.data.general.DatasetUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.LengthAdjustmentType;
@@ -171,8 +173,8 @@ import org.jfree.util.SortOrder;
 
 /**
  * An abstract base class that you can use to implement a new
- * {@link CategoryItemRenderer}.  When you create a new
- * {@link CategoryItemRenderer} you are not required to extend this class,
+ * {@link jfree.chart.renderer.category.CategoryItemRenderer}.  When you create a new
+ * {@link jfree.chart.renderer.category.CategoryItemRenderer} you are not required to extend this class,
  * but it makes the job easier.
  */
 public abstract class AbstractCategoryItemRenderer extends AbstractRenderer
@@ -538,7 +540,7 @@ public abstract class AbstractCategoryItemRenderer extends AbstractRenderer
 
     /**
      * Returns the number of rows in the dataset.  This value is updated in the
-     * {@link AbstractCategoryItemRenderer#initialise} method.
+     * {@link jfree.chart.renderer.category.AbstractCategoryItemRenderer#initialise} method.
      *
      * @return The row count.
      */
@@ -548,7 +550,7 @@ public abstract class AbstractCategoryItemRenderer extends AbstractRenderer
 
     /**
      * Returns the number of columns in the dataset.  This value is updated in
-     * the {@link AbstractCategoryItemRenderer#initialise} method.
+     * the {@link jfree.chart.renderer.category.AbstractCategoryItemRenderer#initialise} method.
      *
      * @return The column count.
      */
@@ -560,7 +562,7 @@ public abstract class AbstractCategoryItemRenderer extends AbstractRenderer
      * Creates a new state instance---this method is called from the
      * {@link #initialise(Graphics2D, Rectangle2D, CategoryPlot, int,
      * PlotRenderingInfo)} method.  Subclasses can override this method if
-     * they need to use a subclass of {@link CategoryItemRendererState}.
+     * they need to use a subclass of {@link jfree.chart.renderer.category.CategoryItemRendererState}.
      *
      * @param info  collects plot rendering info (<code>null</code> permitted).
      *
@@ -568,8 +570,8 @@ public abstract class AbstractCategoryItemRenderer extends AbstractRenderer
      *
      * @since 1.0.5
      */
-    protected CategoryItemRendererState createState(PlotRenderingInfo info) {
-        return new CategoryItemRendererState(info);
+    protected jfree.chart.renderer.category.CategoryItemRendererState createState(PlotRenderingInfo info) {
+        return new jfree.chart.renderer.category.CategoryItemRendererState(info);
     }
 
     /**
@@ -588,9 +590,9 @@ public abstract class AbstractCategoryItemRenderer extends AbstractRenderer
      * @return The renderer state.
      */
     @Override
-    public CategoryItemRendererState initialise(Graphics2D g2,
-            Rectangle2D dataArea, CategoryPlot plot, int rendererIndex,
-            PlotRenderingInfo info) {
+    public jfree.chart.renderer.category.CategoryItemRendererState initialise(Graphics2D g2,
+                                                                                   Rectangle2D dataArea, CategoryPlot plot, int rendererIndex,
+                                                                                   PlotRenderingInfo info) {
 
         setPlot(plot);
         CategoryDataset data = plot.getDataset(rendererIndex);
@@ -1251,10 +1253,10 @@ public abstract class AbstractCategoryItemRenderer extends AbstractRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AbstractCategoryItemRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.AbstractCategoryItemRenderer)) {
             return false;
         }
-        AbstractCategoryItemRenderer that = (AbstractCategoryItemRenderer) obj;
+        jfree.chart.renderer.category.AbstractCategoryItemRenderer that = (jfree.chart.renderer.category.AbstractCategoryItemRenderer) obj;
 
         if (!ObjectUtilities.equal(this.itemLabelGenerator,
                 that.itemLabelGenerator)) {
@@ -1425,8 +1427,8 @@ public abstract class AbstractCategoryItemRenderer extends AbstractRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        AbstractCategoryItemRenderer clone
-            = (AbstractCategoryItemRenderer) super.clone();
+        jfree.chart.renderer.category.AbstractCategoryItemRenderer clone
+            = (jfree.chart.renderer.category.AbstractCategoryItemRenderer) super.clone();
 
         if (this.itemLabelGenerator != null) {
             if (this.itemLabelGenerator instanceof PublicCloneable) {
@@ -1818,7 +1820,7 @@ public abstract class AbstractCategoryItemRenderer extends AbstractRenderer
 
     /**
      * Sets the tool tip generator for ALL series and sends a
-     * {@link org.jfree.chart.event.RendererChangeEvent} to all registered
+     * {@link RendererChangeEvent} to all registered
      * listeners.
      *
      * @param generator  the generator (<code>null</code> permitted).

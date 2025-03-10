@@ -44,8 +44,9 @@ package org.jfree.chart.labels;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.IntervalCategoryDataset;
+import jfree.chart.labels.StandardCategoryToolTipGenerator;
+import jfree.data.category.CategoryDataset;
+import jfree.data.category.IntervalCategoryDataset;
 
 /**
  * A tooltip generator for plots that use data from an
@@ -145,7 +146,7 @@ public class IntervalCategoryToolTipGenerator
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof IntervalCategoryToolTipGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.IntervalCategoryToolTipGenerator)) {
             return false;
         }
         // no fields to test

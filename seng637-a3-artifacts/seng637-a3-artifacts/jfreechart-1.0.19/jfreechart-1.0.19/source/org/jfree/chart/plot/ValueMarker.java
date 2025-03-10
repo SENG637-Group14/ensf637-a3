@@ -48,7 +48,8 @@ package org.jfree.chart.plot;
 import java.awt.Paint;
 import java.awt.Stroke;
 
-import org.jfree.chart.event.MarkerChangeEvent;
+import jfree.chart.event.MarkerChangeEvent;
+import jfree.chart.plot.Marker;
 
 /**
  * A marker that represents a single value.  Markers can be added to plots to
@@ -145,10 +146,10 @@ public class ValueMarker extends Marker {
         if (!super.equals(obj)) {
             return false;
         }
-        if (!(obj instanceof ValueMarker)) {
+        if (!(obj instanceof jfree.chart.plot.ValueMarker)) {
             return false;
         }
-        ValueMarker that = (ValueMarker) obj;
+        jfree.chart.plot.ValueMarker that = (jfree.chart.plot.ValueMarker) obj;
         if (this.value != that.value) {
             return false;
         }

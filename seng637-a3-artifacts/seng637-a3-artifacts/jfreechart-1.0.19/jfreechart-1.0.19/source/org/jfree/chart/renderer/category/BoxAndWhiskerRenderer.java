@@ -107,21 +107,23 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.renderer.Outlier;
-import org.jfree.chart.renderer.OutlierList;
-import org.jfree.chart.renderer.OutlierListCollection;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.statistics.BoxAndWhiskerCategoryDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.renderer.Outlier;
+import jfree.chart.renderer.OutlierList;
+import jfree.chart.renderer.OutlierListCollection;
+import jfree.chart.renderer.category.AbstractCategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
+import jfree.data.statistics.BoxAndWhiskerCategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PaintUtilities;
@@ -424,7 +426,7 @@ public class BoxAndWhiskerRenderer extends AbstractCategoryItemRenderer
      * @param width  a value between 0 and 1 indicating how wide the
      *     whisker is supposed to be compared to the bar.
      * @see #getWhiskerWidth()
-     * @see CategoryItemRendererState#getBarWidth()
+     * @see jfree.chart.renderer.category.CategoryItemRendererState#getBarWidth()
      *
      * @since 1.0.14
      */
@@ -520,11 +522,11 @@ public class BoxAndWhiskerRenderer extends AbstractCategoryItemRenderer
      * @return The renderer state.
      */
     @Override
-    public CategoryItemRendererState initialise(Graphics2D g2, 
-            Rectangle2D dataArea, CategoryPlot plot, int rendererIndex,
-            PlotRenderingInfo info) {
+    public jfree.chart.renderer.category.CategoryItemRendererState initialise(Graphics2D g2,
+                                                                                   Rectangle2D dataArea, CategoryPlot plot, int rendererIndex,
+                                                                                   PlotRenderingInfo info) {
 
-        CategoryItemRendererState state = super.initialise(g2, dataArea, plot,
+        jfree.chart.renderer.category.CategoryItemRendererState state = super.initialise(g2, dataArea, plot,
                 rendererIndex, info);
         // calculate the box width
         CategoryAxis domainAxis = getDomainAxis(plot, rendererIndex);
@@ -580,7 +582,7 @@ public class BoxAndWhiskerRenderer extends AbstractCategoryItemRenderer
      * @param pass  the pass index.
      */
     @Override
-    public void drawItem(Graphics2D g2, CategoryItemRendererState state,
+    public void drawItem(Graphics2D g2, jfree.chart.renderer.category.CategoryItemRendererState state,
         Rectangle2D dataArea, CategoryPlot plot, CategoryAxis domainAxis,
         ValueAxis rangeAxis, CategoryDataset dataset, int row, int column,
         int pass) {
@@ -625,10 +627,10 @@ public class BoxAndWhiskerRenderer extends AbstractCategoryItemRenderer
      * @param row  the row index (zero-based).
      * @param column  the column index (zero-based).
      */
-    public void drawHorizontalItem(Graphics2D g2, 
-            CategoryItemRendererState state, Rectangle2D dataArea,
-            CategoryPlot plot, CategoryAxis domainAxis, ValueAxis rangeAxis,
-            CategoryDataset dataset, int row, int column) {
+    public void drawHorizontalItem(Graphics2D g2,
+                                   jfree.chart.renderer.category.CategoryItemRendererState state, Rectangle2D dataArea,
+                                   CategoryPlot plot, CategoryAxis domainAxis, ValueAxis rangeAxis,
+                                   CategoryDataset dataset, int row, int column) {
 
         BoxAndWhiskerCategoryDataset bawDataset
                 = (BoxAndWhiskerCategoryDataset) dataset;
@@ -1055,10 +1057,10 @@ public class BoxAndWhiskerRenderer extends AbstractCategoryItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof BoxAndWhiskerRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.BoxAndWhiskerRenderer)) {
             return false;
         }
-        BoxAndWhiskerRenderer that = (BoxAndWhiskerRenderer) obj;
+        jfree.chart.renderer.category.BoxAndWhiskerRenderer that = (jfree.chart.renderer.category.BoxAndWhiskerRenderer) obj;
         if (this.fillBox != that.fillBox) {
             return false;
         }

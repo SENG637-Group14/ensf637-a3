@@ -115,16 +115,22 @@ import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.data.Range;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DefaultValueDataset;
-import org.jfree.data.general.ValueDataset;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.chart.plot.Zoomable;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.data.Range;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DefaultValueDataset;
+import jfree.data.general.ValueDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
@@ -1144,8 +1150,8 @@ public class ThermometerPlot extends Plot implements ValueAxisPlot,
      */
     @Override
     public void draw(Graphics2D g2, Rectangle2D area, Point2D anchor,
-                     PlotState parentState,
-                     PlotRenderingInfo info) {
+                     jfree.chart.plot.PlotState parentState,
+                     jfree.chart.plot.PlotRenderingInfo info) {
 
         RoundRectangle2D outerStem = new RoundRectangle2D.Double();
         RoundRectangle2D innerStem = new RoundRectangle2D.Double();
@@ -1458,10 +1464,10 @@ public class ThermometerPlot extends Plot implements ValueAxisPlot,
     /**
      * Returns the orientation of the plot.
      *
-     * @return The orientation (always {@link PlotOrientation#VERTICAL}).
+     * @return The orientation (always {@link jfree.chart.plot.PlotOrientation#VERTICAL}).
      */
     @Override
-    public PlotOrientation getOrientation() {
+    public jfree.chart.plot.PlotOrientation getOrientation() {
         return PlotOrientation.VERTICAL;
     }
 
@@ -1493,7 +1499,7 @@ public class ThermometerPlot extends Plot implements ValueAxisPlot,
     /**
      * Returns the mercury paint corresponding to the current data value.
      * Called from the {@link #draw(Graphics2D, Rectangle2D, Point2D,
-     * PlotState, PlotRenderingInfo)} method.
+     * PlotState, jfree.chart.plot.PlotRenderingInfo)} method.
      *
      * @return The paint (never <code>null</code>).
      */
@@ -1527,10 +1533,10 @@ public class ThermometerPlot extends Plot implements ValueAxisPlot,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ThermometerPlot)) {
+        if (!(obj instanceof jfree.chart.plot.ThermometerPlot)) {
             return false;
         }
-        ThermometerPlot that = (ThermometerPlot) obj;
+        jfree.chart.plot.ThermometerPlot that = (jfree.chart.plot.ThermometerPlot) obj;
         if (!super.equals(obj)) {
             return false;
         }
@@ -1644,7 +1650,7 @@ public class ThermometerPlot extends Plot implements ValueAxisPlot,
     @Override
     public Object clone() throws CloneNotSupportedException {
 
-        ThermometerPlot clone = (ThermometerPlot) super.clone();
+        jfree.chart.plot.ThermometerPlot clone = (jfree.chart.plot.ThermometerPlot) super.clone();
 
         if (clone.dataset != null) {
             clone.dataset.addChangeListener(clone);
@@ -1715,7 +1721,7 @@ public class ThermometerPlot extends Plot implements ValueAxisPlot,
      * @param source  the source point.
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo state,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                                Point2D source) {
         // no domain axis to zoom
     }
@@ -1732,7 +1738,7 @@ public class ThermometerPlot extends Plot implements ValueAxisPlot,
      * @since 1.0.7
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo state,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                                Point2D source, boolean useAnchor) {
         // no domain axis to zoom
     }
@@ -1745,7 +1751,7 @@ public class ThermometerPlot extends Plot implements ValueAxisPlot,
      * @param source  the source point.
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo state,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                               Point2D source) {
         this.rangeAxis.resizeRange(factor);
     }
@@ -1762,7 +1768,7 @@ public class ThermometerPlot extends Plot implements ValueAxisPlot,
      * @since 1.0.7
      */
     @Override
-    public void zoomRangeAxes(double factor, PlotRenderingInfo state,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                               Point2D source, boolean useAnchor) {
         double anchorY = this.getRangeAxis().java2DToValue(source.getY(),
                 state.getDataArea(), RectangleEdge.LEFT);
@@ -1779,7 +1785,7 @@ public class ThermometerPlot extends Plot implements ValueAxisPlot,
      */
     @Override
     public void zoomDomainAxes(double lowerPercent, double upperPercent,
-                               PlotRenderingInfo state, Point2D source) {
+                               jfree.chart.plot.PlotRenderingInfo state, Point2D source) {
         // no domain axis to zoom
     }
 

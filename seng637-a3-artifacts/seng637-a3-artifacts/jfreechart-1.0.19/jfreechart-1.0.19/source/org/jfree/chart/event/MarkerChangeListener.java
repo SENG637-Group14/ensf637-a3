@@ -42,7 +42,8 @@ package org.jfree.chart.event;
 
 import java.util.EventListener;
 
-import org.jfree.chart.plot.Marker;
+import jfree.chart.event.MarkerChangeEvent;
+import jfree.chart.plot.Marker;
 
 /**
  * The interface that must be supported by classes that wish to receive

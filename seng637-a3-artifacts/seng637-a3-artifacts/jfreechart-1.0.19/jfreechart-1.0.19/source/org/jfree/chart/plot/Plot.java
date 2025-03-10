@@ -157,26 +157,31 @@ import java.io.Serializable;
 
 import javax.swing.event.EventListenerList;
 
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.LegendItemSource;
-import org.jfree.chart.annotations.Annotation;
-import org.jfree.chart.axis.AxisLocation;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.PlotEntity;
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.event.AnnotationChangeListener;
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.event.AxisChangeListener;
-import org.jfree.chart.event.ChartChangeEventType;
-import org.jfree.chart.event.MarkerChangeEvent;
-import org.jfree.chart.event.MarkerChangeListener;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.event.PlotChangeListener;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetChangeListener;
-import org.jfree.data.general.DatasetGroup;
+import jfree.chart.JFreeChart;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.LegendItemSource;
+import jfree.chart.annotations.Annotation;
+import jfree.chart.axis.AxisLocation;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.PlotEntity;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.event.AnnotationChangeListener;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.event.AxisChangeListener;
+import jfree.chart.event.ChartChangeEventType;
+import jfree.chart.event.MarkerChangeEvent;
+import jfree.chart.event.MarkerChangeListener;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.event.PlotChangeListener;
+import jfree.chart.plot.DefaultDrawingSupplier;
+import jfree.chart.plot.DrawingSupplier;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.util.ParamChecks;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetChangeListener;
+import jfree.data.general.DatasetGroup;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.G2TextMeasurer;
 import org.jfree.text.TextBlock;
@@ -239,7 +244,7 @@ public abstract class Plot implements AxisChangeListener,
             = new Ellipse2D.Double(-4.0, -4.0, 8.0, 8.0);
 
     /** The parent plot (<code>null</code> if this is the root plot). */
-    private Plot parent;
+    private jfree.chart.plot.Plot parent;
 
     /** The dataset group (to be used for thread synchronisation). */
     private DatasetGroup datasetGroup;
@@ -288,7 +293,7 @@ public abstract class Plot implements AxisChangeListener,
     private float backgroundAlpha;
 
     /** The drawing supplier. */
-    private DrawingSupplier drawingSupplier;
+    private jfree.chart.plot.DrawingSupplier drawingSupplier;
 
     /** Storage for registered change listeners. */
     private transient EventListenerList listenerList;
@@ -447,10 +452,10 @@ public abstract class Plot implements AxisChangeListener,
      *
      * @return The parent plot.
      *
-     * @see #setParent(Plot)
+     * @see #setParent(jfree.chart.plot.Plot)
      * @see #getRootPlot()
      */
-    public Plot getParent() {
+    public jfree.chart.plot.Plot getParent() {
         return this.parent;
     }
 
@@ -462,7 +467,7 @@ public abstract class Plot implements AxisChangeListener,
      *
      * @see #getParent()
      */
-    public void setParent(Plot parent) {
+    public void setParent(jfree.chart.plot.Plot parent) {
         this.parent = parent;
     }
 
@@ -473,9 +478,9 @@ public abstract class Plot implements AxisChangeListener,
      *
      * @see #getParent()
      */
-    public Plot getRootPlot() {
+    public jfree.chart.plot.Plot getRootPlot() {
 
-        Plot p = getParent();
+        jfree.chart.plot.Plot p = getParent();
         if (p == null) {
             return this;
         }
@@ -613,11 +618,11 @@ public abstract class Plot implements AxisChangeListener,
      *
      * @return The drawing supplier (possibly <code>null</code>).
      *
-     * @see #setDrawingSupplier(DrawingSupplier)
+     * @see #setDrawingSupplier(jfree.chart.plot.DrawingSupplier)
      */
-    public DrawingSupplier getDrawingSupplier() {
-        DrawingSupplier result;
-        Plot p = getParent();
+    public jfree.chart.plot.DrawingSupplier getDrawingSupplier() {
+        jfree.chart.plot.DrawingSupplier result;
+        jfree.chart.plot.Plot p = getParent();
         if (p != null) {
             result = p.getDrawingSupplier();
         }
@@ -639,7 +644,7 @@ public abstract class Plot implements AxisChangeListener,
      *
      * @see #getDrawingSupplier()
      */
-    public void setDrawingSupplier(DrawingSupplier supplier) {
+    public void setDrawingSupplier(jfree.chart.plot.DrawingSupplier supplier) {
         this.drawingSupplier = supplier;
         fireChangeEvent();
     }
@@ -659,7 +664,7 @@ public abstract class Plot implements AxisChangeListener,
      *
      * @since 1.0.11
      */
-    public void setDrawingSupplier(DrawingSupplier supplier, boolean notify) {
+    public void setDrawingSupplier(jfree.chart.plot.DrawingSupplier supplier, boolean notify) {
         this.drawingSupplier = supplier;
         if (notify) {
             fireChangeEvent();
@@ -1002,7 +1007,7 @@ public abstract class Plot implements AxisChangeListener,
                               Rectangle2D area,
                               Point2D anchor,
                               PlotState parentState,
-                              PlotRenderingInfo info);
+                              jfree.chart.plot.PlotRenderingInfo info);
 
     /**
      * Draws the plot background (the background color and/or image).
@@ -1029,10 +1034,10 @@ public abstract class Plot implements AxisChangeListener,
      *
      * @see #getBackgroundPaint()
      * @see #getBackgroundAlpha()
-     * @see #fillBackground(Graphics2D, Rectangle2D, PlotOrientation)
+     * @see #fillBackground(Graphics2D, Rectangle2D, jfree.chart.plot.PlotOrientation)
      */
     protected void fillBackground(Graphics2D g2, Rectangle2D area) {
-        fillBackground(g2, area, PlotOrientation.VERTICAL);
+        fillBackground(g2, area, jfree.chart.plot.PlotOrientation.VERTICAL);
     }
 
     /**
@@ -1048,7 +1053,7 @@ public abstract class Plot implements AxisChangeListener,
      * @since 1.0.6
      */
     protected void fillBackground(Graphics2D g2, Rectangle2D area,
-            PlotOrientation orientation) {
+            jfree.chart.plot.PlotOrientation orientation) {
         ParamChecks.nullNotPermitted(orientation, "orientation");
         if (this.backgroundPaint == null) {
             return;
@@ -1056,13 +1061,13 @@ public abstract class Plot implements AxisChangeListener,
         Paint p = this.backgroundPaint;
         if (p instanceof GradientPaint) {
             GradientPaint gp = (GradientPaint) p;
-            if (orientation == PlotOrientation.VERTICAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 p = new GradientPaint((float) area.getCenterX(),
                         (float) area.getMaxY(), gp.getColor1(),
                         (float) area.getCenterX(), (float) area.getMinY(),
                         gp.getColor2());
             }
-            else if (orientation == PlotOrientation.HORIZONTAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 p = new GradientPaint((float) area.getMinX(),
                         (float) area.getCenterY(), gp.getColor1(),
                         (float) area.getMaxX(), (float) area.getCenterY(),
@@ -1169,7 +1174,7 @@ public abstract class Plot implements AxisChangeListener,
      *  @since 1.0.13
      */
     protected void createAndAddEntity(Rectangle2D dataArea,
-            PlotRenderingInfo plotState, String toolTip, String urlText) {
+                                      jfree.chart.plot.PlotRenderingInfo plotState, String toolTip, String urlText) {
         if (plotState != null && plotState.getOwner() != null) {
             EntityCollection e = plotState.getOwner().getEntityCollection();
             if (e != null) {
@@ -1313,10 +1318,10 @@ public abstract class Plot implements AxisChangeListener,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Plot)) {
+        if (!(obj instanceof jfree.chart.plot.Plot)) {
             return false;
         }
-        Plot that = (Plot) obj;
+        jfree.chart.plot.Plot that = (jfree.chart.plot.Plot) obj;
         if (!ObjectUtilities.equal(this.noDataMessage, that.noDataMessage)) {
             return false;
         }
@@ -1380,7 +1385,7 @@ public abstract class Plot implements AxisChangeListener,
     @Override
     public Object clone() throws CloneNotSupportedException {
 
-        Plot clone = (Plot) super.clone();
+        jfree.chart.plot.Plot clone = (jfree.chart.plot.Plot) super.clone();
         // private Plot parent <-- don't clone the parent plot, but take care
         // childs in combined plots instead
         if (this.datasetGroup != null) {
@@ -1440,41 +1445,41 @@ public abstract class Plot implements AxisChangeListener,
      * @return The edge (never <code>null</code>).
      */
     public static RectangleEdge resolveDomainAxisLocation(
-            AxisLocation location, PlotOrientation orientation) {
+            AxisLocation location, jfree.chart.plot.PlotOrientation orientation) {
 
         ParamChecks.nullNotPermitted(location, "location");
         ParamChecks.nullNotPermitted(orientation, "orientation");
 
         RectangleEdge result = null;
         if (location == AxisLocation.TOP_OR_RIGHT) {
-            if (orientation == PlotOrientation.HORIZONTAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 result = RectangleEdge.RIGHT;
             }
-            else if (orientation == PlotOrientation.VERTICAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 result = RectangleEdge.TOP;
             }
         }
         else if (location == AxisLocation.TOP_OR_LEFT) {
-            if (orientation == PlotOrientation.HORIZONTAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 result = RectangleEdge.LEFT;
             }
-            else if (orientation == PlotOrientation.VERTICAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 result = RectangleEdge.TOP;
             }
         }
         else if (location == AxisLocation.BOTTOM_OR_RIGHT) {
-            if (orientation == PlotOrientation.HORIZONTAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 result = RectangleEdge.RIGHT;
             }
-            else if (orientation == PlotOrientation.VERTICAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 result = RectangleEdge.BOTTOM;
             }
         }
         else if (location == AxisLocation.BOTTOM_OR_LEFT) {
-            if (orientation == PlotOrientation.HORIZONTAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 result = RectangleEdge.LEFT;
             }
-            else if (orientation == PlotOrientation.VERTICAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 result = RectangleEdge.BOTTOM;
             }
         }
@@ -1495,38 +1500,38 @@ public abstract class Plot implements AxisChangeListener,
      * @return The edge (never <code>null</code>).
      */
     public static RectangleEdge resolveRangeAxisLocation(
-            AxisLocation location, PlotOrientation orientation) {
+            AxisLocation location, jfree.chart.plot.PlotOrientation orientation) {
 
         ParamChecks.nullNotPermitted(location, "location");
         ParamChecks.nullNotPermitted(orientation, "orientation");
 
         RectangleEdge result = null;
         if (location == AxisLocation.TOP_OR_RIGHT) {
-            if (orientation == PlotOrientation.HORIZONTAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 result = RectangleEdge.TOP;
             }
-            else if (orientation == PlotOrientation.VERTICAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 result = RectangleEdge.RIGHT;
             }
         }
         else if (location == AxisLocation.TOP_OR_LEFT) {
-            if (orientation == PlotOrientation.HORIZONTAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 result = RectangleEdge.TOP;
             }
-            else if (orientation == PlotOrientation.VERTICAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 result = RectangleEdge.LEFT;
             }
         }
         else if (location == AxisLocation.BOTTOM_OR_RIGHT) {
-            if (orientation == PlotOrientation.HORIZONTAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 result = RectangleEdge.BOTTOM;
             }
-            else if (orientation == PlotOrientation.VERTICAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 result = RectangleEdge.RIGHT;
             }
         }
         else if (location == AxisLocation.BOTTOM_OR_LEFT) {
-            if (orientation == PlotOrientation.HORIZONTAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 result = RectangleEdge.BOTTOM;
             }
             else if (orientation == PlotOrientation.VERTICAL) {

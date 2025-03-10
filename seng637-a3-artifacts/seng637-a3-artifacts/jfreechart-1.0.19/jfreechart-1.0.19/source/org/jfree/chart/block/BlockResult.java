@@ -40,7 +40,9 @@
 
 package org.jfree.chart.block;
 
-import org.jfree.chart.entity.EntityCollection;
+import jfree.chart.block.Block;
+import jfree.chart.block.EntityBlockResult;
+import jfree.chart.entity.EntityCollection;
 
 /**
  * Used to return results from the draw() method in the {@link Block}

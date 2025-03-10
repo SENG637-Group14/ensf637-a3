@@ -52,14 +52,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.labels.XYSeriesLabelGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A series label generator for plots that use data from
- * an {@link org.jfree.data.xy.XYDataset}.
+ * an {@link XYDataset}.
  */
 public class MultipleXYSeriesLabelGenerator implements XYSeriesLabelGenerator,
         Cloneable, PublicCloneable, Serializable {
@@ -177,8 +178,8 @@ public class MultipleXYSeriesLabelGenerator implements XYSeriesLabelGenerator,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        MultipleXYSeriesLabelGenerator clone
-                = (MultipleXYSeriesLabelGenerator) super.clone();
+        jfree.chart.labels.MultipleXYSeriesLabelGenerator clone
+                = (jfree.chart.labels.MultipleXYSeriesLabelGenerator) super.clone();
         clone.seriesLabelLists = new HashMap();
         Set keys = this.seriesLabelLists.keySet();
         Iterator iterator = keys.iterator();
@@ -207,11 +208,11 @@ public class MultipleXYSeriesLabelGenerator implements XYSeriesLabelGenerator,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof MultipleXYSeriesLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.MultipleXYSeriesLabelGenerator)) {
             return false;
         }
-        MultipleXYSeriesLabelGenerator that
-                = (MultipleXYSeriesLabelGenerator) obj;
+        jfree.chart.labels.MultipleXYSeriesLabelGenerator that
+                = (jfree.chart.labels.MultipleXYSeriesLabelGenerator) obj;
         if (!this.formatPattern.equals(that.formatPattern)) {
             return false;
         }

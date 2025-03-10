@@ -79,17 +79,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.data.Range;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.xy.OHLCDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.data.Range;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.xy.OHLCDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PaintUtilities;
@@ -470,10 +473,10 @@ public class HighLowRenderer extends AbstractXYItemRenderer
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof HighLowRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.HighLowRenderer)) {
             return false;
         }
-        HighLowRenderer that = (HighLowRenderer) obj;
+        jfree.chart.renderer.xy.HighLowRenderer that = (jfree.chart.renderer.xy.HighLowRenderer) obj;
         if (this.drawOpenTicks != that.drawOpenTicks) {
             return false;
         }

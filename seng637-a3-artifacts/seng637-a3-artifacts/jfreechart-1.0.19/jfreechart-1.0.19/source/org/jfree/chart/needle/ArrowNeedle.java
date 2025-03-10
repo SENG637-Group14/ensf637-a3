@@ -53,7 +53,8 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
+import jfree.chart.HashUtilities;
+import jfree.chart.needle.MeterNeedle;
 
 /**
  * A needle in the shape of an arrow.
@@ -144,13 +145,13 @@ public class ArrowNeedle extends MeterNeedle
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ArrowNeedle)) {
+        if (!(obj instanceof jfree.chart.needle.ArrowNeedle)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        ArrowNeedle that = (ArrowNeedle) obj;
+        jfree.chart.needle.ArrowNeedle that = (jfree.chart.needle.ArrowNeedle) obj;
         if (this.isArrowAtTop != that.isArrowAtTop) {
             return false;
         }

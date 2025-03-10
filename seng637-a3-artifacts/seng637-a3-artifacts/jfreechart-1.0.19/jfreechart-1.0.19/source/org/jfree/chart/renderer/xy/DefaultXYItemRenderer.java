@@ -41,11 +41,14 @@
 
 package org.jfree.chart.renderer.xy;
 
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+
 import java.io.Serializable;
 
 /**
- * A default renderer for the {@link org.jfree.chart.plot.XYPlot} class.  This
- * is an alias for the {@link XYLineAndShapeRenderer} class.
+ * A default renderer for the {@link XYPlot} class.  This
+ * is an alias for the {@link jfree.chart.renderer.xy.XYLineAndShapeRenderer} class.
  */
 public class DefaultXYItemRenderer extends XYLineAndShapeRenderer
                                    implements Serializable {

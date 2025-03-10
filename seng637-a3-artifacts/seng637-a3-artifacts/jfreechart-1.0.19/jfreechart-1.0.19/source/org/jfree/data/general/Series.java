@@ -65,7 +65,9 @@ import java.io.Serializable;
 
 import javax.swing.event.EventListenerList;
 
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.general.SeriesChangeListener;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -75,7 +77,7 @@ import org.jfree.util.ObjectUtilities;
  * The series has two properties ("Key" and "Description") for which you can
  * register a <code>PropertyChangeListener</code>.
  * <P>
- * You can also register a {@link SeriesChangeListener} to receive notification
+ * You can also register a {@link jfree.data.general.SeriesChangeListener} to receive notification
  * of changes to the series data.
  */
 public abstract class Series implements Cloneable, Serializable {
@@ -256,7 +258,7 @@ public abstract class Series implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        Series clone = (Series) super.clone();
+        jfree.data.general.Series clone = (jfree.data.general.Series) super.clone();
         clone.listeners = new EventListenerList();
         clone.propertyChangeSupport = new PropertyChangeSupport(clone);
         clone.vetoableChangeSupport = new VetoableChangeSupport(clone);
@@ -275,10 +277,10 @@ public abstract class Series implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Series)) {
+        if (!(obj instanceof jfree.data.general.Series)) {
             return false;
         }
-        Series that = (Series) obj;
+        jfree.data.general.Series that = (jfree.data.general.Series) obj;
         if (!getKey().equals(that.getKey())) {
             return false;
         }
@@ -306,13 +308,13 @@ public abstract class Series implements Cloneable, Serializable {
      * Registers an object with this series, to receive notification whenever
      * the series changes.
      * <P>
-     * Objects being registered must implement the {@link SeriesChangeListener}
+     * Objects being registered must implement the {@link jfree.data.general.SeriesChangeListener}
      * interface.
      *
      * @param listener  the listener to register.
      */
-    public void addChangeListener(SeriesChangeListener listener) {
-        this.listeners.add(SeriesChangeListener.class, listener);
+    public void addChangeListener(jfree.data.general.SeriesChangeListener listener) {
+        this.listeners.add(jfree.data.general.SeriesChangeListener.class, listener);
     }
 
     /**
@@ -321,8 +323,8 @@ public abstract class Series implements Cloneable, Serializable {
      *
      * @param listener  the listener to deregister.
      */
-    public void removeChangeListener(SeriesChangeListener listener) {
-        this.listeners.remove(SeriesChangeListener.class, listener);
+    public void removeChangeListener(jfree.data.general.SeriesChangeListener listener) {
+        this.listeners.remove(jfree.data.general.SeriesChangeListener.class, listener);
     }
 
     /**
@@ -331,7 +333,7 @@ public abstract class Series implements Cloneable, Serializable {
      */
     public void fireSeriesChanged() {
         if (this.notify) {
-            notifyListeners(new SeriesChangeEvent(this));
+            notifyListeners(new jfree.data.general.SeriesChangeEvent(this));
         }
     }
 
@@ -345,7 +347,7 @@ public abstract class Series implements Cloneable, Serializable {
 
         Object[] listenerList = this.listeners.getListenerList();
         for (int i = listenerList.length - 2; i >= 0; i -= 2) {
-            if (listenerList[i] == SeriesChangeListener.class) {
+            if (listenerList[i] == jfree.data.general.SeriesChangeListener.class) {
                 ((SeriesChangeListener) listenerList[i + 1]).seriesChanged(
                         event);
             }

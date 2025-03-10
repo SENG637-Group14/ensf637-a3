@@ -45,6 +45,8 @@
 
 package org.jfree.chart.util;
 
+import jfree.chart.util.ParamChecks;
+
 import java.text.DecimalFormat;
 import java.text.FieldPosition;
 import java.text.NumberFormat;
@@ -114,8 +116,8 @@ public class LogFormat extends NumberFormat {
      */
     public LogFormat(double base, String baseLabel, String powerLabel,
             boolean showBase) {
-        ParamChecks.nullNotPermitted(baseLabel, "baseLabel");
-        ParamChecks.nullNotPermitted(powerLabel, "powerLabel");
+        jfree.chart.util.ParamChecks.nullNotPermitted(baseLabel, "baseLabel");
+        jfree.chart.util.ParamChecks.nullNotPermitted(powerLabel, "powerLabel");
         this.base = base;
         this.baseLog = Math.log(this.base);
         this.baseLabel = baseLabel;
@@ -226,10 +228,10 @@ public class LogFormat extends NumberFormat {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LogFormat)) {
+        if (!(obj instanceof jfree.chart.util.LogFormat)) {
             return false;
         }
-        LogFormat that = (LogFormat) obj;
+        jfree.chart.util.LogFormat that = (jfree.chart.util.LogFormat) obj;
         if (this.base != that.base) {
             return false;
         }
@@ -255,7 +257,7 @@ public class LogFormat extends NumberFormat {
      */
     @Override
     public Object clone() {
-        LogFormat clone = (LogFormat) super.clone();
+        jfree.chart.util.LogFormat clone = (jfree.chart.util.LogFormat) super.clone();
         clone.formatter = (NumberFormat) this.formatter.clone();
         return clone;
     }

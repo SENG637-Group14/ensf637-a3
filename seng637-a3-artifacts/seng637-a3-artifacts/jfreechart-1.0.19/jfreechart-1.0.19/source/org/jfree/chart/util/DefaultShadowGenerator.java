@@ -47,10 +47,12 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.io.Serializable;
-import org.jfree.chart.HashUtilities;
+import jfree.chart.HashUtilities;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ShadowGenerator;
 
 /**
- * A default implementation of the {@link ShadowGenerator} interface, based on
+ * A default implementation of the {@link jfree.chart.util.ShadowGenerator} interface, based on
  * code in a 
  * <a href="http://www.jroller.com/gfx/entry/fast_or_good_drop_shadows">blog
  * post by Romain Guy</a>.
@@ -293,10 +295,10 @@ public class DefaultShadowGenerator implements ShadowGenerator, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultShadowGenerator)) {
+        if (!(obj instanceof jfree.chart.util.DefaultShadowGenerator)) {
             return false;
         }
-        DefaultShadowGenerator that = (DefaultShadowGenerator) obj;
+        jfree.chart.util.DefaultShadowGenerator that = (jfree.chart.util.DefaultShadowGenerator) obj;
         if (this.shadowSize != that.shadowSize) {
             return false;
         }

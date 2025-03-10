@@ -58,7 +58,10 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.encoders.ImageEncoder;
+import jfree.chart.encoders.ImageEncoderFactory;
+import jfree.chart.util.ParamChecks;
 
 /**
  * Adapter class for the Sun JPEG Encoder.  The {@link ImageEncoderFactory}

@@ -48,7 +48,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.encoders.ImageEncoder;
+import jfree.chart.encoders.ImageFormat;
+import jfree.chart.util.ParamChecks;
 
 /**
  * Adapter class for the Sun PNG Encoder.  The ImageEncoderFactory will only

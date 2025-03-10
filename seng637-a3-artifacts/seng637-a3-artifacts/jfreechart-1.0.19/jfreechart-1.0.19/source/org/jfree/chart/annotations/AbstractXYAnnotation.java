@@ -47,11 +47,14 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.XYAnnotationEntity;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
+import jfree.chart.ChartPanel;
+import jfree.chart.annotations.AbstractAnnotation;
+import jfree.chart.annotations.XYAnnotation;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.XYAnnotationEntity;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -78,7 +81,7 @@ public abstract class AbstractXYAnnotation extends AbstractAnnotation
 
     /**
      * Returns the tool tip text for the annotation.  This will be displayed in
-     * a {@link org.jfree.chart.ChartPanel} when the mouse pointer hovers over
+     * a {@link ChartPanel} when the mouse pointer hovers over
      * the annotation.
      *
      * @return The tool tip text (possibly <code>null</code>).
@@ -178,10 +181,10 @@ public abstract class AbstractXYAnnotation extends AbstractAnnotation
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AbstractXYAnnotation)) {
+        if (!(obj instanceof jfree.chart.annotations.AbstractXYAnnotation)) {
             return false;
         }
-        AbstractXYAnnotation that = (AbstractXYAnnotation) obj;
+        jfree.chart.annotations.AbstractXYAnnotation that = (jfree.chart.annotations.AbstractXYAnnotation) obj;
         if (!ObjectUtilities.equal(this.toolTipText, that.toolTipText)) {
             return false;
         }

@@ -48,10 +48,13 @@ package org.jfree.data.xy;
 import java.util.Arrays;
 import java.util.Date;
 
+import jfree.data.xy.AbstractXYDataset;
+import jfree.data.xy.OHLCDataItem;
+import jfree.data.xy.OHLCDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A simple implementation of the {@link OHLCDataset} interface.  This
+ * A simple implementation of the {@link jfree.data.xy.OHLCDataset} interface.  This
  * implementation supports only one series.
  */
 public class DefaultOHLCDataset extends AbstractXYDataset
@@ -61,7 +64,7 @@ public class DefaultOHLCDataset extends AbstractXYDataset
     private Comparable key;
 
     /** Storage for the data items. */
-    private OHLCDataItem[] data;
+    private jfree.data.xy.OHLCDataItem[] data;
 
     /**
      * Creates a new dataset.
@@ -69,7 +72,7 @@ public class DefaultOHLCDataset extends AbstractXYDataset
      * @param key  the series key.
      * @param data  the data items.
      */
-    public DefaultOHLCDataset(Comparable key, OHLCDataItem[] data) {
+    public DefaultOHLCDataset(Comparable key, jfree.data.xy.OHLCDataItem[] data) {
         this.key = key;
         this.data = data;
     }
@@ -325,10 +328,10 @@ public class DefaultOHLCDataset extends AbstractXYDataset
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof DefaultOHLCDataset)) {
+        if (!(obj instanceof jfree.data.xy.DefaultOHLCDataset)) {
             return false;
         }
-        DefaultOHLCDataset that = (DefaultOHLCDataset) obj;
+        jfree.data.xy.DefaultOHLCDataset that = (jfree.data.xy.DefaultOHLCDataset) obj;
         if (!this.key.equals(that.key)) {
             return false;
         }
@@ -347,7 +350,7 @@ public class DefaultOHLCDataset extends AbstractXYDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultOHLCDataset clone = (DefaultOHLCDataset) super.clone();
+        jfree.data.xy.DefaultOHLCDataset clone = (jfree.data.xy.DefaultOHLCDataset) super.clone();
         clone.data = new OHLCDataItem[this.data.length];
         System.arraycopy(this.data, 0, clone.data, 0, this.data.length);
         return clone;

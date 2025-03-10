@@ -91,25 +91,35 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import org.jfree.chart.ClipPath;
-import org.jfree.chart.annotations.XYAnnotation;
-import org.jfree.chart.axis.AxisSpace;
-import org.jfree.chart.axis.ColorBar;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.ContourEntity;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.labels.ContourToolTipGenerator;
-import org.jfree.chart.labels.StandardContourToolTipGenerator;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.data.Range;
-import org.jfree.data.contour.ContourDataset;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetUtilities;
+import jfree.chart.ClipPath;
+import jfree.chart.annotations.XYAnnotation;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.ColorBar;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.ContourEntity;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.labels.ContourToolTipGenerator;
+import jfree.chart.labels.StandardContourToolTipGenerator;
+import jfree.chart.plot.ContourValuePlot;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.Marker;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.chart.plot.ValueMarker;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.data.Range;
+import jfree.data.contour.ContourDataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.util.ObjectUtilities;
@@ -120,7 +130,7 @@ import org.jfree.util.ObjectUtilities;
  * @deprecated This plot is no longer supported, please use {@link XYPlot} with
  *     an {@link XYBlockRenderer}.
  */
-public class ContourPlot extends Plot implements ContourValuePlot,
+public class ContourPlot extends jfree.chart.plot.Plot implements ContourValuePlot,
         ValueAxisPlot, PropertyChangeListener, Serializable, Cloneable {
 
     /** For serialization. */
@@ -454,7 +464,7 @@ public class ContourPlot extends Plot implements ContourValuePlot,
      *
      * @param marker the marker.
      */
-    public void addDomainMarker(Marker marker) {
+    public void addDomainMarker(jfree.chart.plot.Marker marker) {
 
         if (this.domainMarkers == null) {
             this.domainMarkers = new java.util.ArrayList();
@@ -482,7 +492,7 @@ public class ContourPlot extends Plot implements ContourValuePlot,
      *
      * @param marker The marker.
      */
-    public void addRangeMarker(Marker marker) {
+    public void addRangeMarker(jfree.chart.plot.Marker marker) {
 
         if (this.rangeMarkers == null) {
             this.rangeMarkers = new java.util.ArrayList();
@@ -559,7 +569,7 @@ public class ContourPlot extends Plot implements ContourValuePlot,
      */
     @Override
     public void draw(Graphics2D g2, Rectangle2D area, Point2D anchor,
-                     PlotState parentState, PlotRenderingInfo info) {
+                     PlotState parentState, jfree.chart.plot.PlotRenderingInfo info) {
 
         // if the plot area is too small, just return...
         boolean b1 = (area.getWidth() <= MINIMUM_WIDTH_TO_DRAW);
@@ -634,7 +644,7 @@ public class ContourPlot extends Plot implements ContourValuePlot,
             info.setDataArea(dataArea);
         }
 
-        CrosshairState crosshairState = new CrosshairState();
+        jfree.chart.plot.CrosshairState crosshairState = new jfree.chart.plot.CrosshairState();
         crosshairState.setCrosshairDistance(Double.POSITIVE_INFINITY);
 
         // draw the plot background...
@@ -668,7 +678,7 @@ public class ContourPlot extends Plot implements ContourValuePlot,
         if (this.domainMarkers != null) {
             Iterator iterator = this.domainMarkers.iterator();
             while (iterator.hasNext()) {
-                Marker marker = (Marker) iterator.next();
+                jfree.chart.plot.Marker marker = (jfree.chart.plot.Marker) iterator.next();
                 drawDomainMarker(g2, this, getDomainAxis(), marker, dataArea);
             }
         }
@@ -676,7 +686,7 @@ public class ContourPlot extends Plot implements ContourValuePlot,
         if (this.rangeMarkers != null) {
             Iterator iterator = this.rangeMarkers.iterator();
             while (iterator.hasNext()) {
-                Marker marker = (Marker) iterator.next();
+                jfree.chart.plot.Marker marker = (jfree.chart.plot.Marker) iterator.next();
                 drawRangeMarker(g2, this, getRangeAxis(), marker, dataArea);
             }
         }
@@ -717,7 +727,7 @@ public class ContourPlot extends Plot implements ContourValuePlot,
      * @param crosshairState  an optional object for collecting crosshair info.
      */
     public void render(Graphics2D g2, Rectangle2D dataArea,
-                       PlotRenderingInfo info, CrosshairState crosshairState) {
+                       jfree.chart.plot.PlotRenderingInfo info, jfree.chart.plot.CrosshairState crosshairState) {
 
         // now get the data and plot it (the visual representation will depend
         // on the renderer that has been set)...
@@ -784,13 +794,13 @@ public class ContourPlot extends Plot implements ContourValuePlot,
      */
     public void contourRenderer(Graphics2D g2,
                                 Rectangle2D dataArea,
-                                PlotRenderingInfo info,
-                                ContourPlot plot,
+                                jfree.chart.plot.PlotRenderingInfo info,
+                                jfree.chart.plot.ContourPlot plot,
                                 ValueAxis horizontalAxis,
                                 ValueAxis verticalAxis,
                                 ColorBar colorBar,
                                 ContourDataset data,
-                                CrosshairState crosshairState) {
+                                jfree.chart.plot.CrosshairState crosshairState) {
 
         // setup for collecting optional entity info...
         Rectangle2D.Double entityArea;
@@ -956,7 +966,7 @@ public class ContourPlot extends Plot implements ContourValuePlot,
                 if (plot.isRangeCrosshairLockedOnData()) {
                     // both axes
                     crosshairState.updateCrosshairPoint(x[k], y[k], transX,
-                            transY, PlotOrientation.VERTICAL);
+                            transY, jfree.chart.plot.PlotOrientation.VERTICAL);
                 }
                 else {
                     // just the horizontal axis...
@@ -991,8 +1001,8 @@ public class ContourPlot extends Plot implements ContourValuePlot,
      */
     public void pointRenderer(Graphics2D g2,
                               Rectangle2D dataArea,
-                              PlotRenderingInfo info,
-                              ContourPlot plot,
+                              jfree.chart.plot.PlotRenderingInfo info,
+                              jfree.chart.plot.ContourPlot plot,
                               ValueAxis domainAxis,
                               ValueAxis rangeAxis,
                               ColorBar colorBar,
@@ -1592,13 +1602,13 @@ public class ContourPlot extends Plot implements ContourValuePlot,
      * @param dataArea  the axis data area.
      */
     public void drawDomainMarker(Graphics2D g2,
-                                 ContourPlot plot,
+                                 jfree.chart.plot.ContourPlot plot,
                                  ValueAxis domainAxis,
-                                 Marker marker,
+                                 jfree.chart.plot.Marker marker,
                                  Rectangle2D dataArea) {
 
-        if (marker instanceof ValueMarker) {
-            ValueMarker vm = (ValueMarker) marker;
+        if (marker instanceof jfree.chart.plot.ValueMarker) {
+            jfree.chart.plot.ValueMarker vm = (jfree.chart.plot.ValueMarker) marker;
             double value = vm.getValue();
             Range range = domainAxis.getRange();
             if (!range.contains(value)) {
@@ -1611,8 +1621,8 @@ public class ContourPlot extends Plot implements ContourValuePlot,
                     dataArea.getMaxY());
             Paint paint = marker.getOutlinePaint();
             Stroke stroke = marker.getOutlineStroke();
-            g2.setPaint(paint != null ? paint : Plot.DEFAULT_OUTLINE_PAINT);
-            g2.setStroke(stroke != null ? stroke : Plot.DEFAULT_OUTLINE_STROKE);
+            g2.setPaint(paint != null ? paint : jfree.chart.plot.Plot.DEFAULT_OUTLINE_PAINT);
+            g2.setStroke(stroke != null ? stroke : jfree.chart.plot.Plot.DEFAULT_OUTLINE_STROKE);
             g2.draw(line);
         }
 
@@ -1628,13 +1638,13 @@ public class ContourPlot extends Plot implements ContourValuePlot,
      * @param dataArea  the axis data area.
      */
     public void drawRangeMarker(Graphics2D g2,
-                                ContourPlot plot,
+                                jfree.chart.plot.ContourPlot plot,
                                 ValueAxis rangeAxis,
                                 Marker marker,
                                 Rectangle2D dataArea) {
 
-        if (marker instanceof ValueMarker) {
-            ValueMarker vm = (ValueMarker) marker;
+        if (marker instanceof jfree.chart.plot.ValueMarker) {
+            jfree.chart.plot.ValueMarker vm = (ValueMarker) marker;
             double value = vm.getValue();
             Range range = rangeAxis.getRange();
             if (!range.contains(value)) {
@@ -1647,7 +1657,7 @@ public class ContourPlot extends Plot implements ContourValuePlot,
                     dataArea.getMaxX(), y);
             Paint paint = marker.getOutlinePaint();
             Stroke stroke = marker.getOutlineStroke();
-            g2.setPaint(paint != null ? paint : Plot.DEFAULT_OUTLINE_PAINT);
+            g2.setPaint(paint != null ? paint : jfree.chart.plot.Plot.DEFAULT_OUTLINE_PAINT);
             g2.setStroke(stroke != null ? stroke : Plot.DEFAULT_OUTLINE_STROKE);
             g2.draw(line);
         }
@@ -1820,11 +1830,11 @@ public class ContourPlot extends Plot implements ContourValuePlot,
 
     /**
      * Extends plot cloning to this plot type
-     * @see org.jfree.chart.plot.Plot#clone()
+     * @see jfree.chart.plot.Plot#clone()
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        ContourPlot clone = (ContourPlot) super.clone();
+        jfree.chart.plot.ContourPlot clone = (jfree.chart.plot.ContourPlot) super.clone();
 
         if (this.domainAxis != null) {
             clone.domainAxis = (ValueAxis) this.domainAxis.clone();

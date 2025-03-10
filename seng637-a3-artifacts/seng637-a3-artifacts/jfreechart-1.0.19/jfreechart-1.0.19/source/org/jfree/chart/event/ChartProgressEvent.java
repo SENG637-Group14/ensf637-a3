@@ -41,7 +41,7 @@
 
 package org.jfree.chart.event;
 
-import org.jfree.chart.JFreeChart;
+import jfree.chart.JFreeChart;
 
 /**
  * An event that contains information about the drawing progress of a chart.

@@ -57,9 +57,10 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import org.jfree.chart.axis.Axis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.util.ResourceBundleWrapper;
+import jfree.chart.axis.Axis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.editor.DefaultAxisEditor;
+import jfree.chart.util.ResourceBundleWrapper;
 import org.jfree.layout.LCBLayout;
 import org.jfree.ui.PaintSample;
 import org.jfree.ui.StrokeChooserPanel;
@@ -68,7 +69,7 @@ import org.jfree.ui.StrokeSample;
 /**
  * A panel for editing properties of a {@link ValueAxis}.
  */
-class DefaultValueAxisEditor extends DefaultAxisEditor
+class DefaultValueAxisEditor extends jfree.chart.editor.DefaultAxisEditor
     implements FocusListener {
 
     /** A flag that indicates whether or not the axis range is determined

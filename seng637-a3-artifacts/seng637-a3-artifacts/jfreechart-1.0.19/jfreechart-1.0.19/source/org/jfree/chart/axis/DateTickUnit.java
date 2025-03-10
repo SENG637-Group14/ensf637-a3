@@ -61,7 +61,11 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.axis.DateAxis;
+import jfree.chart.axis.DateTickUnitType;
+import jfree.chart.axis.TickUnit;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.util.ObjectUtilities;
 
@@ -79,7 +83,7 @@ public class DateTickUnit extends TickUnit implements Serializable {
      *
      * @since 1.0.13
      */
-    private DateTickUnitType unitType;
+    private jfree.chart.axis.DateTickUnitType unitType;
 
     /** The unit count. */
     private int count;
@@ -89,7 +93,7 @@ public class DateTickUnit extends TickUnit implements Serializable {
      *
      * @since 1.0.13
      */
-    private DateTickUnitType rollUnitType;
+    private jfree.chart.axis.DateTickUnitType rollUnitType;
 
     /** The roll count. */
     private int rollCount;
@@ -105,7 +109,7 @@ public class DateTickUnit extends TickUnit implements Serializable {
      *
      * @since 1.0.13
      */
-    public DateTickUnit(DateTickUnitType unitType, int multiple) {
+    public DateTickUnit(jfree.chart.axis.DateTickUnitType unitType, int multiple) {
         this(unitType, multiple, DateFormat.getDateInstance(DateFormat.SHORT));
     }
 
@@ -118,8 +122,8 @@ public class DateTickUnit extends TickUnit implements Serializable {
      *
      * @since 1.0.13
      */
-    public DateTickUnit(DateTickUnitType unitType, int multiple,
-            DateFormat formatter) {
+    public DateTickUnit(jfree.chart.axis.DateTickUnitType unitType, int multiple,
+                        DateFormat formatter) {
         this(unitType, multiple, unitType, multiple, formatter);
     }
 
@@ -134,10 +138,10 @@ public class DateTickUnit extends TickUnit implements Serializable {
      *
      * @since 1.0.13
      */
-    public DateTickUnit(DateTickUnitType unitType, int multiple,
-            DateTickUnitType rollUnitType, int rollMultiple,
-            DateFormat formatter) {
-        super(DateTickUnit.getMillisecondCount(unitType, multiple));
+    public DateTickUnit(jfree.chart.axis.DateTickUnitType unitType, int multiple,
+                        jfree.chart.axis.DateTickUnitType rollUnitType, int rollMultiple,
+                        DateFormat formatter) {
+        super(jfree.chart.axis.DateTickUnit.getMillisecondCount(unitType, multiple));
         ParamChecks.nullNotPermitted(formatter, "formatter");
         if (multiple <= 0) {
             throw new IllegalArgumentException("Requires 'multiple' > 0.");
@@ -163,7 +167,7 @@ public class DateTickUnit extends TickUnit implements Serializable {
      *
      * @since 1.0.13
      */
-    public DateTickUnitType getUnitType() {
+    public jfree.chart.axis.DateTickUnitType getUnitType() {
         return this.unitType;
     }
 
@@ -183,7 +187,7 @@ public class DateTickUnit extends TickUnit implements Serializable {
      *
      * @since 1.0.13
      */
-    public DateTickUnitType getRollUnitType() {
+    public jfree.chart.axis.DateTickUnitType getRollUnitType() {
         return this.rollUnitType;
     }
 
@@ -302,27 +306,27 @@ public class DateTickUnit extends TickUnit implements Serializable {
      *
      * @since 1.0.13
      */
-    private static long getMillisecondCount(DateTickUnitType unit, int count) {
+    private static long getMillisecondCount(jfree.chart.axis.DateTickUnitType unit, int count) {
 
-        if (unit.equals(DateTickUnitType.YEAR)) {
+        if (unit.equals(jfree.chart.axis.DateTickUnitType.YEAR)) {
             return (365L * 24L * 60L * 60L * 1000L) * count;
         }
-        else if (unit.equals(DateTickUnitType.MONTH)) {
+        else if (unit.equals(jfree.chart.axis.DateTickUnitType.MONTH)) {
             return (31L * 24L * 60L * 60L * 1000L) * count;
         }
-        else if (unit.equals(DateTickUnitType.DAY)) {
+        else if (unit.equals(jfree.chart.axis.DateTickUnitType.DAY)) {
             return (24L * 60L * 60L * 1000L) * count;
         }
-        else if (unit.equals(DateTickUnitType.HOUR)) {
+        else if (unit.equals(jfree.chart.axis.DateTickUnitType.HOUR)) {
             return (60L * 60L * 1000L) * count;
         }
-        else if (unit.equals(DateTickUnitType.MINUTE)) {
+        else if (unit.equals(jfree.chart.axis.DateTickUnitType.MINUTE)) {
             return (60L * 1000L) * count;
         }
-        else if (unit.equals(DateTickUnitType.SECOND)) {
+        else if (unit.equals(jfree.chart.axis.DateTickUnitType.SECOND)) {
             return 1000L * count;
         }
-        else if (unit.equals(DateTickUnitType.MILLISECOND)) {
+        else if (unit.equals(jfree.chart.axis.DateTickUnitType.MILLISECOND)) {
             return count;
         }
         else {
@@ -342,15 +346,15 @@ public class DateTickUnit extends TickUnit implements Serializable {
      *
      * @since 1.0.13
      */
-    private static DateTickUnitType intToUnitType(int unit) {
+    private static jfree.chart.axis.DateTickUnitType intToUnitType(int unit) {
         switch (unit) {
-            case YEAR: return DateTickUnitType.YEAR;
-            case MONTH: return DateTickUnitType.MONTH;
-            case DAY: return DateTickUnitType.DAY;
-            case HOUR: return DateTickUnitType.HOUR;
-            case MINUTE: return DateTickUnitType.MINUTE;
-            case SECOND: return DateTickUnitType.SECOND;
-            case MILLISECOND: return DateTickUnitType.MILLISECOND;
+            case YEAR: return jfree.chart.axis.DateTickUnitType.YEAR;
+            case MONTH: return jfree.chart.axis.DateTickUnitType.MONTH;
+            case DAY: return jfree.chart.axis.DateTickUnitType.DAY;
+            case HOUR: return jfree.chart.axis.DateTickUnitType.HOUR;
+            case MINUTE: return jfree.chart.axis.DateTickUnitType.MINUTE;
+            case SECOND: return jfree.chart.axis.DateTickUnitType.SECOND;
+            case MILLISECOND: return jfree.chart.axis.DateTickUnitType.MILLISECOND;
             default: throw new IllegalArgumentException(
                     "Unrecognised 'unit' value " + unit + ".");
         }
@@ -365,27 +369,27 @@ public class DateTickUnit extends TickUnit implements Serializable {
      *
      * @since 1.0.13
      */
-    private static int unitTypeToInt(DateTickUnitType unitType) {
+    private static int unitTypeToInt(jfree.chart.axis.DateTickUnitType unitType) {
         ParamChecks.nullNotPermitted(unitType, "unitType");
-        if (unitType.equals(DateTickUnitType.YEAR)) {
+        if (unitType.equals(jfree.chart.axis.DateTickUnitType.YEAR)) {
             return YEAR;
         }
-        else if (unitType.equals(DateTickUnitType.MONTH)) {
+        else if (unitType.equals(jfree.chart.axis.DateTickUnitType.MONTH)) {
             return MONTH;
         }
-        else if (unitType.equals(DateTickUnitType.DAY)) {
+        else if (unitType.equals(jfree.chart.axis.DateTickUnitType.DAY)) {
             return DAY;
         }
-        else if (unitType.equals(DateTickUnitType.HOUR)) {
+        else if (unitType.equals(jfree.chart.axis.DateTickUnitType.HOUR)) {
             return HOUR;
         }
-        else if (unitType.equals(DateTickUnitType.MINUTE)) {
+        else if (unitType.equals(jfree.chart.axis.DateTickUnitType.MINUTE)) {
             return MINUTE;
         }
-        else if (unitType.equals(DateTickUnitType.SECOND)) {
+        else if (unitType.equals(jfree.chart.axis.DateTickUnitType.SECOND)) {
             return SECOND;
         }
-        else if (unitType.equals(DateTickUnitType.MILLISECOND)) {
+        else if (unitType.equals(jfree.chart.axis.DateTickUnitType.MILLISECOND)) {
             return MILLISECOND;
         }
         else {
@@ -423,13 +427,13 @@ public class DateTickUnit extends TickUnit implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DateTickUnit)) {
+        if (!(obj instanceof jfree.chart.axis.DateTickUnit)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        DateTickUnit that = (DateTickUnit) obj;
+        jfree.chart.axis.DateTickUnit that = (jfree.chart.axis.DateTickUnit) obj;
         if (!(this.unitType.equals(that.unitType))) {
             return false;
         }
@@ -471,49 +475,49 @@ public class DateTickUnit extends TickUnit implements Serializable {
     /**
      * A constant for years.
      *
-     * @deprecated As of version 1.0.13, use {@link DateTickUnitType} instead.
+     * @deprecated As of version 1.0.13, use {@link jfree.chart.axis.DateTickUnitType} instead.
      */
     public static final int YEAR = 0;
 
     /**
      * A constant for months.
      *
-     * @deprecated As of version 1.0.13, use {@link DateTickUnitType} instead.
+     * @deprecated As of version 1.0.13, use {@link jfree.chart.axis.DateTickUnitType} instead.
      */
     public static final int MONTH = 1;
 
     /**
      * A constant for days.
      *
-     * @deprecated As of version 1.0.13, use {@link DateTickUnitType} instead.
+     * @deprecated As of version 1.0.13, use {@link jfree.chart.axis.DateTickUnitType} instead.
      */
     public static final int DAY = 2;
 
     /**
      * A constant for hours.
      *
-     * @deprecated As of version 1.0.13, use {@link DateTickUnitType} instead.
+     * @deprecated As of version 1.0.13, use {@link jfree.chart.axis.DateTickUnitType} instead.
      */
     public static final int HOUR = 3;
 
     /**
      * A constant for minutes.
      *
-     * @deprecated As of version 1.0.13, use {@link DateTickUnitType} instead.
+     * @deprecated As of version 1.0.13, use {@link jfree.chart.axis.DateTickUnitType} instead.
      */
     public static final int MINUTE = 4;
 
     /**
      * A constant for seconds.
      *
-     * @deprecated As of version 1.0.13, use {@link DateTickUnitType} instead.
+     * @deprecated As of version 1.0.13, use {@link jfree.chart.axis.DateTickUnitType} instead.
      */
     public static final int SECOND = 5;
 
     /**
      * A constant for milliseconds.
      *
-     * @deprecated As of version 1.0.13, use {@link DateTickUnitType} instead.
+     * @deprecated As of version 1.0.13, use {@link jfree.chart.axis.DateTickUnitType} instead.
      */
     public static final int MILLISECOND = 6;
 
@@ -541,7 +545,7 @@ public class DateTickUnit extends TickUnit implements Serializable {
      * @param formatter  the date formatter (defaults to DateFormat.SHORT).
      *
      * @deprecated As of version 1.0.13, use {@link #DateTickUnit(
-     *     DateTickUnitType, int, DateFormat)}.
+     *     jfree.chart.axis.DateTickUnitType, int, DateFormat)}.
      */
     public DateTickUnit(int unit, int count, DateFormat formatter) {
         this(unit, count, unit, count, formatter);
@@ -555,7 +559,7 @@ public class DateTickUnit extends TickUnit implements Serializable {
      * @param count  the unit count.
      *
      * @deprecated As of version 1.0.13, use {@link #DateTickUnit(
-     *     DateTickUnitType, int)}.
+     *     jfree.chart.axis.DateTickUnitType, int)}.
      */
     public DateTickUnit(int unit, int count) {
         this(unit, count, null);
@@ -571,7 +575,7 @@ public class DateTickUnit extends TickUnit implements Serializable {
      * @param formatter  the date formatter (defaults to DateFormat.SHORT).
      *
      * @deprecated As of version 1.0.13, use {@link #DateTickUnit(
-     *     DateTickUnitType, int, DateTickUnitType, int, DateFormat)}.
+     *     jfree.chart.axis.DateTickUnitType, int, DateTickUnitType, int, DateFormat)}.
      */
     public DateTickUnit(int unit, int count, int rollUnit, int rollCount,
                         DateFormat formatter) {

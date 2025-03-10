@@ -42,10 +42,12 @@
 
 package org.jfree.data.time.ohlc;
 
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.ComparableObjectItem;
-import org.jfree.data.ComparableObjectSeries;
-import org.jfree.data.time.RegularTimePeriod;
+import jfree.chart.util.ParamChecks;
+import jfree.data.ComparableObjectItem;
+import jfree.data.ComparableObjectSeries;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.ohlc.OHLCItem;
+import jfree.data.time.ohlc.OHLCSeriesCollection;
 
 /**
  * A list of ({@link RegularTimePeriod}, open, high, low, close) data items.
@@ -75,7 +77,7 @@ public class OHLCSeries extends ComparableObjectSeries {
      * @return The time period.
      */
     public RegularTimePeriod getPeriod(int index) {
-        OHLCItem item = (OHLCItem) getDataItem(index);
+        jfree.data.time.ohlc.OHLCItem item = (jfree.data.time.ohlc.OHLCItem) getDataItem(index);
         return item.getPeriod();
     }
 
@@ -103,13 +105,13 @@ public class OHLCSeries extends ComparableObjectSeries {
     public void add(RegularTimePeriod period, double open, double high,
             double low, double close) {
         if (getItemCount() > 0) {
-            OHLCItem item0 = (OHLCItem) this.getDataItem(0);
+            jfree.data.time.ohlc.OHLCItem item0 = (jfree.data.time.ohlc.OHLCItem) this.getDataItem(0);
             if (!period.getClass().equals(item0.getPeriod().getClass())) {
                 throw new IllegalArgumentException(
                         "Can't mix RegularTimePeriod class types.");
             }
         }
-        super.add(new OHLCItem(period, open, high, low, close), true);
+        super.add(new jfree.data.time.ohlc.OHLCItem(period, open, high, low, close), true);
     }
     
     /**

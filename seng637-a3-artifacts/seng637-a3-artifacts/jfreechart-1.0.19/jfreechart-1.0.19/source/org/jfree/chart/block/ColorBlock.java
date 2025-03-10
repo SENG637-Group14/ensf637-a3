@@ -52,7 +52,11 @@ import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.block.AbstractBlock;
+import jfree.chart.block.Block;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.Size2D;
@@ -152,10 +156,10 @@ public class ColorBlock extends AbstractBlock implements Block {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ColorBlock)) {
+        if (!(obj instanceof jfree.chart.block.ColorBlock)) {
             return false;
         }
-        ColorBlock that = (ColorBlock) obj;
+        jfree.chart.block.ColorBlock that = (jfree.chart.block.ColorBlock) obj;
         if (!PaintUtilities.equal(this.paint, that.paint)) {
             return false;
         }

@@ -59,16 +59,18 @@ package org.jfree.data.statistics;
 
 import java.util.List;
 
-import org.jfree.data.KeyedObjects2D;
-import org.jfree.data.Range;
-import org.jfree.data.RangeInfo;
-import org.jfree.data.general.AbstractDataset;
-import org.jfree.data.general.DatasetChangeEvent;
+import jfree.data.KeyedObjects2D;
+import jfree.data.Range;
+import jfree.data.RangeInfo;
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.statistics.MeanAndStandardDeviation;
+import jfree.data.statistics.StatisticalCategoryDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A convenience class that provides a default implementation of the
- * {@link StatisticalCategoryDataset} interface.
+ * {@link jfree.data.statistics.StatisticalCategoryDataset} interface.
  */
 public class DefaultStatisticalCategoryDataset extends AbstractDataset
         implements StatisticalCategoryDataset, RangeInfo, PublicCloneable {
@@ -154,7 +156,7 @@ public class DefaultStatisticalCategoryDataset extends AbstractDataset
     @Override
     public Number getMeanValue(int row, int column) {
         Number result = null;
-        MeanAndStandardDeviation masd = (MeanAndStandardDeviation)
+        jfree.data.statistics.MeanAndStandardDeviation masd = (jfree.data.statistics.MeanAndStandardDeviation)
                 this.data.getObject(row, column);
         if (masd != null) {
             result = masd.getMean();
@@ -201,7 +203,7 @@ public class DefaultStatisticalCategoryDataset extends AbstractDataset
     @Override
     public Number getMeanValue(Comparable rowKey, Comparable columnKey) {
         Number result = null;
-        MeanAndStandardDeviation masd = (MeanAndStandardDeviation)
+        jfree.data.statistics.MeanAndStandardDeviation masd = (jfree.data.statistics.MeanAndStandardDeviation)
                 this.data.getObject(rowKey, columnKey);
         if (masd != null) {
             result = masd.getMean();
@@ -220,7 +222,7 @@ public class DefaultStatisticalCategoryDataset extends AbstractDataset
     @Override
     public Number getStdDevValue(int row, int column) {
         Number result = null;
-        MeanAndStandardDeviation masd = (MeanAndStandardDeviation)
+        jfree.data.statistics.MeanAndStandardDeviation masd = (jfree.data.statistics.MeanAndStandardDeviation)
                 this.data.getObject(row, column);
         if (masd != null) {
             result = masd.getStandardDeviation();
@@ -239,7 +241,7 @@ public class DefaultStatisticalCategoryDataset extends AbstractDataset
     @Override
     public Number getStdDevValue(Comparable rowKey, Comparable columnKey) {
         Number result = null;
-        MeanAndStandardDeviation masd = (MeanAndStandardDeviation)
+        jfree.data.statistics.MeanAndStandardDeviation masd = (jfree.data.statistics.MeanAndStandardDeviation)
                 this.data.getObject(rowKey, columnKey);
         if (masd != null) {
             result = masd.getStandardDeviation();
@@ -364,7 +366,7 @@ public class DefaultStatisticalCategoryDataset extends AbstractDataset
      */
     public void add(Number mean, Number standardDeviation,
                     Comparable rowKey, Comparable columnKey) {
-        MeanAndStandardDeviation item = new MeanAndStandardDeviation(
+        jfree.data.statistics.MeanAndStandardDeviation item = new jfree.data.statistics.MeanAndStandardDeviation(
                 mean, standardDeviation);
         this.data.addObject(item, rowKey, columnKey);
 
@@ -565,7 +567,7 @@ public class DefaultStatisticalCategoryDataset extends AbstractDataset
         int columnCount = this.data.getColumnCount();
         for (int r = 0; r < rowCount; r++) {
             for (int c = 0; c < columnCount; c++) {
-                MeanAndStandardDeviation masd = (MeanAndStandardDeviation)
+                jfree.data.statistics.MeanAndStandardDeviation masd = (MeanAndStandardDeviation)
                         this.data.getObject(r, c);
                 if (masd == null) {
                     continue;
@@ -707,11 +709,11 @@ public class DefaultStatisticalCategoryDataset extends AbstractDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultStatisticalCategoryDataset)) {
+        if (!(obj instanceof jfree.data.statistics.DefaultStatisticalCategoryDataset)) {
             return false;
         }
-        DefaultStatisticalCategoryDataset that
-                = (DefaultStatisticalCategoryDataset) obj;
+        jfree.data.statistics.DefaultStatisticalCategoryDataset that
+                = (jfree.data.statistics.DefaultStatisticalCategoryDataset) obj;
         if (!this.data.equals(that.data)) {
             return false;
         }
@@ -727,8 +729,8 @@ public class DefaultStatisticalCategoryDataset extends AbstractDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultStatisticalCategoryDataset clone
-                = (DefaultStatisticalCategoryDataset) super.clone();
+        jfree.data.statistics.DefaultStatisticalCategoryDataset clone
+                = (jfree.data.statistics.DefaultStatisticalCategoryDataset) super.clone();
         clone.data = (KeyedObjects2D) this.data.clone();
         return clone;
     }

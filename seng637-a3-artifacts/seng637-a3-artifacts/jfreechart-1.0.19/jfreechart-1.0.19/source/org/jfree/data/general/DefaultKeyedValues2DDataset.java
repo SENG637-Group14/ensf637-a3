@@ -44,10 +44,11 @@ package org.jfree.data.general;
 
 import java.io.Serializable;
 
-import org.jfree.data.category.DefaultCategoryDataset;
+import jfree.data.category.DefaultCategoryDataset;
+import jfree.data.general.KeyedValues2DDataset;
 
 /**
- * A default implementation of the {@link KeyedValues2DDataset} interface.
+ * A default implementation of the {@link jfree.data.general.KeyedValues2DDataset} interface.
  *
  */
 public class DefaultKeyedValues2DDataset extends DefaultCategoryDataset

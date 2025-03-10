@@ -81,22 +81,24 @@ import java.io.ObjectOutputStream;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.NumberTick;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.XYItemEntity;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.XYSeriesLabelGenerator;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.DrawingSupplier;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.PolarPlot;
-import org.jfree.chart.renderer.xy.AbstractXYItemRenderer;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.NumberTick;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.XYItemEntity;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.XYSeriesLabelGenerator;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.DrawingSupplier;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PolarPlot;
+import jfree.chart.renderer.AbstractRenderer;
+import jfree.chart.renderer.PolarItemRenderer;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.util.BooleanList;
@@ -900,10 +902,10 @@ public class DefaultPolarItemRenderer extends AbstractRenderer
         if (obj == null) {
             return false;
         }
-        if (!(obj instanceof DefaultPolarItemRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.DefaultPolarItemRenderer)) {
             return false;
         }
-        DefaultPolarItemRenderer that = (DefaultPolarItemRenderer) obj;
+        jfree.chart.renderer.DefaultPolarItemRenderer that = (jfree.chart.renderer.DefaultPolarItemRenderer) obj;
         if (!this.seriesFilled.equals(that.seriesFilled)) {
             return false;
         }
@@ -955,8 +957,8 @@ public class DefaultPolarItemRenderer extends AbstractRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultPolarItemRenderer clone
-                = (DefaultPolarItemRenderer) super.clone();
+        jfree.chart.renderer.DefaultPolarItemRenderer clone
+                = (jfree.chart.renderer.DefaultPolarItemRenderer) super.clone();
         if (this.legendLine != null) {
             clone.legendLine = ShapeUtilities.clone(this.legendLine);
         }

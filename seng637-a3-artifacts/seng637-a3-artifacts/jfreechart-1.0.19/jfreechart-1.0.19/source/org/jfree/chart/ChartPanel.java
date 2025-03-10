@@ -232,28 +232,35 @@ import javax.swing.ToolTipManager;
 import javax.swing.event.EventListenerList;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import org.jfree.chart.editor.ChartEditor;
-import org.jfree.chart.editor.ChartEditorManager;
-import org.jfree.chart.entity.ChartEntity;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.ChartChangeEvent;
-import org.jfree.chart.event.ChartChangeListener;
-import org.jfree.chart.event.ChartProgressEvent;
-import org.jfree.chart.event.ChartProgressListener;
-import org.jfree.chart.panel.Overlay;
-import org.jfree.chart.event.OverlayChangeEvent;
-import org.jfree.chart.event.OverlayChangeListener;
-import org.jfree.chart.plot.Pannable;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.Zoomable;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ResourceBundleWrapper;
+import jfree.chart.ChartMouseEvent;
+import jfree.chart.ChartMouseListener;
+import jfree.chart.ChartRenderingInfo;
+import jfree.chart.ChartTransferable;
+import jfree.chart.ChartUtilities;
+import jfree.chart.JFreeChart;
+import jfree.chart.MouseWheelHandler;
+import jfree.chart.editor.ChartEditor;
+import jfree.chart.editor.ChartEditorManager;
+import jfree.chart.entity.ChartEntity;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.ChartChangeEvent;
+import jfree.chart.event.ChartChangeListener;
+import jfree.chart.event.ChartProgressEvent;
+import jfree.chart.event.ChartProgressListener;
+import jfree.chart.panel.Overlay;
+import jfree.chart.event.OverlayChangeEvent;
+import jfree.chart.event.OverlayChangeListener;
+import jfree.chart.plot.Pannable;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.Zoomable;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ResourceBundleWrapper;
 import org.jfree.io.SerialUtilities;
 
 /**
- * A Swing GUI component for displaying a {@link JFreeChart} object.
+ * A Swing GUI component for displaying a {@link jfree.chart.JFreeChart} object.
  * <P>
  * The panel registers with the chart to receive notification of changes to any
  * component of the chart.  The chart is redrawn automatically whenever this
@@ -348,7 +355,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
     public static final String ZOOM_RESET_RANGE_COMMAND = "ZOOM_RESET_RANGE";
 
     /** The chart that is displayed in the panel. */
-    private JFreeChart chart;
+    private jfree.chart.JFreeChart chart;
 
     /** Storage for registered (chart) mouse listeners. */
     private transient EventListenerList chartMouseListeners;
@@ -395,7 +402,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
     private JPopupMenu popup;
 
     /** The drawing info collected the last time the chart was drawn. */
-    private ChartRenderingInfo info;
+    private jfree.chart.ChartRenderingInfo info;
 
     /** The chart anchor point. */
     private Point2D anchor;
@@ -562,7 +569,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
      *
      * @param chart  the chart.
      */
-    public ChartPanel(JFreeChart chart) {
+    public ChartPanel(jfree.chart.JFreeChart chart) {
 
         this(
             chart,
@@ -598,7 +605,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
      *                   is used (read the warning above before setting this
      *                   to <code>false</code>).
      */
-    public ChartPanel(JFreeChart chart, boolean useBuffer) {
+    public ChartPanel(jfree.chart.JFreeChart chart, boolean useBuffer) {
 
         this(chart, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_MINIMUM_DRAW_WIDTH,
                 DEFAULT_MINIMUM_DRAW_HEIGHT, DEFAULT_MAXIMUM_DRAW_WIDTH,
@@ -627,7 +634,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
      * @param tooltips  a flag indicating whether or not tooltips should be
      *                  enabled for the chart.
      */
-    public ChartPanel(JFreeChart chart,
+    public ChartPanel(jfree.chart.JFreeChart chart,
                       boolean properties,
                       boolean save,
                       boolean print,
@@ -675,10 +682,10 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
      * @param tooltips  a flag indicating whether or not tooltips should be
      *                  enabled for the chart.
      */
-    public ChartPanel(JFreeChart chart, int width, int height,
-            int minimumDrawWidth, int minimumDrawHeight, int maximumDrawWidth,
-            int maximumDrawHeight, boolean useBuffer, boolean properties,
-            boolean save, boolean print, boolean zoom, boolean tooltips) {
+    public ChartPanel(jfree.chart.JFreeChart chart, int width, int height,
+                      int minimumDrawWidth, int minimumDrawHeight, int maximumDrawWidth,
+                      int maximumDrawHeight, boolean useBuffer, boolean properties,
+                      boolean save, boolean print, boolean zoom, boolean tooltips) {
 
         this(chart, width, height, minimumDrawWidth, minimumDrawHeight,
                 maximumDrawWidth, maximumDrawHeight, useBuffer, properties,
@@ -713,15 +720,15 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
      *
      * @since 1.0.13
      */
-    public ChartPanel(JFreeChart chart, int width, int height,
-           int minimumDrawWidth, int minimumDrawHeight, int maximumDrawWidth,
-           int maximumDrawHeight, boolean useBuffer, boolean properties,
-           boolean copy, boolean save, boolean print, boolean zoom,
-           boolean tooltips) {
+    public ChartPanel(jfree.chart.JFreeChart chart, int width, int height,
+                      int minimumDrawWidth, int minimumDrawHeight, int maximumDrawWidth,
+                      int maximumDrawHeight, boolean useBuffer, boolean properties,
+                      boolean copy, boolean save, boolean print, boolean zoom,
+                      boolean tooltips) {
 
         setChart(chart);
         this.chartMouseListeners = new EventListenerList();
-        this.info = new ChartRenderingInfo();
+        this.info = new jfree.chart.ChartRenderingInfo();
         setPreferredSize(new Dimension(width, height));
         this.useBuffer = useBuffer;
         this.refreshBuffer = false;
@@ -773,7 +780,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
      *
      * @return The chart (possibly <code>null</code>).
      */
-    public JFreeChart getChart() {
+    public jfree.chart.JFreeChart getChart() {
         return this.chart;
     }
 
@@ -782,7 +789,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
      *
      * @param chart  the chart (<code>null</code> permitted).
      */
-    public void setChart(JFreeChart chart) {
+    public void setChart(jfree.chart.JFreeChart chart) {
 
         // stop listening for changes to the existing chart
         if (this.chart != null) {
@@ -1319,7 +1326,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
     /**
      * The mouse wheel handler.
      */
-    private MouseWheelHandler mouseWheelHandler;
+    private jfree.chart.MouseWheelHandler mouseWheelHandler;
 
     /**
      * Returns <code>true</code> if the mouse wheel handler is enabled, and
@@ -1342,7 +1349,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
      */
     public void setMouseWheelEnabled(boolean flag) {
         if (flag && this.mouseWheelHandler == null) {
-            this.mouseWheelHandler = new MouseWheelHandler(this);
+            this.mouseWheelHandler = new jfree.chart.MouseWheelHandler(this);
         }
         else if (!flag && this.mouseWheelHandler != null) {
             this.removeMouseWheelListener(this.mouseWheelHandler);
@@ -2084,7 +2091,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
 
     /**
      * Receives notification of mouse clicks on the panel. These are
-     * translated and passed on to any registered {@link ChartMouseListener}s.
+     * translated and passed on to any registered {@link jfree.chart.ChartMouseListener}s.
      *
      * @param event  Information about the mouse event.
      */
@@ -2102,7 +2109,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
         this.chart.setNotify(true);  // force a redraw
         // new entity code...
         Object[] listeners = this.chartMouseListeners.getListeners(
-                ChartMouseListener.class);
+                jfree.chart.ChartMouseListener.class);
         if (listeners.length == 0) {
             return;
         }
@@ -2114,10 +2121,10 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
                 entity = entities.getEntity(x, y);
             }
         }
-        ChartMouseEvent chartEvent = new ChartMouseEvent(getChart(), event,
+        jfree.chart.ChartMouseEvent chartEvent = new jfree.chart.ChartMouseEvent(getChart(), event,
                 entity);
         for (int i = listeners.length - 1; i >= 0; i -= 1) {
-            ((ChartMouseListener) listeners[i]).chartMouseClicked(chartEvent);
+            ((jfree.chart.ChartMouseListener) listeners[i]).chartMouseClicked(chartEvent);
         }
 
     }
@@ -2139,7 +2146,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
         g2.dispose();
 
         Object[] listeners = this.chartMouseListeners.getListeners(
-                ChartMouseListener.class);
+                jfree.chart.ChartMouseListener.class);
         if (listeners.length == 0) {
             return;
         }
@@ -2158,9 +2165,9 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
         // we can only generate events if the panel's chart is not null
         // (see bug report 1556951)
         if (this.chart != null) {
-            ChartMouseEvent event = new ChartMouseEvent(getChart(), e, entity);
+            jfree.chart.ChartMouseEvent event = new ChartMouseEvent(getChart(), e, entity);
             for (int i = listeners.length - 1; i >= 0; i -= 1) {
-                ((ChartMouseListener) listeners[i]).chartMouseMoved(event);
+                ((jfree.chart.ChartMouseListener) listeners[i]).chartMouseMoved(event);
             }
         }
 
@@ -2690,7 +2697,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
         Insets insets = getInsets();
         int w = getWidth() - insets.left - insets.right;
         int h = getHeight() - insets.top - insets.bottom;
-        ChartTransferable selection = new ChartTransferable(this.chart, w, h,
+        jfree.chart.ChartTransferable selection = new ChartTransferable(this.chart, w, h,
                 getMinimumDrawWidth(), getMinimumDrawHeight(),
                 getMaximumDrawWidth(), getMaximumDrawHeight(), true);
         systemClipboard.setContents(selection, null);
@@ -2799,7 +2806,7 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
         }
         // we suppress shadow generation, because SVG is a vector format and
         // the shadow effect is applied via bitmap effects...
-        g2.setRenderingHint(JFreeChart.KEY_SUPPRESS_SHADOW_GENERATION, true);
+        g2.setRenderingHint(jfree.chart.JFreeChart.KEY_SUPPRESS_SHADOW_GENERATION, true);
         String svg = null;
         Rectangle2D drawArea = new Rectangle2D.Double(0, 0, width, height);
         this.chart.draw(g2, drawArea);
@@ -3002,9 +3009,9 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
      *
      * @param listener  the listener (<code>null</code> not permitted).
      */
-    public void addChartMouseListener(ChartMouseListener listener) {
+    public void addChartMouseListener(jfree.chart.ChartMouseListener listener) {
         ParamChecks.nullNotPermitted(listener, "listener");
-        this.chartMouseListeners.add(ChartMouseListener.class, listener);
+        this.chartMouseListeners.add(jfree.chart.ChartMouseListener.class, listener);
     }
 
     /**
@@ -3013,8 +3020,8 @@ public class ChartPanel extends JPanel implements ChartChangeListener,
      *
      * @param listener  the listener.
      */
-    public void removeChartMouseListener(ChartMouseListener listener) {
-        this.chartMouseListeners.remove(ChartMouseListener.class, listener);
+    public void removeChartMouseListener(jfree.chart.ChartMouseListener listener) {
+        this.chartMouseListeners.remove(jfree.chart.ChartMouseListener.class, listener);
     }
 
     /**

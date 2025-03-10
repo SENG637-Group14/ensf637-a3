@@ -40,12 +40,15 @@
 
 package org.jfree.chart.entity;
 
+import jfree.chart.entity.ChartEntity;
+import jfree.chart.plot.XYPlot;
+
 import java.awt.Shape;
 import java.io.Serializable;
 
 /**
  * A chart entity that represents an annotation on an
- * {@link org.jfree.chart.plot.XYPlot}.
+ * {@link XYPlot}.
  */
 public class XYAnnotationEntity extends ChartEntity
                                 implements Serializable {
@@ -103,10 +106,10 @@ public class XYAnnotationEntity extends ChartEntity
         if (!super.equals(obj)) {
             return false;
         }
-        if (!(obj instanceof XYAnnotationEntity)) {
+        if (!(obj instanceof jfree.chart.entity.XYAnnotationEntity)) {
             return false;
         }
-        XYAnnotationEntity that = (XYAnnotationEntity) obj;
+        jfree.chart.entity.XYAnnotationEntity that = (jfree.chart.entity.XYAnnotationEntity) obj;
         if (this.rendererIndex != that.rendererIndex) {
             return false;
         }

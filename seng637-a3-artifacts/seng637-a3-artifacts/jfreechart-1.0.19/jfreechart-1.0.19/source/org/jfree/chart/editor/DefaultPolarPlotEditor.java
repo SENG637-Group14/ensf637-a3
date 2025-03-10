@@ -51,15 +51,16 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import org.jfree.chart.axis.NumberTickUnit;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PolarPlot;
+import jfree.chart.axis.NumberTickUnit;
+import jfree.chart.editor.DefaultPlotEditor;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PolarPlot;
 import org.jfree.layout.LCBLayout;
 
 /**
  * A panel for editing the properties of a {@link PolarPlot}.
  */
-public class DefaultPolarPlotEditor extends DefaultPlotEditor
+public class DefaultPolarPlotEditor extends jfree.chart.editor.DefaultPlotEditor
     implements FocusListener {
 
     /** A text field to enter a manual TickUnit. */

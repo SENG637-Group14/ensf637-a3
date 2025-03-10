@@ -42,7 +42,10 @@ package org.jfree.chart.plot;
 
 import java.awt.geom.Point2D;
 
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.category.CategoryItemRenderer;
 
 /**
  * Represents state information for the crosshairs in a {@link CategoryPlot}.
@@ -123,13 +126,13 @@ public class CategoryCrosshairState extends CrosshairState {
      */
     public void updateCrosshairPoint(Comparable rowKey, Comparable columnKey,
             double value, int datasetIndex, double transX, double transY,
-            PlotOrientation orientation) {
+            jfree.chart.plot.PlotOrientation orientation) {
 
         Point2D anchor = getAnchor();
         if (anchor != null) {
             double xx = anchor.getX();
             double yy = anchor.getY();
-            if (orientation == PlotOrientation.HORIZONTAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 double temp = yy;
                 yy = xx;
                 xx = temp;
@@ -159,7 +162,7 @@ public class CategoryCrosshairState extends CrosshairState {
      * @param orientation  the plot orientation.
      */
     public void updateCrosshairX(Comparable rowKey, Comparable columnKey,
-            int datasetIndex, double transX, PlotOrientation orientation) {
+            int datasetIndex, double transX, jfree.chart.plot.PlotOrientation orientation) {
 
         Point2D anchor = getAnchor();
         if (anchor != null) {

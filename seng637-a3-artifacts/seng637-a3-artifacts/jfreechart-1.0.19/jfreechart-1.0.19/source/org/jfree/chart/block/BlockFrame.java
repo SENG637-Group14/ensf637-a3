@@ -43,6 +43,7 @@ package org.jfree.chart.block;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
+import jfree.chart.block.AbstractBlock;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.util.PublicCloneable;
 

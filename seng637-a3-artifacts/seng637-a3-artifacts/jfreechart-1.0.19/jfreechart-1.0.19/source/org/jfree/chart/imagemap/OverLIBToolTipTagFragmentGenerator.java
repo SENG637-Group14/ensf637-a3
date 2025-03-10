@@ -43,6 +43,9 @@
 
 package org.jfree.chart.imagemap;
 
+import jfree.chart.imagemap.ImageMapUtilities;
+import jfree.chart.imagemap.ToolTipTagFragmentGenerator;
+
 /**
  * Generates tooltips using the OverLIB library
  * (http://www.bosrup.com/web/overlib/).

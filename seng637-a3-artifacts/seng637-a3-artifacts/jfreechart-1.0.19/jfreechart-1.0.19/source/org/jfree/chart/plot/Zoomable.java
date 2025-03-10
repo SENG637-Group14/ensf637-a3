@@ -48,7 +48,9 @@ package org.jfree.chart.plot;
 
 import java.awt.geom.Point2D;
 
-import org.jfree.chart.ChartPanel;
+import jfree.chart.ChartPanel;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
 
 /**
  * A plot that is zoomable must implement this interface to provide a
@@ -93,9 +95,9 @@ public interface Zoomable {
      * @param state  the plot state.
      * @param source  the source point (in Java2D coordinates).
      *
-     * @see #zoomRangeAxes(double, PlotRenderingInfo, Point2D)
+     * @see #zoomRangeAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D)
      */
-    public void zoomDomainAxes(double factor, PlotRenderingInfo state,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                                Point2D source);
 
     /**
@@ -109,11 +111,11 @@ public interface Zoomable {
      * @param source  the source point (in Java2D coordinates).
      * @param useAnchor  use source point as zoom anchor?
      *
-     * @see #zoomRangeAxes(double, PlotRenderingInfo, Point2D, boolean)
+     * @see #zoomRangeAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D, boolean)
      *
      * @since 1.0.7
      */
-    public void zoomDomainAxes(double factor, PlotRenderingInfo state,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                                Point2D source, boolean useAnchor);
 
     /**
@@ -125,10 +127,10 @@ public interface Zoomable {
      * @param state  the plot state.
      * @param source  the source point (in Java2D coordinates).
      *
-     * @see #zoomRangeAxes(double, double, PlotRenderingInfo, Point2D)
+     * @see #zoomRangeAxes(double, double, jfree.chart.plot.PlotRenderingInfo, Point2D)
      */
     public void zoomDomainAxes(double lowerPercent, double upperPercent,
-                               PlotRenderingInfo state, Point2D source);
+                               jfree.chart.plot.PlotRenderingInfo state, Point2D source);
 
     /**
      * Multiplies the range on the range axis/axes by the specified factor.
@@ -140,9 +142,9 @@ public interface Zoomable {
      * @param state  the plot state.
      * @param source  the source point (in Java2D coordinates).
      *
-     * @see #zoomDomainAxes(double, PlotRenderingInfo, Point2D)
+     * @see #zoomDomainAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D)
      */
-    public void zoomRangeAxes(double factor, PlotRenderingInfo state,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                               Point2D source);
 
     /**
@@ -156,11 +158,11 @@ public interface Zoomable {
      * @param source  the source point (in Java2D coordinates).
      * @param useAnchor  use source point as zoom anchor?
      *
-     * @see #zoomDomainAxes(double, PlotRenderingInfo, Point2D)
+     * @see #zoomDomainAxes(double, jfree.chart.plot.PlotRenderingInfo, Point2D)
      *
      * @since 1.0.7
      */
-    public void zoomRangeAxes(double factor, PlotRenderingInfo state,
+    public void zoomRangeAxes(double factor, jfree.chart.plot.PlotRenderingInfo state,
                               Point2D source, boolean useAnchor);
 
     /**
@@ -172,7 +174,7 @@ public interface Zoomable {
      * @param state  the plot state.
      * @param source  the source point (in Java2D coordinates).
      *
-     * @see #zoomDomainAxes(double, double, PlotRenderingInfo, Point2D)
+     * @see #zoomDomainAxes(double, double, jfree.chart.plot.PlotRenderingInfo, Point2D)
      */
     public void zoomRangeAxes(double lowerPercent, double upperPercent,
                               PlotRenderingInfo state, Point2D source);

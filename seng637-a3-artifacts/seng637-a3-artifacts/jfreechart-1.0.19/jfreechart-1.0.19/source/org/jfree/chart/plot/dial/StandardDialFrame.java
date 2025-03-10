@@ -57,14 +57,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.plot.dial.AbstractDialLayer;
+import jfree.chart.plot.dial.DialFrame;
+import jfree.chart.plot.dial.DialLayerChangeEvent;
+import jfree.chart.plot.dial.DialPlot;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PaintUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A simple circular frame for the {@link DialPlot} class.
+ * A simple circular frame for the {@link jfree.chart.plot.dial.DialPlot} class.
  *
  * @since 1.0.7
  */
@@ -117,7 +121,7 @@ public class StandardDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Sets the radius and sends a {@link DialLayerChangeEvent} to all
+     * Sets the radius and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all
      * registered listeners.
      *
      * @param radius  the radius (must be positive).
@@ -130,7 +134,7 @@ public class StandardDialFrame extends AbstractDialLayer implements DialFrame,
                     "The 'radius' must be positive.");
         }
         this.radius = radius;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -145,7 +149,7 @@ public class StandardDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Sets the background paint and sends a {@link DialLayerChangeEvent} to
+     * Sets the background paint and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
@@ -155,7 +159,7 @@ public class StandardDialFrame extends AbstractDialLayer implements DialFrame,
     public void setBackgroundPaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.backgroundPaint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -170,7 +174,7 @@ public class StandardDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Sets the foreground paint and sends a {@link DialLayerChangeEvent} to
+     * Sets the foreground paint and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
@@ -180,7 +184,7 @@ public class StandardDialFrame extends AbstractDialLayer implements DialFrame,
     public void setForegroundPaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.foregroundPaint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -195,7 +199,7 @@ public class StandardDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Sets the stroke and sends a {@link DialLayerChangeEvent} to all
+     * Sets the stroke and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all
      * registered listeners.
      *
      * @param stroke  the stroke (<code>null</code> not permitted).
@@ -218,7 +222,7 @@ public class StandardDialFrame extends AbstractDialLayer implements DialFrame,
      */
     @Override
     public Shape getWindow(Rectangle2D frame) {
-        Rectangle2D f = DialPlot.rectangleByRadius(frame, this.radius,
+        Rectangle2D f = jfree.chart.plot.dial.DialPlot.rectangleByRadius(frame, this.radius,
                 this.radius);
         return new Ellipse2D.Double(f.getX(), f.getY(), f.getWidth(),
                 f.getHeight());
@@ -236,7 +240,7 @@ public class StandardDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Draws the frame.  This method is called by the {@link DialPlot} class,
+     * Draws the frame.  This method is called by the {@link jfree.chart.plot.dial.DialPlot} class,
      * you shouldn't need to call it directly.
      *
      * @param g2  the graphics target (<code>null</code> not permitted).
@@ -245,8 +249,8 @@ public class StandardDialFrame extends AbstractDialLayer implements DialFrame,
      * @param view  the view (<code>null</code> not permitted).
      */
     @Override
-    public void draw(Graphics2D g2, DialPlot plot, Rectangle2D frame,
-            Rectangle2D view) {
+    public void draw(Graphics2D g2, jfree.chart.plot.dial.DialPlot plot, Rectangle2D frame,
+                     Rectangle2D view) {
 
         Shape window = getWindow(frame);
 
@@ -279,10 +283,10 @@ public class StandardDialFrame extends AbstractDialLayer implements DialFrame,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardDialFrame)) {
+        if (!(obj instanceof jfree.chart.plot.dial.StandardDialFrame)) {
             return false;
         }
-        StandardDialFrame that = (StandardDialFrame) obj;
+        jfree.chart.plot.dial.StandardDialFrame that = (jfree.chart.plot.dial.StandardDialFrame) obj;
         if (!PaintUtilities.equal(this.backgroundPaint, that.backgroundPaint)) {
             return false;
         }

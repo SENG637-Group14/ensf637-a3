@@ -62,14 +62,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
+import jfree.chart.plot.CompassPlot;
+import jfree.chart.HashUtilities;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PaintUtilities;
 
 /**
  * The base class used to represent the needle on a
- * {@link org.jfree.chart.plot.CompassPlot}.
+ * {@link CompassPlot}.
  */
 public abstract class MeterNeedle implements Serializable {
 
@@ -342,7 +343,7 @@ public abstract class MeterNeedle implements Serializable {
      * @return The transform.
      */
     public AffineTransform getTransform() {
-        return MeterNeedle.transform;
+        return jfree.chart.needle.MeterNeedle.transform;
     }
 
     /**
@@ -357,10 +358,10 @@ public abstract class MeterNeedle implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof MeterNeedle)) {
+        if (!(obj instanceof jfree.chart.needle.MeterNeedle)) {
             return false;
         }
-        MeterNeedle that = (MeterNeedle) obj;
+        jfree.chart.needle.MeterNeedle that = (jfree.chart.needle.MeterNeedle) obj;
         if (!PaintUtilities.equal(this.outlinePaint, that.outlinePaint)) {
             return false;
         }

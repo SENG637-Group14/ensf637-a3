@@ -45,7 +45,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.urls.CategoryURLGenerator;
+import jfree.data.category.CategoryDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -149,10 +150,10 @@ public class CustomCategoryURLGenerator implements CategoryURLGenerator,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CustomCategoryURLGenerator)) {
+        if (!(obj instanceof jfree.chart.urls.CustomCategoryURLGenerator)) {
             return false;
         }
-        CustomCategoryURLGenerator generator = (CustomCategoryURLGenerator) obj;
+        jfree.chart.urls.CustomCategoryURLGenerator generator = (jfree.chart.urls.CustomCategoryURLGenerator) obj;
         int listCount = getListCount();
         if (listCount != generator.getListCount()) {
             return false;
@@ -191,8 +192,8 @@ public class CustomCategoryURLGenerator implements CategoryURLGenerator,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        CustomCategoryURLGenerator clone
-                = (CustomCategoryURLGenerator) super.clone();
+        jfree.chart.urls.CustomCategoryURLGenerator clone
+                = (jfree.chart.urls.CustomCategoryURLGenerator) super.clone();
         clone.urlSeries = new java.util.ArrayList(this.urlSeries);
         return clone;
     }

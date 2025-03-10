@@ -41,6 +41,8 @@
 
 package org.jfree.data.xy;
 
+import jfree.data.xy.MatrixSeries;
+
 /**
  * Represents a dense normalized matrix M[i,j] where each Mij item of the
  * matrix has a value (default is 0). When a matrix item is observed using
@@ -87,7 +89,7 @@ public class NormalizedMatrixSeries extends MatrixSeries {
      *
      * @return The value.
      *
-     * @see org.jfree.data.xy.MatrixSeries#getItem(int)
+     * @see jfree.data.xy.MatrixSeries#getItem(int)
      */
     @Override
     public Number getItem(int itemIndex) {
@@ -143,7 +145,7 @@ public class NormalizedMatrixSeries extends MatrixSeries {
     }
 
     /**
-     * @see org.jfree.data.xy.MatrixSeries#zeroAll()
+     * @see jfree.data.xy.MatrixSeries#zeroAll()
      */
     @Override
     public void zeroAll() {

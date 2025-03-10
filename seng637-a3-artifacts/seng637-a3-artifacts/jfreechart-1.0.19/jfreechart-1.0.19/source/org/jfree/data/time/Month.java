@@ -72,14 +72,17 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.TimePeriodFormatException;
+import jfree.data.time.Year;
 import org.jfree.date.MonthConstants;
 import org.jfree.date.SerialDate;
 
 /**
  * Represents a single month.  This class is immutable, which is a requirement
- * for all {@link RegularTimePeriod} subclasses.
+ * for all {@link jfree.data.time.RegularTimePeriod} subclasses.
  */
-public class Month extends RegularTimePeriod implements Serializable {
+public class Month extends jfree.data.time.RegularTimePeriod implements Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = -5090216912548722570L;
@@ -124,7 +127,7 @@ public class Month extends RegularTimePeriod implements Serializable {
      * @param month  the month (in the range 1 to 12).
      * @param year  the year.
      */
-    public Month(int month, Year year) {
+    public Month(int month, jfree.data.time.Year year) {
         if ((month < 1) || (month > 12)) {
             throw new IllegalArgumentException("Month outside valid range.");
         }
@@ -183,8 +186,8 @@ public class Month extends RegularTimePeriod implements Serializable {
      *
      * @return The year in which the month falls (as a Year object).
      */
-    public Year getYear() {
-        return new Year(this.year);
+    public jfree.data.time.Year getYear() {
+        return new jfree.data.time.Year(this.year);
     }
 
     /**
@@ -251,21 +254,21 @@ public class Month extends RegularTimePeriod implements Serializable {
 
     /**
      * Returns the month preceding this one.  Note that the returned
-     * {@link Month} is "pegged" using the default time-zone, irrespective of
+     * {@link jfree.data.time.Month} is "pegged" using the default time-zone, irrespective of
      * the time-zone used to peg of the current month (which is not recorded
      * anywhere).  See the {@link #peg(Calendar)} method.
      *
      * @return The month preceding this one.
      */
     @Override
-    public RegularTimePeriod previous() {
-        Month result;
+    public jfree.data.time.RegularTimePeriod previous() {
+        jfree.data.time.Month result;
         if (this.month != MonthConstants.JANUARY) {
-            result = new Month(this.month - 1, this.year);
+            result = new jfree.data.time.Month(this.month - 1, this.year);
         }
         else {
             if (this.year > 1900) {
-                result = new Month(MonthConstants.DECEMBER, this.year - 1);
+                result = new jfree.data.time.Month(MonthConstants.DECEMBER, this.year - 1);
             }
             else {
                 result = null;
@@ -276,21 +279,21 @@ public class Month extends RegularTimePeriod implements Serializable {
 
     /**
      * Returns the month following this one.  Note that the returned
-     * {@link Month} is "pegged" using the default time-zone, irrespective of
+     * {@link jfree.data.time.Month} is "pegged" using the default time-zone, irrespective of
      * the time-zone used to peg of the current month (which is not recorded
      * anywhere).  See the {@link #peg(Calendar)} method.
      *
      * @return The month following this one.
      */
     @Override
-    public RegularTimePeriod next() {
-        Month result;
+    public jfree.data.time.RegularTimePeriod next() {
+        jfree.data.time.Month result;
         if (this.month != MonthConstants.DECEMBER) {
-            result = new Month(this.month + 1, this.year);
+            result = new jfree.data.time.Month(this.month + 1, this.year);
         }
         else {
             if (this.year < 9999) {
-                result = new Month(MonthConstants.JANUARY, this.year + 1);
+                result = new jfree.data.time.Month(MonthConstants.JANUARY, this.year + 1);
             }
             else {
                 result = null;
@@ -336,10 +339,10 @@ public class Month extends RegularTimePeriod implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Month)) {
+        if (!(obj instanceof jfree.data.time.Month)) {
             return false;
         }
-        Month that = (Month) obj;
+        jfree.data.time.Month that = (jfree.data.time.Month) obj;
         if (this.month != that.month) {
             return false;
         }
@@ -382,8 +385,8 @@ public class Month extends RegularTimePeriod implements Serializable {
 
         // CASE 1 : Comparing to another Month object
         // --------------------------------------------
-        if (o1 instanceof Month) {
-            Month m = (Month) o1;
+        if (o1 instanceof jfree.data.time.Month) {
+            jfree.data.time.Month m = (jfree.data.time.Month) o1;
             result = this.year - m.getYearValue();
             if (result == 0) {
                 result = this.month - m.getMonth();
@@ -455,14 +458,14 @@ public class Month extends RegularTimePeriod implements Serializable {
      * @return <code>null</code> if the string is not parseable, the month
      *         otherwise.
      */
-    public static Month parseMonth(String s) {
-        Month result = null;
+    public static jfree.data.time.Month parseMonth(String s) {
+        jfree.data.time.Month result = null;
         if (s == null) {
             return result;
         }
         // trim whitespace from either end of the string
         s = s.trim();
-        int i = Month.findSeparator(s);
+        int i = jfree.data.time.Month.findSeparator(s);
         String s1, s2;
         boolean yearIsFirst;
         // if there is no separator, we assume the first four characters
@@ -476,12 +479,12 @@ public class Month extends RegularTimePeriod implements Serializable {
             s1 = s.substring(0, i).trim();
             s2 = s.substring(i + 1, s.length()).trim();
             // now it is trickier to determine if the month or year is first
-            Year y1 = Month.evaluateAsYear(s1);
+            jfree.data.time.Year y1 = jfree.data.time.Month.evaluateAsYear(s1);
             if (y1 == null) {
                 yearIsFirst = false;
             }
             else {
-                Year y2 = Month.evaluateAsYear(s2);
+                jfree.data.time.Year y2 = jfree.data.time.Month.evaluateAsYear(s2);
                 if (y2 == null) {
                     yearIsFirst = true;
                 }
@@ -490,23 +493,23 @@ public class Month extends RegularTimePeriod implements Serializable {
                 }
             }
         }
-        Year year;
+        jfree.data.time.Year year;
         int month;
         if (yearIsFirst) {
-            year = Month.evaluateAsYear(s1);
+            year = jfree.data.time.Month.evaluateAsYear(s1);
             month = SerialDate.stringToMonthCode(s2);
         }
         else {
-            year = Month.evaluateAsYear(s2);
+            year = jfree.data.time.Month.evaluateAsYear(s2);
             month = SerialDate.stringToMonthCode(s1);
         }
         if (month == -1) {
-            throw new TimePeriodFormatException("Can't evaluate the month.");
+            throw new jfree.data.time.TimePeriodFormatException("Can't evaluate the month.");
         }
         if (year == null) {
-            throw new TimePeriodFormatException("Can't evaluate the year.");
+            throw new jfree.data.time.TimePeriodFormatException("Can't evaluate the year.");
         }
-        result = new Month(month, year);
+        result = new jfree.data.time.Month(month, year);
         return result;
     }
 
@@ -542,8 +545,8 @@ public class Month extends RegularTimePeriod implements Serializable {
      * @return <code>null</code> if the string is not parseable, the year
      *         otherwise.
      */
-    private static Year evaluateAsYear(String s) {
-        Year result = null;
+    private static jfree.data.time.Year evaluateAsYear(String s) {
+        jfree.data.time.Year result = null;
         try {
             result = Year.parseYear(s);
         }

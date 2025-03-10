@@ -42,6 +42,8 @@
 
 package org.jfree.chart.imagemap;
 
+import jfree.chart.imagemap.URLTagFragmentGenerator;
+
 /**
  * Generates URLs using the HTML href attribute for image map area tags.
  */

@@ -40,6 +40,8 @@
 
 package org.jfree.chart.event;
 
+import jfree.chart.event.RendererChangeEvent;
+
 import java.util.EventListener;
 
 /**

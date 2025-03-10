@@ -75,11 +75,13 @@ import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 import java.util.List;
 
-import org.jfree.chart.Effect3D;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.Effect3D;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.ui.RectangleEdge;
 
 /**
@@ -123,13 +125,13 @@ public class NumberAxis3D extends NumberAxis implements Serializable {
      * @return The updated cursor value.
      */
     @Override
-    public AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
-            Rectangle2D dataArea, RectangleEdge edge,
-            PlotRenderingInfo plotState) {
+    public jfree.chart.axis.AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
+                                                Rectangle2D dataArea, RectangleEdge edge,
+                                                PlotRenderingInfo plotState) {
 
         // if the axis is not visible, don't draw it...
         if (!isVisible()) {
-            AxisState state = new AxisState(cursor);
+            jfree.chart.axis.AxisState state = new jfree.chart.axis.AxisState(cursor);
             // even though the axis is not visible, we need ticks for the
             // gridlines...
             List ticks = refreshTicks(g2, state, dataArea, edge);

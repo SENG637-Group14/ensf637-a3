@@ -43,13 +43,16 @@
 
 package org.jfree.chart.event;
 
+import jfree.chart.ChartPanel;
+import jfree.chart.event.ChartChangeEvent;
+
 import java.util.EventListener;
 
 /**
  * The interface that must be supported by classes that wish to receive
  * notification of chart events.
  * <P>
- * The {@link org.jfree.chart.ChartPanel} class registers itself with the
+ * The {@link ChartPanel} class registers itself with the
  * chart it displays, and whenever the chart changes, the panel redraws itself.
  *
  */

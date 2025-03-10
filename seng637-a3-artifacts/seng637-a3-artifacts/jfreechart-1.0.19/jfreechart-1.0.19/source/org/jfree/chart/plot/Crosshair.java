@@ -52,10 +52,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.labels.CrosshairLabelGenerator;
-import org.jfree.chart.labels.StandardCrosshairLabelGenerator;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.labels.CrosshairLabelGenerator;
+import jfree.chart.labels.StandardCrosshairLabelGenerator;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleAnchor;
 import org.jfree.util.PaintUtilities;
@@ -309,7 +309,7 @@ public class Crosshair implements Cloneable, PublicCloneable, Serializable {
      *
      * @return The label crosshair generator (never <code>null</code>).
      *
-     * @see #setLabelGenerator(org.jfree.chart.labels.CrosshairLabelGenerator)
+     * @see #setLabelGenerator(CrosshairLabelGenerator)
      */
     public CrosshairLabelGenerator getLabelGenerator() {
         return this.labelGenerator;
@@ -572,10 +572,10 @@ public class Crosshair implements Cloneable, PublicCloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Crosshair)) {
+        if (!(obj instanceof jfree.chart.plot.Crosshair)) {
             return false;
         }
-        Crosshair that = (Crosshair) obj;
+        jfree.chart.plot.Crosshair that = (jfree.chart.plot.Crosshair) obj;
         if (this.visible != that.visible) {
             return false;
         }

@@ -45,9 +45,10 @@
 
 package org.jfree.chart.renderer.category;
 
-import org.jfree.chart.plot.CategoryCrosshairState;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.renderer.RendererState;
+import jfree.chart.plot.CategoryCrosshairState;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.renderer.RendererState;
+import jfree.chart.renderer.category.CategoryItemRenderer;
 
 /**
  * An object that retains temporary state information for a

@@ -45,6 +45,9 @@
 
 package org.jfree.chart.servlet;
 
+import jfree.chart.servlet.ChartDeleter;
+import jfree.chart.servlet.ServletUtilities;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -112,7 +115,7 @@ public class DisplayChart extends HttpServlet {
 
         //  Replace ".." with ""
         //  This is to prevent access to the rest of the file system
-        filename = ServletUtilities.searchReplace(filename, "..", "");
+        filename = jfree.chart.servlet.ServletUtilities.searchReplace(filename, "..", "");
 
         //  Check the file exists
         File file = new File(System.getProperty("java.io.tmpdir"), filename);
@@ -125,7 +128,7 @@ public class DisplayChart extends HttpServlet {
         //  Check that the graph being served was created by the current user
         //  or that it begins with "public"
         boolean isChartInUserList = false;
-        ChartDeleter chartDeleter = (ChartDeleter) session.getAttribute(
+        jfree.chart.servlet.ChartDeleter chartDeleter = (ChartDeleter) session.getAttribute(
                 "JFreeChart_Deleter");
         if (chartDeleter != null) {
             isChartInUserList = chartDeleter.isChartAvailable(filename);
@@ -139,7 +142,7 @@ public class DisplayChart extends HttpServlet {
         }
 
         boolean isOneTimeChart = false;
-        if (filename.startsWith(ServletUtilities.getTempOneTimeFilePrefix())) {
+        if (filename.startsWith(jfree.chart.servlet.ServletUtilities.getTempOneTimeFilePrefix())) {
             isOneTimeChart = true;
         }
 

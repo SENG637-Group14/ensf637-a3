@@ -43,6 +43,8 @@
 
 package org.jfree.chart.event;
 
+import jfree.chart.event.PlotChangeEvent;
+
 import java.util.EventListener;
 
 /**

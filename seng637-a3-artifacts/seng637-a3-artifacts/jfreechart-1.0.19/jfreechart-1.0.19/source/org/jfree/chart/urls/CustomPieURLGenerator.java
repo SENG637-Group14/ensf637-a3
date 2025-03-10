@@ -49,8 +49,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.jfree.chart.plot.MultiplePiePlot;
-import org.jfree.data.general.PieDataset;
+import jfree.chart.plot.MultiplePiePlot;
+import jfree.chart.urls.PieURLGenerator;
+import jfree.data.general.PieDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -169,8 +170,8 @@ public class CustomPieURLGenerator implements PieURLGenerator,
             return true;
         }
 
-        if (o instanceof CustomPieURLGenerator) {
-            CustomPieURLGenerator generator = (CustomPieURLGenerator) o;
+        if (o instanceof jfree.chart.urls.CustomPieURLGenerator) {
+            jfree.chart.urls.CustomPieURLGenerator generator = (jfree.chart.urls.CustomPieURLGenerator) o;
             if (getListCount() != generator.getListCount()) {
                 return false;
             }
@@ -203,7 +204,7 @@ public class CustomPieURLGenerator implements PieURLGenerator,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        CustomPieURLGenerator urlGen = new CustomPieURLGenerator();
+        jfree.chart.urls.CustomPieURLGenerator urlGen = new jfree.chart.urls.CustomPieURLGenerator();
         Map map;
         Map newMap;
         String key;

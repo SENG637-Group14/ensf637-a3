@@ -41,6 +41,8 @@
 
 package org.jfree.data.general;
 
+import jfree.data.general.PieDataset;
+
 /**
  * A dataset containing (key, value) data items.
  */

@@ -152,16 +152,29 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.ValueAxisPlot;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.time.DateRange;
-import org.jfree.data.time.Month;
-import org.jfree.data.time.RegularTimePeriod;
-import org.jfree.data.time.Year;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.DateTick;
+import jfree.chart.axis.DateTickMarkPosition;
+import jfree.chart.axis.DateTickUnit;
+import jfree.chart.axis.DateTickUnitType;
+import jfree.chart.axis.SegmentedTimeline;
+import jfree.chart.axis.Tick;
+import jfree.chart.axis.TickType;
+import jfree.chart.axis.TickUnit;
+import jfree.chart.axis.TickUnitSource;
+import jfree.chart.axis.TickUnits;
+import jfree.chart.axis.Timeline;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.time.DateRange;
+import jfree.data.time.Month;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.Year;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.ui.TextAnchor;
@@ -175,12 +188,12 @@ import org.jfree.util.ObjectUtilities;
  * millisecond values are converted back to dates using a
  * <code>DateFormat</code> instance.
  * <P>
- * You can also create a {@link org.jfree.chart.axis.Timeline} and supply in
+ * You can also create a {@link jfree.chart.axis.Timeline} and supply in
  * the constructor to create an axis that only contains certain domain values.
  * For example, this allows you to create a date axis that only contains
  * working days.
  */
-public class DateAxis extends ValueAxis implements Cloneable, Serializable {
+public class DateAxis extends jfree.chart.axis.ValueAxis implements Cloneable, Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = -1013460999649007604L;
@@ -199,14 +212,14 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *     object uses Calendar which is not thread safe...so you should 
      *     avoid reusing this instance and create a new instance as required.
      */
-    public static final DateTickUnit DEFAULT_DATE_TICK_UNIT
-            = new DateTickUnit(DateTickUnitType.DAY, 1, new SimpleDateFormat());
+    public static final jfree.chart.axis.DateTickUnit DEFAULT_DATE_TICK_UNIT
+            = new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.DAY, 1, new SimpleDateFormat());
 
     /** The default anchor date. */
     public static final Date DEFAULT_ANCHOR_DATE = new Date();
 
     /** The current tick unit. */
-    private DateTickUnit tickUnit;
+    private jfree.chart.axis.DateTickUnit tickUnit;
 
     /** The override date format. */
     private DateFormat dateFormatOverride;
@@ -215,13 +228,13 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * Tick marks can be displayed at the start or the middle of the time
      * period.
      */
-    private DateTickMarkPosition tickMarkPosition = DateTickMarkPosition.START;
+    private jfree.chart.axis.DateTickMarkPosition tickMarkPosition = jfree.chart.axis.DateTickMarkPosition.START;
 
     /**
      * A timeline that includes all milliseconds (as defined by
      * <code>java.util.Date</code>) in the real time line.
      */
-    private static class DefaultTimeline implements Timeline, Serializable {
+    private static class DefaultTimeline implements jfree.chart.axis.Timeline, Serializable {
 
         /**
          * Converts a millisecond into a timeline value.
@@ -337,7 +350,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
     }
 
     /** A static default timeline shared by all standard DateAxis */
-    private static final Timeline DEFAULT_TIMELINE = new DefaultTimeline();
+    private static final jfree.chart.axis.Timeline DEFAULT_TIMELINE = new DefaultTimeline();
 
     /** The time zone for the axis. */
     private TimeZone timeZone;
@@ -350,7 +363,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
     private Locale locale;
 
     /** Our underlying timeline. */
-    private Timeline timeline;
+    private jfree.chart.axis.Timeline timeline;
 
     /**
      * Creates a date axis with no label.
@@ -373,7 +386,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * special transformations to occur between a domain of values and the
      * values included in the axis.
      *
-     * @see org.jfree.chart.axis.SegmentedTimeline
+     * @see jfree.chart.axis.SegmentedTimeline
      *
      * @param label  the axis label (<code>null</code> permitted).
      * @param zone  the time zone.
@@ -390,7 +403,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * special transformations to occur between a domain of values and the
      * values included in the axis.
      *
-     * @see org.jfree.chart.axis.SegmentedTimeline
+     * @see jfree.chart.axis.SegmentedTimeline
      *
      * @param label  the axis label (<code>null</code> permitted).
      * @param zone  the time zone.
@@ -399,8 +412,8 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * @since 1.0.11
      */
     public DateAxis(String label, TimeZone zone, Locale locale) {
-        super(label, DateAxis.createStandardDateTickUnits(zone, locale));
-        this.tickUnit = new DateTickUnit(DateTickUnitType.DAY, 1, 
+        super(label, jfree.chart.axis.DateAxis.createStandardDateTickUnits(zone, locale));
+        this.tickUnit = new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.DAY, 1,
                 new SimpleDateFormat());
         setAutoRangeMinimumSize(
                 DEFAULT_AUTO_RANGE_MINIMUM_SIZE_IN_MILLISECONDS);
@@ -471,7 +484,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return The timeline.
      */
-    public Timeline getTimeline() {
+    public jfree.chart.axis.Timeline getTimeline() {
         return this.timeline;
     }
 
@@ -498,10 +511,10 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return The tick unit (possibly <code>null</code>).
      *
-     * @see #setTickUnit(DateTickUnit)
-     * @see ValueAxis#isAutoTickUnitSelection()
+     * @see #setTickUnit(jfree.chart.axis.DateTickUnit)
+     * @see jfree.chart.axis.ValueAxis#isAutoTickUnitSelection()
      */
-    public DateTickUnit getTickUnit() {
+    public jfree.chart.axis.DateTickUnit getTickUnit() {
         return this.tickUnit;
     }
 
@@ -513,9 +526,9 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * @param unit  the tick unit.
      *
      * @see #getTickUnit()
-     * @see #setTickUnit(DateTickUnit, boolean, boolean)
+     * @see #setTickUnit(jfree.chart.axis.DateTickUnit, boolean, boolean)
      */
-    public void setTickUnit(DateTickUnit unit) {
+    public void setTickUnit(jfree.chart.axis.DateTickUnit unit) {
         setTickUnit(unit, true, true);
     }
 
@@ -529,7 +542,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @see #getTickUnit()
      */
-    public void setTickUnit(DateTickUnit unit, boolean notify,
+    public void setTickUnit(jfree.chart.axis.DateTickUnit unit, boolean notify,
                             boolean turnOffAutoSelection) {
 
         this.tickUnit = unit;
@@ -729,7 +742,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return The position (never <code>null</code>).
      */
-    public DateTickMarkPosition getTickMarkPosition() {
+    public jfree.chart.axis.DateTickMarkPosition getTickMarkPosition() {
         return this.tickMarkPosition;
     }
 
@@ -739,7 +752,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @param position  the position (<code>null</code> not permitted).
      */
-    public void setTickMarkPosition(DateTickMarkPosition position) {
+    public void setTickMarkPosition(jfree.chart.axis.DateTickMarkPosition position) {
         ParamChecks.nullNotPermitted(position, "position");
         this.tickMarkPosition = position;
         fireChangeEvent();
@@ -884,7 +897,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return The value of the lowest visible tick on the axis.
      */
-    public Date calculateLowestVisibleTickValue(DateTickUnit unit) {
+    public Date calculateLowestVisibleTickValue(jfree.chart.axis.DateTickUnit unit) {
         return nextStandardDate(getMinimumDate(), unit);
     }
 
@@ -895,7 +908,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return The value of the highest visible tick on the axis.
      */
-    public Date calculateHighestVisibleTickValue(DateTickUnit unit) {
+    public Date calculateHighestVisibleTickValue(jfree.chart.axis.DateTickUnit unit) {
         return previousStandardDate(getMaximumDate(), unit);
     }
 
@@ -907,7 +920,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return The previous "standard" date.
      */
-    protected Date previousStandardDate(Date date, DateTickUnit unit) {
+    protected Date previousStandardDate(Date date, jfree.chart.axis.DateTickUnit unit) {
 
         int milliseconds;
         int seconds;
@@ -925,7 +938,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
 
         switch (unit.getUnit()) {
 
-            case DateTickUnit.MILLISECOND :
+            case jfree.chart.axis.DateTickUnit.MILLISECOND :
                 years = calendar.get(Calendar.YEAR);
                 months = calendar.get(Calendar.MONTH);
                 days = calendar.get(Calendar.DATE);
@@ -941,16 +954,16 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                 }
                 return mm;
 
-            case DateTickUnit.SECOND :
+            case jfree.chart.axis.DateTickUnit.SECOND :
                 years = calendar.get(Calendar.YEAR);
                 months = calendar.get(Calendar.MONTH);
                 days = calendar.get(Calendar.DATE);
                 hours = calendar.get(Calendar.HOUR_OF_DAY);
                 minutes = calendar.get(Calendar.MINUTE);
-                if (this.tickMarkPosition == DateTickMarkPosition.START) {
+                if (this.tickMarkPosition == jfree.chart.axis.DateTickMarkPosition.START) {
                     milliseconds = 0;
                 }
-                else if (this.tickMarkPosition == DateTickMarkPosition.MIDDLE) {
+                else if (this.tickMarkPosition == jfree.chart.axis.DateTickMarkPosition.MIDDLE) {
                     milliseconds = 500;
                 }
                 else {
@@ -965,15 +978,15 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                 }
                 return dd;
 
-            case DateTickUnit.MINUTE :
+            case jfree.chart.axis.DateTickUnit.MINUTE :
                 years = calendar.get(Calendar.YEAR);
                 months = calendar.get(Calendar.MONTH);
                 days = calendar.get(Calendar.DATE);
                 hours = calendar.get(Calendar.HOUR_OF_DAY);
-                if (this.tickMarkPosition == DateTickMarkPosition.START) {
+                if (this.tickMarkPosition == jfree.chart.axis.DateTickMarkPosition.START) {
                     seconds = 0;
                 }
-                else if (this.tickMarkPosition == DateTickMarkPosition.MIDDLE) {
+                else if (this.tickMarkPosition == jfree.chart.axis.DateTickMarkPosition.MIDDLE) {
                     seconds = 30;
                 }
                 else {
@@ -988,15 +1001,15 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                 }
                 return d0;
 
-            case DateTickUnit.HOUR :
+            case jfree.chart.axis.DateTickUnit.HOUR :
                 years = calendar.get(Calendar.YEAR);
                 months = calendar.get(Calendar.MONTH);
                 days = calendar.get(Calendar.DATE);
-                if (this.tickMarkPosition == DateTickMarkPosition.START) {
+                if (this.tickMarkPosition == jfree.chart.axis.DateTickMarkPosition.START) {
                     minutes = 0;
                     seconds = 0;
                 }
-                else if (this.tickMarkPosition == DateTickMarkPosition.MIDDLE) {
+                else if (this.tickMarkPosition == jfree.chart.axis.DateTickMarkPosition.MIDDLE) {
                     minutes = 30;
                     seconds = 0;
                 }
@@ -1013,13 +1026,13 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                 }
                 return d1;
 
-            case DateTickUnit.DAY :
+            case jfree.chart.axis.DateTickUnit.DAY :
                 years = calendar.get(Calendar.YEAR);
                 months = calendar.get(Calendar.MONTH);
-                if (this.tickMarkPosition == DateTickMarkPosition.START) {
+                if (this.tickMarkPosition == jfree.chart.axis.DateTickMarkPosition.START) {
                     hours = 0;
                 }
-                else if (this.tickMarkPosition == DateTickMarkPosition.MIDDLE) {
+                else if (this.tickMarkPosition == jfree.chart.axis.DateTickMarkPosition.MIDDLE) {
                     hours = 12;
                 }
                 else {
@@ -1036,7 +1049,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                 }
                 return d2;
 
-            case DateTickUnit.MONTH :
+            case jfree.chart.axis.DateTickUnit.MONTH :
                 years = calendar.get(Calendar.YEAR);
                 calendar.clear(Calendar.MILLISECOND);
                 calendar.set(years, value, 1, 0, 0, 0);
@@ -1055,12 +1068,12 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                 }
                 return standardDate;
 
-            case DateTickUnit.YEAR :
-                if (this.tickMarkPosition == DateTickMarkPosition.START) {
+            case jfree.chart.axis.DateTickUnit.YEAR :
+                if (this.tickMarkPosition == jfree.chart.axis.DateTickMarkPosition.START) {
                     months = 0;
                     days = 1;
                 }
-                else if (this.tickMarkPosition == DateTickMarkPosition.MIDDLE) {
+                else if (this.tickMarkPosition == jfree.chart.axis.DateTickMarkPosition.MIDDLE) {
                     months = 6;
                     days = 1;
                 }
@@ -1093,16 +1106,16 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * @return A date.
      */
     private Date calculateDateForPosition(RegularTimePeriod period,
-            DateTickMarkPosition position) {
+            jfree.chart.axis.DateTickMarkPosition position) {
         ParamChecks.nullNotPermitted(period, "period");
         Date result = null;
-        if (position == DateTickMarkPosition.START) {
+        if (position == jfree.chart.axis.DateTickMarkPosition.START) {
             result = new Date(period.getFirstMillisecond());
         }
-        else if (position == DateTickMarkPosition.MIDDLE) {
+        else if (position == jfree.chart.axis.DateTickMarkPosition.MIDDLE) {
             result = new Date(period.getMiddleMillisecond());
         }
-        else if (position == DateTickMarkPosition.END) {
+        else if (position == jfree.chart.axis.DateTickMarkPosition.END) {
             result = new Date(period.getLastMillisecond());
         }
         return result;
@@ -1118,7 +1131,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return The next "standard" date.
      */
-    protected Date nextStandardDate(Date date, DateTickUnit unit) {
+    protected Date nextStandardDate(Date date, jfree.chart.axis.DateTickUnit unit) {
         Date previous = previousStandardDate(date, unit);
         Calendar calendar = Calendar.getInstance(this.timeZone, this.locale);
         calendar.setTime(previous);
@@ -1130,12 +1143,12 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * Returns a collection of standard date tick units that uses the default
      * time zone.  This collection will be used by default, but you are free
      * to create your own collection if you want to (see the
-     * {@link ValueAxis#setStandardTickUnits(TickUnitSource)} method inherited
-     * from the {@link ValueAxis} class).
+     * {@link jfree.chart.axis.ValueAxis#setStandardTickUnits(jfree.chart.axis.TickUnitSource)} method inherited
+     * from the {@link jfree.chart.axis.ValueAxis} class).
      *
      * @return A collection of standard date tick units.
      */
-    public static TickUnitSource createStandardDateTickUnits() {
+    public static jfree.chart.axis.TickUnitSource createStandardDateTickUnits() {
         return createStandardDateTickUnits(TimeZone.getDefault(),
                 Locale.getDefault());
     }
@@ -1144,8 +1157,8 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * Returns a collection of standard date tick units.  This collection will
      * be used by default, but you are free to create your own collection if
      * you want to (see the
-     * {@link ValueAxis#setStandardTickUnits(TickUnitSource)} method inherited
-     * from the {@link ValueAxis} class).
+     * {@link jfree.chart.axis.ValueAxis#setStandardTickUnits(jfree.chart.axis.TickUnitSource)} method inherited
+     * from the {@link jfree.chart.axis.ValueAxis} class).
      *
      * @param zone  the time zone (<code>null</code> not permitted).
      * @param locale  the locale (<code>null</code> not permitted).
@@ -1154,12 +1167,12 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @since 1.0.11
      */
-    public static TickUnitSource createStandardDateTickUnits(TimeZone zone,
-            Locale locale) {
+    public static jfree.chart.axis.TickUnitSource createStandardDateTickUnits(TimeZone zone,
+                                                                                   Locale locale) {
 
         ParamChecks.nullNotPermitted(zone, "zone");
         ParamChecks.nullNotPermitted(locale, "locale");
-        TickUnits units = new TickUnits();
+        jfree.chart.axis.TickUnits units = new TickUnits();
 
         // date formatters
         DateFormat f1 = new SimpleDateFormat("HH:mm:ss.SSS", locale);
@@ -1179,96 +1192,96 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
         f7.setTimeZone(zone);
 
         // milliseconds
-        units.add(new DateTickUnit(DateTickUnitType.MILLISECOND, 1, f1));
-        units.add(new DateTickUnit(DateTickUnitType.MILLISECOND, 5,
-                DateTickUnitType.MILLISECOND, 1, f1));
-        units.add(new DateTickUnit(DateTickUnitType.MILLISECOND, 10,
-                DateTickUnitType.MILLISECOND, 1, f1));
-        units.add(new DateTickUnit(DateTickUnitType.MILLISECOND, 25,
-                DateTickUnitType.MILLISECOND, 5, f1));
-        units.add(new DateTickUnit(DateTickUnitType.MILLISECOND, 50,
-                DateTickUnitType.MILLISECOND, 10, f1));
-        units.add(new DateTickUnit(DateTickUnitType.MILLISECOND, 100,
-                DateTickUnitType.MILLISECOND, 10, f1));
-        units.add(new DateTickUnit(DateTickUnitType.MILLISECOND, 250,
-                DateTickUnitType.MILLISECOND, 10, f1));
-        units.add(new DateTickUnit(DateTickUnitType.MILLISECOND, 500,
-                DateTickUnitType.MILLISECOND, 50, f1));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MILLISECOND, 1, f1));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MILLISECOND, 5,
+                jfree.chart.axis.DateTickUnitType.MILLISECOND, 1, f1));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MILLISECOND, 10,
+                jfree.chart.axis.DateTickUnitType.MILLISECOND, 1, f1));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MILLISECOND, 25,
+                jfree.chart.axis.DateTickUnitType.MILLISECOND, 5, f1));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MILLISECOND, 50,
+                jfree.chart.axis.DateTickUnitType.MILLISECOND, 10, f1));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MILLISECOND, 100,
+                jfree.chart.axis.DateTickUnitType.MILLISECOND, 10, f1));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MILLISECOND, 250,
+                jfree.chart.axis.DateTickUnitType.MILLISECOND, 10, f1));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MILLISECOND, 500,
+                jfree.chart.axis.DateTickUnitType.MILLISECOND, 50, f1));
 
         // seconds
-        units.add(new DateTickUnit(DateTickUnitType.SECOND, 1,
-                DateTickUnitType.MILLISECOND, 50, f2));
-        units.add(new DateTickUnit(DateTickUnitType.SECOND, 5,
-                DateTickUnitType.SECOND, 1, f2));
-        units.add(new DateTickUnit(DateTickUnitType.SECOND, 10,
-                DateTickUnitType.SECOND, 1, f2));
-        units.add(new DateTickUnit(DateTickUnitType.SECOND, 30,
-                DateTickUnitType.SECOND, 5, f2));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.SECOND, 1,
+                jfree.chart.axis.DateTickUnitType.MILLISECOND, 50, f2));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.SECOND, 5,
+                jfree.chart.axis.DateTickUnitType.SECOND, 1, f2));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.SECOND, 10,
+                jfree.chart.axis.DateTickUnitType.SECOND, 1, f2));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.SECOND, 30,
+                jfree.chart.axis.DateTickUnitType.SECOND, 5, f2));
 
         // minutes
-        units.add(new DateTickUnit(DateTickUnitType.MINUTE, 1,
-                DateTickUnitType.SECOND, 5, f3));
-        units.add(new DateTickUnit(DateTickUnitType.MINUTE, 2,
-                DateTickUnitType.SECOND, 10, f3));
-        units.add(new DateTickUnit(DateTickUnitType.MINUTE, 5,
-                DateTickUnitType.MINUTE, 1, f3));
-        units.add(new DateTickUnit(DateTickUnitType.MINUTE, 10,
-                DateTickUnitType.MINUTE, 1, f3));
-        units.add(new DateTickUnit(DateTickUnitType.MINUTE, 15,
-                DateTickUnitType.MINUTE, 5, f3));
-        units.add(new DateTickUnit(DateTickUnitType.MINUTE, 20,
-                DateTickUnitType.MINUTE, 5, f3));
-        units.add(new DateTickUnit(DateTickUnitType.MINUTE, 30,
-                DateTickUnitType.MINUTE, 5, f3));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MINUTE, 1,
+                jfree.chart.axis.DateTickUnitType.SECOND, 5, f3));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MINUTE, 2,
+                jfree.chart.axis.DateTickUnitType.SECOND, 10, f3));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MINUTE, 5,
+                jfree.chart.axis.DateTickUnitType.MINUTE, 1, f3));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MINUTE, 10,
+                jfree.chart.axis.DateTickUnitType.MINUTE, 1, f3));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MINUTE, 15,
+                jfree.chart.axis.DateTickUnitType.MINUTE, 5, f3));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MINUTE, 20,
+                jfree.chart.axis.DateTickUnitType.MINUTE, 5, f3));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MINUTE, 30,
+                jfree.chart.axis.DateTickUnitType.MINUTE, 5, f3));
 
         // hours
-        units.add(new DateTickUnit(DateTickUnitType.HOUR, 1,
-                DateTickUnitType.MINUTE, 5, f3));
-        units.add(new DateTickUnit(DateTickUnitType.HOUR, 2,
-                DateTickUnitType.MINUTE, 10, f3));
-        units.add(new DateTickUnit(DateTickUnitType.HOUR, 4,
-                DateTickUnitType.MINUTE, 30, f3));
-        units.add(new DateTickUnit(DateTickUnitType.HOUR, 6,
-                DateTickUnitType.HOUR, 1, f3));
-        units.add(new DateTickUnit(DateTickUnitType.HOUR, 12,
-                DateTickUnitType.HOUR, 1, f4));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.HOUR, 1,
+                jfree.chart.axis.DateTickUnitType.MINUTE, 5, f3));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.HOUR, 2,
+                jfree.chart.axis.DateTickUnitType.MINUTE, 10, f3));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.HOUR, 4,
+                jfree.chart.axis.DateTickUnitType.MINUTE, 30, f3));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.HOUR, 6,
+                jfree.chart.axis.DateTickUnitType.HOUR, 1, f3));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.HOUR, 12,
+                jfree.chart.axis.DateTickUnitType.HOUR, 1, f4));
 
         // days
-        units.add(new DateTickUnit(DateTickUnitType.DAY, 1,
-                DateTickUnitType.HOUR, 1, f5));
-        units.add(new DateTickUnit(DateTickUnitType.DAY, 2,
-                DateTickUnitType.HOUR, 1, f5));
-        units.add(new DateTickUnit(DateTickUnitType.DAY, 7,
-                DateTickUnitType.DAY, 1, f5));
-        units.add(new DateTickUnit(DateTickUnitType.DAY, 15,
-                DateTickUnitType.DAY, 1, f5));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.DAY, 1,
+                jfree.chart.axis.DateTickUnitType.HOUR, 1, f5));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.DAY, 2,
+                jfree.chart.axis.DateTickUnitType.HOUR, 1, f5));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.DAY, 7,
+                jfree.chart.axis.DateTickUnitType.DAY, 1, f5));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.DAY, 15,
+                jfree.chart.axis.DateTickUnitType.DAY, 1, f5));
 
         // months
-        units.add(new DateTickUnit(DateTickUnitType.MONTH, 1,
-                DateTickUnitType.DAY, 1, f6));
-        units.add(new DateTickUnit(DateTickUnitType.MONTH, 2,
-                DateTickUnitType.DAY, 1, f6));
-        units.add(new DateTickUnit(DateTickUnitType.MONTH, 3,
-                DateTickUnitType.MONTH, 1, f6));
-        units.add(new DateTickUnit(DateTickUnitType.MONTH, 4,
-                DateTickUnitType.MONTH, 1, f6));
-        units.add(new DateTickUnit(DateTickUnitType.MONTH, 6,
-                DateTickUnitType.MONTH, 1, f6));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MONTH, 1,
+                jfree.chart.axis.DateTickUnitType.DAY, 1, f6));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MONTH, 2,
+                jfree.chart.axis.DateTickUnitType.DAY, 1, f6));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MONTH, 3,
+                jfree.chart.axis.DateTickUnitType.MONTH, 1, f6));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MONTH, 4,
+                jfree.chart.axis.DateTickUnitType.MONTH, 1, f6));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.MONTH, 6,
+                jfree.chart.axis.DateTickUnitType.MONTH, 1, f6));
 
         // years
-        units.add(new DateTickUnit(DateTickUnitType.YEAR, 1,
-                DateTickUnitType.MONTH, 1, f7));
-        units.add(new DateTickUnit(DateTickUnitType.YEAR, 2,
-                DateTickUnitType.MONTH, 3, f7));
-        units.add(new DateTickUnit(DateTickUnitType.YEAR, 5,
-                DateTickUnitType.YEAR, 1, f7));
-        units.add(new DateTickUnit(DateTickUnitType.YEAR, 10,
-                DateTickUnitType.YEAR, 1, f7));
-        units.add(new DateTickUnit(DateTickUnitType.YEAR, 25,
-                DateTickUnitType.YEAR, 5, f7));
-        units.add(new DateTickUnit(DateTickUnitType.YEAR, 50,
-                DateTickUnitType.YEAR, 10, f7));
-        units.add(new DateTickUnit(DateTickUnitType.YEAR, 100,
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.YEAR, 1,
+                jfree.chart.axis.DateTickUnitType.MONTH, 1, f7));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.YEAR, 2,
+                jfree.chart.axis.DateTickUnitType.MONTH, 3, f7));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.YEAR, 5,
+                jfree.chart.axis.DateTickUnitType.YEAR, 1, f7));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.YEAR, 10,
+                jfree.chart.axis.DateTickUnitType.YEAR, 1, f7));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.YEAR, 25,
+                jfree.chart.axis.DateTickUnitType.YEAR, 5, f7));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.YEAR, 50,
+                jfree.chart.axis.DateTickUnitType.YEAR, 10, f7));
+        units.add(new jfree.chart.axis.DateTickUnit(jfree.chart.axis.DateTickUnitType.YEAR, 100,
                 DateTickUnitType.YEAR, 20, f7));
 
         return units;
@@ -1292,11 +1305,11 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
 
             Range r = vap.getDataRange(this);
             if (r == null) {
-                if (this.timeline instanceof SegmentedTimeline) {
+                if (this.timeline instanceof jfree.chart.axis.SegmentedTimeline) {
                     //Timeline hasn't method getStartTime()
                     r = new DateRange((
-                            (SegmentedTimeline) this.timeline).getStartTime(),
-                            ((SegmentedTimeline) this.timeline).getStartTime()
+                            (jfree.chart.axis.SegmentedTimeline) this.timeline).getStartTime(),
+                            ((jfree.chart.axis.SegmentedTimeline) this.timeline).getStartTime()
                             + 1);
                 }
                 else {
@@ -1366,7 +1379,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
             Rectangle2D dataArea, RectangleEdge edge) {
 
         long shift = 0;
-        if (this.timeline instanceof SegmentedTimeline) {
+        if (this.timeline instanceof jfree.chart.axis.SegmentedTimeline) {
             shift = ((SegmentedTimeline) this.timeline).getStartTime();
         }
         double zero = valueToJava2D(shift + 0.0, dataArea, edge);
@@ -1374,19 +1387,19 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                 getTickUnit());
 
         // start with the current tick unit...
-        TickUnitSource tickUnits = getStandardTickUnits();
+        jfree.chart.axis.TickUnitSource tickUnits = getStandardTickUnits();
         TickUnit unit1 = tickUnits.getCeilingTickUnit(getTickUnit());
         double x1 = valueToJava2D(shift + unit1.getSize(), dataArea, edge);
         double unit1Width = Math.abs(x1 - zero);
 
         // then extrapolate...
         double guess = (tickLabelWidth / unit1Width) * unit1.getSize();
-        DateTickUnit unit2 = (DateTickUnit) tickUnits.getCeilingTickUnit(guess);
+        jfree.chart.axis.DateTickUnit unit2 = (jfree.chart.axis.DateTickUnit) tickUnits.getCeilingTickUnit(guess);
         double x2 = valueToJava2D(shift + unit2.getSize(), dataArea, edge);
         double unit2Width = Math.abs(x2 - zero);
         tickLabelWidth = estimateMaximumTickLabelWidth(g2, unit2);
         if (tickLabelWidth > unit2Width) {
-            unit2 = (DateTickUnit) tickUnits.getLargerTickUnit(unit2);
+            unit2 = (jfree.chart.axis.DateTickUnit) tickUnits.getLargerTickUnit(unit2);
         }
         setTickUnit(unit2, false, false);
     }
@@ -1404,13 +1417,13 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
             Rectangle2D dataArea, RectangleEdge edge) {
 
         // start with the current tick unit...
-        TickUnitSource tickUnits = getStandardTickUnits();
+        jfree.chart.axis.TickUnitSource tickUnits = getStandardTickUnits();
         double zero = valueToJava2D(0.0, dataArea, edge);
 
         // start with a unit that is at least 1/10th of the axis length
         double estimate1 = getRange().getLength() / 10.0;
-        DateTickUnit candidate1
-            = (DateTickUnit) tickUnits.getCeilingTickUnit(estimate1);
+        jfree.chart.axis.DateTickUnit candidate1
+            = (jfree.chart.axis.DateTickUnit) tickUnits.getCeilingTickUnit(estimate1);
         double labelHeight1 = estimateMaximumTickLabelHeight(g2, candidate1);
         double y1 = valueToJava2D(candidate1.getSize(), dataArea, edge);
         double candidate1UnitHeight = Math.abs(y1 - zero);
@@ -1418,19 +1431,19 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
         // now extrapolate based on label height and unit height...
         double estimate2
             = (labelHeight1 / candidate1UnitHeight) * candidate1.getSize();
-        DateTickUnit candidate2
-            = (DateTickUnit) tickUnits.getCeilingTickUnit(estimate2);
+        jfree.chart.axis.DateTickUnit candidate2
+            = (jfree.chart.axis.DateTickUnit) tickUnits.getCeilingTickUnit(estimate2);
         double labelHeight2 = estimateMaximumTickLabelHeight(g2, candidate2);
         double y2 = valueToJava2D(candidate2.getSize(), dataArea, edge);
         double unit2Height = Math.abs(y2 - zero);
 
        // make final selection...
-       DateTickUnit finalUnit;
+       jfree.chart.axis.DateTickUnit finalUnit;
        if (labelHeight2 < unit2Height) {
            finalUnit = candidate2;
        }
        else {
-           finalUnit = (DateTickUnit) tickUnits.getLargerTickUnit(candidate2);
+           finalUnit = (jfree.chart.axis.DateTickUnit) tickUnits.getLargerTickUnit(candidate2);
        }
        setTickUnit(finalUnit, false, false);
 
@@ -1450,7 +1463,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * @return The estimated maximum width of the tick labels.
      */
     private double estimateMaximumTickLabelWidth(Graphics2D g2, 
-            DateTickUnit unit) {
+            jfree.chart.axis.DateTickUnit unit) {
 
         RectangleInsets tickLabelInsets = getTickLabelInsets();
         double result = tickLabelInsets.getLeft() + tickLabelInsets.getRight();
@@ -1502,7 +1515,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * @return The estimated maximum width of the tick labels.
      */
     private double estimateMaximumTickLabelHeight(Graphics2D g2,
-            DateTickUnit unit) {
+            jfree.chart.axis.DateTickUnit unit) {
 
         RectangleInsets tickLabelInsets = getTickLabelInsets();
         double result = tickLabelInsets.getTop() + tickLabelInsets.getBottom();
@@ -1552,7 +1565,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * @return A list of ticks.
      */
     @Override
-    public List refreshTicks(Graphics2D g2, AxisState state, 
+    public List refreshTicks(Graphics2D g2, jfree.chart.axis.AxisState state,
             Rectangle2D dataArea, RectangleEdge edge) {
 
         List result = null;
@@ -1575,21 +1588,21 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return The adjusted time.
      */
-    private Date correctTickDateForPosition(Date time, DateTickUnit unit,
+    private Date correctTickDateForPosition(Date time, jfree.chart.axis.DateTickUnit unit,
             DateTickMarkPosition position) {
         Date result = time;
         switch (unit.getUnit()) {
-            case DateTickUnit.MILLISECOND :
-            case DateTickUnit.SECOND :
-            case DateTickUnit.MINUTE :
-            case DateTickUnit.HOUR :
-            case DateTickUnit.DAY :
+            case jfree.chart.axis.DateTickUnit.MILLISECOND :
+            case jfree.chart.axis.DateTickUnit.SECOND :
+            case jfree.chart.axis.DateTickUnit.MINUTE :
+            case jfree.chart.axis.DateTickUnit.HOUR :
+            case jfree.chart.axis.DateTickUnit.DAY :
                 break;
-            case DateTickUnit.MONTH :
+            case jfree.chart.axis.DateTickUnit.MONTH :
                 result = calculateDateForPosition(new Month(time,
                         this.timeZone, this.locale), position);
                 break;
-            case DateTickUnit.YEAR :
+            case jfree.chart.axis.DateTickUnit.YEAR :
                 result = calculateDateForPosition(new Year(time,
                         this.timeZone, this.locale), position);
                 break;
@@ -1620,7 +1633,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
             selectAutoTickUnit(g2, dataArea, edge);
         }
 
-        DateTickUnit unit = getTickUnit();
+        jfree.chart.axis.DateTickUnit unit = getTickUnit();
         Date tickDate = calculateLowestVisibleTickValue(unit);
         Date upperDate = getMaximumDate();
 
@@ -1644,7 +1657,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                         * minorTick / minorTickSpaces;
                 if (minorTickTime > 0 && getRange().contains(minorTickTime)
                         && (!isHiddenValue(minorTickTime))) {
-                    result.add(new DateTick(TickType.MINOR,
+                    result.add(new jfree.chart.axis.DateTick(jfree.chart.axis.TickType.MINOR,
                             new Date(minorTickTime), "", TextAnchor.TOP_CENTER,
                             TextAnchor.CENTER, 0.0));
                 }
@@ -1683,7 +1696,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                     }
                 }
 
-                Tick tick = new DateTick(tickDate, tickLabel, anchor,
+                jfree.chart.axis.Tick tick = new jfree.chart.axis.DateTick(tickDate, tickLabel, anchor,
                         rotationAnchor, angle);
                 result.add(tick);
                 hasRolled = false;
@@ -1698,7 +1711,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                             * minorTick / minorTickSpaces;
                     if (getRange().contains(minorTickTime)
                             && (!isHiddenValue(minorTickTime))) {
-                        result.add(new DateTick(TickType.MINOR,
+                        result.add(new jfree.chart.axis.DateTick(jfree.chart.axis.TickType.MINOR,
                                 new Date(minorTickTime), "",
                                 TextAnchor.TOP_CENTER, TextAnchor.CENTER,
                                 0.0));
@@ -1762,7 +1775,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                         * minorTick / minorTickSpaces;
                 if (minorTickTime > 0 && getRange().contains(minorTickTime)
                         && (!isHiddenValue(minorTickTime))) {
-                    result.add(new DateTick(TickType.MINOR,
+                    result.add(new jfree.chart.axis.DateTick(jfree.chart.axis.TickType.MINOR,
                             new Date(minorTickTime), "", TextAnchor.TOP_CENTER,
                             TextAnchor.CENTER, 0.0));
                 }
@@ -1800,7 +1813,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
                     }
                 }
 
-                Tick tick = new DateTick(tickDate, tickLabel, anchor,
+                Tick tick = new jfree.chart.axis.DateTick(tickDate, tickLabel, anchor,
                         rotationAnchor, angle);
                 result.add(tick);
                 hasRolled = false;
@@ -1847,13 +1860,13 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * @return The axis state (never <code>null</code>).
      */
     @Override
-    public AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
-            Rectangle2D dataArea, RectangleEdge edge,
-            PlotRenderingInfo plotState) {
+    public jfree.chart.axis.AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
+                                                Rectangle2D dataArea, RectangleEdge edge,
+                                                PlotRenderingInfo plotState) {
 
         // if the axis is not visible, don't draw it...
         if (!isVisible()) {
-            AxisState state = new AxisState(cursor);
+            jfree.chart.axis.AxisState state = new jfree.chart.axis.AxisState(cursor);
             // even though the axis is not visible, we need to refresh ticks in
             // case the grid is being drawn...
             List ticks = refreshTicks(g2, state, dataArea, edge);
@@ -1926,10 +1939,10 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DateAxis)) {
+        if (!(obj instanceof jfree.chart.axis.DateAxis)) {
             return false;
         }
-        DateAxis that = (DateAxis) obj;
+        jfree.chart.axis.DateAxis that = (jfree.chart.axis.DateAxis) obj;
         if (!ObjectUtilities.equal(this.timeZone, that.timeZone)) {
             return false;
         }
@@ -1973,7 +1986,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DateAxis clone = (DateAxis) super.clone();
+        jfree.chart.axis.DateAxis clone = (jfree.chart.axis.DateAxis) super.clone();
         // 'dateTickUnit' is immutable : no need to clone
         if (this.dateFormatOverride != null) {
             clone.dateFormatOverride
@@ -1987,7 +2000,7 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable {
      * Returns a collection of standard date tick units.  This collection will
      * be used by default, but you are free to create your own collection if
      * you want to (see the
-     * {@link ValueAxis#setStandardTickUnits(TickUnitSource)} method inherited
+     * {@link jfree.chart.axis.ValueAxis#setStandardTickUnits(jfree.chart.axis.TickUnitSource)} method inherited
      * from the {@link ValueAxis} class).
      *
      * @param zone  the time zone (<code>null</code> not permitted).

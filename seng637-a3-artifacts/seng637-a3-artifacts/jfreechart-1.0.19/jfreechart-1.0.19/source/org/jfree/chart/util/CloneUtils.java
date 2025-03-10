@@ -44,6 +44,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import jfree.chart.util.ParamChecks;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -62,7 +64,7 @@ public class CloneUtils {
      * @return A new list. 
      */
     public static List<?> cloneList(List<?> source) {
-        ParamChecks.nullNotPermitted(source, "source");
+        jfree.chart.util.ParamChecks.nullNotPermitted(source, "source");
         List result = new ArrayList();
         for (Object obj: source) {
             if (obj != null) {

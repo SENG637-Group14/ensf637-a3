@@ -40,6 +40,10 @@
 
 package org.jfree.chart.plot.dial;
 
+import jfree.chart.plot.dial.DialFrame;
+import jfree.chart.plot.dial.DialLayerChangeListener;
+import jfree.chart.plot.dial.DialPlot;
+
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
@@ -70,7 +74,7 @@ public interface DialLayer {
      *
      * @param listener  the listener.
      */
-    public void addChangeListener(DialLayerChangeListener listener);
+    public void addChangeListener(jfree.chart.plot.dial.DialLayerChangeListener listener);
 
     /**
      * Deregisters a listener, so that it no longer receives notification of
@@ -113,6 +117,6 @@ public interface DialLayer {
      *     permitted).
      */
     public void draw(Graphics2D g2, DialPlot plot, Rectangle2D frame,
-            Rectangle2D view);
+                     Rectangle2D view);
 
 }

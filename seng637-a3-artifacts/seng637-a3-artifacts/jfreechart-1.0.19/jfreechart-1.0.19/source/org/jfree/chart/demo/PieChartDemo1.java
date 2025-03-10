@@ -51,14 +51,14 @@ import java.awt.RadialGradientPaint;
 import java.awt.geom.Point2D;
 import javax.swing.JPanel;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.StandardChartTheme;
-import org.jfree.chart.plot.PiePlot;
-import org.jfree.chart.title.TextTitle;
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
+import jfree.chart.ChartFactory;
+import jfree.chart.ChartPanel;
+import jfree.chart.JFreeChart;
+import jfree.chart.StandardChartTheme;
+import jfree.chart.plot.PiePlot;
+import jfree.chart.title.TextTitle;
+import jfree.data.general.DefaultPieDataset;
+import jfree.data.general.PieDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.HorizontalAlignment;
 import org.jfree.ui.RectangleEdge;
@@ -211,7 +211,7 @@ public class PieChartDemo1 extends ApplicationFrame {
         //
         // ******************************************************************
 
-        PieChartDemo1 demo = new PieChartDemo1("JFreeChart: Pie Chart Demo 1");
+        jfree.chart.demo.PieChartDemo1 demo = new jfree.chart.demo.PieChartDemo1("JFreeChart: Pie Chart Demo 1");
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);

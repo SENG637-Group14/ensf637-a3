@@ -54,17 +54,22 @@ package org.jfree.data.gantt;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
 
-import org.jfree.data.general.AbstractSeriesDataset;
-import org.jfree.data.general.SeriesChangeEvent;
-import org.jfree.data.time.TimePeriod;
+import jfree.data.gantt.GanttCategoryDataset;
+import jfree.data.gantt.Task;
+import jfree.data.gantt.TaskSeries;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.chart.util.ParamChecks;
+
+import jfree.data.general.AbstractSeriesDataset;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.time.TimePeriod;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A collection of {@link TaskSeries} objects.  This class provides one
- * implementation of the {@link GanttCategoryDataset} interface.
+ * A collection of {@link jfree.data.gantt.TaskSeries} objects.  This class provides one
+ * implementation of the {@link jfree.data.gantt.GanttCategoryDataset} interface.
  */
 public class TaskSeriesCollection extends AbstractSeriesDataset
         implements GanttCategoryDataset, Cloneable, PublicCloneable,
@@ -99,11 +104,11 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
      *
      * @since 1.0.1
      */
-    public TaskSeries getSeries(Comparable key) {
+    public jfree.data.gantt.TaskSeries getSeries(Comparable key) {
         if (key == null) {
             throw new NullPointerException("Null 'key' argument.");
         }
-        TaskSeries result = null;
+        jfree.data.gantt.TaskSeries result = null;
         int index = getRowIndex(key);
         if (index >= 0) {
             result = getSeries(index);
@@ -120,11 +125,11 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
      *
      * @since 1.0.1
      */
-    public TaskSeries getSeries(int series) {
+    public jfree.data.gantt.TaskSeries getSeries(int series) {
         if ((series < 0) || (series >= getSeriesCount())) {
             throw new IllegalArgumentException("Series index out of bounds");
         }
-        return (TaskSeries) this.data.get(series);
+        return (jfree.data.gantt.TaskSeries) this.data.get(series);
     }
 
     /**
@@ -146,7 +151,7 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
      */
     @Override
     public Comparable getSeriesKey(int series) {
-        TaskSeries ts = (TaskSeries) this.data.get(series);
+        jfree.data.gantt.TaskSeries ts = (jfree.data.gantt.TaskSeries) this.data.get(series);
         return ts.getKey();
     }
 
@@ -227,7 +232,7 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
         int result = -1;
         int count = this.data.size();
         for (int i = 0; i < count; i++) {
-            TaskSeries s = (TaskSeries) this.data.get(i);
+            jfree.data.gantt.TaskSeries s = (jfree.data.gantt.TaskSeries) this.data.get(i);
             if (s.getKey().equals(rowKey)) {
                 result = i;
                 break;
@@ -245,18 +250,18 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
      */
     @Override
     public Comparable getRowKey(int index) {
-        TaskSeries series = (TaskSeries) this.data.get(index);
+        jfree.data.gantt.TaskSeries series = (jfree.data.gantt.TaskSeries) this.data.get(index);
         return series.getKey();
     }
 
     /**
      * Adds a series to the dataset and sends a
-     * {@link org.jfree.data.general.DatasetChangeEvent} to all registered
+     * {@link DatasetChangeEvent} to all registered
      * listeners.
      *
      * @param series  the series (<code>null</code> not permitted).
      */
-    public void add(TaskSeries series) {
+    public void add(jfree.data.gantt.TaskSeries series) {
         ParamChecks.nullNotPermitted(series, "series");
         this.data.add(series);
         series.addChangeListener(this);
@@ -264,7 +269,7 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
         // look for any keys that we don't already know about...
         Iterator iterator = series.getTasks().iterator();
         while (iterator.hasNext()) {
-            Task task = (Task) iterator.next();
+            jfree.data.gantt.Task task = (jfree.data.gantt.Task) iterator.next();
             String key = task.getDescription();
             int index = this.keys.indexOf(key);
             if (index < 0) {
@@ -276,12 +281,12 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
 
     /**
      * Removes a series from the collection and sends
-     * a {@link org.jfree.data.general.DatasetChangeEvent}
+     * a {@link DatasetChangeEvent}
      * to all registered listeners.
      *
      * @param series  the series.
      */
-    public void remove(TaskSeries series) {
+    public void remove(jfree.data.gantt.TaskSeries series) {
         ParamChecks.nullNotPermitted(series, "series");
         if (this.data.contains(series)) {
             series.removeChangeListener(this);
@@ -292,7 +297,7 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
 
     /**
      * Removes a series from the collection and sends
-     * a {@link org.jfree.data.general.DatasetChangeEvent}
+     * a {@link DatasetChangeEvent}
      * to all registered listeners.
      *
      * @param series  the series (zero based index).
@@ -304,7 +309,7 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
         }
 
         // fetch the series, remove the change listener, then remove the series.
-        TaskSeries ts = (TaskSeries) this.data.get(series);
+        jfree.data.gantt.TaskSeries ts = (jfree.data.gantt.TaskSeries) this.data.get(series);
         ts.removeChangeListener(this);
         this.data.remove(series);
         fireDatasetChanged();
@@ -313,7 +318,7 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
 
     /**
      * Removes all the series from the collection and sends
-     * a {@link org.jfree.data.general.DatasetChangeEvent}
+     * a {@link DatasetChangeEvent}
      * to all registered listeners.
      */
     public void removeAll() {
@@ -322,7 +327,7 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
         // the collection.
         Iterator iterator = this.data.iterator();
         while (iterator.hasNext()) {
-            TaskSeries series = (TaskSeries) iterator.next();
+            jfree.data.gantt.TaskSeries series = (jfree.data.gantt.TaskSeries) iterator.next();
             series.removeChangeListener(this);
         }
 
@@ -371,8 +376,8 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
     public Number getStartValue(Comparable rowKey, Comparable columnKey) {
         Number result = null;
         int row = getRowIndex(rowKey);
-        TaskSeries series = (TaskSeries) this.data.get(row);
-        Task task = series.get(columnKey.toString());
+        jfree.data.gantt.TaskSeries series = (jfree.data.gantt.TaskSeries) this.data.get(row);
+        jfree.data.gantt.Task task = series.get(columnKey.toString());
         if (task != null) {
             TimePeriod duration = task.getDuration();
             if (duration != null) {
@@ -410,8 +415,8 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
     public Number getEndValue(Comparable rowKey, Comparable columnKey) {
         Number result = null;
         int row = getRowIndex(rowKey);
-        TaskSeries series = (TaskSeries) this.data.get(row);
-        Task task = series.get(columnKey.toString());
+        jfree.data.gantt.TaskSeries series = (jfree.data.gantt.TaskSeries) this.data.get(row);
+        jfree.data.gantt.Task task = series.get(columnKey.toString());
         if (task != null) {
             TimePeriod duration = task.getDuration();
             if (duration != null) {
@@ -463,8 +468,8 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
     public Number getPercentComplete(Comparable rowKey, Comparable columnKey) {
         Number result = null;
         int row = getRowIndex(rowKey);
-        TaskSeries series = (TaskSeries) this.data.get(row);
-        Task task = series.get(columnKey.toString());
+        jfree.data.gantt.TaskSeries series = (jfree.data.gantt.TaskSeries) this.data.get(row);
+        jfree.data.gantt.Task task = series.get(columnKey.toString());
         if (task != null) {
             result = task.getPercentComplete();
         }
@@ -498,8 +503,8 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
     public int getSubIntervalCount(Comparable rowKey, Comparable columnKey) {
         int result = 0;
         int row = getRowIndex(rowKey);
-        TaskSeries series = (TaskSeries) this.data.get(row);
-        Task task = series.get(columnKey.toString());
+        jfree.data.gantt.TaskSeries series = (jfree.data.gantt.TaskSeries) this.data.get(row);
+        jfree.data.gantt.Task task = series.get(columnKey.toString());
         if (task != null) {
             result = task.getSubtaskCount();
         }
@@ -536,10 +541,10 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
                                 int subinterval) {
         Number result = null;
         int row = getRowIndex(rowKey);
-        TaskSeries series = (TaskSeries) this.data.get(row);
-        Task task = series.get(columnKey.toString());
+        jfree.data.gantt.TaskSeries series = (jfree.data.gantt.TaskSeries) this.data.get(row);
+        jfree.data.gantt.Task task = series.get(columnKey.toString());
         if (task != null) {
-            Task sub = task.getSubtask(subinterval);
+            jfree.data.gantt.Task sub = task.getSubtask(subinterval);
             if (sub != null) {
                 TimePeriod duration = sub.getDuration();
                 result = new Long(duration.getStart().getTime());
@@ -578,10 +583,10 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
                               int subinterval) {
         Number result = null;
         int row = getRowIndex(rowKey);
-        TaskSeries series = (TaskSeries) this.data.get(row);
-        Task task = series.get(columnKey.toString());
+        jfree.data.gantt.TaskSeries series = (jfree.data.gantt.TaskSeries) this.data.get(row);
+        jfree.data.gantt.Task task = series.get(columnKey.toString());
         if (task != null) {
-            Task sub = task.getSubtask(subinterval);
+            jfree.data.gantt.Task sub = task.getSubtask(subinterval);
             if (sub != null) {
                 TimePeriod duration = sub.getDuration();
                 result = new Long(duration.getEnd().getTime());
@@ -620,10 +625,10 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
                                      int subinterval) {
         Number result = null;
         int row = getRowIndex(rowKey);
-        TaskSeries series = (TaskSeries) this.data.get(row);
-        Task task = series.get(columnKey.toString());
+        jfree.data.gantt.TaskSeries series = (jfree.data.gantt.TaskSeries) this.data.get(row);
+        jfree.data.gantt.Task task = series.get(columnKey.toString());
         if (task != null) {
-            Task sub = task.getSubtask(subinterval);
+            jfree.data.gantt.Task sub = task.getSubtask(subinterval);
             if (sub != null) {
                 result = sub.getPercentComplete();
             }
@@ -649,11 +654,11 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
 
         this.keys.clear();
         for (int i = 0; i < getSeriesCount(); i++) {
-            TaskSeries series = (TaskSeries) this.data.get(i);
+            jfree.data.gantt.TaskSeries series = (TaskSeries) this.data.get(i);
             // look for any keys that we don't already know about...
             Iterator iterator = series.getTasks().iterator();
             while (iterator.hasNext()) {
-                Task task = (Task) iterator.next();
+                jfree.data.gantt.Task task = (Task) iterator.next();
                 String key = task.getDescription();
                 int index = this.keys.indexOf(key);
                 if (index < 0) {
@@ -676,10 +681,10 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof TaskSeriesCollection)) {
+        if (!(obj instanceof jfree.data.gantt.TaskSeriesCollection)) {
             return false;
         }
-        TaskSeriesCollection that = (TaskSeriesCollection) obj;
+        jfree.data.gantt.TaskSeriesCollection that = (jfree.data.gantt.TaskSeriesCollection) obj;
         if (!ObjectUtilities.equal(this.data, that.data)) {
             return false;
         }
@@ -696,7 +701,7 @@ public class TaskSeriesCollection extends AbstractSeriesDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        TaskSeriesCollection clone = (TaskSeriesCollection) super.clone();
+        jfree.data.gantt.TaskSeriesCollection clone = (jfree.data.gantt.TaskSeriesCollection) super.clone();
         clone.data = (List) ObjectUtilities.deepClone(this.data);
         clone.keys = new java.util.ArrayList(this.keys);
         return clone;

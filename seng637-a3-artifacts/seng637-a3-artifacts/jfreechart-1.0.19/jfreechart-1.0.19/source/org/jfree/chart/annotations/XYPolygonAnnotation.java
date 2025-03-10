@@ -54,13 +54,14 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.annotations.AbstractXYAnnotation;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.ObjectUtilities;
@@ -278,10 +279,10 @@ public class XYPolygonAnnotation extends AbstractXYAnnotation
         if (!super.equals(obj)) {
             return false;
         }
-        if (!(obj instanceof XYPolygonAnnotation)) {
+        if (!(obj instanceof jfree.chart.annotations.XYPolygonAnnotation)) {
             return false;
         }
-        XYPolygonAnnotation that = (XYPolygonAnnotation) obj;
+        jfree.chart.annotations.XYPolygonAnnotation that = (jfree.chart.annotations.XYPolygonAnnotation) obj;
         if (!Arrays.equals(this.polygon, that.polygon)) {
             return false;
         }

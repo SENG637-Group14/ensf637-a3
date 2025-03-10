@@ -52,20 +52,23 @@ import java.awt.Paint;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.LookupPaintScale;
-import org.jfree.chart.renderer.PaintScale;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYZDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.LookupPaintScale;
+import jfree.chart.renderer.PaintScale;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.xy.XYDataset;
+import jfree.data.xy.XYZDataset;
 import org.jfree.ui.RectangleAnchor;
 import org.jfree.util.PublicCloneable;
 
@@ -408,10 +411,10 @@ public class XYBlockRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYBlockRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYBlockRenderer)) {
             return false;
         }
-        XYBlockRenderer that = (XYBlockRenderer) obj;
+        jfree.chart.renderer.xy.XYBlockRenderer that = (jfree.chart.renderer.xy.XYBlockRenderer) obj;
         if (this.blockHeight != that.blockHeight) {
             return false;
         }
@@ -437,7 +440,7 @@ public class XYBlockRenderer extends AbstractXYItemRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        XYBlockRenderer clone = (XYBlockRenderer) super.clone();
+        jfree.chart.renderer.xy.XYBlockRenderer clone = (jfree.chart.renderer.xy.XYBlockRenderer) super.clone();
         if (this.paintScale instanceof PublicCloneable) {
             PublicCloneable pc = (PublicCloneable) this.paintScale;
             clone.paintScale = (PaintScale) pc.clone();

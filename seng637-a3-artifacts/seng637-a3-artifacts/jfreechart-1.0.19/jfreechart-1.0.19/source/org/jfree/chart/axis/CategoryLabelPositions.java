@@ -44,7 +44,10 @@
 package org.jfree.chart.axis;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.axis.CategoryLabelPosition;
+import jfree.chart.axis.CategoryLabelWidthType;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.text.TextBlockAnchor;
 import org.jfree.ui.RectangleAnchor;
@@ -61,68 +64,68 @@ public class CategoryLabelPositions implements Serializable {
     private static final long serialVersionUID = -8999557901920364580L;
 
     /** STANDARD category label positions. */
-    public static final CategoryLabelPositions
-        STANDARD = new CategoryLabelPositions(
-            new CategoryLabelPosition(
+    public static final jfree.chart.axis.CategoryLabelPositions
+        STANDARD = new jfree.chart.axis.CategoryLabelPositions(
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.BOTTOM, TextBlockAnchor.BOTTOM_CENTER), // TOP
-            new CategoryLabelPosition(
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.TOP, TextBlockAnchor.TOP_CENTER), // BOTTOM
-            new CategoryLabelPosition(
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.RIGHT, TextBlockAnchor.CENTER_RIGHT,
-                CategoryLabelWidthType.RANGE, 0.30f), // LEFT
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.30f), // LEFT
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.LEFT, TextBlockAnchor.CENTER_LEFT,
-                CategoryLabelWidthType.RANGE, 0.30f) // RIGHT
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.30f) // RIGHT
         );
 
     /** UP_90 category label positions. */
-    public static final CategoryLabelPositions
-        UP_90 = new CategoryLabelPositions(
-            new CategoryLabelPosition(
+    public static final jfree.chart.axis.CategoryLabelPositions
+        UP_90 = new jfree.chart.axis.CategoryLabelPositions(
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.BOTTOM, TextBlockAnchor.CENTER_LEFT,
                 TextAnchor.CENTER_LEFT, -Math.PI / 2.0,
-                CategoryLabelWidthType.RANGE, 0.30f), // TOP
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.30f), // TOP
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.TOP, TextBlockAnchor.CENTER_RIGHT,
                 TextAnchor.CENTER_RIGHT, -Math.PI / 2.0,
-                CategoryLabelWidthType.RANGE, 0.30f), // BOTTOM
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.30f), // BOTTOM
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.RIGHT, TextBlockAnchor.BOTTOM_CENTER,
                 TextAnchor.BOTTOM_CENTER, -Math.PI / 2.0,
-                CategoryLabelWidthType.CATEGORY, 0.9f), // LEFT
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.CATEGORY, 0.9f), // LEFT
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.LEFT, TextBlockAnchor.TOP_CENTER,
                 TextAnchor.TOP_CENTER, -Math.PI / 2.0,
-                CategoryLabelWidthType.CATEGORY, 0.90f) // RIGHT
+                jfree.chart.axis.CategoryLabelWidthType.CATEGORY, 0.90f) // RIGHT
         );
 
     /** DOWN_90 category label positions. */
-    public static final CategoryLabelPositions
-        DOWN_90 = new CategoryLabelPositions(
-            new CategoryLabelPosition(
+    public static final jfree.chart.axis.CategoryLabelPositions
+        DOWN_90 = new jfree.chart.axis.CategoryLabelPositions(
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.BOTTOM, TextBlockAnchor.CENTER_RIGHT,
                 TextAnchor.CENTER_RIGHT, Math.PI / 2.0,
-                CategoryLabelWidthType.RANGE, 0.30f), // TOP
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.30f), // TOP
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.TOP, TextBlockAnchor.CENTER_LEFT,
                 TextAnchor.CENTER_LEFT, Math.PI / 2.0,
-                CategoryLabelWidthType.RANGE, 0.30f), // BOTTOM
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.30f), // BOTTOM
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.RIGHT, TextBlockAnchor.TOP_CENTER,
                 TextAnchor.TOP_CENTER, Math.PI / 2.0,
-                CategoryLabelWidthType.CATEGORY, 0.90f), // LEFT
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.CATEGORY, 0.90f), // LEFT
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.LEFT, TextBlockAnchor.BOTTOM_CENTER,
                 TextAnchor.BOTTOM_CENTER, Math.PI / 2.0,
-                CategoryLabelWidthType.CATEGORY, 0.90f) // RIGHT
+                jfree.chart.axis.CategoryLabelWidthType.CATEGORY, 0.90f) // RIGHT
         );
 
     /** UP_45 category label positions. */
-    public static final CategoryLabelPositions UP_45
+    public static final jfree.chart.axis.CategoryLabelPositions UP_45
         = createUpRotationLabelPositions(Math.PI / 4.0);
 
     /** DOWN_45 category label positions. */
-    public static final CategoryLabelPositions DOWN_45
+    public static final jfree.chart.axis.CategoryLabelPositions DOWN_45
         = createDownRotationLabelPositions(Math.PI / 4.0);
 
     /**
@@ -133,25 +136,25 @@ public class CategoryLabelPositions implements Serializable {
      *
      * @return A category label position specification.
      */
-    public static CategoryLabelPositions createUpRotationLabelPositions(
+    public static jfree.chart.axis.CategoryLabelPositions createUpRotationLabelPositions(
             double angle) {
-        return new CategoryLabelPositions(
-            new CategoryLabelPosition(
+        return new jfree.chart.axis.CategoryLabelPositions(
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.BOTTOM, TextBlockAnchor.BOTTOM_LEFT,
                 TextAnchor.BOTTOM_LEFT, -angle,
-                CategoryLabelWidthType.RANGE, 0.50f), // TOP
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.50f), // TOP
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.TOP, TextBlockAnchor.TOP_RIGHT,
                 TextAnchor.TOP_RIGHT, -angle,
-                CategoryLabelWidthType.RANGE, 0.50f), // BOTTOM
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.50f), // BOTTOM
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.RIGHT, TextBlockAnchor.BOTTOM_RIGHT,
                 TextAnchor.BOTTOM_RIGHT, -angle,
-                CategoryLabelWidthType.RANGE, 0.50f), // LEFT
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.50f), // LEFT
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.LEFT, TextBlockAnchor.TOP_LEFT,
                 TextAnchor.TOP_LEFT, -angle,
-                CategoryLabelWidthType.RANGE, 0.50f) // RIGHT
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.50f) // RIGHT
         );
     }
 
@@ -163,22 +166,22 @@ public class CategoryLabelPositions implements Serializable {
      *
      * @return A category label position specification.
      */
-    public static CategoryLabelPositions createDownRotationLabelPositions(
+    public static jfree.chart.axis.CategoryLabelPositions createDownRotationLabelPositions(
             double angle) {
-        return new CategoryLabelPositions(
-            new CategoryLabelPosition(
+        return new jfree.chart.axis.CategoryLabelPositions(
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.BOTTOM, TextBlockAnchor.BOTTOM_RIGHT,
                 TextAnchor.BOTTOM_RIGHT, angle,
-                CategoryLabelWidthType.RANGE, 0.50f), // TOP
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.50f), // TOP
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.TOP, TextBlockAnchor.TOP_LEFT,
                 TextAnchor.TOP_LEFT, angle,
-                CategoryLabelWidthType.RANGE, 0.50f), // BOTTOM
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.50f), // BOTTOM
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.RIGHT, TextBlockAnchor.TOP_RIGHT,
                 TextAnchor.TOP_RIGHT, angle,
-                CategoryLabelWidthType.RANGE, 0.50f), // LEFT
-            new CategoryLabelPosition(
+                jfree.chart.axis.CategoryLabelWidthType.RANGE, 0.50f), // LEFT
+            new jfree.chart.axis.CategoryLabelPosition(
                 RectangleAnchor.LEFT, TextBlockAnchor.BOTTOM_LEFT,
                 TextAnchor.BOTTOM_LEFT, angle,
                 CategoryLabelWidthType.RANGE, 0.50f) // RIGHT
@@ -189,34 +192,34 @@ public class CategoryLabelPositions implements Serializable {
      * The label positioning details used when an axis is at the top of a
      * chart.
      */
-    private CategoryLabelPosition positionForAxisAtTop;
+    private jfree.chart.axis.CategoryLabelPosition positionForAxisAtTop;
 
     /**
      * The label positioning details used when an axis is at the bottom of a
      * chart.
      */
-    private CategoryLabelPosition positionForAxisAtBottom;
+    private jfree.chart.axis.CategoryLabelPosition positionForAxisAtBottom;
 
     /**
      * The label positioning details used when an axis is at the left of a
      * chart.
      */
-    private CategoryLabelPosition positionForAxisAtLeft;
+    private jfree.chart.axis.CategoryLabelPosition positionForAxisAtLeft;
 
     /**
      * The label positioning details used when an axis is at the right of a
      * chart.
      */
-    private CategoryLabelPosition positionForAxisAtRight;
+    private jfree.chart.axis.CategoryLabelPosition positionForAxisAtRight;
 
     /**
      * Default constructor.
      */
     public CategoryLabelPositions() {
-        this.positionForAxisAtTop = new CategoryLabelPosition();
-        this.positionForAxisAtBottom = new CategoryLabelPosition();
-        this.positionForAxisAtLeft = new CategoryLabelPosition();
-        this.positionForAxisAtRight = new CategoryLabelPosition();
+        this.positionForAxisAtTop = new jfree.chart.axis.CategoryLabelPosition();
+        this.positionForAxisAtBottom = new jfree.chart.axis.CategoryLabelPosition();
+        this.positionForAxisAtLeft = new jfree.chart.axis.CategoryLabelPosition();
+        this.positionForAxisAtRight = new jfree.chart.axis.CategoryLabelPosition();
     }
 
     /**
@@ -231,9 +234,9 @@ public class CategoryLabelPositions implements Serializable {
      * @param right  the label position info used when an axis is at the right
      *               (<code>null</code> not permitted).
      */
-    public CategoryLabelPositions(CategoryLabelPosition top,
-            CategoryLabelPosition bottom, CategoryLabelPosition left,
-            CategoryLabelPosition right) {
+    public CategoryLabelPositions(jfree.chart.axis.CategoryLabelPosition top,
+                                  jfree.chart.axis.CategoryLabelPosition bottom, jfree.chart.axis.CategoryLabelPosition left,
+                                  jfree.chart.axis.CategoryLabelPosition right) {
 
         ParamChecks.nullNotPermitted(top, "top");
         ParamChecks.nullNotPermitted(bottom, "bottom");
@@ -254,8 +257,8 @@ public class CategoryLabelPositions implements Serializable {
      *
      * @return The category label position specification.
      */
-    public CategoryLabelPosition getLabelPosition(RectangleEdge edge) {
-        CategoryLabelPosition result = null;
+    public jfree.chart.axis.CategoryLabelPosition getLabelPosition(RectangleEdge edge) {
+        jfree.chart.axis.CategoryLabelPosition result = null;
         if (edge == RectangleEdge.TOP) {
             result = this.positionForAxisAtTop;
         }
@@ -280,13 +283,13 @@ public class CategoryLabelPositions implements Serializable {
      *
      * @return A new instance (never <code>null</code>).
      */
-    public static CategoryLabelPositions replaceTopPosition(
-            CategoryLabelPositions base, CategoryLabelPosition top) {
+    public static jfree.chart.axis.CategoryLabelPositions replaceTopPosition(
+            jfree.chart.axis.CategoryLabelPositions base, jfree.chart.axis.CategoryLabelPosition top) {
 
         ParamChecks.nullNotPermitted(base, "base");
         ParamChecks.nullNotPermitted(top, "top");
 
-        return new CategoryLabelPositions(top,
+        return new jfree.chart.axis.CategoryLabelPositions(top,
             base.getLabelPosition(RectangleEdge.BOTTOM),
             base.getLabelPosition(RectangleEdge.LEFT),
             base.getLabelPosition(RectangleEdge.RIGHT));
@@ -301,13 +304,13 @@ public class CategoryLabelPositions implements Serializable {
      *
      * @return A new instance (never <code>null</code>).
      */
-    public static CategoryLabelPositions replaceBottomPosition(
-            CategoryLabelPositions base, CategoryLabelPosition bottom) {
+    public static jfree.chart.axis.CategoryLabelPositions replaceBottomPosition(
+            jfree.chart.axis.CategoryLabelPositions base, jfree.chart.axis.CategoryLabelPosition bottom) {
 
         ParamChecks.nullNotPermitted(base, "base");
         ParamChecks.nullNotPermitted(bottom, "bottom");
 
-        return new CategoryLabelPositions(
+        return new jfree.chart.axis.CategoryLabelPositions(
             base.getLabelPosition(RectangleEdge.TOP),
             bottom,
             base.getLabelPosition(RectangleEdge.LEFT),
@@ -323,13 +326,13 @@ public class CategoryLabelPositions implements Serializable {
      *
      * @return A new instance (never <code>null</code>).
      */
-    public static CategoryLabelPositions replaceLeftPosition(
-            CategoryLabelPositions base, CategoryLabelPosition left) {
+    public static jfree.chart.axis.CategoryLabelPositions replaceLeftPosition(
+            jfree.chart.axis.CategoryLabelPositions base, jfree.chart.axis.CategoryLabelPosition left) {
 
         ParamChecks.nullNotPermitted(base, "base");
         ParamChecks.nullNotPermitted(left, "left");
 
-        return new CategoryLabelPositions(
+        return new jfree.chart.axis.CategoryLabelPositions(
             base.getLabelPosition(RectangleEdge.TOP),
             base.getLabelPosition(RectangleEdge.BOTTOM),
             left,
@@ -345,12 +348,12 @@ public class CategoryLabelPositions implements Serializable {
      *
      * @return A new instance (never <code>null</code>).
      */
-    public static CategoryLabelPositions replaceRightPosition(
-            CategoryLabelPositions base, CategoryLabelPosition right) {
+    public static jfree.chart.axis.CategoryLabelPositions replaceRightPosition(
+            jfree.chart.axis.CategoryLabelPositions base, CategoryLabelPosition right) {
 
         ParamChecks.nullNotPermitted(base, "base");
         ParamChecks.nullNotPermitted(right, "right");
-        return new CategoryLabelPositions(
+        return new jfree.chart.axis.CategoryLabelPositions(
             base.getLabelPosition(RectangleEdge.TOP),
             base.getLabelPosition(RectangleEdge.BOTTOM),
             base.getLabelPosition(RectangleEdge.LEFT),
@@ -370,11 +373,11 @@ public class CategoryLabelPositions implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof CategoryLabelPositions)) {
+        if (!(obj instanceof jfree.chart.axis.CategoryLabelPositions)) {
             return false;
         }
 
-        CategoryLabelPositions that = (CategoryLabelPositions) obj;
+        jfree.chart.axis.CategoryLabelPositions that = (jfree.chart.axis.CategoryLabelPositions) obj;
         if (!this.positionForAxisAtTop.equals(that.positionForAxisAtTop)) {
             return false;
         }

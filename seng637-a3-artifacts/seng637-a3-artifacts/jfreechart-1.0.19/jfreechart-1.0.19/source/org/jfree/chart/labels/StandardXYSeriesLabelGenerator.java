@@ -47,14 +47,15 @@ package org.jfree.chart.labels;
 import java.io.Serializable;
 import java.text.MessageFormat;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.labels.XYSeriesLabelGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A standard series label generator for plots that use data from
- * an {@link org.jfree.data.xy.XYDataset}.
+ * an {@link XYDataset}.
  * <br><br>
  * This class implements <code>PublicCloneable</code> by mistake but we retain
  * this for the sake of backward compatibility.
@@ -148,11 +149,11 @@ public class StandardXYSeriesLabelGenerator implements XYSeriesLabelGenerator,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardXYSeriesLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.StandardXYSeriesLabelGenerator)) {
             return false;
         }
-        StandardXYSeriesLabelGenerator that
-                = (StandardXYSeriesLabelGenerator) obj;
+        jfree.chart.labels.StandardXYSeriesLabelGenerator that
+                = (jfree.chart.labels.StandardXYSeriesLabelGenerator) obj;
         if (!this.formatPattern.equals(that.formatPattern)) {
             return false;
         }

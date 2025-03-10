@@ -59,6 +59,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import jfree.data.time.Day;
+import jfree.data.time.Hour;
+import jfree.data.time.Millisecond;
+import jfree.data.time.Minute;
+import jfree.data.time.Month;
+import jfree.data.time.Quarter;
+import jfree.data.time.Second;
+import jfree.data.time.TimePeriod;
+import jfree.data.time.TimePeriodAnchor;
+import jfree.data.time.Year;
 import org.jfree.date.MonthConstants;
 
 /**
@@ -82,13 +92,13 @@ public abstract class RegularTimePeriod implements TimePeriod, Comparable,
      *
      * @return The time period.
      */
-    public static RegularTimePeriod createInstance(Class c, Date millisecond,
-            TimeZone zone) {
-        RegularTimePeriod result = null;
+    public static jfree.data.time.RegularTimePeriod createInstance(Class c, Date millisecond,
+                                                                        TimeZone zone) {
+        jfree.data.time.RegularTimePeriod result = null;
         try {
             Constructor constructor = c.getDeclaredConstructor(
                     new Class[] {Date.class, TimeZone.class});
-            result = (RegularTimePeriod) constructor.newInstance(
+            result = (jfree.data.time.RegularTimePeriod) constructor.newInstance(
                     new Object[] {millisecond, zone});
         }
         catch (Exception e) {
@@ -98,34 +108,34 @@ public abstract class RegularTimePeriod implements TimePeriod, Comparable,
     }
 
     /**
-     * Returns a subclass of {@link RegularTimePeriod} that is smaller than
+     * Returns a subclass of {@link jfree.data.time.RegularTimePeriod} that is smaller than
      * the specified class.
      *
-     * @param c  a subclass of {@link RegularTimePeriod}.
+     * @param c  a subclass of {@link jfree.data.time.RegularTimePeriod}.
      *
      * @return A class.
      */
     public static Class downsize(Class c) {
         if (c.equals(Year.class)) {
-            return Quarter.class;
+            return jfree.data.time.Quarter.class;
         }
         else if (c.equals(Quarter.class)) {
-            return Month.class;
+            return jfree.data.time.Month.class;
         }
         else if (c.equals(Month.class)) {
-            return Day.class;
+            return jfree.data.time.Day.class;
         }
         else if (c.equals(Day.class)) {
-            return Hour.class;
+            return jfree.data.time.Hour.class;
         }
         else if (c.equals(Hour.class)) {
-            return Minute.class;
+            return jfree.data.time.Minute.class;
         }
         else if (c.equals(Minute.class)) {
-            return Second.class;
+            return jfree.data.time.Second.class;
         }
         else if (c.equals(Second.class)) {
-            return Millisecond.class;
+            return jfree.data.time.Millisecond.class;
         }
         else {
             return Millisecond.class;
@@ -138,7 +148,7 @@ public abstract class RegularTimePeriod implements TimePeriod, Comparable,
      *
      * @return The previous time period (possibly <code>null</code>).
      */
-    public abstract RegularTimePeriod previous();
+    public abstract jfree.data.time.RegularTimePeriod previous();
 
     /**
      * Returns the time period following this one, or <code>null</code> if some
@@ -146,7 +156,7 @@ public abstract class RegularTimePeriod implements TimePeriod, Comparable,
      *
      * @return The next time period (possibly <code>null</code>).
      */
-    public abstract RegularTimePeriod next();
+    public abstract jfree.data.time.RegularTimePeriod next();
 
     /**
      * Returns a serial index number for the time unit.
@@ -353,10 +363,10 @@ public abstract class RegularTimePeriod implements TimePeriod, Comparable,
      * 
      * @since 1.0.18
      */
-    public long getMillisecond(TimePeriodAnchor anchor, Calendar calendar) {
-        if (anchor.equals(TimePeriodAnchor.START)) {
+    public long getMillisecond(jfree.data.time.TimePeriodAnchor anchor, Calendar calendar) {
+        if (anchor.equals(jfree.data.time.TimePeriodAnchor.START)) {
             return getFirstMillisecond(calendar);
-        } else if (anchor.equals(TimePeriodAnchor.MIDDLE)) {
+        } else if (anchor.equals(jfree.data.time.TimePeriodAnchor.MIDDLE)) {
             return getMiddleMillisecond(calendar);
         } else if (anchor.equals(TimePeriodAnchor.END)) {
             return getLastMillisecond(calendar);

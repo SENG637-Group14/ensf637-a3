@@ -40,8 +40,10 @@
 
 package org.jfree.data.xy;
 
+import jfree.data.xy.XYZDataset;
+
 /**
- * An extension of the {@link XYZDataset} interface that allows a range of data
+ * An extension of the {@link jfree.data.xy.XYZDataset} interface that allows a range of data
  * to be defined for any of the X values, the Y values, and the Z values.
  */
 public interface IntervalXYZDataset extends XYZDataset {

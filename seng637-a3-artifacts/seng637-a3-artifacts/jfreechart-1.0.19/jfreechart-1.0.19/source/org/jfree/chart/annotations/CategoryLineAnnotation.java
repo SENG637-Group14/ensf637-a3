@@ -56,16 +56,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.axis.CategoryAnchor;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.annotations.AbstractAnnotation;
+import jfree.chart.annotations.CategoryAnnotation;
+import jfree.chart.axis.CategoryAnchor;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.util.ParamChecks;
+import jfree.data.category.CategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.ObjectUtilities;
@@ -75,7 +77,7 @@ import org.jfree.util.PublicCloneable;
 /**
  * A line annotation that can be placed on a {@link CategoryPlot}.
  */
-public class CategoryLineAnnotation extends AbstractAnnotation 
+public class CategoryLineAnnotation extends AbstractAnnotation
         implements CategoryAnnotation, Cloneable, PublicCloneable,
         Serializable {
 
@@ -340,10 +342,10 @@ public class CategoryLineAnnotation extends AbstractAnnotation
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CategoryLineAnnotation)) {
+        if (!(obj instanceof jfree.chart.annotations.CategoryLineAnnotation)) {
             return false;
         }
-        CategoryLineAnnotation that = (CategoryLineAnnotation) obj;
+        jfree.chart.annotations.CategoryLineAnnotation that = (jfree.chart.annotations.CategoryLineAnnotation) obj;
         if (!this.category1.equals(that.getCategory1())) {
             return false;
         }

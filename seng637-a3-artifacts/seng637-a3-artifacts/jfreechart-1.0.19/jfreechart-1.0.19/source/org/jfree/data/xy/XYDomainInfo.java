@@ -41,7 +41,7 @@
 package org.jfree.data.xy;
 
 import java.util.List;
-import org.jfree.data.Range;
+import jfree.data.Range;
 
 /**
  * An interface that can (optionally) be implemented by a dataset to assist in

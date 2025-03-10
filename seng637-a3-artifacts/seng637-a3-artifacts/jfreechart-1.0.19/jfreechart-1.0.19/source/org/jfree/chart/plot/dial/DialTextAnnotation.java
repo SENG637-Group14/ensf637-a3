@@ -56,8 +56,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.plot.dial.AbstractDialLayer;
+import jfree.chart.plot.dial.DialLayer;
+import jfree.chart.plot.dial.DialLayerChangeEvent;
+import jfree.chart.plot.dial.DialPlot;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.TextAnchor;
@@ -65,7 +69,7 @@ import org.jfree.util.PaintUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A text annotation for a {@link DialPlot}.
+ * A text annotation for a {@link jfree.chart.plot.dial.DialPlot}.
  *
  * @since 1.0.7
  */
@@ -123,7 +127,7 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
     }
 
     /**
-     * Sets the label and sends a {@link DialLayerChangeEvent} to all
+     * Sets the label and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all
      * registered listeners.
      *
      * @param label  the label (<code>null</code> not permitted).
@@ -133,7 +137,7 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
     public void setLabel(String label) {
         ParamChecks.nullNotPermitted(label, "label");
         this.label = label;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -149,7 +153,7 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
 
     /**
      * Sets the font used to display the label and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param font  the font (<code>null</code> not permitted).
      *
@@ -158,7 +162,7 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
     public void setFont(Font font) {
         ParamChecks.nullNotPermitted(font, "font");
         this.font = font;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -174,7 +178,7 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
 
     /**
      * Sets the paint used to display the label and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
      *
@@ -183,7 +187,7 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
     public void setPaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.paint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -200,7 +204,7 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
 
     /**
      * Sets the angle used to calculate the anchor point and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param angle  the angle (in degrees).
      *
@@ -209,7 +213,7 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
      */
     public void setAngle(double angle) {
         this.angle = angle;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -227,7 +231,7 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
 
     /**
      * Sets the radius used to calculate the anchor point and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param radius  the radius (as a percentage of the dial's framing
      *                rectangle).
@@ -241,7 +245,7 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
                     "The 'radius' cannot be negative.");
         }
         this.radius = radius;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -257,7 +261,7 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
     }
 
     /**
-     * Sets the text anchor point and sends a {@link DialLayerChangeEvent} to
+     * Sets the text anchor point and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param anchor  the anchor point (<code>null</code> not permitted).
@@ -292,8 +296,8 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
      * @param view  the view rectangle (<code>null</code> not permitted).
      */
     @Override
-    public void draw(Graphics2D g2, DialPlot plot, Rectangle2D frame,
-            Rectangle2D view) {
+    public void draw(Graphics2D g2, jfree.chart.plot.dial.DialPlot plot, Rectangle2D frame,
+                     Rectangle2D view) {
 
         // work out the anchor point
         Rectangle2D f = DialPlot.rectangleByRadius(frame, this.radius,
@@ -319,10 +323,10 @@ public class DialTextAnnotation extends AbstractDialLayer implements DialLayer,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DialTextAnnotation)) {
+        if (!(obj instanceof jfree.chart.plot.dial.DialTextAnnotation)) {
             return false;
         }
-        DialTextAnnotation that = (DialTextAnnotation) obj;
+        jfree.chart.plot.dial.DialTextAnnotation that = (jfree.chart.plot.dial.DialTextAnnotation) obj;
         if (!this.label.equals(that.label)) {
             return false;
         }

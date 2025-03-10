@@ -43,12 +43,15 @@ package org.jfree.chart.plot;
 
 import java.io.Serializable;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.plot.PieLabelRecord;
+import jfree.chart.plot.PiePlot;
+import jfree.chart.util.ParamChecks;
 
 /**
  * A base class for handling the distribution of pie section labels.  Create
  * your own subclass and set it using the
- * {@link PiePlot#setLabelDistributor(AbstractPieLabelDistributor)} method
+ * {@link jfree.chart.plot.PiePlot#setLabelDistributor(jfree.chart.plot.AbstractPieLabelDistributor)} method
  * if you want to customise the label distribution.
  */
 public abstract class AbstractPieLabelDistributor implements Serializable {
@@ -70,8 +73,8 @@ public abstract class AbstractPieLabelDistributor implements Serializable {
      *
      * @return The label record.
      */
-    public PieLabelRecord getPieLabelRecord(int index) {
-        return (PieLabelRecord) this.labels.get(index);
+    public jfree.chart.plot.PieLabelRecord getPieLabelRecord(int index) {
+        return (jfree.chart.plot.PieLabelRecord) this.labels.get(index);
     }
 
     /**

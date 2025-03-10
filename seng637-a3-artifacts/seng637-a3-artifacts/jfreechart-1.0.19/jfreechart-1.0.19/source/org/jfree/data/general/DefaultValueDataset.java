@@ -46,16 +46,19 @@ package org.jfree.data.general;
 
 import java.io.Serializable;
 
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.ValueDataset;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A dataset that stores a single value (that is possibly <code>null</code>).
- * This class provides a default implementation of the {@link ValueDataset}
+ * This class provides a default implementation of the {@link jfree.data.general.ValueDataset}
  * interface.
  */
 public class DefaultValueDataset extends AbstractDataset
-        implements ValueDataset, Cloneable, PublicCloneable, Serializable {
+        implements jfree.data.general.ValueDataset, Cloneable, PublicCloneable, Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = 8137521217249294891L;
@@ -100,7 +103,7 @@ public class DefaultValueDataset extends AbstractDataset
     }
 
     /**
-     * Sets the value and sends a {@link DatasetChangeEvent} to all registered
+     * Sets the value and sends a {@link jfree.data.general.DatasetChangeEvent} to all registered
      * listeners.
      *
      * @param value  the new value (<code>null</code> permitted).
@@ -122,8 +125,8 @@ public class DefaultValueDataset extends AbstractDataset
         if (obj == this) {
             return true;
         }
-        if (obj instanceof ValueDataset) {
-            ValueDataset vd = (ValueDataset) obj;
+        if (obj instanceof jfree.data.general.ValueDataset) {
+            jfree.data.general.ValueDataset vd = (ValueDataset) obj;
             return ObjectUtilities.equal(this.value, vd.getValue());
         }
         return false;

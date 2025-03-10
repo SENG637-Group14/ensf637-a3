@@ -41,9 +41,12 @@
 
 package org.jfree.data.xy;
 
+import jfree.data.xy.AbstractXYDataset;
+import jfree.data.xy.XYZDataset;
+
 /**
  * An base class that you can use to create new implementations of the
- * {@link XYZDataset} interface.
+ * {@link jfree.data.xy.XYZDataset} interface.
  */
 public abstract class AbstractXYZDataset extends AbstractXYDataset
         implements XYZDataset {

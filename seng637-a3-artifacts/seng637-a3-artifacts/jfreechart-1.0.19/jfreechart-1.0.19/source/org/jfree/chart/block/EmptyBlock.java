@@ -49,6 +49,9 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
+import jfree.chart.block.AbstractBlock;
+import jfree.chart.block.Block;
+import jfree.chart.block.RectangleConstraint;
 import org.jfree.ui.Size2D;
 import org.jfree.util.PublicCloneable;
 

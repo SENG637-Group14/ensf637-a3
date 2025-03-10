@@ -58,16 +58,19 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.renderer.category.AbstractCategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.data.category.CategoryDataset;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PublicCloneable;
 
@@ -177,11 +180,11 @@ public class LevelRenderer extends AbstractCategoryItemRenderer
      * @return The renderer state.
      */
     @Override
-    public CategoryItemRendererState initialise(Graphics2D g2,
-            Rectangle2D dataArea, CategoryPlot plot, int rendererIndex,
-            PlotRenderingInfo info) {
+    public jfree.chart.renderer.category.CategoryItemRendererState initialise(Graphics2D g2,
+                                                                                   Rectangle2D dataArea, CategoryPlot plot, int rendererIndex,
+                                                                                   PlotRenderingInfo info) {
 
-        CategoryItemRendererState state = super.initialise(g2, dataArea, plot,
+        jfree.chart.renderer.category.CategoryItemRendererState state = super.initialise(g2, dataArea, plot,
                 rendererIndex, info);
         calculateItemWidth(plot, dataArea, rendererIndex, state);
         return state;
@@ -198,7 +201,7 @@ public class LevelRenderer extends AbstractCategoryItemRenderer
      */
     protected void calculateItemWidth(CategoryPlot plot,
             Rectangle2D dataArea, int rendererIndex,
-            CategoryItemRendererState state) {
+            jfree.chart.renderer.category.CategoryItemRendererState state) {
 
         CategoryAxis domainAxis = getDomainAxis(plot, rendererIndex);
         CategoryDataset dataset = plot.getDataset(rendererIndex);
@@ -250,10 +253,10 @@ public class LevelRenderer extends AbstractCategoryItemRenderer
      *
      * @return The coordinate.
      */
-    protected double calculateBarW0(CategoryPlot plot, 
-            PlotOrientation orientation, Rectangle2D dataArea,
-            CategoryAxis domainAxis, CategoryItemRendererState state, int row,
-            int column) {
+    protected double calculateBarW0(CategoryPlot plot,
+                                    PlotOrientation orientation, Rectangle2D dataArea,
+                                    CategoryAxis domainAxis, jfree.chart.renderer.category.CategoryItemRendererState state, int row,
+                                    int column) {
         // calculate bar width...
         double space;
         if (orientation == PlotOrientation.HORIZONTAL) {
@@ -422,10 +425,10 @@ public class LevelRenderer extends AbstractCategoryItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LevelRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.LevelRenderer)) {
             return false;
         }
-        LevelRenderer that = (LevelRenderer) obj;
+        jfree.chart.renderer.category.LevelRenderer that = (jfree.chart.renderer.category.LevelRenderer) obj;
         if (this.itemMargin != that.itemMargin) {
             return false;
         }

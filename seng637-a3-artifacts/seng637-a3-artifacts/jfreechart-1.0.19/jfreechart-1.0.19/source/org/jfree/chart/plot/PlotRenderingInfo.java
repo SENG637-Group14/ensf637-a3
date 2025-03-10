@@ -54,8 +54,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.List;
 
-import org.jfree.chart.ChartRenderingInfo;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.ChartPanel;
+import jfree.chart.ChartRenderingInfo;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.ObjectUtilities;
 
@@ -163,7 +164,7 @@ public class PlotRenderingInfo implements Cloneable, Serializable {
      *
      * @see #getSubplotInfo(int)
      */
-    public void addSubplotInfo(PlotRenderingInfo info) {
+    public void addSubplotInfo(jfree.chart.plot.PlotRenderingInfo info) {
         this.subplotInfo.add(info);
     }
 
@@ -174,16 +175,16 @@ public class PlotRenderingInfo implements Cloneable, Serializable {
      *
      * @return The info.
      *
-     * @see #addSubplotInfo(PlotRenderingInfo)
+     * @see #addSubplotInfo(jfree.chart.plot.PlotRenderingInfo)
      */
-    public PlotRenderingInfo getSubplotInfo(int index) {
-        return (PlotRenderingInfo) this.subplotInfo.get(index);
+    public jfree.chart.plot.PlotRenderingInfo getSubplotInfo(int index) {
+        return (jfree.chart.plot.PlotRenderingInfo) this.subplotInfo.get(index);
     }
 
     /**
      * Returns the index of the subplot that contains the specified
      * (x, y) point (the "source" point).  The source point will usually
-     * come from a mouse click on a {@link org.jfree.chart.ChartPanel},
+     * come from a mouse click on a {@link ChartPanel},
      * and this method is then used to determine the subplot that
      * contains the source point.
      *
@@ -197,7 +198,7 @@ public class PlotRenderingInfo implements Cloneable, Serializable {
         ParamChecks.nullNotPermitted(source, "source");
         int subplotCount = getSubplotCount();
         for (int i = 0; i < subplotCount; i++) {
-            PlotRenderingInfo info = getSubplotInfo(i);
+            jfree.chart.plot.PlotRenderingInfo info = getSubplotInfo(i);
             Rectangle2D area = info.getDataArea();
             if (area.contains(source)) {
                 return i;
@@ -218,10 +219,10 @@ public class PlotRenderingInfo implements Cloneable, Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof PlotRenderingInfo)) {
+        if (!(obj instanceof jfree.chart.plot.PlotRenderingInfo)) {
             return false;
         }
-        PlotRenderingInfo that = (PlotRenderingInfo) obj;
+        jfree.chart.plot.PlotRenderingInfo that = (jfree.chart.plot.PlotRenderingInfo) obj;
         if (!ObjectUtilities.equal(this.dataArea, that.dataArea)) {
             return false;
         }
@@ -243,7 +244,7 @@ public class PlotRenderingInfo implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        PlotRenderingInfo clone = (PlotRenderingInfo) super.clone();
+        jfree.chart.plot.PlotRenderingInfo clone = (jfree.chart.plot.PlotRenderingInfo) super.clone();
         if (this.plotArea != null) {
             clone.plotArea = (Rectangle2D) this.plotArea.clone();
         }
@@ -252,8 +253,8 @@ public class PlotRenderingInfo implements Cloneable, Serializable {
         }
         clone.subplotInfo = new java.util.ArrayList(this.subplotInfo.size());
         for (int i = 0; i < this.subplotInfo.size(); i++) {
-            PlotRenderingInfo info
-                    = (PlotRenderingInfo) this.subplotInfo.get(i);
+            jfree.chart.plot.PlotRenderingInfo info
+                    = (jfree.chart.plot.PlotRenderingInfo) this.subplotInfo.get(i);
             clone.subplotInfo.add(info.clone());
         }
         return clone;

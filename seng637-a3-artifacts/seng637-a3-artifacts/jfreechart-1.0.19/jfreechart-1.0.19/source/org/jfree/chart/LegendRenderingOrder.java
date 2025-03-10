@@ -52,12 +52,12 @@ public final class LegendRenderingOrder implements Serializable {
     private static final long serialVersionUID = -3832486612685808616L;
 
     /** In order. */
-    public static final LegendRenderingOrder STANDARD
-            = new LegendRenderingOrder("LegendRenderingOrder.STANDARD");
+    public static final jfree.chart.LegendRenderingOrder STANDARD
+            = new jfree.chart.LegendRenderingOrder("LegendRenderingOrder.STANDARD");
 
     /** In reverse order. */
-    public static final LegendRenderingOrder REVERSE
-            = new LegendRenderingOrder("LegendRenderingOrder.REVERSE");
+    public static final jfree.chart.LegendRenderingOrder REVERSE
+            = new jfree.chart.LegendRenderingOrder("LegendRenderingOrder.REVERSE");
 
     /** The name. */
     private String name;
@@ -94,10 +94,10 @@ public final class LegendRenderingOrder implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof LegendRenderingOrder)) {
+        if (!(obj instanceof jfree.chart.LegendRenderingOrder)) {
             return false;
         }
-        LegendRenderingOrder order = (LegendRenderingOrder) obj;
+        jfree.chart.LegendRenderingOrder order = (jfree.chart.LegendRenderingOrder) obj;
         if (!this.name.equals(order.toString())) {
             return false;
         }
@@ -112,11 +112,11 @@ public final class LegendRenderingOrder implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(LegendRenderingOrder.STANDARD)) {
-            return LegendRenderingOrder.STANDARD;
+        if (this.equals(jfree.chart.LegendRenderingOrder.STANDARD)) {
+            return jfree.chart.LegendRenderingOrder.STANDARD;
         }
-        else if (this.equals(LegendRenderingOrder.REVERSE)) {
-            return LegendRenderingOrder.REVERSE;
+        else if (this.equals(jfree.chart.LegendRenderingOrder.REVERSE)) {
+            return jfree.chart.LegendRenderingOrder.REVERSE;
         }
         return null;
     }

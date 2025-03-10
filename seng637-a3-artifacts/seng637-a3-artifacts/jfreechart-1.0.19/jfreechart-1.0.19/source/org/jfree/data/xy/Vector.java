@@ -117,10 +117,10 @@ public class Vector implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Vector)) {
+        if (!(obj instanceof jfree.data.xy.Vector)) {
             return false;
         }
-        Vector that = (Vector) obj;
+        jfree.data.xy.Vector that = (jfree.data.xy.Vector) obj;
         if (this.x != that.x) {
             return false;
         }

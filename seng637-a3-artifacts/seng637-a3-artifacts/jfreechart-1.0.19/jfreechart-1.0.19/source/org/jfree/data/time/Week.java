@@ -79,7 +79,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.TimePeriodFormatException;
+import jfree.data.time.Year;
 
 /**
  * A calendar week.  All years are considered to have 53 weeks, numbered from 1
@@ -89,9 +92,9 @@ import org.jfree.chart.util.ParamChecks;
  * <code>GregorianCalendar</code> class).
  * <P>
  * This class is immutable, which is a requirement for all
- * {@link RegularTimePeriod} subclasses.
+ * {@link jfree.data.time.RegularTimePeriod} subclasses.
  */
-public class Week extends RegularTimePeriod implements Serializable {
+public class Week extends jfree.data.time.RegularTimePeriod implements Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = 1856387786939865061L;
@@ -144,7 +147,7 @@ public class Week extends RegularTimePeriod implements Serializable {
      * @param week  the week (1 to 53).
      * @param year  the year (1900 to 9999).
      */
-    public Week(int week, Year year) {
+    public Week(int week, jfree.data.time.Year year) {
         if ((week < FIRST_WEEK_IN_YEAR) && (week > LAST_WEEK_IN_YEAR)) {
             throw new IllegalArgumentException(
                     "The 'week' argument must be in the range 1 - 53.");
@@ -228,8 +231,8 @@ public class Week extends RegularTimePeriod implements Serializable {
      *
      * @return The year (never <code>null</code>).
      */
-    public Year getYear() {
-        return new Year(this.year);
+    public jfree.data.time.Year getYear() {
+        return new jfree.data.time.Year(this.year);
     }
 
     /**
@@ -303,11 +306,11 @@ public class Week extends RegularTimePeriod implements Serializable {
      * @return The preceding week (possibly <code>null</code>).
      */
     @Override
-    public RegularTimePeriod previous() {
+    public jfree.data.time.RegularTimePeriod previous() {
 
-        Week result;
+        jfree.data.time.Week result;
         if (this.week != FIRST_WEEK_IN_YEAR) {
-            result = new Week(this.week - 1, this.year);
+            result = new jfree.data.time.Week(this.week - 1, this.year);
         }
         else {
             // we need to work out if the previous year has 52 or 53 weeks...
@@ -315,7 +318,7 @@ public class Week extends RegularTimePeriod implements Serializable {
                 int yy = this.year - 1;
                 Calendar prevYearCalendar = Calendar.getInstance();
                 prevYearCalendar.set(yy, Calendar.DECEMBER, 31);
-                result = new Week(prevYearCalendar.getActualMaximum(
+                result = new jfree.data.time.Week(prevYearCalendar.getActualMaximum(
                         Calendar.WEEK_OF_YEAR), yy);
             }
             else {
@@ -336,11 +339,11 @@ public class Week extends RegularTimePeriod implements Serializable {
      * @return The following week (possibly <code>null</code>).
      */
     @Override
-    public RegularTimePeriod next() {
+    public jfree.data.time.RegularTimePeriod next() {
 
-        Week result;
+        jfree.data.time.Week result;
         if (this.week < 52) {
-            result = new Week(this.week + 1, this.year);
+            result = new jfree.data.time.Week(this.week + 1, this.year);
         }
         else {
             Calendar calendar = Calendar.getInstance();
@@ -348,11 +351,11 @@ public class Week extends RegularTimePeriod implements Serializable {
             int actualMaxWeek
                 = calendar.getActualMaximum(Calendar.WEEK_OF_YEAR);
             if (this.week < actualMaxWeek) {
-                result = new Week(this.week + 1, this.year);
+                result = new jfree.data.time.Week(this.week + 1, this.year);
             }
             else {
                 if (this.year < 9999) {
-                    result = new Week(FIRST_WEEK_IN_YEAR, this.year + 1);
+                    result = new jfree.data.time.Week(FIRST_WEEK_IN_YEAR, this.year + 1);
                 }
                 else {
                     result = null;
@@ -451,10 +454,10 @@ public class Week extends RegularTimePeriod implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Week)) {
+        if (!(obj instanceof jfree.data.time.Week)) {
             return false;
         }
-        Week that = (Week) obj;
+        jfree.data.time.Week that = (jfree.data.time.Week) obj;
         if (this.week != that.week) {
             return false;
         }
@@ -499,8 +502,8 @@ public class Week extends RegularTimePeriod implements Serializable {
 
         // CASE 1 : Comparing to another Week object
         // --------------------------------------------
-        if (o1 instanceof Week) {
-            Week w = (Week) o1;
+        if (o1 instanceof jfree.data.time.Week) {
+            jfree.data.time.Week w = (jfree.data.time.Week) o1;
             result = this.year - w.getYear().getYear();
             if (result == 0) {
                 result = this.week - w.getWeek();
@@ -536,48 +539,48 @@ public class Week extends RegularTimePeriod implements Serializable {
      * @return <code>null</code> if the string is not parseable, the week
      *         otherwise.
      */
-    public static Week parseWeek(String s) {
+    public static jfree.data.time.Week parseWeek(String s) {
 
-        Week result = null;
+        jfree.data.time.Week result = null;
         if (s != null) {
 
             // trim whitespace from either end of the string
             s = s.trim();
 
-            int i = Week.findSeparator(s);
+            int i = jfree.data.time.Week.findSeparator(s);
             if (i != -1) {
                 String s1 = s.substring(0, i).trim();
                 String s2 = s.substring(i + 1, s.length()).trim();
 
-                Year y = Week.evaluateAsYear(s1);
+                jfree.data.time.Year y = jfree.data.time.Week.evaluateAsYear(s1);
                 int w;
                 if (y != null) {
-                    w = Week.stringToWeek(s2);
+                    w = jfree.data.time.Week.stringToWeek(s2);
                     if (w == -1) {
-                        throw new TimePeriodFormatException(
+                        throw new jfree.data.time.TimePeriodFormatException(
                                 "Can't evaluate the week.");
                     }
-                    result = new Week(w, y);
+                    result = new jfree.data.time.Week(w, y);
                 }
                 else {
-                    y = Week.evaluateAsYear(s2);
+                    y = jfree.data.time.Week.evaluateAsYear(s2);
                     if (y != null) {
-                        w = Week.stringToWeek(s1);
+                        w = jfree.data.time.Week.stringToWeek(s1);
                         if (w == -1) {
-                            throw new TimePeriodFormatException(
+                            throw new jfree.data.time.TimePeriodFormatException(
                                     "Can't evaluate the week.");
                         }
-                        result = new Week(w, y);
+                        result = new jfree.data.time.Week(w, y);
                     }
                     else {
-                        throw new TimePeriodFormatException(
+                        throw new jfree.data.time.TimePeriodFormatException(
                                 "Can't evaluate the year.");
                     }
                 }
 
             }
             else {
-                throw new TimePeriodFormatException(
+                throw new jfree.data.time.TimePeriodFormatException(
                         "Could not find separator.");
             }
 
@@ -618,9 +621,9 @@ public class Week extends RegularTimePeriod implements Serializable {
      * @return <code>null</code> if the string is not parseable, the year
      *         otherwise.
      */
-    private static Year evaluateAsYear(String s) {
+    private static jfree.data.time.Year evaluateAsYear(String s) {
 
-        Year result = null;
+        jfree.data.time.Year result = null;
         try {
             result = Year.parseYear(s);
         }

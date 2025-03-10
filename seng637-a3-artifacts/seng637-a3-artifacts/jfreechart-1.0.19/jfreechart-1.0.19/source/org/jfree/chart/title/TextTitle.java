@@ -95,17 +95,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.block.BlockResult;
-import org.jfree.chart.block.EntityBlockParams;
-import org.jfree.chart.block.LengthConstraintType;
-import org.jfree.chart.block.RectangleConstraint;
-import org.jfree.chart.entity.ChartEntity;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.StandardEntityCollection;
-import org.jfree.chart.entity.TitleEntity;
-import org.jfree.chart.event.TitleChangeEvent;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
+import jfree.chart.block.BlockResult;
+import jfree.chart.block.EntityBlockParams;
+import jfree.chart.block.LengthConstraintType;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.entity.ChartEntity;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.StandardEntityCollection;
+import jfree.chart.entity.TitleEntity;
+import jfree.chart.event.TitleChangeEvent;
+import jfree.chart.title.Title;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.G2TextMeasurer;
 import org.jfree.text.TextBlock;
@@ -124,7 +125,7 @@ import org.jfree.util.PublicCloneable;
  * A chart title that displays a text string with automatic wrapping as
  * required.
  */
-public class TextTitle extends Title
+public class TextTitle extends jfree.chart.title.Title
                        implements Serializable, Cloneable, PublicCloneable {
 
     /** For serialization. */
@@ -187,9 +188,9 @@ public class TextTitle extends Title
      * @param text  the title text (<code>null</code> not permitted).
      */
     public TextTitle(String text) {
-        this(text, TextTitle.DEFAULT_FONT, TextTitle.DEFAULT_TEXT_PAINT,
-                Title.DEFAULT_POSITION, Title.DEFAULT_HORIZONTAL_ALIGNMENT,
-                Title.DEFAULT_VERTICAL_ALIGNMENT, Title.DEFAULT_PADDING);
+        this(text, jfree.chart.title.TextTitle.DEFAULT_FONT, jfree.chart.title.TextTitle.DEFAULT_TEXT_PAINT,
+                jfree.chart.title.Title.DEFAULT_POSITION, jfree.chart.title.Title.DEFAULT_HORIZONTAL_ALIGNMENT,
+                jfree.chart.title.Title.DEFAULT_VERTICAL_ALIGNMENT, jfree.chart.title.Title.DEFAULT_PADDING);
     }
 
     /**
@@ -199,9 +200,9 @@ public class TextTitle extends Title
      * @param font  the title font (<code>null</code> not permitted).
      */
     public TextTitle(String text, Font font) {
-        this(text, font, TextTitle.DEFAULT_TEXT_PAINT, Title.DEFAULT_POSITION,
-                Title.DEFAULT_HORIZONTAL_ALIGNMENT,
-                Title.DEFAULT_VERTICAL_ALIGNMENT, Title.DEFAULT_PADDING);
+        this(text, font, jfree.chart.title.TextTitle.DEFAULT_TEXT_PAINT, jfree.chart.title.Title.DEFAULT_POSITION,
+                jfree.chart.title.Title.DEFAULT_HORIZONTAL_ALIGNMENT,
+                jfree.chart.title.Title.DEFAULT_VERTICAL_ALIGNMENT, Title.DEFAULT_PADDING);
     }
 
     /**
@@ -831,10 +832,10 @@ public class TextTitle extends Title
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof TextTitle)) {
+        if (!(obj instanceof jfree.chart.title.TextTitle)) {
             return false;
         }
-        TextTitle that = (TextTitle) obj;
+        jfree.chart.title.TextTitle that = (jfree.chart.title.TextTitle) obj;
         if (!ObjectUtilities.equal(this.text, that.text)) {
             return false;
         }

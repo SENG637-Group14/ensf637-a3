@@ -96,19 +96,23 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.entity.CategoryItemEntity;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.labels.CategoryToolTipGenerator;
-import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
-import org.jfree.chart.urls.CategoryURLGenerator;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetUtilities;
+import jfree.chart.LegendItem;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.entity.CategoryItemEntity;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.labels.CategoryToolTipGenerator;
+import jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import jfree.chart.plot.DrawingSupplier;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.urls.CategoryURLGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.data.category.CategoryDataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetUtilities;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.util.ObjectUtilities;
@@ -1125,7 +1129,7 @@ public class SpiderWebPlot extends Plot implements Cloneable, Serializable {
      */
     @Override
     public void draw(Graphics2D g2, Rectangle2D area, Point2D anchor,
-            PlotState parentState, PlotRenderingInfo info) {
+                     PlotState parentState, jfree.chart.plot.PlotRenderingInfo info) {
 
         // adjust for insets...
         RectangleInsets insets = getInsets();
@@ -1485,13 +1489,13 @@ public class SpiderWebPlot extends Plot implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof SpiderWebPlot)) {
+        if (!(obj instanceof jfree.chart.plot.SpiderWebPlot)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        SpiderWebPlot that = (SpiderWebPlot) obj;
+        jfree.chart.plot.SpiderWebPlot that = (jfree.chart.plot.SpiderWebPlot) obj;
         if (!this.dataExtractOrder.equals(that.dataExtractOrder)) {
             return false;
         }
@@ -1587,7 +1591,7 @@ public class SpiderWebPlot extends Plot implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        SpiderWebPlot clone = (SpiderWebPlot) super.clone();
+        jfree.chart.plot.SpiderWebPlot clone = (jfree.chart.plot.SpiderWebPlot) super.clone();
         clone.legendItemShape = ShapeUtilities.clone(this.legendItemShape);
         clone.seriesPaintList = (PaintList) this.seriesPaintList.clone();
         clone.seriesOutlinePaintList

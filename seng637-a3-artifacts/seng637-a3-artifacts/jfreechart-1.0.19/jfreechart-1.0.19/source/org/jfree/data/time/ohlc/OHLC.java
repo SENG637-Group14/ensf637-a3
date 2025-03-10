@@ -42,7 +42,8 @@
 package org.jfree.data.time.ohlc;
 
 import java.io.Serializable;
-import org.jfree.chart.HashUtilities;
+import jfree.chart.HashUtilities;
+import jfree.data.time.ohlc.OHLCItem;
 
 /**
  * A data record containing open-high-low-close data (immutable).  This class 
@@ -127,10 +128,10 @@ public class OHLC implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof OHLC)) {
+        if (!(obj instanceof jfree.data.time.ohlc.OHLC)) {
             return false;
         }
-        OHLC that = (OHLC) obj;
+        jfree.data.time.ohlc.OHLC that = (jfree.data.time.ohlc.OHLC) obj;
         if (this.open != that.open) {
             return false;
         }

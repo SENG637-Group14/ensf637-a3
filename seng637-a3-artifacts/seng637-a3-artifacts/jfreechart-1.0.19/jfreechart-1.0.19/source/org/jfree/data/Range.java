@@ -64,7 +64,7 @@
 package org.jfree.data;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
 /**
  * Represents an immutable range of values.
@@ -194,7 +194,7 @@ public strictfp class Range implements Serializable {
      *
      * @since 1.0.9
      */
-    public boolean intersects(Range range) {
+    public boolean intersects(jfree.data.Range range) {
         return intersects(range.getLowerBound(), range.getUpperBound());
     }
 
@@ -235,7 +235,7 @@ public strictfp class Range implements Serializable {
      *
      * @return A new range (possibly <code>null</code>).
      */
-    public static Range combine(Range range1, Range range2) {
+    public static jfree.data.Range combine(jfree.data.Range range1, jfree.data.Range range2) {
         if (range1 == null) {
             return range2;
         }
@@ -244,7 +244,7 @@ public strictfp class Range implements Serializable {
         }
         double l = Math.min(range1.getLowerBound(), range2.getLowerBound());
         double u = Math.max(range1.getUpperBound(), range2.getUpperBound());
-        return new Range(l, u);
+        return new jfree.data.Range(l, u);
     }
 
     /**
@@ -259,7 +259,7 @@ public strictfp class Range implements Serializable {
      *
      * @since 1.0.15
      */
-    public static Range combineIgnoringNaN(Range range1, Range range2) {
+    public static jfree.data.Range combineIgnoringNaN(jfree.data.Range range1, jfree.data.Range range2) {
         if (range1 == null) {
             if (range2 != null && range2.isNaNRange()) {
                 return null;
@@ -277,7 +277,7 @@ public strictfp class Range implements Serializable {
         if (Double.isNaN(l) && Double.isNaN(u)) {
             return null;
         }
-        return new Range(l, u);
+        return new jfree.data.Range(l, u);
     }
     
     /**
@@ -320,15 +320,15 @@ public strictfp class Range implements Serializable {
      *
      * @since 1.0.1
      */
-    public static Range expandToInclude(Range range, double value) {
+    public static jfree.data.Range expandToInclude(jfree.data.Range range, double value) {
         if (range == null) {
-            return new Range(value, value);
+            return new jfree.data.Range(value, value);
         }
         if (value < range.getLowerBound()) {
-            return new Range(value, range.getUpperBound());
+            return new jfree.data.Range(value, range.getUpperBound());
         }
         else if (value > range.getUpperBound()) {
-            return new Range(range.getLowerBound(), value);
+            return new jfree.data.Range(range.getLowerBound(), value);
         }
         else {
             return range;
@@ -346,8 +346,8 @@ public strictfp class Range implements Serializable {
      *
      * @return The expanded range.
      */
-    public static Range expand(Range range,
-                               double lowerMargin, double upperMargin) {
+    public static jfree.data.Range expand(jfree.data.Range range,
+                                               double lowerMargin, double upperMargin) {
         ParamChecks.nullNotPermitted(range, "range");
         double length = range.getLength();
         double lower = range.getLowerBound() - length * lowerMargin;
@@ -356,7 +356,7 @@ public strictfp class Range implements Serializable {
             lower = lower / 2.0 + upper / 2.0;
             upper = lower;
         }
-        return new Range(lower, upper);
+        return new jfree.data.Range(lower, upper);
     }
 
     /**
@@ -367,7 +367,7 @@ public strictfp class Range implements Serializable {
      *
      * @return A new range.
      */
-    public static Range shift(Range base, double delta) {
+    public static jfree.data.Range shift(jfree.data.Range base, double delta) {
         return shift(base, delta, false);
     }
 
@@ -382,15 +382,15 @@ public strictfp class Range implements Serializable {
      *
      * @return A new range.
      */
-    public static Range shift(Range base, double delta,
-                              boolean allowZeroCrossing) {
+    public static jfree.data.Range shift(jfree.data.Range base, double delta,
+                                              boolean allowZeroCrossing) {
         ParamChecks.nullNotPermitted(base, "base");
         if (allowZeroCrossing) {
-            return new Range(base.getLowerBound() + delta,
+            return new jfree.data.Range(base.getLowerBound() + delta,
                     base.getUpperBound() + delta);
         }
         else {
-            return new Range(shiftWithNoZeroCrossing(base.getLowerBound(),
+            return new jfree.data.Range(shiftWithNoZeroCrossing(base.getLowerBound(),
                     delta), shiftWithNoZeroCrossing(base.getUpperBound(),
                     delta));
         }
@@ -427,12 +427,12 @@ public strictfp class Range implements Serializable {
      *
      * @since 1.0.9
      */
-    public static Range scale(Range base, double factor) {
+    public static jfree.data.Range scale(jfree.data.Range base, double factor) {
         ParamChecks.nullNotPermitted(base, "base");
         if (factor < 0) {
             throw new IllegalArgumentException("Negative 'factor' argument.");
         }
-        return new Range(base.getLowerBound() * factor,
+        return new jfree.data.Range(base.getLowerBound() * factor,
                 base.getUpperBound() * factor);
     }
 
@@ -445,10 +445,10 @@ public strictfp class Range implements Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Range)) {
+        if (!(obj instanceof jfree.data.Range)) {
             return false;
         }
-        Range range = (Range) obj;
+        jfree.data.Range range = (jfree.data.Range) obj;
         if (!(this.lower == range.lower)) {
             return false;
         }

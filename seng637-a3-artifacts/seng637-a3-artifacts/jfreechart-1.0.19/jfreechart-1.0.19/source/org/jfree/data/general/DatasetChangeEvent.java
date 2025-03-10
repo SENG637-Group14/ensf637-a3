@@ -47,6 +47,9 @@
 
 package org.jfree.data.general;
 
+import jfree.chart.plot.Plot;
+import jfree.data.general.Dataset;
+
 /**
  * A change event that encapsulates information about a change to a dataset.
  */
@@ -55,19 +58,19 @@ public class DatasetChangeEvent extends java.util.EventObject {
     /**
      * The dataset that generated the change event.
      */
-    private Dataset dataset;
+    private jfree.data.general.Dataset dataset;
 
     /**
      * Constructs a new event.  The source is either the dataset or the
-     * {@link org.jfree.chart.plot.Plot} class.  The dataset can be
+     * {@link Plot} class.  The dataset can be
      * <code>null</code> (in this case the source will be the
-     * {@link org.jfree.chart.plot.Plot} class).
+     * {@link Plot} class).
      *
      * @param source  the source of the event.
      * @param dataset  the dataset that generated the event (<code>null</code>
      *                 permitted).
      */
-    public DatasetChangeEvent(Object source, Dataset dataset) {
+    public DatasetChangeEvent(Object source, jfree.data.general.Dataset dataset) {
         super(source);
         this.dataset = dataset;
     }

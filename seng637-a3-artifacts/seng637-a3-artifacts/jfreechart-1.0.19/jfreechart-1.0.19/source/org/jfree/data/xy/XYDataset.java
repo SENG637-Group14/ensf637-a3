@@ -47,8 +47,8 @@
 
 package org.jfree.data.xy;
 
-import org.jfree.data.DomainOrder;
-import org.jfree.data.general.SeriesDataset;
+import jfree.data.DomainOrder;
+import jfree.data.general.SeriesDataset;
 
 /**
  * An interface through which data in the form of (x, y) items can be accessed.

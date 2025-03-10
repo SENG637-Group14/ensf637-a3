@@ -53,16 +53,16 @@ public final class DateTickMarkPosition implements Serializable {
     private static final long serialVersionUID = 2540750672764537240L;
 
     /** Start of period. */
-    public static final DateTickMarkPosition START
-        = new DateTickMarkPosition("DateTickMarkPosition.START");
+    public static final jfree.chart.axis.DateTickMarkPosition START
+        = new jfree.chart.axis.DateTickMarkPosition("DateTickMarkPosition.START");
 
     /** Middle of period. */
-    public static final DateTickMarkPosition MIDDLE
-        = new DateTickMarkPosition("DateTickMarkPosition.MIDDLE");
+    public static final jfree.chart.axis.DateTickMarkPosition MIDDLE
+        = new jfree.chart.axis.DateTickMarkPosition("DateTickMarkPosition.MIDDLE");
 
     /** End of period. */
-    public static final DateTickMarkPosition END
-        = new DateTickMarkPosition("DateTickMarkPosition.END");
+    public static final jfree.chart.axis.DateTickMarkPosition END
+        = new jfree.chart.axis.DateTickMarkPosition("DateTickMarkPosition.END");
 
     /** The name. */
     private String name;
@@ -100,10 +100,10 @@ public final class DateTickMarkPosition implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof DateTickMarkPosition)) {
+        if (!(obj instanceof jfree.chart.axis.DateTickMarkPosition)) {
             return false;
         }
-        DateTickMarkPosition position = (DateTickMarkPosition) obj;
+        jfree.chart.axis.DateTickMarkPosition position = (jfree.chart.axis.DateTickMarkPosition) obj;
         if (!this.name.equals(position.toString())) {
             return false;
         }
@@ -119,14 +119,14 @@ public final class DateTickMarkPosition implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(DateTickMarkPosition.START)) {
-            return DateTickMarkPosition.START;
+        if (this.equals(jfree.chart.axis.DateTickMarkPosition.START)) {
+            return jfree.chart.axis.DateTickMarkPosition.START;
         }
-        else if (this.equals(DateTickMarkPosition.MIDDLE)) {
-            return DateTickMarkPosition.MIDDLE;
+        else if (this.equals(jfree.chart.axis.DateTickMarkPosition.MIDDLE)) {
+            return jfree.chart.axis.DateTickMarkPosition.MIDDLE;
         }
-        else if (this.equals(DateTickMarkPosition.END)) {
-            return DateTickMarkPosition.END;
+        else if (this.equals(jfree.chart.axis.DateTickMarkPosition.END)) {
+            return jfree.chart.axis.DateTickMarkPosition.END;
         }
         return null;
     }

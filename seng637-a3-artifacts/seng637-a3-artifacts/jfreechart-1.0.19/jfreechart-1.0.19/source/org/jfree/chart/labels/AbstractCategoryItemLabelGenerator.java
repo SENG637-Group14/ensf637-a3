@@ -51,17 +51,18 @@ import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.DataUtilities;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.HashUtilities;
+import jfree.chart.util.ParamChecks;
+import jfree.data.DataUtilities;
+import jfree.data.category.CategoryDataset;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A base class that can be used to create a label or tooltip generator that
  * can be assigned to a
- * {@link org.jfree.chart.renderer.category.CategoryItemRenderer}.
+ * {@link CategoryItemRenderer}.
  */
 public abstract class AbstractCategoryItemLabelGenerator
         implements PublicCloneable, Cloneable, Serializable {
@@ -268,12 +269,12 @@ public abstract class AbstractCategoryItemLabelGenerator
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AbstractCategoryItemLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.AbstractCategoryItemLabelGenerator)) {
             return false;
         }
 
-        AbstractCategoryItemLabelGenerator that
-            = (AbstractCategoryItemLabelGenerator) obj;
+        jfree.chart.labels.AbstractCategoryItemLabelGenerator that
+            = (jfree.chart.labels.AbstractCategoryItemLabelGenerator) obj;
         if (!this.labelFormat.equals(that.labelFormat)) {
             return false;
         }
@@ -311,8 +312,8 @@ public abstract class AbstractCategoryItemLabelGenerator
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        AbstractCategoryItemLabelGenerator clone
-            = (AbstractCategoryItemLabelGenerator) super.clone();
+        jfree.chart.labels.AbstractCategoryItemLabelGenerator clone
+            = (jfree.chart.labels.AbstractCategoryItemLabelGenerator) super.clone();
         if (this.numberFormat != null) {
             clone.numberFormat = (NumberFormat) this.numberFormat.clone();
         }

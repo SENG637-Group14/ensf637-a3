@@ -49,10 +49,10 @@ import java.io.Serializable;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.general.PieDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.util.ParamChecks;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.general.PieDataset;
 
 /**
  * A base class used for generating pie chart item labels.
@@ -186,12 +186,12 @@ public class AbstractPieItemLabelGenerator implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AbstractPieItemLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.AbstractPieItemLabelGenerator)) {
             return false;
         }
 
-        AbstractPieItemLabelGenerator that
-                = (AbstractPieItemLabelGenerator) obj;
+        jfree.chart.labels.AbstractPieItemLabelGenerator that
+                = (jfree.chart.labels.AbstractPieItemLabelGenerator) obj;
         if (!this.labelFormat.equals(that.labelFormat)) {
             return false;
         }
@@ -228,8 +228,8 @@ public class AbstractPieItemLabelGenerator implements Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        AbstractPieItemLabelGenerator clone
-                = (AbstractPieItemLabelGenerator) super.clone();
+        jfree.chart.labels.AbstractPieItemLabelGenerator clone
+                = (jfree.chart.labels.AbstractPieItemLabelGenerator) super.clone();
         if (this.numberFormat != null) {
             clone.numberFormat = (NumberFormat) this.numberFormat.clone();
         }

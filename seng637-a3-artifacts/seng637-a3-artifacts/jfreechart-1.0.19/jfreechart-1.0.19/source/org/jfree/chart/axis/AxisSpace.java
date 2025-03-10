@@ -49,7 +49,7 @@ package org.jfree.chart.axis;
 
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PublicCloneable;
@@ -186,7 +186,7 @@ public class AxisSpace implements Cloneable, PublicCloneable, Serializable {
      *
      * @param space  the other space.
      */
-    public void ensureAtLeast(AxisSpace space) {
+    public void ensureAtLeast(jfree.chart.axis.AxisSpace space) {
         this.top = Math.max(this.top, space.top);
         this.bottom = Math.max(this.bottom, space.bottom);
         this.left = Math.max(this.left, space.left);
@@ -330,10 +330,10 @@ public class AxisSpace implements Cloneable, PublicCloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AxisSpace)) {
+        if (!(obj instanceof jfree.chart.axis.AxisSpace)) {
             return false;
         }
-        AxisSpace that = (AxisSpace) obj;
+        jfree.chart.axis.AxisSpace that = (jfree.chart.axis.AxisSpace) obj;
         if (this.top != that.top) {
             return false;
         }

@@ -70,22 +70,24 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.labels.XYItemLabelGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.labels.XYItemLabelGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBarRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PublicCloneable;
 
 /**
- * An extension of {@link XYBarRenderer} that displays bars for different
+ * An extension of {@link jfree.chart.renderer.xy.XYBarRenderer} that displays bars for different
  * series values at the same x next to each other. The assumption here is
  * that for each x (time or else) there is a y value for each series. If
  * this is not the case, there will be spaces between bars for a given x.
@@ -222,7 +224,7 @@ public class ClusteredXYBarRenderer extends XYBarRenderer
      * @param pass  the pass index.
      */
     @Override
-    public void drawItem(Graphics2D g2, XYItemRendererState state, 
+    public void drawItem(Graphics2D g2, XYItemRendererState state,
             Rectangle2D dataArea, PlotRenderingInfo info, XYPlot plot,
             ValueAxis domainAxis, ValueAxis rangeAxis, XYDataset dataset, 
             int series, int item, CrosshairState crosshairState, int pass) {
@@ -356,10 +358,10 @@ public class ClusteredXYBarRenderer extends XYBarRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ClusteredXYBarRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.ClusteredXYBarRenderer)) {
             return false;
         }
-        ClusteredXYBarRenderer that = (ClusteredXYBarRenderer) obj;
+        jfree.chart.renderer.xy.ClusteredXYBarRenderer that = (jfree.chart.renderer.xy.ClusteredXYBarRenderer) obj;
         if (this.centerBarAtStartValue != that.centerBarAtStartValue) {
             return false;
         }

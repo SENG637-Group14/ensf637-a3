@@ -50,11 +50,12 @@ import java.util.List;
 
 import javax.swing.event.EventListenerList;
 
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.event.AnnotationChangeListener;
+import jfree.chart.annotations.Annotation;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.event.AnnotationChangeListener;
 
 /**
- * An abstract implementation of the {@link Annotation} interface, containing a
+ * An abstract implementation of the {@link jfree.chart.annotations.Annotation} interface, containing a
  * mechanism for registering change listeners.
  *
  * @since 1.0.14
@@ -192,7 +193,7 @@ public abstract class AbstractAnnotation implements Annotation, Cloneable,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        AbstractAnnotation clone = (AbstractAnnotation) super.clone();
+        jfree.chart.annotations.AbstractAnnotation clone = (jfree.chart.annotations.AbstractAnnotation) super.clone();
         clone.listenerList = new EventListenerList();
         return clone;
     }

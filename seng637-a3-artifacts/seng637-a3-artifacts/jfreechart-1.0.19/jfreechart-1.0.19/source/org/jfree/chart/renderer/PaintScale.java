@@ -43,7 +43,7 @@ package org.jfree.chart.renderer;
 
 import java.awt.Paint;
 
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.chart.renderer.xy.XYBlockRenderer;
 
 /**
  * A source for <code>Paint</code> instances, used by the

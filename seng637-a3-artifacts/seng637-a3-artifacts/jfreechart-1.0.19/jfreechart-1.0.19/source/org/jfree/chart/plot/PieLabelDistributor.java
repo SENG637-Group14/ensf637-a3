@@ -43,6 +43,9 @@
 
 package org.jfree.chart.plot;
 
+import jfree.chart.plot.AbstractPieLabelDistributor;
+import jfree.chart.plot.PieLabelRecord;
+
 import java.util.Collections;
 
 /**
@@ -98,7 +101,7 @@ public class PieLabelDistributor extends AbstractPieLabelDistributor {
     private boolean isOverlap() {
         double y = 0.0;
         for (int i = 0; i < this.labels.size(); i++) {
-            PieLabelRecord plr = getPieLabelRecord(i);
+            jfree.chart.plot.PieLabelRecord plr = getPieLabelRecord(i);
             if (y > plr.getLowerY()) {
                 return true;
             }
@@ -116,16 +119,16 @@ public class PieLabelDistributor extends AbstractPieLabelDistributor {
         int upper = this.labels.size() - 1;
         while (upper > lower) {
             if (lower < upper - 1) {
-                PieLabelRecord r0 = getPieLabelRecord(lower);
-                PieLabelRecord r1 = getPieLabelRecord(lower + 1);
+                jfree.chart.plot.PieLabelRecord r0 = getPieLabelRecord(lower);
+                jfree.chart.plot.PieLabelRecord r1 = getPieLabelRecord(lower + 1);
                 if (r1.getLowerY() < r0.getUpperY()) {
                     double adjust = r0.getUpperY() - r1.getLowerY()
                                     + this.minGap;
                     r1.setAllocatedY(r1.getAllocatedY() + adjust);
                 }
             }
-            PieLabelRecord r2 = getPieLabelRecord(upper - 1);
-            PieLabelRecord r3 = getPieLabelRecord(upper);
+            jfree.chart.plot.PieLabelRecord r2 = getPieLabelRecord(upper - 1);
+            jfree.chart.plot.PieLabelRecord r3 = getPieLabelRecord(upper);
             if (r2.getUpperY() > r3.getLowerY()) {
                 double adjust = (r2.getUpperY() - r3.getLowerY()) + this.minGap;
                 r3.setAllocatedY(r3.getAllocatedY() + adjust);
@@ -144,8 +147,8 @@ public class PieLabelDistributor extends AbstractPieLabelDistributor {
      */
     protected void adjustDownwards(double minY, double height) {
         for (int i = 0; i < this.labels.size() - 1; i++) {
-            PieLabelRecord record0 = getPieLabelRecord(i);
-            PieLabelRecord record1 = getPieLabelRecord(i + 1);
+            jfree.chart.plot.PieLabelRecord record0 = getPieLabelRecord(i);
+            jfree.chart.plot.PieLabelRecord record1 = getPieLabelRecord(i + 1);
             if (record1.getLowerY() < record0.getUpperY()) {
                 record1.setAllocatedY(Math.min(minY + height
                         - record1.getLabelHeight() / 2.0,
@@ -164,8 +167,8 @@ public class PieLabelDistributor extends AbstractPieLabelDistributor {
      */
     protected void adjustUpwards(double minY, double height) {
         for (int i = this.labels.size() - 1; i > 0; i--) {
-            PieLabelRecord record0 = getPieLabelRecord(i);
-            PieLabelRecord record1 = getPieLabelRecord(i - 1);
+            jfree.chart.plot.PieLabelRecord record0 = getPieLabelRecord(i);
+            jfree.chart.plot.PieLabelRecord record1 = getPieLabelRecord(i - 1);
             if (record1.getUpperY() > record0.getLowerY()) {
                 record1.setAllocatedY(Math.max(minY
                         + record1.getLabelHeight() / 2.0, record0.getLowerY()

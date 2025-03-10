@@ -74,9 +74,9 @@ import java.util.EventListener;
 
 import javax.swing.event.EventListenerList;
 
-import org.jfree.chart.event.MarkerChangeEvent;
-import org.jfree.chart.event.MarkerChangeListener;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.event.MarkerChangeEvent;
+import jfree.chart.event.MarkerChangeListener;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.LengthAdjustmentType;
 import org.jfree.ui.RectangleAnchor;
@@ -600,10 +600,10 @@ public abstract class Marker implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Marker)) {
+        if (!(obj instanceof jfree.chart.plot.Marker)) {
             return false;
         }
-        Marker that = (Marker) obj;
+        jfree.chart.plot.Marker that = (jfree.chart.plot.Marker) obj;
         if (!PaintUtilities.equal(this.paint, that.paint)) {
             return false;
         }

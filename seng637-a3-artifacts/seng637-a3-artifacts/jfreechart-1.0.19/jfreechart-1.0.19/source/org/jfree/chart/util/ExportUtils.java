@@ -54,6 +54,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import javax.imageio.ImageIO;
+
+import jfree.chart.util.ParamChecks;
 import org.jfree.ui.Drawable;
 
 /**
@@ -110,12 +112,12 @@ public class ExportUtils {
      */
     public static void writeAsSVG(Drawable drawable, int w, int h, 
             File file) {
-        if (!ExportUtils.isJFreeSVGAvailable()) {
+        if (!jfree.chart.util.ExportUtils.isJFreeSVGAvailable()) {
             throw new IllegalStateException(
                     "JFreeSVG is not present on the classpath.");
         }
-        ParamChecks.nullNotPermitted(drawable, "drawable");
-        ParamChecks.nullNotPermitted(file, "file");
+        jfree.chart.util.ParamChecks.nullNotPermitted(drawable, "drawable");
+        jfree.chart.util.ParamChecks.nullNotPermitted(file, "file");
         try {
             Class<?> svg2Class = Class.forName(
                     "org.jfree.graphics2d.svg.SVGGraphics2D");
@@ -160,11 +162,11 @@ public class ExportUtils {
      */
     public static final void writeAsPDF(Drawable drawable, 
             int w, int h, File file) {
-        if (!ExportUtils.isOrsonPDFAvailable()) {
+        if (!jfree.chart.util.ExportUtils.isOrsonPDFAvailable()) {
             throw new IllegalStateException(
                     "OrsonPDF is not present on the classpath.");
         }
-        ParamChecks.nullNotPermitted(drawable, "drawable");
+        jfree.chart.util.ParamChecks.nullNotPermitted(drawable, "drawable");
         ParamChecks.nullNotPermitted(file, "file");
         try {
             Class<?> pdfDocClass = Class.forName("com.orsonpdf.PDFDocument");

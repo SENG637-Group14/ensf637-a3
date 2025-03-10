@@ -52,16 +52,16 @@ public final class LengthConstraintType implements Serializable {
     private static final long serialVersionUID = -1156658804028142978L;
 
     /** NONE. */
-    public static final LengthConstraintType NONE
-        = new LengthConstraintType("LengthConstraintType.NONE");
+    public static final jfree.chart.block.LengthConstraintType NONE
+        = new jfree.chart.block.LengthConstraintType("LengthConstraintType.NONE");
 
     /** Range. */
-    public static final LengthConstraintType RANGE
-        = new LengthConstraintType("RectangleConstraintType.RANGE");
+    public static final jfree.chart.block.LengthConstraintType RANGE
+        = new jfree.chart.block.LengthConstraintType("RectangleConstraintType.RANGE");
 
     /** FIXED. */
-    public static final LengthConstraintType FIXED
-        = new LengthConstraintType("LengthConstraintType.FIXED");
+    public static final jfree.chart.block.LengthConstraintType FIXED
+        = new jfree.chart.block.LengthConstraintType("LengthConstraintType.FIXED");
 
     /** The name. */
     private String name;
@@ -98,10 +98,10 @@ public final class LengthConstraintType implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof LengthConstraintType)) {
+        if (!(obj instanceof jfree.chart.block.LengthConstraintType)) {
             return false;
         }
-        LengthConstraintType that = (LengthConstraintType) obj;
+        jfree.chart.block.LengthConstraintType that = (jfree.chart.block.LengthConstraintType) obj;
         if (!this.name.equals(that.toString())) {
             return false;
         }
@@ -126,14 +126,14 @@ public final class LengthConstraintType implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(LengthConstraintType.NONE)) {
-            return LengthConstraintType.NONE;
+        if (this.equals(jfree.chart.block.LengthConstraintType.NONE)) {
+            return jfree.chart.block.LengthConstraintType.NONE;
         }
-        else if (this.equals(LengthConstraintType.RANGE)) {
-            return LengthConstraintType.RANGE;
+        else if (this.equals(jfree.chart.block.LengthConstraintType.RANGE)) {
+            return jfree.chart.block.LengthConstraintType.RANGE;
         }
-        else if (this.equals(LengthConstraintType.FIXED)) {
-            return LengthConstraintType.FIXED;
+        else if (this.equals(jfree.chart.block.LengthConstraintType.FIXED)) {
+            return jfree.chart.block.LengthConstraintType.FIXED;
         }
         return null;
     }

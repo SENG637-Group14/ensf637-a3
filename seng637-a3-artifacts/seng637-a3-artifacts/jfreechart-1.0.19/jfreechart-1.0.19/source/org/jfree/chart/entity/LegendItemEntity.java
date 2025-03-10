@@ -47,7 +47,8 @@ package org.jfree.chart.entity;
 import java.awt.Shape;
 import java.io.Serializable;
 
-import org.jfree.data.general.Dataset;
+import jfree.chart.entity.ChartEntity;
+import jfree.data.general.Dataset;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -175,10 +176,10 @@ public class LegendItemEntity extends ChartEntity
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LegendItemEntity)) {
+        if (!(obj instanceof jfree.chart.entity.LegendItemEntity)) {
             return false;
         }
-        LegendItemEntity that = (LegendItemEntity) obj;
+        jfree.chart.entity.LegendItemEntity that = (jfree.chart.entity.LegendItemEntity) obj;
         if (!ObjectUtilities.equal(this.seriesKey, that.seriesKey)) {
             return false;
         }

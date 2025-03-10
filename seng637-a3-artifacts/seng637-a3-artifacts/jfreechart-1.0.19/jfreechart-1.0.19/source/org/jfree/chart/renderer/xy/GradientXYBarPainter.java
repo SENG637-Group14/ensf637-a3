@@ -50,11 +50,13 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
+import jfree.chart.HashUtilities;
+import jfree.chart.renderer.xy.XYBarPainter;
+import jfree.chart.renderer.xy.XYBarRenderer;
 import org.jfree.ui.RectangleEdge;
 
 /**
- * An implementation of the {@link XYBarPainter} interface that uses several
+ * An implementation of the {@link jfree.chart.renderer.xy.XYBarPainter} interface that uses several
  * gradient fills to enrich the appearance of the bars.
  *
  * @since 1.0.11
@@ -102,8 +104,8 @@ public class GradientXYBarPainter implements XYBarPainter, Serializable {
      *              bar.
      */
     @Override
-    public void paintBar(Graphics2D g2, XYBarRenderer renderer, int row,
-            int column, RectangularShape bar, RectangleEdge base) {
+    public void paintBar(Graphics2D g2, jfree.chart.renderer.xy.XYBarRenderer renderer, int row,
+                         int column, RectangularShape bar, RectangleEdge base) {
 
         Paint itemPaint = renderer.getItemPaint(row, column);
 
@@ -204,8 +206,8 @@ public class GradientXYBarPainter implements XYBarPainter, Serializable {
      */
     @Override
     public void paintBarShadow(Graphics2D g2, XYBarRenderer renderer, int row,
-            int column, RectangularShape bar, RectangleEdge base,
-            boolean pegShadow) {
+                               int column, RectangularShape bar, RectangleEdge base,
+                               boolean pegShadow) {
 
         // handle a special case - if the bar colour has alpha == 0, it is
         // invisible so we shouldn't draw any shadow
@@ -346,10 +348,10 @@ public class GradientXYBarPainter implements XYBarPainter, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof GradientXYBarPainter)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.GradientXYBarPainter)) {
             return false;
         }
-        GradientXYBarPainter that = (GradientXYBarPainter) obj;
+        jfree.chart.renderer.xy.GradientXYBarPainter that = (jfree.chart.renderer.xy.GradientXYBarPainter) obj;
         if (this.g1 != that.g1) {
             return false;
         }

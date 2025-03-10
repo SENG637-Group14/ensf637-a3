@@ -47,7 +47,10 @@
 package org.jfree.chart.axis;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.CategoryLabelWidthType;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.text.TextBlockAnchor;
 import org.jfree.ui.RectangleAnchor;
@@ -76,7 +79,7 @@ public class CategoryLabelPosition implements Serializable {
     private double angle;
 
     /** The width calculation type. */
-    private CategoryLabelWidthType widthType;
+    private jfree.chart.axis.CategoryLabelWidthType widthType;
 
     /**
      * The maximum label width as a percentage of the category space or the
@@ -89,7 +92,7 @@ public class CategoryLabelPosition implements Serializable {
      */
     public CategoryLabelPosition() {
         this(RectangleAnchor.CENTER, TextBlockAnchor.BOTTOM_CENTER,
-                TextAnchor.CENTER, 0.0, CategoryLabelWidthType.CATEGORY, 0.95f);
+                TextAnchor.CENTER, 0.0, jfree.chart.axis.CategoryLabelWidthType.CATEGORY, 0.95f);
     }
 
     /**
@@ -103,7 +106,7 @@ public class CategoryLabelPosition implements Serializable {
                                  TextBlockAnchor labelAnchor) {
         // argument checking delegated...
         this(categoryAnchor, labelAnchor, TextAnchor.CENTER, 0.0,
-                CategoryLabelWidthType.CATEGORY, 0.95f);
+                jfree.chart.axis.CategoryLabelWidthType.CATEGORY, 0.95f);
     }
 
     /**
@@ -117,7 +120,7 @@ public class CategoryLabelPosition implements Serializable {
      *                    category space or the range space).
      */
     public CategoryLabelPosition(RectangleAnchor categoryAnchor,
-            TextBlockAnchor labelAnchor, CategoryLabelWidthType widthType,
+            TextBlockAnchor labelAnchor, jfree.chart.axis.CategoryLabelWidthType widthType,
             float widthRatio) {
         // argument checking delegated...
         this(categoryAnchor, labelAnchor, TextAnchor.CENTER, 0.0, widthType,
@@ -141,8 +144,8 @@ public class CategoryLabelPosition implements Serializable {
      *                    category space or the range space).
      */
     public CategoryLabelPosition(RectangleAnchor categoryAnchor,
-            TextBlockAnchor labelAnchor, TextAnchor rotationAnchor, 
-            double angle, CategoryLabelWidthType widthType, float widthRatio) {
+                                 TextBlockAnchor labelAnchor, TextAnchor rotationAnchor,
+                                 double angle, jfree.chart.axis.CategoryLabelWidthType widthType, float widthRatio) {
 
         ParamChecks.nullNotPermitted(categoryAnchor, "categoryAnchor");
         ParamChecks.nullNotPermitted(labelAnchor, "labelAnchor");
@@ -224,10 +227,10 @@ public class CategoryLabelPosition implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CategoryLabelPosition)) {
+        if (!(obj instanceof jfree.chart.axis.CategoryLabelPosition)) {
             return false;
         }
-        CategoryLabelPosition that = (CategoryLabelPosition) obj;
+        jfree.chart.axis.CategoryLabelPosition that = (jfree.chart.axis.CategoryLabelPosition) obj;
         if (!this.categoryAnchor.equals(that.categoryAnchor)) {
             return false;
         }

@@ -41,6 +41,9 @@
 
 package org.jfree.data;
 
+import jfree.data.DefaultKeyedValue;
+import jfree.data.Value;
+
 /**
  * A (key, value) pair.
  *

@@ -82,12 +82,12 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.jfree.data.Range;
-import org.jfree.data.RangeInfo;
-import org.jfree.data.general.Dataset;
-import org.jfree.data.xy.AbstractXYDataset;
-import org.jfree.data.xy.TableXYDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.data.Range;
+import jfree.data.RangeInfo;
+import jfree.data.general.Dataset;
+import jfree.data.xy.AbstractXYDataset;
+import jfree.data.xy.TableXYDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.Log;
 
 /**

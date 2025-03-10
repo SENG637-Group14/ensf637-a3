@@ -44,6 +44,8 @@
 
 package org.jfree.data.general;
 
+import jfree.data.general.DatasetChangeEvent;
+
 import java.util.EventListener;
 
 /**

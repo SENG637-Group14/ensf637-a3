@@ -45,7 +45,7 @@ package org.jfree.chart.axis;
 import java.text.FieldPosition;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
 /**
  * A formatter that displays numbers as directions.

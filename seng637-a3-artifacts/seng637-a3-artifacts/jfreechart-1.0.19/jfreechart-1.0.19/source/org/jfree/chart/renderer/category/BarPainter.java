@@ -43,10 +43,11 @@ package org.jfree.chart.renderer.category;
 import java.awt.Graphics2D;
 import java.awt.geom.RectangularShape;
 
+import jfree.chart.renderer.category.BarRenderer;
 import org.jfree.ui.RectangleEdge;
 
 /**
- * The interface for plugin painter for the {@link BarRenderer} class.  When
+ * The interface for plugin painter for the {@link jfree.chart.renderer.category.BarRenderer} class.  When
  * developing a class that implements this interface, bear in mind the
  * following:
  * <ul>
@@ -72,7 +73,7 @@ public interface BarPainter {
      * @param bar  the bounds for the bar.
      * @param base  the base of the bar.
      */
-    public void paintBar(Graphics2D g2, BarRenderer renderer,
+    public void paintBar(Graphics2D g2, jfree.chart.renderer.category.BarRenderer renderer,
             int row, int column, RectangularShape bar, RectangleEdge base);
 
     /**

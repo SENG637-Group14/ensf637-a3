@@ -104,10 +104,10 @@ public class XYCoordinate implements Comparable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYCoordinate)) {
+        if (!(obj instanceof jfree.data.xy.XYCoordinate)) {
             return false;
         }
-        XYCoordinate that = (XYCoordinate) obj;
+        jfree.data.xy.XYCoordinate that = (jfree.data.xy.XYCoordinate) obj;
         if (this.x != that.x) {
             return false;
         }
@@ -152,10 +152,10 @@ public class XYCoordinate implements Comparable, Serializable {
      */
     @Override
     public int compareTo(Object obj) {
-        if (!(obj instanceof XYCoordinate)) {
+        if (!(obj instanceof jfree.data.xy.XYCoordinate)) {
             throw new IllegalArgumentException("Incomparable object.");
         }
-        XYCoordinate that = (XYCoordinate) obj;
+        jfree.data.xy.XYCoordinate that = (jfree.data.xy.XYCoordinate) obj;
         if (this.x > that.x) {
             return 1;
         }

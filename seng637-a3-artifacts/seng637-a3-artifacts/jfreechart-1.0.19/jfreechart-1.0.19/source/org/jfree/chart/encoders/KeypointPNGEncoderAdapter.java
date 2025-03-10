@@ -47,7 +47,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import com.keypoint.PngEncoder;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.encoders.ImageEncoder;
+import jfree.chart.util.ParamChecks;
 
 /**
  * Adapter class for the Keypoint PNG Encoder.  The ImageEncoderFactory will

@@ -93,20 +93,23 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.XYItemEntity;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.XYSeriesLabelGenerator;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.XYItemEntity;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.XYSeriesLabelGenerator;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PublicCloneable;
 import org.jfree.util.ShapeUtilities;
@@ -416,10 +419,10 @@ public class XYAreaRenderer2 extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYAreaRenderer2)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYAreaRenderer2)) {
             return false;
         }
-        XYAreaRenderer2 that = (XYAreaRenderer2) obj;
+        jfree.chart.renderer.xy.XYAreaRenderer2 that = (jfree.chart.renderer.xy.XYAreaRenderer2) obj;
         if (this.showOutline != that.showOutline) {
             return false;
         }
@@ -438,7 +441,7 @@ public class XYAreaRenderer2 extends AbstractXYItemRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        XYAreaRenderer2 clone = (XYAreaRenderer2) super.clone();
+        jfree.chart.renderer.xy.XYAreaRenderer2 clone = (jfree.chart.renderer.xy.XYAreaRenderer2) super.clone();
         clone.legendArea = ShapeUtilities.clone(this.legendArea);
         return clone;
     }

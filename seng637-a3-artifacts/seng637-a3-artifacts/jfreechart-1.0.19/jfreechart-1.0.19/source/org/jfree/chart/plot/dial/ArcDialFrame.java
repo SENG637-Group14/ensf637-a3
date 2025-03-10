@@ -60,14 +60,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.plot.dial.AbstractDialLayer;
+import jfree.chart.plot.dial.DialFrame;
+import jfree.chart.plot.dial.DialLayerChangeEvent;
+import jfree.chart.plot.dial.DialPlot;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PaintUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A standard frame for the {@link DialPlot} class.
+ * A standard frame for the {@link jfree.chart.plot.dial.DialPlot} class.
  *
  * @since 1.0.7
  */
@@ -148,7 +152,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Sets the background paint and sends a {@link DialLayerChangeEvent} to
+     * Sets the background paint and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
@@ -158,7 +162,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     public void setBackgroundPaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.backgroundPaint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -173,7 +177,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Sets the foreground paint and sends a {@link DialLayerChangeEvent} to
+     * Sets the foreground paint and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
@@ -183,7 +187,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     public void setForegroundPaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.foregroundPaint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -198,7 +202,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Sets the stroke and sends a {@link DialLayerChangeEvent} to
+     * Sets the stroke and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param stroke  the stroke (<code>null</code> not permitted).
@@ -208,7 +212,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     public void setStroke(Stroke stroke) {
         ParamChecks.nullNotPermitted(stroke, "stroke");
         this.stroke = stroke;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -223,7 +227,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Sets the inner radius and sends a {@link DialLayerChangeEvent} to
+     * Sets the inner radius and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param radius  the inner radius.
@@ -235,7 +239,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
             throw new IllegalArgumentException("Negative 'radius' argument.");
         }
         this.innerRadius = radius;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -250,7 +254,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Sets the outer radius and sends a {@link DialLayerChangeEvent} to
+     * Sets the outer radius and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param radius  the outer radius.
@@ -262,7 +266,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
             throw new IllegalArgumentException("Negative 'radius' argument.");
         }
         this.outerRadius = radius;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -277,7 +281,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Sets the start angle and sends a {@link DialLayerChangeEvent} to
+     * Sets the start angle and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param angle  the angle.
@@ -286,7 +290,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
      */
     public void setStartAngle(double angle) {
         this.startAngle = angle;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -301,7 +305,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     }
 
     /**
-     * Sets the extent and sends a {@link DialLayerChangeEvent} to
+     * Sets the extent and sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to
      * all registered listeners.
      *
      * @param extent  the extent.
@@ -324,9 +328,9 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     @Override
     public Shape getWindow(Rectangle2D frame) {
 
-        Rectangle2D innerFrame = DialPlot.rectangleByRadius(frame,
+        Rectangle2D innerFrame = jfree.chart.plot.dial.DialPlot.rectangleByRadius(frame,
                 this.innerRadius, this.innerRadius);
-        Rectangle2D outerFrame = DialPlot.rectangleByRadius(frame,
+        Rectangle2D outerFrame = jfree.chart.plot.dial.DialPlot.rectangleByRadius(frame,
                 this.outerRadius, this.outerRadius);
         Arc2D inner = new Arc2D.Double(innerFrame, this.startAngle,
                 this.extent, Arc2D.OPEN);
@@ -352,10 +356,10 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
     protected Shape getOuterWindow(Rectangle2D frame) {
         double radiusMargin = 0.02;
         double angleMargin = 1.5;
-        Rectangle2D innerFrame = DialPlot.rectangleByRadius(frame,
+        Rectangle2D innerFrame = jfree.chart.plot.dial.DialPlot.rectangleByRadius(frame,
                 this.innerRadius - radiusMargin, this.innerRadius
                 - radiusMargin);
-        Rectangle2D outerFrame = DialPlot.rectangleByRadius(frame,
+        Rectangle2D outerFrame = jfree.chart.plot.dial.DialPlot.rectangleByRadius(frame,
                 this.outerRadius + radiusMargin, this.outerRadius
                 + radiusMargin);
         Arc2D inner = new Arc2D.Double(innerFrame, this.startAngle
@@ -382,7 +386,7 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
      */
     @Override
     public void draw(Graphics2D g2, DialPlot plot, Rectangle2D frame,
-            Rectangle2D view) {
+                     Rectangle2D view) {
 
         Shape window = getWindow(frame);
         Shape outerWindow = getOuterWindow(frame);
@@ -423,10 +427,10 @@ public class ArcDialFrame extends AbstractDialLayer implements DialFrame,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ArcDialFrame)) {
+        if (!(obj instanceof jfree.chart.plot.dial.ArcDialFrame)) {
             return false;
         }
-        ArcDialFrame that = (ArcDialFrame) obj;
+        jfree.chart.plot.dial.ArcDialFrame that = (jfree.chart.plot.dial.ArcDialFrame) obj;
         if (!PaintUtilities.equal(this.backgroundPaint, that.backgroundPaint)) {
             return false;
         }

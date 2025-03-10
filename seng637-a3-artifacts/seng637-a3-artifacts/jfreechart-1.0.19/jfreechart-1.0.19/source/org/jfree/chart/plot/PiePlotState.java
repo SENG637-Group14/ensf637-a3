@@ -42,7 +42,9 @@ package org.jfree.chart.plot;
 
 import java.awt.geom.Rectangle2D;
 
-import org.jfree.chart.renderer.RendererState;
+import jfree.chart.plot.PiePlot3D;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.renderer.RendererState;
 
 /**
  * A renderer state.

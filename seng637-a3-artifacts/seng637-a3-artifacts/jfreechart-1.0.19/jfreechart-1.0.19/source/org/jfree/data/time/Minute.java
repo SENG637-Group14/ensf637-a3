@@ -72,13 +72,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
+import jfree.data.time.Day;
+import jfree.data.time.Hour;
+import jfree.data.time.RegularTimePeriod;
 
 /**
  * Represents a minute.  This class is immutable, which is a requirement for
- * all {@link RegularTimePeriod} subclasses.
+ * all {@link jfree.data.time.RegularTimePeriod} subclasses.
  */
-public class Minute extends RegularTimePeriod implements Serializable {
+public class Minute extends jfree.data.time.RegularTimePeriod implements Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = 2144572840034842871L;
@@ -90,7 +93,7 @@ public class Minute extends RegularTimePeriod implements Serializable {
     public static final int LAST_MINUTE_IN_HOUR = 59;
 
     /** The day. */
-    private Day day;
+    private jfree.data.time.Day day;
 
     /** The hour in which the minute falls. */
     private byte hour;
@@ -117,7 +120,7 @@ public class Minute extends RegularTimePeriod implements Serializable {
      * @param minute  the minute (0 to 59).
      * @param hour  the hour (<code>null</code> not permitted).
      */
-    public Minute(int minute, Hour hour) {
+    public Minute(int minute, jfree.data.time.Hour hour) {
         ParamChecks.nullNotPermitted(hour, "hour");
         this.minute = (byte) minute;
         this.hour = (byte) hour.getHour();
@@ -169,7 +172,7 @@ public class Minute extends RegularTimePeriod implements Serializable {
         int min = calendar.get(Calendar.MINUTE);
         this.minute = (byte) min;
         this.hour = (byte) calendar.get(Calendar.HOUR_OF_DAY);
-        this.day = new Day(time, zone, locale);
+        this.day = new jfree.data.time.Day(time, zone, locale);
         peg(calendar);
     }
 
@@ -183,7 +186,7 @@ public class Minute extends RegularTimePeriod implements Serializable {
      * @param year  the year (1900-9999).
      */
     public Minute(int minute, int hour, int day, int month, int year) {
-        this(minute, new Hour(hour, new Day(day, month, year)));
+        this(minute, new jfree.data.time.Hour(hour, new jfree.data.time.Day(day, month, year)));
     }
 
     /**
@@ -193,7 +196,7 @@ public class Minute extends RegularTimePeriod implements Serializable {
      *
      * @since 1.0.3
      */
-    public Day getDay() {
+    public jfree.data.time.Day getDay() {
         return this.day;
     }
 
@@ -202,8 +205,8 @@ public class Minute extends RegularTimePeriod implements Serializable {
      *
      * @return The hour (never <code>null</code>).
      */
-    public Hour getHour() {
-        return new Hour(this.hour, this.day);
+    public jfree.data.time.Hour getHour() {
+        return new jfree.data.time.Hour(this.hour, this.day);
     }
 
     /**
@@ -276,15 +279,15 @@ public class Minute extends RegularTimePeriod implements Serializable {
      * @return The minute preceding this one.
      */
     @Override
-    public RegularTimePeriod previous() {
-        Minute result;
+    public jfree.data.time.RegularTimePeriod previous() {
+        jfree.data.time.Minute result;
         if (this.minute != FIRST_MINUTE_IN_HOUR) {
-            result = new Minute(this.minute - 1, getHour());
+            result = new jfree.data.time.Minute(this.minute - 1, getHour());
         }
         else {
-            Hour h = (Hour) getHour().previous();
+            jfree.data.time.Hour h = (jfree.data.time.Hour) getHour().previous();
             if (h != null) {
-                result = new Minute(LAST_MINUTE_IN_HOUR, h);
+                result = new jfree.data.time.Minute(LAST_MINUTE_IN_HOUR, h);
             }
             else {
                 result = null;
@@ -299,15 +302,15 @@ public class Minute extends RegularTimePeriod implements Serializable {
      * @return The minute following this one.
      */
     @Override
-    public RegularTimePeriod next() {
-        Minute result;
+    public jfree.data.time.RegularTimePeriod next() {
+        jfree.data.time.Minute result;
         if (this.minute != LAST_MINUTE_IN_HOUR) {
-            result = new Minute(this.minute + 1, getHour());
+            result = new jfree.data.time.Minute(this.minute + 1, getHour());
         }
         else { // we are at the last minute in the hour...
-            Hour nextHour = (Hour) getHour().next();
+            jfree.data.time.Hour nextHour = (jfree.data.time.Hour) getHour().next();
             if (nextHour != null) {
-                result = new Minute(FIRST_MINUTE_IN_HOUR, nextHour);
+                result = new jfree.data.time.Minute(FIRST_MINUTE_IN_HOUR, nextHour);
             }
             else {
                 result = null;
@@ -391,10 +394,10 @@ public class Minute extends RegularTimePeriod implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Minute)) {
+        if (!(obj instanceof jfree.data.time.Minute)) {
             return false;
         }
-        Minute that = (Minute) obj;
+        jfree.data.time.Minute that = (jfree.data.time.Minute) obj;
         if (this.minute != that.minute) {
             return false;
         }
@@ -438,8 +441,8 @@ public class Minute extends RegularTimePeriod implements Serializable {
 
         // CASE 1 : Comparing to another Minute object
         // -------------------------------------------
-        if (o1 instanceof Minute) {
-            Minute m = (Minute) o1;
+        if (o1 instanceof jfree.data.time.Minute) {
+            jfree.data.time.Minute m = (jfree.data.time.Minute) o1;
             result = getHour().compareTo(m.getHour());
             if (result == 0) {
                 result = this.minute - m.getMinute();
@@ -473,12 +476,12 @@ public class Minute extends RegularTimePeriod implements Serializable {
      * @return <code>null</code>, if the string is not parseable, the minute
      *      otherwise.
      */
-    public static Minute parseMinute(String s) {
-        Minute result = null;
+    public static jfree.data.time.Minute parseMinute(String s) {
+        jfree.data.time.Minute result = null;
         s = s.trim();
 
         String daystr = s.substring(0, Math.min(10, s.length()));
-        Day day = Day.parseDay(daystr);
+        jfree.data.time.Day day = Day.parseDay(daystr);
         if (day != null) {
             String hmstr = s.substring(
                 Math.min(daystr.length() + 1, s.length()), s.length()
@@ -495,7 +498,7 @@ public class Minute extends RegularTimePeriod implements Serializable {
                 );
                 int minute = Integer.parseInt(minstr);
                 if ((minute >= 0) && (minute <= 59)) {
-                    result = new Minute(minute, new Hour(hour, day));
+                    result = new jfree.data.time.Minute(minute, new Hour(hour, day));
                 }
             }
         }

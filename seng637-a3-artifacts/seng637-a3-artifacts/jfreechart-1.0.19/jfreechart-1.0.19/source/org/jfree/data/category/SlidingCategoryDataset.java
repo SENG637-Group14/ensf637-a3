@@ -44,13 +44,14 @@ package org.jfree.data.category;
 import java.util.Collections;
 import java.util.List;
 
-import org.jfree.data.UnknownKeyException;
-import org.jfree.data.general.AbstractDataset;
-import org.jfree.data.general.DatasetChangeEvent;
+import jfree.data.UnknownKeyException;
+import jfree.data.category.CategoryDataset;
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.DatasetChangeEvent;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A {@link CategoryDataset} implementation that presents a subset of the
+ * A {@link jfree.data.category.CategoryDataset} implementation that presents a subset of the
  * categories in an underlying dataset.  The index of the first "visible"
  * category can be modified, which provides a means of "sliding" through
  * the categories in the underlying dataset.
@@ -58,10 +59,10 @@ import org.jfree.util.PublicCloneable;
  * @since 1.0.10
  */
 public class SlidingCategoryDataset extends AbstractDataset
-        implements CategoryDataset {
+        implements jfree.data.category.CategoryDataset {
 
     /** The underlying dataset. */
-    private CategoryDataset underlying;
+    private jfree.data.category.CategoryDataset underlying;
 
     /** The index of the first category to present. */
     private int firstCategoryIndex;
@@ -78,8 +79,8 @@ public class SlidingCategoryDataset extends AbstractDataset
      *     underlying dataset.
      * @param maxColumns  the maximumColumnCount.
      */
-    public SlidingCategoryDataset(CategoryDataset underlying, int firstColumn,
-            int maxColumns) {
+    public SlidingCategoryDataset(jfree.data.category.CategoryDataset underlying, int firstColumn,
+                                  int maxColumns) {
         this.underlying = underlying;
         this.firstCategoryIndex = firstColumn;
         this.maximumCategoryCount = maxColumns;
@@ -90,7 +91,7 @@ public class SlidingCategoryDataset extends AbstractDataset
      *
      * @return The underlying dataset (never <code>null</code>).
      */
-    public CategoryDataset getUnderlyingDataset() {
+    public jfree.data.category.CategoryDataset getUnderlyingDataset() {
         return this.underlying;
     }
 
@@ -319,10 +320,10 @@ public class SlidingCategoryDataset extends AbstractDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof SlidingCategoryDataset)) {
+        if (!(obj instanceof jfree.data.category.SlidingCategoryDataset)) {
             return false;
         }
-        SlidingCategoryDataset that = (SlidingCategoryDataset) obj;
+        jfree.data.category.SlidingCategoryDataset that = (jfree.data.category.SlidingCategoryDataset) obj;
         if (this.firstCategoryIndex != that.firstCategoryIndex) {
             return false;
         }
@@ -351,7 +352,7 @@ public class SlidingCategoryDataset extends AbstractDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        SlidingCategoryDataset clone = (SlidingCategoryDataset) super.clone();
+        jfree.data.category.SlidingCategoryDataset clone = (jfree.data.category.SlidingCategoryDataset) super.clone();
         if (this.underlying instanceof PublicCloneable) {
             PublicCloneable pc = (PublicCloneable) this.underlying;
             clone.underlying = (CategoryDataset) pc.clone();

@@ -41,9 +41,12 @@
 
 package org.jfree.data.general;
 
+import jfree.data.general.DefaultPieDataset;
+import jfree.data.general.KeyedValuesDataset;
+
 /**
- * A default implementation of the {@link KeyedValuesDataset} interface.
- * This is an alias for {@link DefaultPieDataset}.
+ * A default implementation of the {@link jfree.data.general.KeyedValuesDataset} interface.
+ * This is an alias for {@link jfree.data.general.DefaultPieDataset}.
  */
 public class DefaultKeyedValuesDataset extends DefaultPieDataset
         implements KeyedValuesDataset {

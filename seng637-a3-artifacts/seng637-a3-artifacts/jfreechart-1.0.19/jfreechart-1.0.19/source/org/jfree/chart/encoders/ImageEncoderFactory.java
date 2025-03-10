@@ -45,11 +45,14 @@
 
 package org.jfree.chart.encoders;
 
+import jfree.chart.encoders.ImageEncoder;
+import jfree.chart.encoders.ImageFormat;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Factory class for returning {@link ImageEncoder}s for different
+ * Factory class for returning {@link jfree.chart.encoders.ImageEncoder}s for different
  * {@link ImageFormat}s.
  */
 public class ImageEncoderFactory {
@@ -89,8 +92,8 @@ public class ImageEncoderFactory {
      *
      * @return The ImageEncoder or <code>null</code> if none available.
      */
-    public static ImageEncoder newInstance(String format) {
-        ImageEncoder imageEncoder = null;
+    public static jfree.chart.encoders.ImageEncoder newInstance(String format) {
+        jfree.chart.encoders.ImageEncoder imageEncoder = null;
         String className = (String) encoders.get(format);
         if (className == null) {
             throw new IllegalArgumentException("Unsupported image format - "
@@ -98,7 +101,7 @@ public class ImageEncoderFactory {
         }
         try {
             Class imageEncoderClass = Class.forName(className);
-            imageEncoder = (ImageEncoder) imageEncoderClass.newInstance();
+            imageEncoder = (jfree.chart.encoders.ImageEncoder) imageEncoderClass.newInstance();
         }
         catch (Exception e) {
             throw new IllegalArgumentException(e.toString());
@@ -114,8 +117,8 @@ public class ImageEncoderFactory {
      *
      * @return The ImageEncoder or <code>null</code> if none available.
      */
-    public static ImageEncoder newInstance(String format, float quality) {
-        ImageEncoder imageEncoder = newInstance(format);
+    public static jfree.chart.encoders.ImageEncoder newInstance(String format, float quality) {
+        jfree.chart.encoders.ImageEncoder imageEncoder = newInstance(format);
         imageEncoder.setQuality(quality);
         return imageEncoder;
     }
@@ -128,9 +131,9 @@ public class ImageEncoderFactory {
      *
      * @return The ImageEncoder or <code>null</code> if none available.
      */
-    public static ImageEncoder newInstance(String format,
-                                           boolean encodingAlpha) {
-        ImageEncoder imageEncoder = newInstance(format);
+    public static jfree.chart.encoders.ImageEncoder newInstance(String format,
+                                                                     boolean encodingAlpha) {
+        jfree.chart.encoders.ImageEncoder imageEncoder = newInstance(format);
         imageEncoder.setEncodingAlpha(encodingAlpha);
         return imageEncoder;
     }
@@ -144,8 +147,8 @@ public class ImageEncoderFactory {
      *
      * @return The ImageEncoder or <code>null</code> if none available.
      */
-    public static ImageEncoder newInstance(String format, float quality,
-                                           boolean encodingAlpha) {
+    public static jfree.chart.encoders.ImageEncoder newInstance(String format, float quality,
+                                                                     boolean encodingAlpha) {
         ImageEncoder imageEncoder = newInstance(format);
         imageEncoder.setQuality(quality);
         imageEncoder.setEncodingAlpha(encodingAlpha);

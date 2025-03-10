@@ -41,12 +41,14 @@
 
 package org.jfree.chart.plot;
 
+import jfree.chart.plot.XYPlot;
+
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 
 /**
  * Defines the tokens that indicate the rendering order for series in a
- * {@link org.jfree.chart.plot.XYPlot}.
+ * {@link XYPlot}.
  */
 public final class SeriesRenderingOrder implements Serializable {
 
@@ -57,15 +59,15 @@ public final class SeriesRenderingOrder implements Serializable {
      * Render series in the order 0, 1, 2, ..., N-1, where N is the number
      * of series.
      */
-    public static final SeriesRenderingOrder FORWARD
-            = new SeriesRenderingOrder("SeriesRenderingOrder.FORWARD");
+    public static final jfree.chart.plot.SeriesRenderingOrder FORWARD
+            = new jfree.chart.plot.SeriesRenderingOrder("SeriesRenderingOrder.FORWARD");
 
     /**
      * Render series in the order N-1, N-2, ..., 2, 1, 0, where N is the
      * number of series.
      */
-    public static final SeriesRenderingOrder REVERSE
-            = new SeriesRenderingOrder("SeriesRenderingOrder.REVERSE");
+    public static final jfree.chart.plot.SeriesRenderingOrder REVERSE
+            = new jfree.chart.plot.SeriesRenderingOrder("SeriesRenderingOrder.REVERSE");
 
     /** The name. */
     private String name;
@@ -102,10 +104,10 @@ public final class SeriesRenderingOrder implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof SeriesRenderingOrder)) {
+        if (!(obj instanceof jfree.chart.plot.SeriesRenderingOrder)) {
             return false;
         }
-        SeriesRenderingOrder order = (SeriesRenderingOrder) obj;
+        jfree.chart.plot.SeriesRenderingOrder order = (jfree.chart.plot.SeriesRenderingOrder) obj;
         if (!this.name.equals(order.toString())) {
             return false;
         }
@@ -130,11 +132,11 @@ public final class SeriesRenderingOrder implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(SeriesRenderingOrder.FORWARD)) {
-            return SeriesRenderingOrder.FORWARD;
+        if (this.equals(jfree.chart.plot.SeriesRenderingOrder.FORWARD)) {
+            return jfree.chart.plot.SeriesRenderingOrder.FORWARD;
         }
-        else if (this.equals(SeriesRenderingOrder.REVERSE)) {
-            return SeriesRenderingOrder.REVERSE;
+        else if (this.equals(jfree.chart.plot.SeriesRenderingOrder.REVERSE)) {
+            return jfree.chart.plot.SeriesRenderingOrder.REVERSE;
         }
         return null;
     }

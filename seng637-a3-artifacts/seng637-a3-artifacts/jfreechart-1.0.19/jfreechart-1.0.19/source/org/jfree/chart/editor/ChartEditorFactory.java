@@ -40,10 +40,11 @@
 
 package org.jfree.chart.editor;
 
-import org.jfree.chart.JFreeChart;
+import jfree.chart.JFreeChart;
+import jfree.chart.editor.ChartEditor;
 
 /**
- * A factory for creating new {@link ChartEditor} instances.
+ * A factory for creating new {@link jfree.chart.editor.ChartEditor} instances.
  */
 public interface ChartEditorFactory {
 

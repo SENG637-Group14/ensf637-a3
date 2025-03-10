@@ -43,13 +43,14 @@ package org.jfree.data.gantt;
 import java.util.Collections;
 import java.util.List;
 
-import org.jfree.data.UnknownKeyException;
-import org.jfree.data.general.AbstractDataset;
-import org.jfree.data.general.DatasetChangeEvent;
+import jfree.data.UnknownKeyException;
+import jfree.data.gantt.GanttCategoryDataset;
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.DatasetChangeEvent;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A {@link GanttCategoryDataset} implementation that presents a subset of the
+ * A {@link jfree.data.gantt.GanttCategoryDataset} implementation that presents a subset of the
  * categories in an underlying dataset.  The index of the first "visible"
  * category can be modified, which provides a means of "sliding" through
  * the categories in the underlying dataset.
@@ -57,10 +58,10 @@ import org.jfree.util.PublicCloneable;
  * @since 1.0.10
  */
 public class SlidingGanttCategoryDataset extends AbstractDataset
-        implements GanttCategoryDataset {
+        implements jfree.data.gantt.GanttCategoryDataset {
 
     /** The underlying dataset. */
-    private GanttCategoryDataset underlying;
+    private jfree.data.gantt.GanttCategoryDataset underlying;
 
     /** The index of the first category to present. */
     private int firstCategoryIndex;
@@ -77,8 +78,8 @@ public class SlidingGanttCategoryDataset extends AbstractDataset
      *     underlying dataset.
      * @param maxColumns  the maximumColumnCount.
      */
-    public SlidingGanttCategoryDataset(GanttCategoryDataset underlying,
-            int firstColumn, int maxColumns) {
+    public SlidingGanttCategoryDataset(jfree.data.gantt.GanttCategoryDataset underlying,
+                                       int firstColumn, int maxColumns) {
         this.underlying = underlying;
         this.firstCategoryIndex = firstColumn;
         this.maximumCategoryCount = maxColumns;
@@ -89,7 +90,7 @@ public class SlidingGanttCategoryDataset extends AbstractDataset
      *
      * @return The underlying dataset (never <code>null</code>).
      */
-    public GanttCategoryDataset getUnderlyingDataset() {
+    public jfree.data.gantt.GanttCategoryDataset getUnderlyingDataset() {
         return this.underlying;
     }
 
@@ -593,10 +594,10 @@ public class SlidingGanttCategoryDataset extends AbstractDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof SlidingGanttCategoryDataset)) {
+        if (!(obj instanceof jfree.data.gantt.SlidingGanttCategoryDataset)) {
             return false;
         }
-        SlidingGanttCategoryDataset that = (SlidingGanttCategoryDataset) obj;
+        jfree.data.gantt.SlidingGanttCategoryDataset that = (jfree.data.gantt.SlidingGanttCategoryDataset) obj;
         if (this.firstCategoryIndex != that.firstCategoryIndex) {
             return false;
         }
@@ -625,8 +626,8 @@ public class SlidingGanttCategoryDataset extends AbstractDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        SlidingGanttCategoryDataset clone
-                = (SlidingGanttCategoryDataset) super.clone();
+        jfree.data.gantt.SlidingGanttCategoryDataset clone
+                = (jfree.data.gantt.SlidingGanttCategoryDataset) super.clone();
         if (this.underlying instanceof PublicCloneable) {
             PublicCloneable pc = (PublicCloneable) this.underlying;
             clone.underlying = (GanttCategoryDataset) pc.clone();

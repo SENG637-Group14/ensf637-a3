@@ -104,22 +104,24 @@ import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.LegendItemSource;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.event.RendererChangeListener;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.labels.CategoryToolTipGenerator;
-import org.jfree.chart.labels.ItemLabelPosition;
-import org.jfree.chart.plot.CategoryMarker;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Marker;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.urls.CategoryURLGenerator;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.LegendItemSource;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.event.RendererChangeListener;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.labels.CategoryToolTipGenerator;
+import jfree.chart.labels.ItemLabelPosition;
+import jfree.chart.plot.CategoryMarker;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Marker;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.renderer.category.AbstractCategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.urls.CategoryURLGenerator;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
 import org.jfree.ui.RectangleEdge;
 
 /**
@@ -220,11 +222,11 @@ public interface CategoryItemRenderer extends LegendItemSource {
      * @return A state object (maintains state information relevant to one
      *         chart drawing).
      */
-    public CategoryItemRendererState initialise(Graphics2D g2,
-                                                Rectangle2D dataArea,
-                                                CategoryPlot plot,
-                                                int rendererIndex,
-                                                PlotRenderingInfo info);
+    public jfree.chart.renderer.category.CategoryItemRendererState initialise(Graphics2D g2,
+                                                                                   Rectangle2D dataArea,
+                                                                                   CategoryPlot plot,
+                                                                                   int rendererIndex,
+                                                                                   PlotRenderingInfo info);
 
     /**
      * Returns a boolean that indicates whether or not the specified item
@@ -1146,7 +1148,7 @@ public interface CategoryItemRenderer extends LegendItemSource {
 
     /**
      * Sets the tool tip generator for ALL series and sends a
-     * {@link org.jfree.chart.event.RendererChangeEvent} to all registered
+     * {@link RendererChangeEvent} to all registered
      * listeners.
      *
      * @param generator  the generator (<code>null</code> permitted).
@@ -1174,7 +1176,7 @@ public interface CategoryItemRenderer extends LegendItemSource {
 
     /**
      * Sets the tool tip generator for a series and sends a
-     * {@link org.jfree.chart.event.RendererChangeEvent} to all registered
+     * {@link RendererChangeEvent} to all registered
      * listeners.
      *
      * @param series  the series index (zero-based).
@@ -1199,7 +1201,7 @@ public interface CategoryItemRenderer extends LegendItemSource {
 
     /**
      * Sets the base tool tip generator and sends a
-     * {@link org.jfree.chart.event.RendererChangeEvent} to all registered
+     * {@link RendererChangeEvent} to all registered
      * listeners.
      *
      * @param generator  the generator (<code>null</code> permitted).

@@ -54,7 +54,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.block.BlockFrame;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleInsets;
@@ -69,7 +71,7 @@ public class BlockBorder implements BlockFrame, Serializable {
     private static final long serialVersionUID = 4961579220410228283L;
 
     /** An empty border. */
-    public static final BlockBorder NONE = new BlockBorder(
+    public static final jfree.chart.block.BlockBorder NONE = new jfree.chart.block.BlockBorder(
             RectangleInsets.ZERO_INSETS, Color.white);
 
     /** The space reserved for the border. */
@@ -202,10 +204,10 @@ public class BlockBorder implements BlockFrame, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof BlockBorder)) {
+        if (!(obj instanceof jfree.chart.block.BlockBorder)) {
             return false;
         }
-        BlockBorder that = (BlockBorder) obj;
+        jfree.chart.block.BlockBorder that = (jfree.chart.block.BlockBorder) obj;
         if (!this.insets.equals(that.insets)) {
             return false;
         }

@@ -42,11 +42,12 @@ package org.jfree.chart.renderer.category;
 
 import java.io.Serializable;
 
-import org.jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.renderer.category.LineAndShapeRenderer;
 
 /**
  * A default renderer for the {@link CategoryPlot} class.  This is simply an
- * alias for the {@link LineAndShapeRenderer} class.
+ * alias for the {@link jfree.chart.renderer.category.LineAndShapeRenderer} class.
  */
 public class DefaultCategoryItemRenderer extends LineAndShapeRenderer
                                          implements Serializable {

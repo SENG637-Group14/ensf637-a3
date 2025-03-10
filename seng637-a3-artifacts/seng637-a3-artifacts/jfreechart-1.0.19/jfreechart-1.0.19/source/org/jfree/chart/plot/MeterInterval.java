@@ -50,9 +50,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
 
-import org.jfree.data.Range;
+import jfree.chart.plot.MeterPlot;
+import jfree.chart.util.ParamChecks;
+
+import jfree.data.Range;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PaintUtilities;
@@ -170,10 +172,10 @@ public class MeterInterval implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof MeterInterval)) {
+        if (!(obj instanceof jfree.chart.plot.MeterInterval)) {
             return false;
         }
-        MeterInterval that = (MeterInterval) obj;
+        jfree.chart.plot.MeterInterval that = (jfree.chart.plot.MeterInterval) obj;
         if (!this.label.equals(that.label)) {
             return false;
         }

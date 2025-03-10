@@ -40,8 +40,11 @@
 
 package org.jfree.data.xml;
 
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
+import jfree.data.category.CategoryDataset;
+import jfree.data.category.DefaultCategoryDataset;
+import jfree.data.xml.CategorySeriesHandler;
+import jfree.data.xml.DatasetTags;
+import jfree.data.xml.RootHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -105,7 +108,7 @@ public class CategoryDatasetHandler extends RootHandler implements DatasetTags {
             this.dataset = new DefaultCategoryDataset();
         }
         else if (qName.equals(SERIES_TAG)) {
-            CategorySeriesHandler subhandler = new CategorySeriesHandler(this);
+            jfree.data.xml.CategorySeriesHandler subhandler = new CategorySeriesHandler(this);
             getSubHandlers().push(subhandler);
             subhandler.startElement(namespaceURI, localName, qName, atts);
         }

@@ -124,19 +124,23 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.BooleanList;
@@ -692,7 +696,7 @@ public class StandardXYItemRenderer extends AbstractXYItemRenderer
      * information between calls to the drawItem() method for a single chart
      * drawing.
      */
-    public static class State extends XYItemRendererState {
+    public static class State extends jfree.chart.renderer.xy.XYItemRendererState {
 
         /** The path for the current series. */
         public GeneralPath seriesPath;
@@ -771,8 +775,8 @@ public class StandardXYItemRenderer extends AbstractXYItemRenderer
      * @return The renderer state.
      */
     @Override
-    public XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
-            XYPlot plot, XYDataset data, PlotRenderingInfo info) {
+    public jfree.chart.renderer.xy.XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
+                                                                       XYPlot plot, XYDataset data, PlotRenderingInfo info) {
 
         State state = new State(info);
         state.seriesPath = new GeneralPath();
@@ -1004,10 +1008,10 @@ public class StandardXYItemRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardXYItemRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.StandardXYItemRenderer)) {
             return false;
         }
-        StandardXYItemRenderer that = (StandardXYItemRenderer) obj;
+        jfree.chart.renderer.xy.StandardXYItemRenderer that = (jfree.chart.renderer.xy.StandardXYItemRenderer) obj;
         if (this.baseShapesVisible != that.baseShapesVisible) {
             return false;
         }
@@ -1054,7 +1058,7 @@ public class StandardXYItemRenderer extends AbstractXYItemRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        StandardXYItemRenderer clone = (StandardXYItemRenderer) super.clone();
+        jfree.chart.renderer.xy.StandardXYItemRenderer clone = (jfree.chart.renderer.xy.StandardXYItemRenderer) super.clone();
         clone.seriesShapesFilled
                 = (BooleanList) this.seriesShapesFilled.clone();
         clone.legendLine = ShapeUtilities.clone(this.legendLine);

@@ -43,15 +43,18 @@ package org.jfree.data.general;
 
 import java.io.Serializable;
 
-import org.jfree.data.DefaultKeyedValue;
-import org.jfree.data.KeyedValue;
+import jfree.data.DefaultKeyedValue;
+import jfree.data.KeyedValue;
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.KeyedValueDataset;
 import org.jfree.util.ObjectUtilities;
 
 /**
- * A default implementation of the {@link KeyedValueDataset} interface.
+ * A default implementation of the {@link jfree.data.general.KeyedValueDataset} interface.
  */
 public class DefaultKeyedValueDataset extends AbstractDataset
-        implements KeyedValueDataset, Serializable {
+        implements jfree.data.general.KeyedValueDataset, Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = -8149484339560406750L;
@@ -128,7 +131,7 @@ public class DefaultKeyedValueDataset extends AbstractDataset
     }
 
     /**
-     * Sets the value for the dataset and sends a {@link DatasetChangeEvent} to
+     * Sets the value for the dataset and sends a {@link jfree.data.general.DatasetChangeEvent} to
      * all registered listeners.
      *
      * @param key  the key.
@@ -151,10 +154,10 @@ public class DefaultKeyedValueDataset extends AbstractDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof KeyedValueDataset)) {
+        if (!(obj instanceof jfree.data.general.KeyedValueDataset)) {
             return false;
         }
-        KeyedValueDataset that = (KeyedValueDataset) obj;
+        jfree.data.general.KeyedValueDataset that = (KeyedValueDataset) obj;
         if (this.data == null) {
             if (that.getKey() != null || that.getValue() != null) {
                 return false;
@@ -190,8 +193,8 @@ public class DefaultKeyedValueDataset extends AbstractDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultKeyedValueDataset clone
-                = (DefaultKeyedValueDataset) super.clone();
+        jfree.data.general.DefaultKeyedValueDataset clone
+                = (jfree.data.general.DefaultKeyedValueDataset) super.clone();
         return clone;
     }
 

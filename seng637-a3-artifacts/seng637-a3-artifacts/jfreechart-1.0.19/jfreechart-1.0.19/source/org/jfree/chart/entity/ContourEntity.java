@@ -47,8 +47,9 @@ package org.jfree.chart.entity;
 import java.awt.Shape;
 import java.io.Serializable;
 
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.chart.entity.ChartEntity;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
 
 /**
  * Represents an item on a contour chart.
@@ -117,8 +118,8 @@ public class ContourEntity extends ChartEntity
         if (obj == this) {
             return true;
         }
-        if (obj instanceof ContourEntity && super.equals(obj)) {
-            ContourEntity ce = (ContourEntity) obj;
+        if (obj instanceof jfree.chart.entity.ContourEntity && super.equals(obj)) {
+            jfree.chart.entity.ContourEntity ce = (jfree.chart.entity.ContourEntity) obj;
             if (this.index != ce.index) {
                 return false;
             }

@@ -42,7 +42,7 @@
 
  package org.jfree.data.gantt;
 
-import org.jfree.data.category.IntervalCategoryDataset;
+import jfree.data.category.IntervalCategoryDataset;
 
 /**
  * An extension of the {@link IntervalCategoryDataset} interface that adds

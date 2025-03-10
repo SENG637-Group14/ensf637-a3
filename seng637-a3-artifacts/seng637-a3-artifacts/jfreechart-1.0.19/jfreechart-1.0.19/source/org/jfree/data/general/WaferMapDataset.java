@@ -46,10 +46,12 @@ package org.jfree.data.general;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.jfree.data.DefaultKeyedValues2D;
+import jfree.chart.plot.WaferMapPlot;
+import jfree.data.DefaultKeyedValues2D;
+import jfree.data.general.AbstractDataset;
 
 /**
- * A dataset that can be used with the {@link org.jfree.chart.plot.WaferMapPlot}
+ * A dataset that can be used with the {@link WaferMapPlot}
  * class.
  */
 public class WaferMapDataset extends AbstractDataset {

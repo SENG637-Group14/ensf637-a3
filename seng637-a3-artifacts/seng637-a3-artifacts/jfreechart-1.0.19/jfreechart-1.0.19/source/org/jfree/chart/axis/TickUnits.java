@@ -55,6 +55,12 @@
 
 package org.jfree.chart.axis;
 
+import jfree.chart.axis.DateAxis;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.NumberTickUnit;
+import jfree.chart.axis.TickUnit;
+import jfree.chart.axis.TickUnitSource;
+
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -86,7 +92,7 @@ public class TickUnits implements TickUnitSource, Cloneable, Serializable {
      *
      * @param unit  the tick unit to add (<code>null</code> not permitted).
      */
-    public void add(TickUnit unit) {
+    public void add(jfree.chart.axis.TickUnit unit) {
         if (unit == null) {
             throw new NullPointerException("Null 'unit' argument.");
         }
@@ -114,8 +120,8 @@ public class TickUnits implements TickUnitSource, Cloneable, Serializable {
      *
      * @return The tickunit.
      */
-    public TickUnit get(int pos) {
-        return (TickUnit) this.tickUnits.get(pos);
+    public jfree.chart.axis.TickUnit get(int pos) {
+        return (jfree.chart.axis.TickUnit) this.tickUnits.get(pos);
     }
 
     /**
@@ -126,7 +132,7 @@ public class TickUnits implements TickUnitSource, Cloneable, Serializable {
      * @return A tick unit that is larger than the supplied unit.
      */
     @Override
-    public TickUnit getLargerTickUnit(TickUnit unit) {
+    public jfree.chart.axis.TickUnit getLargerTickUnit(jfree.chart.axis.TickUnit unit) {
         int index = Collections.binarySearch(this.tickUnits, unit);
         if (index >= 0) {
             index = index + 1;
@@ -135,7 +141,7 @@ public class TickUnits implements TickUnitSource, Cloneable, Serializable {
             index = -index;
         }
 
-        return (TickUnit) this.tickUnits.get(Math.min(index,
+        return (jfree.chart.axis.TickUnit) this.tickUnits.get(Math.min(index,
                 this.tickUnits.size() - 1));
     }
 
@@ -148,14 +154,14 @@ public class TickUnits implements TickUnitSource, Cloneable, Serializable {
      * @return A unit from the collection.
      */
     @Override
-    public TickUnit getCeilingTickUnit(TickUnit unit) {
+    public jfree.chart.axis.TickUnit getCeilingTickUnit(jfree.chart.axis.TickUnit unit) {
         int index = Collections.binarySearch(this.tickUnits, unit);
         if (index >= 0) {
-            return (TickUnit) this.tickUnits.get(index);
+            return (jfree.chart.axis.TickUnit) this.tickUnits.get(index);
         }
         else {
             index = -(index + 1);
-            return (TickUnit) this.tickUnits.get(Math.min(index,
+            return (jfree.chart.axis.TickUnit) this.tickUnits.get(Math.min(index,
                     this.tickUnits.size() - 1));
         }
     }
@@ -184,7 +190,7 @@ public class TickUnits implements TickUnitSource, Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        TickUnits clone = (TickUnits) super.clone();
+        jfree.chart.axis.TickUnits clone = (jfree.chart.axis.TickUnits) super.clone();
         clone.tickUnits = new java.util.ArrayList(this.tickUnits);
         return clone;
     }
@@ -201,10 +207,10 @@ public class TickUnits implements TickUnitSource, Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof TickUnits)) {
+        if (!(obj instanceof jfree.chart.axis.TickUnits)) {
             return false;
         }
-        TickUnits that = (TickUnits) obj;
+        jfree.chart.axis.TickUnits that = (jfree.chart.axis.TickUnits) obj;
         return that.tickUnits.equals(this.tickUnits);
     }
 

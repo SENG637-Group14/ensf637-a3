@@ -44,8 +44,11 @@
 
 package org.jfree.data.xy;
 
+import jfree.data.xy.Vector;
+import jfree.data.xy.XYDataset;
+
 /**
- * An extension of the {@link XYDataset} interface that allows a vector to be
+ * An extension of the {@link jfree.data.xy.XYDataset} interface that allows a vector to be
  * defined at a specific (x, y) location.
  *
  * @since 1.0.6
@@ -74,7 +77,7 @@ public interface VectorXYDataset extends XYDataset {
 
     /**
      * Returns the vector for an item in a series.  Depending on the particular
-     * dataset implementation, this may involve creating a new {@link Vector}
+     * dataset implementation, this may involve creating a new {@link jfree.data.xy.Vector}
      * instance --- if you are just interested in the x and y components,
      * use the {@link #getVectorXValue(int, int)} and
      * {@link #getVectorYValue(int, int)} methods instead.

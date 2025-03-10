@@ -44,8 +44,10 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.IntervalCategoryDataset;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import jfree.data.category.CategoryDataset;
+import jfree.data.category.IntervalCategoryDataset;
 import org.jfree.util.PublicCloneable;
 
 /**

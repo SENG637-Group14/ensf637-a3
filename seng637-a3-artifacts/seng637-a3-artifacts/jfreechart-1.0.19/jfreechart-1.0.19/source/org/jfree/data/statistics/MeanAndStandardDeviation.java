@@ -45,12 +45,13 @@ package org.jfree.data.statistics;
 
 import java.io.Serializable;
 
+import jfree.data.statistics.DefaultStatisticalCategoryDataset;
 import org.jfree.util.ObjectUtilities;
 
 /**
  * A simple data structure that holds a mean value and a standard deviation
  * value.  This is used in the
- * {@link org.jfree.data.statistics.DefaultStatisticalCategoryDataset} class.
+ * {@link DefaultStatisticalCategoryDataset} class.
  */
 public class MeanAndStandardDeviation implements Serializable {
 
@@ -150,10 +151,10 @@ public class MeanAndStandardDeviation implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof MeanAndStandardDeviation)) {
+        if (!(obj instanceof jfree.data.statistics.MeanAndStandardDeviation)) {
             return false;
         }
-        MeanAndStandardDeviation that = (MeanAndStandardDeviation) obj;
+        jfree.data.statistics.MeanAndStandardDeviation that = (jfree.data.statistics.MeanAndStandardDeviation) obj;
         if (!ObjectUtilities.equal(this.mean, that.mean)) {
             return false;
         }

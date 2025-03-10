@@ -43,7 +43,9 @@ package org.jfree.chart.plot;
 
 import java.awt.geom.Point2D;
 
-import org.jfree.chart.ChartPanel;
+import jfree.chart.ChartPanel;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
 
 /**
  * An interface that the {@link ChartPanel} class uses to communicate with
@@ -81,7 +83,7 @@ public interface Pannable {
      * @param info the plot info
      * @param source the source point where the pan action started.
      */
-    public void panDomainAxes(double percent, PlotRenderingInfo info,
+    public void panDomainAxes(double percent, jfree.chart.plot.PlotRenderingInfo info,
             Point2D source);
 
     /**

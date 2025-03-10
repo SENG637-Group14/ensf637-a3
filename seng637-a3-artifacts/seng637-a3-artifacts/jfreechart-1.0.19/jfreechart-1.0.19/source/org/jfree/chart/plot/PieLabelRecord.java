@@ -220,8 +220,8 @@ public class PieLabelRecord implements Comparable, Serializable {
     @Override
     public int compareTo(Object obj) {
         int result = 0;
-        if (obj instanceof PieLabelRecord) {
-            PieLabelRecord plr = (PieLabelRecord) obj;
+        if (obj instanceof jfree.chart.plot.PieLabelRecord) {
+            jfree.chart.plot.PieLabelRecord plr = (jfree.chart.plot.PieLabelRecord) obj;
             if (this.baseY < plr.baseY) {
                 result = -1;
             }
@@ -244,10 +244,10 @@ public class PieLabelRecord implements Comparable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof PieLabelRecord)) {
+        if (!(obj instanceof jfree.chart.plot.PieLabelRecord)) {
             return false;
         }
-        PieLabelRecord that = (PieLabelRecord) obj;
+        jfree.chart.plot.PieLabelRecord that = (jfree.chart.plot.PieLabelRecord) obj;
         if (!this.key.equals(that.key)) {
             return false;
         }

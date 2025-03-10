@@ -116,22 +116,27 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.ItemLabelAnchor;
-import org.jfree.chart.labels.ItemLabelPosition;
-import org.jfree.chart.labels.XYItemLabelGenerator;
-import org.jfree.chart.labels.XYSeriesLabelGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.ItemLabelAnchor;
+import jfree.chart.labels.ItemLabelPosition;
+import jfree.chart.labels.XYItemLabelGenerator;
+import jfree.chart.labels.XYSeriesLabelGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.GradientXYBarPainter;
+import jfree.chart.renderer.xy.XYBarPainter;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.GradientPaintTransformer;
@@ -161,7 +166,7 @@ public class XYBarRenderer extends AbstractXYItemRenderer
      *
      * @since 1.0.11
      */
-    private static XYBarPainter defaultBarPainter = new GradientXYBarPainter();
+    private static jfree.chart.renderer.xy.XYBarPainter defaultBarPainter = new GradientXYBarPainter();
 
     /**
      * Returns the default bar painter.
@@ -170,8 +175,8 @@ public class XYBarRenderer extends AbstractXYItemRenderer
      *
      * @since 1.0.11
      */
-    public static XYBarPainter getDefaultBarPainter() {
-        return XYBarRenderer.defaultBarPainter;
+    public static jfree.chart.renderer.xy.XYBarPainter getDefaultBarPainter() {
+        return jfree.chart.renderer.xy.XYBarRenderer.defaultBarPainter;
     }
 
     /**
@@ -181,9 +186,9 @@ public class XYBarRenderer extends AbstractXYItemRenderer
      *
      * @since 1.0.11
      */
-    public static void setDefaultBarPainter(XYBarPainter painter) {
+    public static void setDefaultBarPainter(jfree.chart.renderer.xy.XYBarPainter painter) {
         ParamChecks.nullNotPermitted(painter, "painter");
-        XYBarRenderer.defaultBarPainter = painter;
+        jfree.chart.renderer.xy.XYBarRenderer.defaultBarPainter = painter;
     }
 
     /**
@@ -201,7 +206,7 @@ public class XYBarRenderer extends AbstractXYItemRenderer
      * @since 1.0.13
      */
     public static boolean getDefaultShadowsVisible() {
-        return XYBarRenderer.defaultShadowsVisible;
+        return jfree.chart.renderer.xy.XYBarRenderer.defaultShadowsVisible;
     }
 
     /**
@@ -214,13 +219,13 @@ public class XYBarRenderer extends AbstractXYItemRenderer
      * @since 1.0.13
      */
     public static void setDefaultShadowsVisible(boolean visible) {
-        XYBarRenderer.defaultShadowsVisible = visible;
+        jfree.chart.renderer.xy.XYBarRenderer.defaultShadowsVisible = visible;
     }
 
     /**
      * The state class used by this renderer.
      */
-    protected class XYBarRendererState extends XYItemRendererState {
+    protected class XYBarRendererState extends jfree.chart.renderer.xy.XYItemRendererState {
 
         /** Base for bars against the range axis, in Java 2D space. */
         private double g2Base;
@@ -297,7 +302,7 @@ public class XYBarRenderer extends AbstractXYItemRenderer
      *
      * @since 1.0.11
      */
-    private XYBarPainter barPainter;
+    private jfree.chart.renderer.xy.XYBarPainter barPainter;
 
     /**
      * The flag that controls whether or not shadows are drawn for the bars.
@@ -574,7 +579,7 @@ public class XYBarRenderer extends AbstractXYItemRenderer
      *
      * @since 1.0.11
      */
-    public XYBarPainter getBarPainter() {
+    public jfree.chart.renderer.xy.XYBarPainter getBarPainter() {
         return this.barPainter;
     }
 
@@ -707,8 +712,8 @@ public class XYBarRenderer extends AbstractXYItemRenderer
      * @return A state object.
      */
     @Override
-    public XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
-            XYPlot plot, XYDataset dataset, PlotRenderingInfo info) {
+    public jfree.chart.renderer.xy.XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
+                                                                       XYPlot plot, XYDataset dataset, PlotRenderingInfo info) {
 
         XYBarRendererState state = new XYBarRendererState(info);
         ValueAxis rangeAxis = plot.getRangeAxisForDataset(plot.indexOf(
@@ -1199,7 +1204,7 @@ public class XYBarRenderer extends AbstractXYItemRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        XYBarRenderer result = (XYBarRenderer) super.clone();
+        jfree.chart.renderer.xy.XYBarRenderer result = (jfree.chart.renderer.xy.XYBarRenderer) super.clone();
         if (this.gradientPaintTransformer != null) {
             result.gradientPaintTransformer = (GradientPaintTransformer)
                 ObjectUtilities.clone(this.gradientPaintTransformer);
@@ -1220,10 +1225,10 @@ public class XYBarRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYBarRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYBarRenderer)) {
             return false;
         }
-        XYBarRenderer that = (XYBarRenderer) obj;
+        jfree.chart.renderer.xy.XYBarRenderer that = (jfree.chart.renderer.xy.XYBarRenderer) obj;
         if (this.base != that.base) {
             return false;
         }

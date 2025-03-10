@@ -44,14 +44,15 @@ package org.jfree.data.general;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.image.BufferedImage;
-import org.jfree.chart.renderer.PaintScale;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
+import jfree.chart.renderer.PaintScale;
+import jfree.chart.util.ParamChecks;
+import jfree.data.general.HeatMapDataset;
+import jfree.data.xy.XYDataset;
+import jfree.data.xy.XYSeries;
+import jfree.data.xy.XYSeriesCollection;
 
 /**
- * A utility class for the {@link HeatMapDataset}.
+ * A utility class for the {@link jfree.data.general.HeatMapDataset}.
  *
  * @since 1.0.13
  */
@@ -67,8 +68,8 @@ public abstract class HeatMapUtilities {
      *
      * @return The dataset.
      */
-    public static XYDataset extractRowFromHeatMapDataset(HeatMapDataset dataset,
-            int row, Comparable seriesName) {
+    public static XYDataset extractRowFromHeatMapDataset(jfree.data.general.HeatMapDataset dataset,
+                                                         int row, Comparable seriesName) {
         XYSeries series = new XYSeries(seriesName);
         int cols = dataset.getXSampleCount();
         for (int c = 0; c < cols; c++) {
@@ -89,7 +90,7 @@ public abstract class HeatMapUtilities {
      * @return The dataset.
      */
     public static XYDataset extractColumnFromHeatMapDataset(
-            HeatMapDataset dataset, int column, Comparable seriesName) {
+            jfree.data.general.HeatMapDataset dataset, int column, Comparable seriesName) {
         XYSeries series = new XYSeries(seriesName);
         int rows = dataset.getYSampleCount();
         for (int r = 0; r < rows; r++) {
@@ -109,7 +110,7 @@ public abstract class HeatMapUtilities {
      * @return A buffered image.
      */
     public static BufferedImage createHeatMapImage(HeatMapDataset dataset,
-            PaintScale paintScale) {
+                                                   PaintScale paintScale) {
 
         ParamChecks.nullNotPermitted(dataset, "dataset");
         ParamChecks.nullNotPermitted(paintScale, "paintScale");

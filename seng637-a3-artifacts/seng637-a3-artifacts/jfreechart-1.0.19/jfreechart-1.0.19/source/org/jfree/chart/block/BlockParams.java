@@ -40,6 +40,9 @@
 
 package org.jfree.chart.block;
 
+import jfree.chart.block.Block;
+import jfree.chart.block.EntityBlockParams;
+
 /**
  * A standard parameter object that can be passed to the draw() method defined
  * by the {@link Block} class.

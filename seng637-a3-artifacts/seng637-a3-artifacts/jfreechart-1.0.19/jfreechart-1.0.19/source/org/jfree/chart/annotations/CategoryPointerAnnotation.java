@@ -57,15 +57,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.annotations.CategoryTextAnnotation;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.util.ParamChecks;
+import jfree.data.category.CategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleEdge;
@@ -442,13 +443,13 @@ public class CategoryPointerAnnotation extends CategoryTextAnnotation
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CategoryPointerAnnotation)) {
+        if (!(obj instanceof jfree.chart.annotations.CategoryPointerAnnotation)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        CategoryPointerAnnotation that = (CategoryPointerAnnotation) obj;
+        jfree.chart.annotations.CategoryPointerAnnotation that = (jfree.chart.annotations.CategoryPointerAnnotation) obj;
         if (this.angle != that.angle) {
             return false;
         }

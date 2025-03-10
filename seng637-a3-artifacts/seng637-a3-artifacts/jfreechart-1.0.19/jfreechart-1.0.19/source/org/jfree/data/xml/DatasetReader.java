@@ -49,8 +49,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.general.PieDataset;
+import jfree.data.category.CategoryDataset;
+import jfree.data.general.PieDataset;
+import jfree.data.xml.CategoryDatasetHandler;
+import jfree.data.xml.PieDatasetHandler;
 import org.xml.sax.SAXException;
 
 /**
@@ -89,7 +91,7 @@ public class DatasetReader {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
             SAXParser parser = factory.newSAXParser();
-            PieDatasetHandler handler = new PieDatasetHandler();
+            jfree.data.xml.PieDatasetHandler handler = new PieDatasetHandler();
             parser.parse(in, handler);
             result = handler.getDataset();
         }
@@ -135,7 +137,7 @@ public class DatasetReader {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
             SAXParser parser = factory.newSAXParser();
-            CategoryDatasetHandler handler = new CategoryDatasetHandler();
+            jfree.data.xml.CategoryDatasetHandler handler = new CategoryDatasetHandler();
             parser.parse(in, handler);
             result = handler.getDataset();
         }

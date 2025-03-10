@@ -47,12 +47,15 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.labels.AbstractCategoryItemLabelGenerator;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.data.category.CategoryDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A standard label generator that can be used with a
- * {@link org.jfree.chart.renderer.category.CategoryItemRenderer}.
+ * {@link CategoryItemRenderer}.
  */
 public class StandardCategoryItemLabelGenerator
     extends AbstractCategoryItemLabelGenerator
@@ -141,7 +144,7 @@ public class StandardCategoryItemLabelGenerator
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardCategoryItemLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.StandardCategoryItemLabelGenerator)) {
             return false;
         }
         return super.equals(obj);

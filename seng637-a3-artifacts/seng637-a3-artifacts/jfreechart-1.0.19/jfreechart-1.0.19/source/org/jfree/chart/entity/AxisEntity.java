@@ -46,9 +46,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.axis.Axis;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.axis.Axis;
+import jfree.chart.entity.ChartEntity;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.ObjectUtilities;
 
@@ -141,10 +142,10 @@ public class AxisEntity extends ChartEntity {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AxisEntity)) {
+        if (!(obj instanceof jfree.chart.entity.AxisEntity)) {
             return false;
         }
-        AxisEntity that = (AxisEntity) obj;
+        jfree.chart.entity.AxisEntity that = (jfree.chart.entity.AxisEntity) obj;
         if (!getArea().equals(that.getArea())) {
             return false;
         }

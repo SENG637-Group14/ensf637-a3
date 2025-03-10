@@ -40,10 +40,10 @@
 
 package org.jfree.chart.imagemap;
 
-import org.jfree.chart.urls.CategoryURLGenerator;
-import org.jfree.chart.urls.PieURLGenerator;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.chart.urls.XYZURLGenerator;
+import jfree.chart.urls.CategoryURLGenerator;
+import jfree.chart.urls.PieURLGenerator;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.chart.urls.XYZURLGenerator;
 
 /**
  * Interface for generating the URL fragment of an HTML image map area tag.

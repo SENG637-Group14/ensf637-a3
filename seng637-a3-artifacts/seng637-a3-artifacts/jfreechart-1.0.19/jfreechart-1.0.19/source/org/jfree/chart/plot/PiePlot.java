@@ -203,27 +203,40 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
-import org.jfree.chart.JFreeChart;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.PaintMap;
-import org.jfree.chart.StrokeMap;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.PieSectionEntity;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.labels.PieSectionLabelGenerator;
-import org.jfree.chart.labels.PieToolTipGenerator;
-import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
-import org.jfree.chart.urls.PieURLGenerator;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.chart.util.ShadowGenerator;
-import org.jfree.data.DefaultKeyedValues;
-import org.jfree.data.KeyedValues;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.general.PieDataset;
+import jfree.chart.plot.AbstractPieLabelDistributor;
+import jfree.chart.plot.DrawingSupplier;
+import jfree.chart.plot.MultiplePiePlot;
+import jfree.chart.plot.PieLabelDistributor;
+import jfree.chart.plot.PieLabelLinkStyle;
+import jfree.chart.plot.PieLabelRecord;
+import jfree.chart.plot.PiePlotState;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.plot.RingPlot;
+import jfree.data.category.CategoryDataset;
+import jfree.chart.JFreeChart;
+
+import jfree.chart.LegendItem;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.PaintMap;
+import jfree.chart.StrokeMap;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.PieSectionEntity;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.labels.PieSectionLabelGenerator;
+import jfree.chart.labels.PieToolTipGenerator;
+import jfree.chart.labels.StandardPieSectionLabelGenerator;
+import jfree.chart.urls.PieURLGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.chart.util.ShadowGenerator;
+import jfree.data.DefaultKeyedValues;
+import jfree.data.KeyedValues;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.general.PieDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.G2TextMeasurer;
 import org.jfree.text.TextBlock;
@@ -253,13 +266,13 @@ import org.jfree.util.UnitType;
  * in a clockwise direction, but these settings can be changed;</li>
  * <li>negative values in the dataset are ignored;</li>
  * <li>there are utility methods for creating a {@link PieDataset} from a
- * {@link org.jfree.data.category.CategoryDataset};</li>
+ * {@link CategoryDataset};</li>
  * </ol>
  *
- * @see Plot
+ * @see jfree.chart.plot.Plot
  * @see PieDataset
  */
-public class PiePlot extends Plot implements Cloneable, Serializable {
+public class PiePlot extends jfree.chart.plot.Plot implements Cloneable, Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = -795612466005590431L;
@@ -301,7 +314,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
     /** The dataset for the pie chart. */
     private PieDataset dataset;
 
-    /** The pie index (used by the {@link MultiplePiePlot} class). */
+    /** The pie index (used by the {@link jfree.chart.plot.MultiplePiePlot} class). */
     private int pieIndex;
 
     /**
@@ -451,7 +464,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      *
      * @since 1.0.10
      */
-    private PieLabelLinkStyle labelLinkStyle = PieLabelLinkStyle.STANDARD;
+    private jfree.chart.plot.PieLabelLinkStyle labelLinkStyle = jfree.chart.plot.PieLabelLinkStyle.STANDARD;
 
     /** The link margin. */
     private double labelLinkMargin = 0.025;
@@ -467,7 +480,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      *
      * @since 1.0.6
      */
-    private AbstractPieLabelDistributor labelDistributor;
+    private jfree.chart.plot.AbstractPieLabelDistributor labelDistributor;
 
     /** The tooltip generator. */
     private PieToolTipGenerator toolTipGenerator;
@@ -657,7 +670,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
     }
 
     /**
-     * Returns the pie index (this is used by the {@link MultiplePiePlot} class
+     * Returns the pie index (this is used by the {@link jfree.chart.plot.MultiplePiePlot} class
      * to track subplots).
      *
      * @return The pie index.
@@ -923,7 +936,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
 
         // nothing defined - do we autoPopulate?
         if (autoPopulate) {
-            DrawingSupplier ds = getDrawingSupplier();
+            jfree.chart.plot.DrawingSupplier ds = getDrawingSupplier();
             if (ds != null) {
                 result = ds.getNextPaint();
                 this.sectionPaintMap.put(key, result);
@@ -1195,7 +1208,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
 
         // nothing defined - do we autoPopulate?
         if (autoPopulate) {
-            DrawingSupplier ds = getDrawingSupplier();
+            jfree.chart.plot.DrawingSupplier ds = getDrawingSupplier();
             if (ds != null) {
                 result = ds.getNextOutlinePaint();
                 this.sectionOutlinePaintMap.put(key, result);
@@ -1756,11 +1769,11 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      *
      * @return The label link style (never <code>null</code>).
      *
-     * @see #setLabelLinkStyle(PieLabelLinkStyle)
+     * @see #setLabelLinkStyle(jfree.chart.plot.PieLabelLinkStyle)
      *
      * @since 1.0.10
      */
-    public PieLabelLinkStyle getLabelLinkStyle() {
+    public jfree.chart.plot.PieLabelLinkStyle getLabelLinkStyle() {
         return this.labelLinkStyle;
     }
 
@@ -1774,7 +1787,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      *
      * @since 1.0.10
      */
-    public void setLabelLinkStyle(PieLabelLinkStyle style) {
+    public void setLabelLinkStyle(jfree.chart.plot.PieLabelLinkStyle style) {
         ParamChecks.nullNotPermitted(style, "style");
         this.labelLinkStyle = style;
         fireChangeEvent();
@@ -2110,7 +2123,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      *
      * @since 1.0.6
      */
-    public AbstractPieLabelDistributor getLabelDistributor() {
+    public jfree.chart.plot.AbstractPieLabelDistributor getLabelDistributor() {
         return this.labelDistributor;
     }
 
@@ -2370,10 +2383,10 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      * @return A state object (maintains state information relevant to one
      *         chart drawing).
      */
-    public PiePlotState initialise(Graphics2D g2, Rectangle2D plotArea,
-            PiePlot plot, Integer index, PlotRenderingInfo info) {
+    public jfree.chart.plot.PiePlotState initialise(Graphics2D g2, Rectangle2D plotArea,
+                                                         jfree.chart.plot.PiePlot plot, Integer index, jfree.chart.plot.PlotRenderingInfo info) {
 
-        PiePlotState state = new PiePlotState(info);
+        jfree.chart.plot.PiePlotState state = new jfree.chart.plot.PiePlotState(info);
         state.setPassesRequired(2);
         if (this.dataset != null) {
             state.setTotal(DatasetUtilities.calculatePieDatasetTotal(
@@ -2397,7 +2410,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      */
     @Override
     public void draw(Graphics2D g2, Rectangle2D area, Point2D anchor,
-                     PlotState parentState, PlotRenderingInfo info) {
+                     PlotState parentState, jfree.chart.plot.PlotRenderingInfo info) {
 
         // adjust for insets...
         RectangleInsets insets = getInsets();
@@ -2464,7 +2477,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
     protected void drawPie(Graphics2D g2, Rectangle2D plotArea,
                            PlotRenderingInfo info) {
 
-        PiePlotState state = initialise(g2, plotArea, this, null, info);
+        jfree.chart.plot.PiePlotState state = initialise(g2, plotArea, this, null, info);
 
         // adjust the plot area for interior spacing and labels...
         double labelReserve = 0.0;
@@ -2597,7 +2610,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      * @param currentPass  the current pass index.
      */
     protected void drawItem(Graphics2D g2, int section, Rectangle2D dataArea,
-                            PiePlotState state, int currentPass) {
+                            jfree.chart.plot.PiePlotState state, int currentPass) {
 
         Number n = this.dataset.getValue(section);
         if (n == null) {
@@ -2694,7 +2707,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      */
     protected void drawSimpleLabels(Graphics2D g2, List keys,
             double totalValue, Rectangle2D plotArea, Rectangle2D pieArea,
-            PiePlotState state) {
+            jfree.chart.plot.PiePlotState state) {
 
         Composite originalComposite = g2.getComposite();
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
@@ -2787,7 +2800,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      */
     protected void drawLabels(Graphics2D g2, List keys, double totalValue,
                               Rectangle2D plotArea, Rectangle2D linkArea,
-                              PiePlotState state) {
+                              jfree.chart.plot.PiePlotState state) {
 
         Composite originalComposite = g2.getComposite();
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
@@ -2861,7 +2874,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      */
     protected void drawLeftLabels(KeyedValues leftKeys, Graphics2D g2,
                                   Rectangle2D plotArea, Rectangle2D linkArea,
-                                  float maxLabelWidth, PiePlotState state) {
+                                  float maxLabelWidth, jfree.chart.plot.PiePlotState state) {
 
         this.labelDistributor.clear();
         double lGap = plotArea.getWidth() * this.labelGap;
@@ -2890,7 +2903,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
                                * verticalLinkRadius;
                 double hh = labelBox.getHeight(g2);
 
-                this.labelDistributor.addPieLabelRecord(new PieLabelRecord(
+                this.labelDistributor.addPieLabelRecord(new jfree.chart.plot.PieLabelRecord(
                         leftKeys.getKey(i), theta, baseY, labelBox, hh,
                         lGap / 2.0 + lGap / 2.0 * -Math.cos(theta), 1.0
                         - getLabelLinkDepth()
@@ -2919,7 +2932,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      */
     protected void drawRightLabels(KeyedValues keys, Graphics2D g2,
                                    Rectangle2D plotArea, Rectangle2D linkArea,
-                                   float maxLabelWidth, PiePlotState state) {
+                                   float maxLabelWidth, jfree.chart.plot.PiePlotState state) {
 
         // draw the right labels...
         this.labelDistributor.clear();
@@ -2949,7 +2962,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
                 double baseY = state.getPieCenterY()
                               - Math.sin(theta) * verticalLinkRadius;
                 double hh = labelBox.getHeight(g2);
-                this.labelDistributor.addPieLabelRecord(new PieLabelRecord(
+                this.labelDistributor.addPieLabelRecord(new jfree.chart.plot.PieLabelRecord(
                         keys.getKey(i), theta, baseY, labelBox, hh,
                         lGap / 2.0 + lGap / 2.0 * Math.cos(theta),
                         1.0 - getLabelLinkDepth()
@@ -3088,8 +3101,8 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      * @param state  the state.
      * @param record  the label record.
      */
-    protected void drawLeftLabel(Graphics2D g2, PiePlotState state,
-                                 PieLabelRecord record) {
+    protected void drawLeftLabel(Graphics2D g2, jfree.chart.plot.PiePlotState state,
+                                 jfree.chart.plot.PieLabelRecord record) {
 
         double anchorX = state.getLinkArea().getMinX();
         double targetX = anchorX - record.getGap();
@@ -3108,19 +3121,19 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
             double anchorY = elbowY;
             g2.setPaint(this.labelLinkPaint);
             g2.setStroke(this.labelLinkStroke);
-            PieLabelLinkStyle style = getLabelLinkStyle();
-            if (style.equals(PieLabelLinkStyle.STANDARD)) {
+            jfree.chart.plot.PieLabelLinkStyle style = getLabelLinkStyle();
+            if (style.equals(jfree.chart.plot.PieLabelLinkStyle.STANDARD)) {
                 g2.draw(new Line2D.Double(linkX, linkY, elbowX, elbowY));
                 g2.draw(new Line2D.Double(anchorX, anchorY, elbowX, elbowY));
                 g2.draw(new Line2D.Double(anchorX, anchorY, targetX, targetY));
             }
-            else if (style.equals(PieLabelLinkStyle.QUAD_CURVE)) {
+            else if (style.equals(jfree.chart.plot.PieLabelLinkStyle.QUAD_CURVE)) {
                 QuadCurve2D q = new QuadCurve2D.Float();
                 q.setCurve(targetX, targetY, anchorX, anchorY, elbowX, elbowY);
                 g2.draw(q);
                 g2.draw(new Line2D.Double(elbowX, elbowY, linkX, linkY));
             }
-            else if (style.equals(PieLabelLinkStyle.CUBIC_CURVE)) {
+            else if (style.equals(jfree.chart.plot.PieLabelLinkStyle.CUBIC_CURVE)) {
                 CubicCurve2D c = new CubicCurve2D .Float();
                 c.setCurve(targetX, targetY, anchorX, anchorY, elbowX, elbowY,
                         linkX, linkY);
@@ -3139,7 +3152,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      * @param state  the state.
      * @param record  the label record.
      */
-    protected void drawRightLabel(Graphics2D g2, PiePlotState state,
+    protected void drawRightLabel(Graphics2D g2, jfree.chart.plot.PiePlotState state,
                                   PieLabelRecord record) {
 
         double anchorX = state.getLinkArea().getMaxX();
@@ -3159,13 +3172,13 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
             double anchorY = elbowY;
             g2.setPaint(this.labelLinkPaint);
             g2.setStroke(this.labelLinkStroke);
-            PieLabelLinkStyle style = getLabelLinkStyle();
-            if (style.equals(PieLabelLinkStyle.STANDARD)) {
+            jfree.chart.plot.PieLabelLinkStyle style = getLabelLinkStyle();
+            if (style.equals(jfree.chart.plot.PieLabelLinkStyle.STANDARD)) {
                 g2.draw(new Line2D.Double(linkX, linkY, elbowX, elbowY));
                 g2.draw(new Line2D.Double(anchorX, anchorY, elbowX, elbowY));
                 g2.draw(new Line2D.Double(anchorX, anchorY, targetX, targetY));
             }
-            else if (style.equals(PieLabelLinkStyle.QUAD_CURVE)) {
+            else if (style.equals(jfree.chart.plot.PieLabelLinkStyle.QUAD_CURVE)) {
                 QuadCurve2D q = new QuadCurve2D.Float();
                 q.setCurve(targetX, targetY, anchorX, anchorY, elbowX, elbowY);
                 g2.draw(q);
@@ -3196,7 +3209,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      *
      * @since 1.0.14
      */
-    protected Point2D getArcCenter(PiePlotState state, Comparable key) {
+    protected Point2D getArcCenter(jfree.chart.plot.PiePlotState state, Comparable key) {
         Point2D center = new Point2D.Double(state.getPieCenterX(), state
             .getPieCenterY());
 
@@ -3281,13 +3294,13 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof PiePlot)) {
+        if (!(obj instanceof jfree.chart.plot.PiePlot)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        PiePlot that = (PiePlot) obj;
+        jfree.chart.plot.PiePlot that = (jfree.chart.plot.PiePlot) obj;
         if (this.pieIndex != that.pieIndex) {
             return false;
         }
@@ -3471,7 +3484,7 @@ public class PiePlot extends Plot implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        PiePlot clone = (PiePlot) super.clone();
+        jfree.chart.plot.PiePlot clone = (jfree.chart.plot.PiePlot) super.clone();
         clone.sectionPaintMap = (PaintMap) this.sectionPaintMap.clone();
         clone.sectionOutlinePaintMap 
                 = (PaintMap) this.sectionOutlinePaintMap.clone();

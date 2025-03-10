@@ -67,15 +67,18 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.TimePeriodFormatException;
+import jfree.data.time.Year;
 import org.jfree.date.MonthConstants;
 import org.jfree.date.SerialDate;
 
 /**
  * Defines a quarter (in a given year).  The range supported is Q1 1900 to
  * Q4 9999.  This class is immutable, which is a requirement for all
- * {@link RegularTimePeriod} subclasses.
+ * {@link jfree.data.time.RegularTimePeriod} subclasses.
  */
-public class Quarter extends RegularTimePeriod implements Serializable {
+public class Quarter extends jfree.data.time.RegularTimePeriod implements Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = 3810061714380888671L;
@@ -138,7 +141,7 @@ public class Quarter extends RegularTimePeriod implements Serializable {
      * @param quarter  the quarter (1 to 4).
      * @param year  the year (1900 to 9999).
      */
-    public Quarter(int quarter, Year year) {
+    public Quarter(int quarter, jfree.data.time.Year year) {
         if ((quarter < FIRST_QUARTER) || (quarter > LAST_QUARTER)) {
             throw new IllegalArgumentException("Quarter outside valid range.");
         }
@@ -205,8 +208,8 @@ public class Quarter extends RegularTimePeriod implements Serializable {
      *
      * @return The year.
      */
-    public Year getYear() {
-        return new Year(this.year);
+    public jfree.data.time.Year getYear() {
+        return new jfree.data.time.Year(this.year);
     }
 
     /**
@@ -271,14 +274,14 @@ public class Quarter extends RegularTimePeriod implements Serializable {
      *     Q1 1900).
      */
     @Override
-    public RegularTimePeriod previous() {
-        Quarter result;
+    public jfree.data.time.RegularTimePeriod previous() {
+        jfree.data.time.Quarter result;
         if (this.quarter > FIRST_QUARTER) {
-            result = new Quarter(this.quarter - 1, this.year);
+            result = new jfree.data.time.Quarter(this.quarter - 1, this.year);
         }
         else {
             if (this.year > 1900) {
-                result = new Quarter(LAST_QUARTER, this.year - 1);
+                result = new jfree.data.time.Quarter(LAST_QUARTER, this.year - 1);
             }
             else {
                 result = null;
@@ -293,14 +296,14 @@ public class Quarter extends RegularTimePeriod implements Serializable {
      * @return The quarter following this one (or null if this is Q4 9999).
      */
     @Override
-    public RegularTimePeriod next() {
-        Quarter result;
+    public jfree.data.time.RegularTimePeriod next() {
+        jfree.data.time.Quarter result;
         if (this.quarter < LAST_QUARTER) {
-            result = new Quarter(this.quarter + 1, this.year);
+            result = new jfree.data.time.Quarter(this.quarter + 1, this.year);
         }
         else {
             if (this.year < 9999) {
-                result = new Quarter(FIRST_QUARTER, this.year + 1);
+                result = new jfree.data.time.Quarter(FIRST_QUARTER, this.year + 1);
             }
             else {
                 result = null;
@@ -334,8 +337,8 @@ public class Quarter extends RegularTimePeriod implements Serializable {
     public boolean equals(Object obj) {
 
         if (obj != null) {
-            if (obj instanceof Quarter) {
-                Quarter target = (Quarter) obj;
+            if (obj instanceof jfree.data.time.Quarter) {
+                jfree.data.time.Quarter target = (jfree.data.time.Quarter) obj;
                 return (this.quarter == target.getQuarter()
                         && (this.year == target.getYearValue()));
             }
@@ -383,8 +386,8 @@ public class Quarter extends RegularTimePeriod implements Serializable {
 
         // CASE 1 : Comparing to another Quarter object
         // --------------------------------------------
-        if (o1 instanceof Quarter) {
-            Quarter q = (Quarter) o1;
+        if (o1 instanceof jfree.data.time.Quarter) {
+            jfree.data.time.Quarter q = (jfree.data.time.Quarter) o1;
             result = this.year - q.getYearValue();
             if (result == 0) {
                 result = this.quarter - q.getQuarter();
@@ -432,7 +435,7 @@ public class Quarter extends RegularTimePeriod implements Serializable {
      */
     @Override
     public long getFirstMillisecond(Calendar calendar) {
-        int month = Quarter.FIRST_MONTH_IN_QUARTER[this.quarter];
+        int month = jfree.data.time.Quarter.FIRST_MONTH_IN_QUARTER[this.quarter];
         calendar.set(this.year, month - 1, 1, 0, 0, 0);
         calendar.set(Calendar.MILLISECOND, 0);
         return calendar.getTimeInMillis();
@@ -451,7 +454,7 @@ public class Quarter extends RegularTimePeriod implements Serializable {
      */
     @Override
     public long getLastMillisecond(Calendar calendar) {
-        int month = Quarter.LAST_MONTH_IN_QUARTER[this.quarter];
+        int month = jfree.data.time.Quarter.LAST_MONTH_IN_QUARTER[this.quarter];
         int eom = SerialDate.lastDayOfMonth(month, this.year);
         calendar.set(this.year, month - 1, eom, 23, 59, 59);
         calendar.set(Calendar.MILLISECOND, 999);
@@ -467,13 +470,13 @@ public class Quarter extends RegularTimePeriod implements Serializable {
      *
      * @return The quarter.
      */
-    public static Quarter parseQuarter(String s) {
+    public static jfree.data.time.Quarter parseQuarter(String s) {
 
         // find the Q and the integer following it (remove both from the
         // string)...
         int i = s.indexOf("Q");
         if (i == -1) {
-            throw new TimePeriodFormatException("Missing Q.");
+            throw new jfree.data.time.TimePeriodFormatException("Missing Q.");
         }
 
         if (i == s.length() - 1) {
@@ -490,8 +493,8 @@ public class Quarter extends RegularTimePeriod implements Serializable {
         remaining = remaining.replace('-', ' ');
 
         // parse the string...
-        Year year = Year.parseYear(remaining.trim());
-        Quarter result = new Quarter(quarter, year);
+        jfree.data.time.Year year = Year.parseYear(remaining.trim());
+        jfree.data.time.Quarter result = new jfree.data.time.Quarter(quarter, year);
         return result;
 
     }

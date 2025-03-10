@@ -60,14 +60,18 @@ import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.event.RendererChangeListener;
-import org.jfree.chart.renderer.WaferMapRenderer;
-import org.jfree.chart.util.ResourceBundleWrapper;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.WaferMapDataset;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.event.RendererChangeListener;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.renderer.WaferMapRenderer;
+import jfree.chart.util.ResourceBundleWrapper;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.WaferMapDataset;
 import org.jfree.ui.RectangleInsets;
 
 /**
@@ -109,7 +113,7 @@ public class WaferMapPlot extends Plot implements RendererChangeListener,
      *  vertical = notch down
      *  horizontal = notch right
      */
-    private PlotOrientation orientation;
+    private jfree.chart.plot.PlotOrientation orientation;
 
     /** The dataset. */
     private WaferMapDataset dataset;
@@ -146,7 +150,7 @@ public class WaferMapPlot extends Plot implements RendererChangeListener,
 
         super();
 
-        this.orientation = PlotOrientation.VERTICAL;
+        this.orientation = jfree.chart.plot.PlotOrientation.VERTICAL;
 
         this.dataset = dataset;
         if (dataset != null) {

@@ -46,10 +46,13 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
-import org.jfree.chart.util.ParamChecks;
 
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYZDataset;
+import jfree.chart.labels.StandardXYToolTipGenerator;
+import jfree.chart.labels.XYZToolTipGenerator;
+import jfree.chart.util.ParamChecks;
+
+import jfree.data.xy.XYDataset;
+import jfree.data.xy.XYZDataset;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -236,13 +239,13 @@ public class StandardXYZToolTipGenerator extends StandardXYToolTipGenerator
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardXYZToolTipGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.StandardXYZToolTipGenerator)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        StandardXYZToolTipGenerator that = (StandardXYZToolTipGenerator) obj;
+        jfree.chart.labels.StandardXYZToolTipGenerator that = (jfree.chart.labels.StandardXYZToolTipGenerator) obj;
         if (!ObjectUtilities.equal(this.zFormat, that.zFormat)) {
             return false;
         }

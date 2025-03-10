@@ -43,8 +43,9 @@ package org.jfree.chart.axis;
 
 import java.awt.geom.Rectangle2D;
 
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.data.Range;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.data.Range;
 import org.jfree.ui.RectangleEdge;
 
 /**
@@ -418,10 +419,10 @@ public class ModuloAxis extends NumberAxis {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ModuloAxis)) {
+        if (!(obj instanceof jfree.chart.axis.ModuloAxis)) {
             return false;
         }
-        ModuloAxis that = (ModuloAxis) obj;
+        jfree.chart.axis.ModuloAxis that = (jfree.chart.axis.ModuloAxis) obj;
         if (this.displayStart != that.displayStart) {
             return false;
         }

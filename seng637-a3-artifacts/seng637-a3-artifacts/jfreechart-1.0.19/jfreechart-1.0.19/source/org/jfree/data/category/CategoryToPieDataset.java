@@ -51,17 +51,18 @@ package org.jfree.data.category;
 
 import java.util.Collections;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.general.AbstractDataset;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetChangeListener;
-import org.jfree.data.general.PieDataset;
+import jfree.data.category.CategoryDataset;
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetChangeListener;
+import jfree.data.general.PieDataset;
 import org.jfree.util.TableOrder;
 
 /**
  * A {@link PieDataset} implementation that obtains its data from one row or
- * column of a {@link CategoryDataset}.
+ * column of a {@link jfree.data.category.CategoryDataset}.
  */
 public class CategoryToPieDataset extends AbstractDataset
         implements PieDataset, DatasetChangeListener {
@@ -70,7 +71,7 @@ public class CategoryToPieDataset extends AbstractDataset
     static final long serialVersionUID = 5516396319762189617L;
 
     /** The source. */
-    private CategoryDataset source;
+    private jfree.data.category.CategoryDataset source;
 
     /** The extract type. */
     private TableOrder extract;
@@ -79,7 +80,7 @@ public class CategoryToPieDataset extends AbstractDataset
     private int index;
 
     /**
-     * An adaptor class that converts any {@link CategoryDataset} into a
+     * An adaptor class that converts any {@link jfree.data.category.CategoryDataset} into a
      * {@link PieDataset}, by taking the values from a single row or column.
      * <p>
      * If <code>source</code> is <code>null</code>, the created dataset will
@@ -90,8 +91,8 @@ public class CategoryToPieDataset extends AbstractDataset
      *                 not permitted).
      * @param index  the row or column index.
      */
-    public CategoryToPieDataset(CategoryDataset source, TableOrder extract,
-            int index) {
+    public CategoryToPieDataset(jfree.data.category.CategoryDataset source, TableOrder extract,
+                                int index) {
         ParamChecks.nullNotPermitted(extract, "extract");
         this.source = source;
         if (this.source != null) {

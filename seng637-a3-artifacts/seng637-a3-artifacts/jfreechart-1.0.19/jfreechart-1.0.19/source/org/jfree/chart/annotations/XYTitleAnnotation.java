@@ -51,21 +51,22 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.axis.AxisLocation;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.block.BlockParams;
-import org.jfree.chart.block.EntityBlockResult;
-import org.jfree.chart.block.RectangleConstraint;
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.title.Title;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.XYCoordinateType;
-import org.jfree.data.Range;
+import jfree.chart.HashUtilities;
+import jfree.chart.annotations.AbstractXYAnnotation;
+import jfree.chart.axis.AxisLocation;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.block.BlockParams;
+import jfree.chart.block.EntityBlockResult;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.title.Title;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.XYCoordinateType;
+import jfree.data.Range;
 import org.jfree.ui.RectangleAnchor;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.Size2D;
@@ -340,10 +341,10 @@ public class XYTitleAnnotation extends AbstractXYAnnotation
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYTitleAnnotation)) {
+        if (!(obj instanceof jfree.chart.annotations.XYTitleAnnotation)) {
             return false;
         }
-        XYTitleAnnotation that = (XYTitleAnnotation) obj;
+        jfree.chart.annotations.XYTitleAnnotation that = (jfree.chart.annotations.XYTitleAnnotation) obj;
         if (this.coordinateType != that.coordinateType) {
             return false;
         }

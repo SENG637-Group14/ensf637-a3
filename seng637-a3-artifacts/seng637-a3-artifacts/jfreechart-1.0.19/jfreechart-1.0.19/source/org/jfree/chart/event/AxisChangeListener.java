@@ -42,6 +42,8 @@
 
 package org.jfree.chart.event;
 
+import jfree.chart.event.AxisChangeEvent;
+
 import java.util.EventListener;
 
 /**

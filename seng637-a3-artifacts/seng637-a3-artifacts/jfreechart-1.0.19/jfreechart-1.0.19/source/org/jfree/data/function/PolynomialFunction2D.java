@@ -44,8 +44,9 @@ package org.jfree.data.function;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.util.ParamChecks;
+import jfree.data.function.Function2D;
 
 /**
  * A function in the form <code>y = a0 + a1 * x + a2 * x^2 + ... + an *
@@ -114,10 +115,10 @@ public class PolynomialFunction2D implements Function2D, Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof PolynomialFunction2D)) {
+        if (!(obj instanceof jfree.data.function.PolynomialFunction2D)) {
             return false;
         }
-        PolynomialFunction2D that = (PolynomialFunction2D) obj;
+        jfree.data.function.PolynomialFunction2D that = (jfree.data.function.PolynomialFunction2D) obj;
         return Arrays.equals(this.coefficients, that.coefficients);
     }
 

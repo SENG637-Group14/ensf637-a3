@@ -43,12 +43,13 @@
 
 package org.jfree.data.xy;
 
-import org.jfree.data.DomainOrder;
-import org.jfree.data.general.AbstractSeriesDataset;
+import jfree.data.DomainOrder;
+import jfree.data.general.AbstractSeriesDataset;
+import jfree.data.xy.XYDataset;
 
 /**
  * An base class that you can use to create new implementations of the
- * {@link XYDataset} interface.
+ * {@link jfree.data.xy.XYDataset} interface.
  */
 public abstract class AbstractXYDataset extends AbstractSeriesDataset
         implements XYDataset {

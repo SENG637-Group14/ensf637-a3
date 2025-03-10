@@ -52,12 +52,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
+import jfree.data.xy.AbstractXYDataset;
+import jfree.data.xy.WindDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A default implementation of the {@link WindDataset} interface.
+ * A default implementation of the {@link jfree.data.xy.WindDataset} interface.
  */
 public class DefaultWindDataset extends AbstractXYDataset
         implements WindDataset, PublicCloneable {
@@ -158,7 +161,7 @@ public class DefaultWindDataset extends AbstractXYDataset
                     }
                     Number windDir = (Number) data[seriesIndex][itemIndex][1];
                     Number windForce = (Number) data[seriesIndex][itemIndex][2];
-                    oneSeriesData.add(new WindDataItem(xNumber, windDir,
+                    oneSeriesData.add(new jfree.data.xy.WindDataItem(xNumber, windDir,
                             windForce));
                 }
             }
@@ -224,7 +227,7 @@ public class DefaultWindDataset extends AbstractXYDataset
     @Override
     public Number getX(int series, int item) {
         List oneSeriesData = (List) this.allSeriesData.get(series);
-        WindDataItem windItem = (WindDataItem) oneSeriesData.get(item);
+        jfree.data.xy.WindDataItem windItem = (jfree.data.xy.WindDataItem) oneSeriesData.get(item);
         return windItem.getX();
     }
 
@@ -255,7 +258,7 @@ public class DefaultWindDataset extends AbstractXYDataset
     @Override
     public Number getWindDirection(int series, int item) {
         List oneSeriesData = (List) this.allSeriesData.get(series);
-        WindDataItem windItem = (WindDataItem) oneSeriesData.get(item);
+        jfree.data.xy.WindDataItem windItem = (jfree.data.xy.WindDataItem) oneSeriesData.get(item);
         return windItem.getWindDirection();
     }
 
@@ -271,7 +274,7 @@ public class DefaultWindDataset extends AbstractXYDataset
     @Override
     public Number getWindForce(int series, int item) {
         List oneSeriesData = (List) this.allSeriesData.get(series);
-        WindDataItem windItem = (WindDataItem) oneSeriesData.get(item);
+        jfree.data.xy.WindDataItem windItem = (jfree.data.xy.WindDataItem) oneSeriesData.get(item);
         return windItem.getWindForce();
     }
 
@@ -313,10 +316,10 @@ public class DefaultWindDataset extends AbstractXYDataset
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof DefaultWindDataset)) {
+        if (!(obj instanceof jfree.data.xy.DefaultWindDataset)) {
             return false;
         }
-        DefaultWindDataset that = (DefaultWindDataset) obj;
+        jfree.data.xy.DefaultWindDataset that = (jfree.data.xy.DefaultWindDataset) obj;
         if (!this.seriesKeys.equals(that.seriesKeys)) {
             return false;
         }
@@ -391,8 +394,8 @@ class WindDataItem implements Comparable, Serializable {
      */
     @Override
     public int compareTo(Object object) {
-        if (object instanceof WindDataItem) {
-            WindDataItem item = (WindDataItem) object;
+        if (object instanceof jfree.data.xy.WindDataItem) {
+            jfree.data.xy.WindDataItem item = (jfree.data.xy.WindDataItem) object;
             if (this.x.doubleValue() > item.x.doubleValue()) {
                 return 1;
             }
@@ -421,10 +424,10 @@ class WindDataItem implements Comparable, Serializable {
         if (this == obj) {
             return false;
         }
-        if (!(obj instanceof WindDataItem)) {
+        if (!(obj instanceof jfree.data.xy.WindDataItem)) {
             return false;
         }
-        WindDataItem that = (WindDataItem) obj;
+        jfree.data.xy.WindDataItem that = (jfree.data.xy.WindDataItem) obj;
         if (!this.x.equals(that.x)) {
             return false;
         }

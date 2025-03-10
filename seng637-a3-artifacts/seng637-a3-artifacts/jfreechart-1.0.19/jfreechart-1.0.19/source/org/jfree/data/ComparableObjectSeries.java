@@ -45,11 +45,12 @@ package org.jfree.data;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.general.Series;
-import org.jfree.data.general.SeriesChangeEvent;
-import org.jfree.data.general.SeriesException;
+import jfree.data.ComparableObjectItem;
+import jfree.data.general.Series;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.general.SeriesException;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -199,7 +200,7 @@ public class ComparableObjectSeries extends Series
      */
     protected void add(Comparable x, Object y, boolean notify) {
         // delegate argument checking to XYDataItem...
-        ComparableObjectItem item = new ComparableObjectItem(x, y);
+        jfree.data.ComparableObjectItem item = new jfree.data.ComparableObjectItem(x, y);
         add(item, notify);
     }
 
@@ -212,7 +213,7 @@ public class ComparableObjectSeries extends Series
      *                {@link SeriesChangeEvent} is sent to all registered
      *                listeners.
      */
-    protected void add(ComparableObjectItem item, boolean notify) {
+    protected void add(jfree.data.ComparableObjectItem item, boolean notify) {
 
         ParamChecks.nullNotPermitted(item, "item");
         if (this.autoSort) {
@@ -271,12 +272,12 @@ public class ComparableObjectSeries extends Series
      */
     public int indexOf(Comparable x) {
         if (this.autoSort) {
-            return Collections.binarySearch(this.data, new ComparableObjectItem(
+            return Collections.binarySearch(this.data, new jfree.data.ComparableObjectItem(
                     x, null));
         }
         else {
             for (int i = 0; i < this.data.size(); i++) {
-                ComparableObjectItem item = (ComparableObjectItem)
+                jfree.data.ComparableObjectItem item = (jfree.data.ComparableObjectItem)
                         this.data.get(i);
                 if (item.getComparable().equals(x)) {
                     return i;
@@ -301,7 +302,7 @@ public class ComparableObjectSeries extends Series
             throw new SeriesException("No observation for x = " + x);
         }
         else {
-            ComparableObjectItem item = getDataItem(index);
+            jfree.data.ComparableObjectItem item = getDataItem(index);
             item.setObject(y);
             fireSeriesChanged();
         }
@@ -315,7 +316,7 @@ public class ComparableObjectSeries extends Series
      * @param y  the new value (<code>null</code> permitted).
      */
     protected void updateByIndex(int index, Object y) {
-        ComparableObjectItem item = getDataItem(index);
+        jfree.data.ComparableObjectItem item = getDataItem(index);
         item.setObject(y);
         fireSeriesChanged();
     }
@@ -327,8 +328,8 @@ public class ComparableObjectSeries extends Series
      *
      * @return The data item with the specified index.
      */
-    protected ComparableObjectItem getDataItem(int index) {
-        return (ComparableObjectItem) this.data.get(index);
+    protected jfree.data.ComparableObjectItem getDataItem(int index) {
+        return (jfree.data.ComparableObjectItem) this.data.get(index);
     }
 
     /**
@@ -365,8 +366,8 @@ public class ComparableObjectSeries extends Series
      *
      * @return The item removed.
      */
-    protected ComparableObjectItem remove(int index) {
-        ComparableObjectItem result = (ComparableObjectItem) this.data.remove(
+    protected jfree.data.ComparableObjectItem remove(int index) {
+        jfree.data.ComparableObjectItem result = (jfree.data.ComparableObjectItem) this.data.remove(
                 index);
         fireSeriesChanged();
         return result;
@@ -380,7 +381,7 @@ public class ComparableObjectSeries extends Series
 
      * @return The item removed.
      */
-    public ComparableObjectItem remove(Comparable x) {
+    public jfree.data.ComparableObjectItem remove(Comparable x) {
         return remove(indexOf(x));
     }
 
@@ -397,13 +398,13 @@ public class ComparableObjectSeries extends Series
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ComparableObjectSeries)) {
+        if (!(obj instanceof jfree.data.ComparableObjectSeries)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        ComparableObjectSeries that = (ComparableObjectSeries) obj;
+        jfree.data.ComparableObjectSeries that = (jfree.data.ComparableObjectSeries) obj;
         if (this.maximumItemCount != that.maximumItemCount) {
             return false;
         }
@@ -431,11 +432,11 @@ public class ComparableObjectSeries extends Series
         // the first, middle and last items...
         int count = getItemCount();
         if (count > 0) {
-            ComparableObjectItem item = getDataItem(0);
+            jfree.data.ComparableObjectItem item = getDataItem(0);
             result = 29 * result + item.hashCode();
         }
         if (count > 1) {
-            ComparableObjectItem item = getDataItem(count - 1);
+            jfree.data.ComparableObjectItem item = getDataItem(count - 1);
             result = 29 * result + item.hashCode();
         }
         if (count > 2) {

@@ -51,11 +51,13 @@ package org.jfree.chart.labels;
 
 import java.io.Serializable;
 
-import org.jfree.data.time.RegularTimePeriod;
-import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XisSymbolic;
-import org.jfree.data.xy.YisSymbolic;
+import jfree.chart.labels.XYItemLabelGenerator;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.TimeSeriesCollection;
+import jfree.data.xy.XYDataset;
+import jfree.data.xy.XisSymbolic;
+import jfree.data.xy.YisSymbolic;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -160,7 +162,7 @@ public class SymbolicXYItemLabelGenerator implements XYItemLabelGenerator,
         if (obj == this) {
             return true;
         }
-        if (obj instanceof SymbolicXYItemLabelGenerator) {
+        if (obj instanceof jfree.chart.labels.SymbolicXYItemLabelGenerator) {
             return true;
         }
         return false;

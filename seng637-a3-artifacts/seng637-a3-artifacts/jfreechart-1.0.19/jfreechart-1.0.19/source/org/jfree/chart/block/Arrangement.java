@@ -44,11 +44,14 @@ package org.jfree.chart.block;
 
 import java.awt.Graphics2D;
 
+import jfree.chart.block.Block;
+import jfree.chart.block.BlockContainer;
+import jfree.chart.block.RectangleConstraint;
 import org.jfree.ui.Size2D;
 
 /**
- * An object that is responsible for arranging a collection of {@link Block}s
- * within a {@link BlockContainer}.
+ * An object that is responsible for arranging a collection of {@link jfree.chart.block.Block}s
+ * within a {@link jfree.chart.block.BlockContainer}.
  */
 public interface Arrangement {
 

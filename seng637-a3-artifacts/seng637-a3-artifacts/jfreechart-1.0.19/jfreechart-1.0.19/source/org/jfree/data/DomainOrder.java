@@ -52,15 +52,15 @@ public final class DomainOrder implements Serializable {
     private static final long serialVersionUID = 4902774943512072627L;
 
     /** No order. */
-    public static final DomainOrder NONE = new DomainOrder("DomainOrder.NONE");
+    public static final jfree.data.DomainOrder NONE = new jfree.data.DomainOrder("DomainOrder.NONE");
 
     /** Ascending order. */
-    public static final DomainOrder ASCENDING
-        = new DomainOrder("DomainOrder.ASCENDING");
+    public static final jfree.data.DomainOrder ASCENDING
+        = new jfree.data.DomainOrder("DomainOrder.ASCENDING");
 
     /** Descending order. */
-    public static final DomainOrder DESCENDING
-        = new DomainOrder("DomainOrder.DESCENDING");
+    public static final jfree.data.DomainOrder DESCENDING
+        = new jfree.data.DomainOrder("DomainOrder.DESCENDING");
 
     /** The name. */
     private String name;
@@ -97,10 +97,10 @@ public final class DomainOrder implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof DomainOrder)) {
+        if (!(obj instanceof jfree.data.DomainOrder)) {
             return false;
         }
-        DomainOrder that = (DomainOrder) obj;
+        jfree.data.DomainOrder that = (jfree.data.DomainOrder) obj;
         if (!this.name.equals(that.toString())) {
             return false;
         }
@@ -125,14 +125,14 @@ public final class DomainOrder implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(DomainOrder.ASCENDING)) {
-            return DomainOrder.ASCENDING;
+        if (this.equals(jfree.data.DomainOrder.ASCENDING)) {
+            return jfree.data.DomainOrder.ASCENDING;
         }
-        else if (this.equals(DomainOrder.DESCENDING)) {
-            return DomainOrder.DESCENDING;
+        else if (this.equals(jfree.data.DomainOrder.DESCENDING)) {
+            return jfree.data.DomainOrder.DESCENDING;
         }
-        else if (this.equals(DomainOrder.NONE)) {
-            return DomainOrder.NONE;
+        else if (this.equals(jfree.data.DomainOrder.NONE)) {
+            return jfree.data.DomainOrder.NONE;
         }
         return null;
     }

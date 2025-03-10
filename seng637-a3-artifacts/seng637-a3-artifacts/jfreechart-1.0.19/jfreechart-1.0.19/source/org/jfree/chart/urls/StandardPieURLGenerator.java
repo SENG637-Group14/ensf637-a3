@@ -55,8 +55,9 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.general.PieDataset;
+import jfree.chart.urls.PieURLGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.data.general.PieDataset;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -162,10 +163,10 @@ public class StandardPieURLGenerator implements PieURLGenerator, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardPieURLGenerator)) {
+        if (!(obj instanceof jfree.chart.urls.StandardPieURLGenerator)) {
             return false;
         }
-        StandardPieURLGenerator that = (StandardPieURLGenerator) obj;
+        jfree.chart.urls.StandardPieURLGenerator that = (jfree.chart.urls.StandardPieURLGenerator) obj;
         if (!this.prefix.equals(that.prefix)) {
             return false;
         }

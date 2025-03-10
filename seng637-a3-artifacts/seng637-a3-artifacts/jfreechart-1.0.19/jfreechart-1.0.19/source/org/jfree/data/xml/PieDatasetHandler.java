@@ -40,8 +40,11 @@
 
 package org.jfree.data.xml;
 
-import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
+import jfree.data.general.DefaultPieDataset;
+import jfree.data.general.PieDataset;
+import jfree.data.xml.DatasetTags;
+import jfree.data.xml.ItemHandler;
+import jfree.data.xml.RootHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -104,7 +107,7 @@ public class PieDatasetHandler extends RootHandler implements DatasetTags {
             this.dataset = new DefaultPieDataset();
         }
         else if (qName.equals(ITEM_TAG)) {
-            ItemHandler subhandler = new ItemHandler(this, this);
+            jfree.data.xml.ItemHandler subhandler = new ItemHandler(this, this);
             getSubHandlers().push(subhandler);
             subhandler.startElement(namespaceURI, localName, qName, atts);
         }

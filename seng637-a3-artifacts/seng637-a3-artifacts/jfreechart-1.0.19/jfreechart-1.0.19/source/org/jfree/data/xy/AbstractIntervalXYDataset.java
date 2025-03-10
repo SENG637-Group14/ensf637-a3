@@ -44,9 +44,12 @@
 package org.jfree.data.xy;
 
 
+import jfree.data.xy.AbstractXYDataset;
+import jfree.data.xy.IntervalXYDataset;
+
 /**
  * An base class that you can use to create new implementations of the
- * {@link IntervalXYDataset} interface.
+ * {@link jfree.data.xy.IntervalXYDataset} interface.
  */
 public abstract class AbstractIntervalXYDataset extends AbstractXYDataset
         implements IntervalXYDataset {

@@ -45,7 +45,8 @@
 
 package org.jfree.chart.event;
 
-import org.jfree.chart.title.Title;
+import jfree.chart.event.ChartChangeEvent;
+import jfree.chart.title.Title;
 
 /**
  * A change event that encapsulates information about a change to a chart title.

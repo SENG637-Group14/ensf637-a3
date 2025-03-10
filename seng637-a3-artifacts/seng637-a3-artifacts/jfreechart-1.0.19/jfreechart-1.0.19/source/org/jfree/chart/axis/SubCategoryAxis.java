@@ -65,12 +65,15 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.util.ParamChecks;
+import jfree.data.category.CategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleEdge;
@@ -178,8 +181,8 @@ public class SubCategoryAxis extends CategoryAxis
      * @return The space required to draw the axis.
      */
     @Override
-    public AxisSpace reserveSpace(Graphics2D g2, Plot plot, 
-            Rectangle2D plotArea, RectangleEdge edge, AxisSpace space) {
+    public jfree.chart.axis.AxisSpace reserveSpace(Graphics2D g2, Plot plot,
+                                                        Rectangle2D plotArea, RectangleEdge edge, jfree.chart.axis.AxisSpace space) {
 
         // create a new space object if one wasn't supplied...
         if (space == null) {
@@ -249,13 +252,13 @@ public class SubCategoryAxis extends CategoryAxis
      * @return The axis state (never <code>null</code>).
      */
     @Override
-    public AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
-            Rectangle2D dataArea, RectangleEdge edge, 
-            PlotRenderingInfo plotState) {
+    public jfree.chart.axis.AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
+                                                Rectangle2D dataArea, RectangleEdge edge,
+                                                PlotRenderingInfo plotState) {
 
         // if the axis is not visible, don't draw it...
         if (!isVisible()) {
-            return new AxisState(cursor);
+            return new jfree.chart.axis.AxisState(cursor);
         }
 
         if (isAxisLineVisible()) {
@@ -263,7 +266,7 @@ public class SubCategoryAxis extends CategoryAxis
         }
 
         // draw the category labels and axis label
-        AxisState state = new AxisState(cursor);
+        jfree.chart.axis.AxisState state = new jfree.chart.axis.AxisState(cursor);
         state = drawSubCategoryLabels(g2, plotArea, dataArea, edge, state, 
                 plotState);
         state = drawCategoryLabels(g2, plotArea, dataArea, edge, state,
@@ -292,9 +295,9 @@ public class SubCategoryAxis extends CategoryAxis
      *
      * @return The updated axis state (never <code>null</code>).
      */
-    protected AxisState drawSubCategoryLabels(Graphics2D g2,
-            Rectangle2D plotArea, Rectangle2D dataArea, RectangleEdge edge,
-            AxisState state, PlotRenderingInfo plotState) {
+    protected jfree.chart.axis.AxisState drawSubCategoryLabels(Graphics2D g2,
+                                                                    Rectangle2D plotArea, Rectangle2D dataArea, RectangleEdge edge,
+                                                                    AxisState state, PlotRenderingInfo plotState) {
 
         ParamChecks.nullNotPermitted(state, "state");
 
@@ -399,8 +402,8 @@ public class SubCategoryAxis extends CategoryAxis
         if (obj == this) {
             return true;
         }
-        if (obj instanceof SubCategoryAxis && super.equals(obj)) {
-            SubCategoryAxis axis = (SubCategoryAxis) obj;
+        if (obj instanceof jfree.chart.axis.SubCategoryAxis && super.equals(obj)) {
+            jfree.chart.axis.SubCategoryAxis axis = (jfree.chart.axis.SubCategoryAxis) obj;
             if (!this.subCategories.equals(axis.subCategories)) {
                 return false;
             }

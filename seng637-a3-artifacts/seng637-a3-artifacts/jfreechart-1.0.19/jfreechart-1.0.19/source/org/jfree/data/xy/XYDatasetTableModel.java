@@ -47,11 +47,13 @@ package org.jfree.data.xy;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetChangeListener;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetChangeListener;
+import jfree.data.xy.TableXYDataset;
+import jfree.data.xy.XYDataset;
 
 /**
- * A READ-ONLY wrapper around a {@link TableXYDataset} to convert it to a
+ * A READ-ONLY wrapper around a {@link jfree.data.xy.TableXYDataset} to convert it to a
  * table model for use in a JTable.  The first column of the table shows the
  * x-values, the remaining columns show the y-values for each series (series 0
  * appears in column 1, series 1 appears in column 2, etc).
@@ -66,7 +68,7 @@ public class XYDatasetTableModel extends AbstractTableModel
         implements TableModel, DatasetChangeListener  {
 
     /** The dataset. */
-    TableXYDataset model = null;
+    jfree.data.xy.TableXYDataset model = null;
 
     /**
      * Default constructor.
@@ -80,7 +82,7 @@ public class XYDatasetTableModel extends AbstractTableModel
      *
      * @param dataset  the dataset.
      */
-    public XYDatasetTableModel(TableXYDataset dataset) {
+    public XYDatasetTableModel(jfree.data.xy.TableXYDataset dataset) {
         this();
         this.model = dataset;
         this.model.addChangeListener(this);

@@ -81,10 +81,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.imagemap.ToolTipTagFragmentGenerator;
-import org.jfree.chart.imagemap.URLTagFragmentGenerator;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.imagemap.ToolTipTagFragmentGenerator;
+import jfree.chart.imagemap.URLTagFragmentGenerator;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
@@ -365,10 +365,10 @@ public class ChartEntity implements Cloneable, PublicCloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ChartEntity)) {
+        if (!(obj instanceof jfree.chart.entity.ChartEntity)) {
             return false;
         }
-        ChartEntity that = (ChartEntity) obj;
+        jfree.chart.entity.ChartEntity that = (jfree.chart.entity.ChartEntity) obj;
         if (!this.area.equals(that.area)) {
             return false;
         }

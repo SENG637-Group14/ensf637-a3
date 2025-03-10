@@ -59,11 +59,15 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PolarPlot;
-import org.jfree.chart.title.Title;
-import org.jfree.chart.util.ResourceBundleWrapper;
+import jfree.chart.JFreeChart;
+import jfree.chart.editor.ChartEditor;
+import jfree.chart.editor.DefaultPlotEditor;
+import jfree.chart.editor.DefaultPolarPlotEditor;
+import jfree.chart.editor.DefaultTitleEditor;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PolarPlot;
+import jfree.chart.title.Title;
+import jfree.chart.util.ResourceBundleWrapper;
 import org.jfree.layout.LCBLayout;
 import org.jfree.ui.PaintSample;
 
@@ -74,10 +78,10 @@ import org.jfree.ui.PaintSample;
 class DefaultChartEditor extends JPanel implements ActionListener, ChartEditor {
 
     /** A panel for displaying/editing the properties of the title. */
-    private DefaultTitleEditor titleEditor;
+    private jfree.chart.editor.DefaultTitleEditor titleEditor;
 
     /** A panel for displaying/editing the properties of the plot. */
-    private DefaultPlotEditor plotEditor;
+    private jfree.chart.editor.DefaultPlotEditor plotEditor;
 
     /**
      * A checkbox indicating whether or not the chart is drawn with
@@ -179,7 +183,7 @@ class DefaultChartEditor extends JPanel implements ActionListener, ChartEditor {
 
         JTabbedPane tabs = new JTabbedPane();
 
-        this.titleEditor = new DefaultTitleEditor(title);
+        this.titleEditor = new jfree.chart.editor.DefaultTitleEditor(title);
         this.titleEditor.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         tabs.addTab(localizationResources.getString("Title"), this.titleEditor);
 
@@ -187,7 +191,7 @@ class DefaultChartEditor extends JPanel implements ActionListener, ChartEditor {
             this.plotEditor = new DefaultPolarPlotEditor((PolarPlot) plot);
         }
         else {
-            this.plotEditor = new DefaultPlotEditor(plot);
+            this.plotEditor = new jfree.chart.editor.DefaultPlotEditor(plot);
         }
         this.plotEditor.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         tabs.addTab(localizationResources.getString("Plot"), this.plotEditor);
@@ -202,7 +206,7 @@ class DefaultChartEditor extends JPanel implements ActionListener, ChartEditor {
      *
      * @return A panel for editing the title.
      */
-    public DefaultTitleEditor getTitleEditor() {
+    public jfree.chart.editor.DefaultTitleEditor getTitleEditor() {
       return this.titleEditor;
     }
 
@@ -211,7 +215,7 @@ class DefaultChartEditor extends JPanel implements ActionListener, ChartEditor {
      *
      * @return A panel for editing the plot properties.
      */
-    public DefaultPlotEditor getPlotEditor() {
+    public jfree.chart.editor.DefaultPlotEditor getPlotEditor() {
         return this.plotEditor;
     }
 

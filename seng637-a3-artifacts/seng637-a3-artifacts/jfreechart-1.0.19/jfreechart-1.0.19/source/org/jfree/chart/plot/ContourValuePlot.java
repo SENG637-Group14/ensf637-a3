@@ -40,8 +40,9 @@
 
 package org.jfree.chart.plot;
 
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
-import org.jfree.data.Range;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.data.Range;
 
 /**
  * An interface defining methods related to contour plots.

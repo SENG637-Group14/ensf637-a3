@@ -42,9 +42,11 @@
 
 package org.jfree.data.xy;
 
-import org.jfree.data.ComparableObjectItem;
-import org.jfree.data.ComparableObjectSeries;
-import org.jfree.data.general.SeriesChangeEvent;
+import jfree.data.ComparableObjectItem;
+import jfree.data.ComparableObjectSeries;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.xy.XYIntervalDataItem;
+import jfree.data.xy.XYIntervalSeriesCollection;
 
 /**
  * A list of (x, x-low, x-high, y, y-low, y-high) data items.
@@ -94,7 +96,7 @@ public class XYIntervalSeries extends ComparableObjectSeries {
      */
     public void add(double x, double xLow, double xHigh, double y, double yLow,
             double yHigh) {
-        add(new XYIntervalDataItem(x, xLow, xHigh, y, yLow, yHigh), true);
+        add(new jfree.data.xy.XYIntervalDataItem(x, xLow, xHigh, y, yLow, yHigh), true);
     }
     
     /**
@@ -106,7 +108,7 @@ public class XYIntervalSeries extends ComparableObjectSeries {
      * 
      * @since 1.0.18
      */
-    public void add(XYIntervalDataItem item, boolean notify) {
+    public void add(jfree.data.xy.XYIntervalDataItem item, boolean notify) {
         super.add(item, notify);
     }
 
@@ -118,7 +120,7 @@ public class XYIntervalSeries extends ComparableObjectSeries {
      * @return The x-value (never <code>null</code>).
      */
     public Number getX(int index) {
-        XYIntervalDataItem item = (XYIntervalDataItem) getDataItem(index);
+        jfree.data.xy.XYIntervalDataItem item = (jfree.data.xy.XYIntervalDataItem) getDataItem(index);
         return item.getX();
     }
 
@@ -133,7 +135,7 @@ public class XYIntervalSeries extends ComparableObjectSeries {
      * @since 1.0.5
      */
     public double getXLowValue(int index) {
-        XYIntervalDataItem item = (XYIntervalDataItem) getDataItem(index);
+        jfree.data.xy.XYIntervalDataItem item = (jfree.data.xy.XYIntervalDataItem) getDataItem(index);
         return item.getXLowValue();
     }
 
@@ -148,7 +150,7 @@ public class XYIntervalSeries extends ComparableObjectSeries {
      * @since 1.0.5
      */
     public double getXHighValue(int index) {
-        XYIntervalDataItem item = (XYIntervalDataItem) getDataItem(index);
+        jfree.data.xy.XYIntervalDataItem item = (jfree.data.xy.XYIntervalDataItem) getDataItem(index);
         return item.getXHighValue();
     }
 
@@ -160,7 +162,7 @@ public class XYIntervalSeries extends ComparableObjectSeries {
      * @return The y-value.
      */
     public double getYValue(int index) {
-        XYIntervalDataItem item = (XYIntervalDataItem) getDataItem(index);
+        jfree.data.xy.XYIntervalDataItem item = (jfree.data.xy.XYIntervalDataItem) getDataItem(index);
         return item.getYValue();
     }
 
@@ -175,7 +177,7 @@ public class XYIntervalSeries extends ComparableObjectSeries {
      * @since 1.0.5
      */
     public double getYLowValue(int index) {
-        XYIntervalDataItem item = (XYIntervalDataItem) getDataItem(index);
+        jfree.data.xy.XYIntervalDataItem item = (jfree.data.xy.XYIntervalDataItem) getDataItem(index);
         return item.getYLowValue();
     }
 
@@ -190,7 +192,7 @@ public class XYIntervalSeries extends ComparableObjectSeries {
      * @since 1.0.5
      */
     public double getYHighValue(int index) {
-        XYIntervalDataItem item = (XYIntervalDataItem) getDataItem(index);
+        jfree.data.xy.XYIntervalDataItem item = (XYIntervalDataItem) getDataItem(index);
         return item.getYHighValue();
     }
 

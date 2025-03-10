@@ -72,26 +72,30 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.LegendItemSource;
-import org.jfree.chart.block.Arrangement;
-import org.jfree.chart.block.Block;
-import org.jfree.chart.block.BlockContainer;
-import org.jfree.chart.block.BlockFrame;
-import org.jfree.chart.block.BlockResult;
-import org.jfree.chart.block.BorderArrangement;
-import org.jfree.chart.block.CenterArrangement;
-import org.jfree.chart.block.ColumnArrangement;
-import org.jfree.chart.block.EntityBlockParams;
-import org.jfree.chart.block.FlowArrangement;
-import org.jfree.chart.block.LabelBlock;
-import org.jfree.chart.block.RectangleConstraint;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.StandardEntityCollection;
-import org.jfree.chart.entity.TitleEntity;
-import org.jfree.chart.event.TitleChangeEvent;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.block.EntityBlockResult;
+import jfree.chart.LegendItem;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.LegendItemSource;
+import jfree.chart.block.Arrangement;
+import jfree.chart.block.Block;
+import jfree.chart.block.BlockContainer;
+import jfree.chart.block.BlockFrame;
+import jfree.chart.block.BlockResult;
+import jfree.chart.block.BorderArrangement;
+import jfree.chart.block.CenterArrangement;
+import jfree.chart.block.ColumnArrangement;
+import jfree.chart.block.EntityBlockParams;
+import jfree.chart.block.FlowArrangement;
+import jfree.chart.block.LabelBlock;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.StandardEntityCollection;
+import jfree.chart.entity.TitleEntity;
+import jfree.chart.event.TitleChangeEvent;
+import jfree.chart.title.LegendGraphic;
+import jfree.chart.title.LegendItemBlockContainer;
+import jfree.chart.title.Title;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.RectangleAnchor;
 import org.jfree.ui.RectangleEdge;
@@ -466,7 +470,7 @@ public class LegendTitle extends Title
      */
     protected Block createLegendItemBlock(LegendItem item) {
         BlockContainer result;
-        LegendGraphic lg = new LegendGraphic(item.getShape(),
+        jfree.chart.title.LegendGraphic lg = new LegendGraphic(item.getShape(),
                 item.getFillPaint());
         lg.setFillPaintTransformer(item.getFillPaintTransformer());
         lg.setShapeFilled(item.isShapeFilled());
@@ -480,7 +484,7 @@ public class LegendTitle extends Title
         lg.setOutlineStroke(item.getOutlineStroke());
         lg.setPadding(this.legendItemGraphicPadding);
 
-        LegendItemBlockContainer legendItem = new LegendItemBlockContainer(
+        jfree.chart.title.LegendItemBlockContainer legendItem = new LegendItemBlockContainer(
                 new BorderArrangement(), item.getDataset(),
                 item.getSeriesKey());
         lg.setShapeAnchor(getLegendItemGraphicAnchor());
@@ -562,7 +566,7 @@ public class LegendTitle extends Title
      * @param area  the area.
      * @param params  ignored (<code>null</code> permitted).
      *
-     * @return An {@link org.jfree.chart.block.EntityBlockResult} or
+     * @return An {@link EntityBlockResult} or
      *         <code>null</code>.
      */
     @Override
@@ -631,13 +635,13 @@ public class LegendTitle extends Title
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LegendTitle)) {
+        if (!(obj instanceof jfree.chart.title.LegendTitle)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        LegendTitle that = (LegendTitle) obj;
+        jfree.chart.title.LegendTitle that = (jfree.chart.title.LegendTitle) obj;
         if (!PaintUtilities.equal(this.backgroundPaint, that.backgroundPaint)) {
             return false;
         }

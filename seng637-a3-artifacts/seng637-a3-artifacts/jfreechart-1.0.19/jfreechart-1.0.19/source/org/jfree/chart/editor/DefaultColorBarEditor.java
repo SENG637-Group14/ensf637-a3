@@ -59,18 +59,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import org.jfree.chart.axis.ColorBar;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.plot.GreyPalette;
-import org.jfree.chart.plot.RainbowPalette;
-import org.jfree.chart.util.ResourceBundleWrapper;
+import jfree.chart.axis.ColorBar;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.editor.DefaultNumberAxisEditor;
+import jfree.chart.editor.PaletteChooserPanel;
+import jfree.chart.editor.PaletteSample;
+import jfree.chart.plot.GreyPalette;
+import jfree.chart.plot.RainbowPalette;
+import jfree.chart.util.ResourceBundleWrapper;
 import org.jfree.layout.LCBLayout;
 
 /**
  * A DefaultColorBarEditor.  Extends DefaultNumberAxisEditor to allow
  * change general axis type parameters.
  */
-class DefaultColorBarEditor extends DefaultNumberAxisEditor {
+class DefaultColorBarEditor extends jfree.chart.editor.DefaultNumberAxisEditor {
 
     /**
      * A checkbox that indicates whether or not the color indices should run
@@ -88,10 +91,10 @@ class DefaultColorBarEditor extends DefaultNumberAxisEditor {
     private boolean stepPalette = false;
 
     /** The Palette Sample displaying the current Palette. */
-    private PaletteSample currentPalette;
+    private jfree.chart.editor.PaletteSample currentPalette;
 
     /** An array of availiable sample palettes. */
-    private PaletteSample[] availablePaletteSamples;
+    private jfree.chart.editor.PaletteSample[] availablePaletteSamples;
 
     /** The resourceBundle for the localization. */
    protected  static ResourceBundle localizationResources
@@ -107,10 +110,10 @@ class DefaultColorBarEditor extends DefaultNumberAxisEditor {
         super((NumberAxis) colorBar.getAxis());
         this.invertPalette = colorBar.getColorPalette().isInverse();
         this.stepPalette = colorBar.getColorPalette().isStepped();
-        this.currentPalette = new PaletteSample(colorBar.getColorPalette());
-        this.availablePaletteSamples = new PaletteSample[2];
+        this.currentPalette = new jfree.chart.editor.PaletteSample(colorBar.getColorPalette());
+        this.availablePaletteSamples = new jfree.chart.editor.PaletteSample[2];
         this.availablePaletteSamples[0]
-            = new PaletteSample(new RainbowPalette());
+            = new jfree.chart.editor.PaletteSample(new RainbowPalette());
         this.availablePaletteSamples[1]
             = new PaletteSample(new GreyPalette());
 
@@ -179,8 +182,8 @@ class DefaultColorBarEditor extends DefaultNumberAxisEditor {
      * Handle a palette selection.
      */
     private void attemptPaletteSelection() {
-        PaletteChooserPanel panel
-            = new PaletteChooserPanel(null, this.availablePaletteSamples);
+        jfree.chart.editor.PaletteChooserPanel panel
+            = new jfree.chart.editor.PaletteChooserPanel(null, this.availablePaletteSamples);
         int result = JOptionPane.showConfirmDialog(
             this, panel, localizationResources.getString("Palette_Selection"),
             JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE
@@ -216,10 +219,10 @@ class DefaultColorBarEditor extends DefaultNumberAxisEditor {
      *
      * @return A panel or <code>null</code< if axis is <code>null</code>.
      */
-    public static DefaultColorBarEditor getInstance(ColorBar colorBar) {
+    public static jfree.chart.editor.DefaultColorBarEditor getInstance(ColorBar colorBar) {
 
         if (colorBar != null) {
-            return new DefaultColorBarEditor(colorBar);
+            return new jfree.chart.editor.DefaultColorBarEditor(colorBar);
         }
         else {
             return null;

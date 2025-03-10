@@ -40,9 +40,13 @@
 
 package org.jfree.chart.axis;
 
+import jfree.chart.axis.DateAxis;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.TickUnit;
+
 /**
  * An interface used by the {@link DateAxis} and {@link NumberAxis} classes to
- * obtain a suitable {@link TickUnit}.
+ * obtain a suitable {@link jfree.chart.axis.TickUnit}.
  */
 public interface TickUnitSource {
 
@@ -55,7 +59,7 @@ public interface TickUnitSource {
      *
      * @return A tick unit that is larger than the supplied unit.
      */
-    public TickUnit getLargerTickUnit(TickUnit unit);
+    public jfree.chart.axis.TickUnit getLargerTickUnit(jfree.chart.axis.TickUnit unit);
 
     /**
      * Returns the tick unit in the collection that is greater than or equal
@@ -65,7 +69,7 @@ public interface TickUnitSource {
      *
      * @return A unit from the collection.
      */
-    public TickUnit getCeilingTickUnit(TickUnit unit);
+    public jfree.chart.axis.TickUnit getCeilingTickUnit(jfree.chart.axis.TickUnit unit);
 
     /**
      * Returns the smallest tick unit available in the source that is greater 

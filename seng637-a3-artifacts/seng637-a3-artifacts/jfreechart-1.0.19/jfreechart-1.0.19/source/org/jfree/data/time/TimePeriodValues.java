@@ -51,19 +51,22 @@ package org.jfree.data.time;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.general.Series;
-import org.jfree.data.general.SeriesChangeEvent;
-import org.jfree.data.general.SeriesException;
+import jfree.data.general.Series;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.general.SeriesException;
+import jfree.data.time.TimePeriod;
+import jfree.data.time.TimePeriodValue;
+import jfree.data.time.TimeSeries;
 import org.jfree.util.ObjectUtilities;
 
 /**
- * A structure containing zero, one or many {@link TimePeriodValue} instances.  
+ * A structure containing zero, one or many {@link jfree.data.time.TimePeriodValue} instances.
  * The time periods can overlap, and are maintained in the order that they are 
  * added to the collection.
  * <p>
- * This is similar to the {@link TimeSeries} class, except that the time 
+ * This is similar to the {@link TimeSeries} class, except that the time
  * periods can have irregular lengths.
  */
 public class TimePeriodValues extends Series implements Serializable {
@@ -201,8 +204,8 @@ public class TimePeriodValues extends Series implements Serializable {
      *
      * @return One data item for the series.
      */
-    public TimePeriodValue getDataItem(int index) {
-        return (TimePeriodValue) this.data.get(index);
+    public jfree.data.time.TimePeriodValue getDataItem(int index) {
+        return (jfree.data.time.TimePeriodValue) this.data.get(index);
     }
 
     /**
@@ -215,7 +218,7 @@ public class TimePeriodValues extends Series implements Serializable {
      * 
      * @see #getDataItem(int)
      */
-    public TimePeriod getTimePeriod(int index) {
+    public jfree.data.time.TimePeriod getTimePeriod(int index) {
         return getDataItem(index).getPeriod();
     }
 
@@ -239,7 +242,7 @@ public class TimePeriodValues extends Series implements Serializable {
      *
      * @param item  the item (<code>null</code> not permitted).
      */
-    public void add(TimePeriodValue item) {
+    public void add(jfree.data.time.TimePeriodValue item) {
         ParamChecks.nullNotPermitted(item, "item");
         this.data.add(item);
         updateBounds(item.getPeriod(), this.data.size() - 1);
@@ -252,7 +255,7 @@ public class TimePeriodValues extends Series implements Serializable {
      * @param period  the time period.
      * @param index  the index of the time period.
      */
-    private void updateBounds(TimePeriod period, int index) {
+    private void updateBounds(jfree.data.time.TimePeriod period, int index) {
         
         long start = period.getStart().getTime();
         long end = period.getEnd().getTime();
@@ -343,7 +346,7 @@ public class TimePeriodValues extends Series implements Serializable {
         this.maxMiddleIndex = -1;
         this.maxEndIndex = -1;
         for (int i = 0; i < this.data.size(); i++) {
-            TimePeriodValue tpv = (TimePeriodValue) this.data.get(i);
+            jfree.data.time.TimePeriodValue tpv = (jfree.data.time.TimePeriodValue) this.data.get(i);
             updateBounds(tpv.getPeriod(), i);
         }
     }
@@ -355,10 +358,10 @@ public class TimePeriodValues extends Series implements Serializable {
      * @param period  the time period (<code>null</code> not permitted).
      * @param value  the value.
      * 
-     * @see #add(TimePeriod, Number)
+     * @see #add(jfree.data.time.TimePeriod, Number)
      */
-    public void add(TimePeriod period, double value) {
-        TimePeriodValue item = new TimePeriodValue(period, value);
+    public void add(jfree.data.time.TimePeriod period, double value) {
+        jfree.data.time.TimePeriodValue item = new jfree.data.time.TimePeriodValue(period, value);
         add(item);
     }
 
@@ -370,7 +373,7 @@ public class TimePeriodValues extends Series implements Serializable {
      * @param value  the value (<code>null</code> permitted).
      */
     public void add(TimePeriod period, Number value) {
-        TimePeriodValue item = new TimePeriodValue(period, value);
+        jfree.data.time.TimePeriodValue item = new jfree.data.time.TimePeriodValue(period, value);
         add(item);
     }
 
@@ -382,7 +385,7 @@ public class TimePeriodValues extends Series implements Serializable {
      * @param value  the new value (<code>null</code> not permitted).
      */
     public void update(int index, Number value) {
-        TimePeriodValue item = getDataItem(index);
+        jfree.data.time.TimePeriodValue item = getDataItem(index);
         item.setValue(value);
         fireSeriesChanged();
     }
@@ -414,13 +417,13 @@ public class TimePeriodValues extends Series implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof TimePeriodValues)) {
+        if (!(obj instanceof jfree.data.time.TimePeriodValues)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        TimePeriodValues that = (TimePeriodValues) obj;
+        jfree.data.time.TimePeriodValues that = (jfree.data.time.TimePeriodValues) obj;
         if (!ObjectUtilities.equal(this.getDomainDescription(), 
                 that.getDomainDescription())) {
             return false;
@@ -493,16 +496,16 @@ public class TimePeriodValues extends Series implements Serializable {
      * 
      * @throws CloneNotSupportedException if there is a cloning problem.
      */
-    public TimePeriodValues createCopy(int start, int end) 
+    public jfree.data.time.TimePeriodValues createCopy(int start, int end)
         throws CloneNotSupportedException {
 
-        TimePeriodValues copy = (TimePeriodValues) super.clone();
+        jfree.data.time.TimePeriodValues copy = (jfree.data.time.TimePeriodValues) super.clone();
 
         copy.data = new ArrayList();
         if (this.data.size() > 0) {
             for (int index = start; index <= end; index++) {
-                TimePeriodValue item = (TimePeriodValue) this.data.get(index);
-                TimePeriodValue clone = (TimePeriodValue) item.clone();
+                jfree.data.time.TimePeriodValue item = (jfree.data.time.TimePeriodValue) this.data.get(index);
+                jfree.data.time.TimePeriodValue clone = (TimePeriodValue) item.clone();
                 try {
                     copy.add(clone);
                 }

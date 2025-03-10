@@ -48,18 +48,21 @@ package org.jfree.data.xy;
 
 import java.io.Serializable;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.xy.AbstractIntervalXYDataset;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.XYIntervalSeries;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A collection of {@link XYIntervalSeries} objects.
+ * A collection of {@link jfree.data.xy.XYIntervalSeries} objects.
  *
  * @since 1.0.3
  *
- * @see XYIntervalSeries
+ * @see jfree.data.xy.XYIntervalSeries
  */
 public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
         implements IntervalXYDataset, PublicCloneable, Serializable {
@@ -80,7 +83,7 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
      *
      * @param series  the series (<code>null</code> not permitted).
      */
-    public void addSeries(XYIntervalSeries series) {
+    public void addSeries(jfree.data.xy.XYIntervalSeries series) {
         ParamChecks.nullNotPermitted(series, "series");
         this.data.add(series);
         series.addChangeListener(this);
@@ -107,11 +110,11 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
      * @throws IllegalArgumentException if <code>series</code> is not in the
      *     range <code>0</code> to <code>getSeriesCount() - 1</code>.
      */
-    public XYIntervalSeries getSeries(int series) {
+    public jfree.data.xy.XYIntervalSeries getSeries(int series) {
         if ((series < 0) || (series >= getSeriesCount())) {
             throw new IllegalArgumentException("Series index out of bounds");
         }
-        return (XYIntervalSeries) this.data.get(series);
+        return (jfree.data.xy.XYIntervalSeries) this.data.get(series);
     }
 
     /**
@@ -157,7 +160,7 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public Number getX(int series, int item) {
-        XYIntervalSeries s = (XYIntervalSeries) this.data.get(series);
+        jfree.data.xy.XYIntervalSeries s = (jfree.data.xy.XYIntervalSeries) this.data.get(series);
         return s.getX(item);
     }
 
@@ -172,7 +175,7 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public double getStartXValue(int series, int item) {
-        XYIntervalSeries s = (XYIntervalSeries) this.data.get(series);
+        jfree.data.xy.XYIntervalSeries s = (jfree.data.xy.XYIntervalSeries) this.data.get(series);
         return s.getXLowValue(item);
     }
 
@@ -187,7 +190,7 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public double getEndXValue(int series, int item) {
-        XYIntervalSeries s = (XYIntervalSeries) this.data.get(series);
+        jfree.data.xy.XYIntervalSeries s = (jfree.data.xy.XYIntervalSeries) this.data.get(series);
         return s.getXHighValue(item);
     }
 
@@ -202,7 +205,7 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public double getYValue(int series, int item) {
-        XYIntervalSeries s = (XYIntervalSeries) this.data.get(series);
+        jfree.data.xy.XYIntervalSeries s = (jfree.data.xy.XYIntervalSeries) this.data.get(series);
         return s.getYValue(item);
     }
 
@@ -217,7 +220,7 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public double getStartYValue(int series, int item) {
-        XYIntervalSeries s = (XYIntervalSeries) this.data.get(series);
+        jfree.data.xy.XYIntervalSeries s = (jfree.data.xy.XYIntervalSeries) this.data.get(series);
         return s.getYLowValue(item);
     }
 
@@ -232,7 +235,7 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public double getEndYValue(int series, int item) {
-        XYIntervalSeries s = (XYIntervalSeries) this.data.get(series);
+        jfree.data.xy.XYIntervalSeries s = (jfree.data.xy.XYIntervalSeries) this.data.get(series);
         return s.getYHighValue(item);
     }
 
@@ -315,7 +318,7 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
         if ((series < 0) || (series >= getSeriesCount())) {
             throw new IllegalArgumentException("Series index out of bounds.");
         }
-        XYIntervalSeries ts = (XYIntervalSeries) this.data.get(series);
+        jfree.data.xy.XYIntervalSeries ts = (jfree.data.xy.XYIntervalSeries) this.data.get(series);
         ts.removeChangeListener(this);
         this.data.remove(series);
         fireDatasetChanged();
@@ -329,7 +332,7 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
      *
      * @since 1.0.10
      */
-    public void removeSeries(XYIntervalSeries series) {
+    public void removeSeries(jfree.data.xy.XYIntervalSeries series) {
         ParamChecks.nullNotPermitted(series, "series");
         if (this.data.contains(series)) {
             series.removeChangeListener(this);
@@ -348,7 +351,7 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
         // Unregister the collection as a change listener to each series in
         // the collection.
         for (int i = 0; i < this.data.size(); i++) {
-          XYIntervalSeries series = (XYIntervalSeries) this.data.get(i);
+          jfree.data.xy.XYIntervalSeries series = (XYIntervalSeries) this.data.get(i);
           series.removeChangeListener(this);
         }
         this.data.clear();
@@ -367,10 +370,10 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYIntervalSeriesCollection)) {
+        if (!(obj instanceof jfree.data.xy.XYIntervalSeriesCollection)) {
             return false;
         }
-        XYIntervalSeriesCollection that = (XYIntervalSeriesCollection) obj;
+        jfree.data.xy.XYIntervalSeriesCollection that = (jfree.data.xy.XYIntervalSeriesCollection) obj;
         return ObjectUtilities.equal(this.data, that.data);
     }
 
@@ -383,8 +386,8 @@ public class XYIntervalSeriesCollection extends AbstractIntervalXYDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        XYIntervalSeriesCollection clone
-                = (XYIntervalSeriesCollection) super.clone();
+        jfree.data.xy.XYIntervalSeriesCollection clone
+                = (jfree.data.xy.XYIntervalSeriesCollection) super.clone();
         int seriesCount = getSeriesCount();
         clone.data = new java.util.ArrayList(seriesCount);
         for (int i = 0; i < this.data.size(); i++) {

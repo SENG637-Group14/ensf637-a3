@@ -70,11 +70,11 @@ import java.io.Serializable;
 
 import javax.swing.event.EventListenerList;
 
-import org.jfree.chart.block.AbstractBlock;
-import org.jfree.chart.block.Block;
-import org.jfree.chart.event.TitleChangeEvent;
-import org.jfree.chart.event.TitleChangeListener;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.block.AbstractBlock;
+import jfree.chart.block.Block;
+import jfree.chart.event.TitleChangeEvent;
+import jfree.chart.event.TitleChangeListener;
+import jfree.chart.util.ParamChecks;
 import org.jfree.ui.HorizontalAlignment;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
@@ -137,9 +137,9 @@ public abstract class Title extends AbstractBlock
      * Creates a new title, using default attributes where necessary.
      */
     protected Title() {
-        this(Title.DEFAULT_POSITION,
-                Title.DEFAULT_HORIZONTAL_ALIGNMENT,
-                Title.DEFAULT_VERTICAL_ALIGNMENT, Title.DEFAULT_PADDING);
+        this(jfree.chart.title.Title.DEFAULT_POSITION,
+                jfree.chart.title.Title.DEFAULT_HORIZONTAL_ALIGNMENT,
+                jfree.chart.title.Title.DEFAULT_VERTICAL_ALIGNMENT, jfree.chart.title.Title.DEFAULT_PADDING);
     }
 
     /**
@@ -157,7 +157,7 @@ public abstract class Title extends AbstractBlock
                     VerticalAlignment verticalAlignment) {
 
         this(position, horizontalAlignment, verticalAlignment,
-                Title.DEFAULT_PADDING);
+                jfree.chart.title.Title.DEFAULT_PADDING);
 
     }
 
@@ -342,7 +342,7 @@ public abstract class Title extends AbstractBlock
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        Title duplicate = (Title) super.clone();
+        jfree.chart.title.Title duplicate = (jfree.chart.title.Title) super.clone();
         duplicate.listenerList = new EventListenerList();
         // RectangleInsets is immutable => same reference in clone OK
         return duplicate;
@@ -397,10 +397,10 @@ public abstract class Title extends AbstractBlock
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Title)) {
+        if (!(obj instanceof jfree.chart.title.Title)) {
             return false;
         }
-        Title that = (Title) obj;
+        jfree.chart.title.Title that = (jfree.chart.title.Title) obj;
         if (this.visible != that.visible) {
             return false;
         }

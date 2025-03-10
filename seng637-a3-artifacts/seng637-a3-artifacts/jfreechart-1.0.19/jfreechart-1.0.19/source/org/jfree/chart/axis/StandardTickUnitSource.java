@@ -41,12 +41,17 @@
 
 package org.jfree.chart.axis;
 
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.NumberTickUnit;
+import jfree.chart.axis.TickUnit;
+import jfree.chart.axis.TickUnitSource;
+
 import java.io.Serializable;
 import java.text.DecimalFormat;
 
 /**
  * A source that can used by the {@link NumberAxis} class to obtain a
- * suitable {@link TickUnit}.  Instances of this class are {@link Serializable}
+ * suitable {@link jfree.chart.axis.TickUnit}.  Instances of this class are {@link Serializable}
  * from version 1.0.7 onwards.  Cloning is not supported, because instances
  * are immutable.
  */
@@ -70,11 +75,11 @@ public class StandardTickUnitSource implements TickUnitSource, Serializable {
      * @return A tick unit that is larger than the supplied unit.
      */
     @Override
-    public TickUnit getLargerTickUnit(TickUnit unit) {
+    public jfree.chart.axis.TickUnit getLargerTickUnit(jfree.chart.axis.TickUnit unit) {
         double x = unit.getSize();
         double log = Math.log(x) / LOG_10_VALUE;
         double higher = Math.ceil(log);
-        return new NumberTickUnit(Math.pow(10, higher),
+        return new jfree.chart.axis.NumberTickUnit(Math.pow(10, higher),
                 new DecimalFormat("0.0E0"));
     }
 
@@ -87,7 +92,7 @@ public class StandardTickUnitSource implements TickUnitSource, Serializable {
      * @return A unit from the collection.
      */
     @Override
-    public TickUnit getCeilingTickUnit(TickUnit unit) {
+    public jfree.chart.axis.TickUnit getCeilingTickUnit(jfree.chart.axis.TickUnit unit) {
         return getLargerTickUnit(unit);
     }
 
@@ -119,7 +124,7 @@ public class StandardTickUnitSource implements TickUnitSource, Serializable {
         if (obj == this) {
             return true;
         }
-        return (obj instanceof StandardTickUnitSource);
+        return (obj instanceof jfree.chart.axis.StandardTickUnitSource);
     }
 
     /**

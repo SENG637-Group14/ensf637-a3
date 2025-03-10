@@ -50,8 +50,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.Effect3D;
-import org.jfree.chart.event.RendererChangeEvent;
+import jfree.chart.Effect3D;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.PaintUtilities;
 
@@ -242,10 +243,10 @@ public class XYLine3DRenderer extends XYLineAndShapeRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYLine3DRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.XYLine3DRenderer)) {
             return false;
         }
-        XYLine3DRenderer that = (XYLine3DRenderer) obj;
+        jfree.chart.renderer.xy.XYLine3DRenderer that = (jfree.chart.renderer.xy.XYLine3DRenderer) obj;
         if (this.xOffset != that.xOffset) {
             return false;
         }

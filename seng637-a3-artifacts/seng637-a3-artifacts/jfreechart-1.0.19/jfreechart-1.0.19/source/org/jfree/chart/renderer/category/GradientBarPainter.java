@@ -51,11 +51,13 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
+import jfree.chart.HashUtilities;
+import jfree.chart.renderer.category.BarPainter;
+import jfree.chart.renderer.category.BarRenderer;
 import org.jfree.ui.RectangleEdge;
 
 /**
- * An implementation of the {@link BarPainter} interface that uses several
+ * An implementation of the {@link jfree.chart.renderer.category.BarPainter} interface that uses several
  * gradient fills to enrich the appearance of the bars.
  *
  * @since 1.0.11
@@ -103,8 +105,8 @@ public class GradientBarPainter implements BarPainter, Serializable {
      *              bar.
      */
     @Override
-    public void paintBar(Graphics2D g2, BarRenderer renderer, int row,
-            int column, RectangularShape bar, RectangleEdge base) {
+    public void paintBar(Graphics2D g2, jfree.chart.renderer.category.BarRenderer renderer, int row,
+                         int column, RectangularShape bar, RectangleEdge base) {
 
         Paint itemPaint = renderer.getItemPaint(row, column);
 
@@ -206,8 +208,8 @@ public class GradientBarPainter implements BarPainter, Serializable {
      */
     @Override
     public void paintBarShadow(Graphics2D g2, BarRenderer renderer, int row,
-            int column, RectangularShape bar, RectangleEdge base,
-            boolean pegShadow) {
+                               int column, RectangularShape bar, RectangleEdge base,
+                               boolean pegShadow) {
 
         // handle a special case - if the bar colour has alpha == 0, it is
         // invisible so we shouldn't draw any shadow
@@ -348,10 +350,10 @@ public class GradientBarPainter implements BarPainter, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof GradientBarPainter)) {
+        if (!(obj instanceof jfree.chart.renderer.category.GradientBarPainter)) {
             return false;
         }
-        GradientBarPainter that = (GradientBarPainter) obj;
+        jfree.chart.renderer.category.GradientBarPainter that = (jfree.chart.renderer.category.GradientBarPainter) obj;
         if (this.g1 != that.g1) {
             return false;
         }

@@ -48,6 +48,11 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
+import jfree.chart.block.Arrangement;
+import jfree.chart.block.Block;
+import jfree.chart.block.BlockContainer;
+import jfree.chart.block.LengthConstraintType;
+import jfree.chart.block.RectangleConstraint;
 import org.jfree.ui.Size2D;
 
 /**
@@ -85,7 +90,7 @@ public class GridArrangement implements Arrangement, Serializable {
      * @param key  the key (<code>null</code> permitted).
      */
     @Override
-    public void add(Block block, Object key) {
+    public void add(jfree.chart.block.Block block, Object key) {
         // can safely ignore
     }
 
@@ -100,42 +105,42 @@ public class GridArrangement implements Arrangement, Serializable {
      * @return The size following the arrangement.
      */
     @Override
-    public Size2D arrange(BlockContainer container, Graphics2D g2,
-                          RectangleConstraint constraint) {
-        LengthConstraintType w = constraint.getWidthConstraintType();
-        LengthConstraintType h = constraint.getHeightConstraintType();
-        if (w == LengthConstraintType.NONE) {
-            if (h == LengthConstraintType.NONE) {
+    public Size2D arrange(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                          jfree.chart.block.RectangleConstraint constraint) {
+        jfree.chart.block.LengthConstraintType w = constraint.getWidthConstraintType();
+        jfree.chart.block.LengthConstraintType h = constraint.getHeightConstraintType();
+        if (w == jfree.chart.block.LengthConstraintType.NONE) {
+            if (h == jfree.chart.block.LengthConstraintType.NONE) {
                 return arrangeNN(container, g2);
             }
-            else if (h == LengthConstraintType.FIXED) {
+            else if (h == jfree.chart.block.LengthConstraintType.FIXED) {
                 return arrangeNF(container, g2, constraint);
             }
-            else if (h == LengthConstraintType.RANGE) {
+            else if (h == jfree.chart.block.LengthConstraintType.RANGE) {
                 // find optimum height, then map to range
                 return arrangeNR(container, g2, constraint);
             }
         }
-        else if (w == LengthConstraintType.FIXED) {
-            if (h == LengthConstraintType.NONE) {
+        else if (w == jfree.chart.block.LengthConstraintType.FIXED) {
+            if (h == jfree.chart.block.LengthConstraintType.NONE) {
                 // find optimum height
                 return arrangeFN(container, g2, constraint);
             }
-            else if (h == LengthConstraintType.FIXED) {
+            else if (h == jfree.chart.block.LengthConstraintType.FIXED) {
                 return arrangeFF(container, g2, constraint);
             }
-            else if (h == LengthConstraintType.RANGE) {
+            else if (h == jfree.chart.block.LengthConstraintType.RANGE) {
                 // find optimum height and map to range
                 return arrangeFR(container, g2, constraint);
             }
         }
-        else if (w == LengthConstraintType.RANGE) {
+        else if (w == jfree.chart.block.LengthConstraintType.RANGE) {
             // find optimum width and map to range
-            if (h == LengthConstraintType.NONE) {
+            if (h == jfree.chart.block.LengthConstraintType.NONE) {
                 // find optimum height
                 return arrangeRN(container, g2, constraint);
             }
-            else if (h == LengthConstraintType.FIXED) {
+            else if (h == jfree.chart.block.LengthConstraintType.FIXED) {
                 // fixed width
                 return arrangeRF(container, g2, constraint);
             }
@@ -154,22 +159,22 @@ public class GridArrangement implements Arrangement, Serializable {
      *
      * @return The size.
      */
-    protected Size2D arrangeNN(BlockContainer container, Graphics2D g2) {
+    protected Size2D arrangeNN(jfree.chart.block.BlockContainer container, Graphics2D g2) {
         double maxW = 0.0;
         double maxH = 0.0;
         List blocks = container.getBlocks();
         Iterator iterator = blocks.iterator();
         while (iterator.hasNext()) {
-            Block b = (Block) iterator.next();
+            jfree.chart.block.Block b = (jfree.chart.block.Block) iterator.next();
             if (b != null) {
-                Size2D s = b.arrange(g2, RectangleConstraint.NONE);
+                Size2D s = b.arrange(g2, jfree.chart.block.RectangleConstraint.NONE);
                 maxW = Math.max(maxW, s.width);
                 maxH = Math.max(maxH, s.height);
             }
         }
         double width = this.columns * maxW;
         double height = this.rows * maxH;
-        RectangleConstraint c = new RectangleConstraint(width, height);
+        jfree.chart.block.RectangleConstraint c = new jfree.chart.block.RectangleConstraint(width, height);
         return arrangeFF(container, g2, c);
     }
 
@@ -182,8 +187,8 @@ public class GridArrangement implements Arrangement, Serializable {
      *
      * @return The size following the arrangement.
      */
-    protected Size2D arrangeFF(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+    protected Size2D arrangeFF(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                               jfree.chart.block.RectangleConstraint constraint) {
         double width = constraint.getWidth() / this.columns;
         double height = constraint.getHeight() / this.rows;
         List blocks = container.getBlocks();
@@ -193,7 +198,7 @@ public class GridArrangement implements Arrangement, Serializable {
                 if (index >= blocks.size()) {
                     break;
                 }
-                Block b = (Block) blocks.get(index);
+                jfree.chart.block.Block b = (jfree.chart.block.Block) blocks.get(index);
                 if (b != null) {
                     b.setBounds(new Rectangle2D.Double(c * width, r * height,
                             width, height));
@@ -212,10 +217,10 @@ public class GridArrangement implements Arrangement, Serializable {
      *
      * @return The size of the arrangement.
      */
-    protected Size2D arrangeFR(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+    protected Size2D arrangeFR(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                               jfree.chart.block.RectangleConstraint constraint) {
 
-        RectangleConstraint c1 = constraint.toUnconstrainedHeight();
+        jfree.chart.block.RectangleConstraint c1 = constraint.toUnconstrainedHeight();
         Size2D size1 = arrange(container, g2, c1);
 
         if (constraint.getHeightRange().contains(size1.getHeight())) {
@@ -223,7 +228,7 @@ public class GridArrangement implements Arrangement, Serializable {
         }
         else {
             double h = constraint.getHeightRange().constrain(size1.getHeight());
-            RectangleConstraint c2 = constraint.toFixedHeight(h);
+            jfree.chart.block.RectangleConstraint c2 = constraint.toFixedHeight(h);
             return arrange(container, g2, c2);
         }
     }
@@ -237,10 +242,10 @@ public class GridArrangement implements Arrangement, Serializable {
      *
      * @return The size of the arrangement.
      */
-    protected Size2D arrangeRF(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+    protected Size2D arrangeRF(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                               jfree.chart.block.RectangleConstraint constraint) {
 
-        RectangleConstraint c1 = constraint.toUnconstrainedWidth();
+        jfree.chart.block.RectangleConstraint c1 = constraint.toUnconstrainedWidth();
         Size2D size1 = arrange(container, g2, c1);
 
         if (constraint.getWidthRange().contains(size1.getWidth())) {
@@ -248,7 +253,7 @@ public class GridArrangement implements Arrangement, Serializable {
         }
         else {
             double w = constraint.getWidthRange().constrain(size1.getWidth());
-            RectangleConstraint c2 = constraint.toFixedWidth(w);
+            jfree.chart.block.RectangleConstraint c2 = constraint.toFixedWidth(w);
             return arrange(container, g2, c2);
         }
     }
@@ -262,10 +267,10 @@ public class GridArrangement implements Arrangement, Serializable {
      *
      * @return The size of the arrangement.
      */
-    protected Size2D arrangeRN(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+    protected Size2D arrangeRN(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                               jfree.chart.block.RectangleConstraint constraint) {
 
-        RectangleConstraint c1 = constraint.toUnconstrainedWidth();
+        jfree.chart.block.RectangleConstraint c1 = constraint.toUnconstrainedWidth();
         Size2D size1 = arrange(container, g2, c1);
 
         if (constraint.getWidthRange().contains(size1.getWidth())) {
@@ -273,7 +278,7 @@ public class GridArrangement implements Arrangement, Serializable {
         }
         else {
             double w = constraint.getWidthRange().constrain(size1.getWidth());
-            RectangleConstraint c2 = constraint.toFixedWidth(w);
+            jfree.chart.block.RectangleConstraint c2 = constraint.toFixedWidth(w);
             return arrange(container, g2, c2);
         }
     }
@@ -287,10 +292,10 @@ public class GridArrangement implements Arrangement, Serializable {
      *
      * @return The size of the arrangement.
      */
-    protected Size2D arrangeNR(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+    protected Size2D arrangeNR(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                               jfree.chart.block.RectangleConstraint constraint) {
 
-        RectangleConstraint c1 = constraint.toUnconstrainedHeight();
+        jfree.chart.block.RectangleConstraint c1 = constraint.toUnconstrainedHeight();
         Size2D size1 = arrange(container, g2, c1);
 
         if (constraint.getHeightRange().contains(size1.getHeight())) {
@@ -298,7 +303,7 @@ public class GridArrangement implements Arrangement, Serializable {
         }
         else {
             double h = constraint.getHeightRange().constrain(size1.getHeight());
-            RectangleConstraint c2 = constraint.toFixedHeight(h);
+            jfree.chart.block.RectangleConstraint c2 = constraint.toFixedHeight(h);
             return arrange(container, g2, c2);
         }
     }
@@ -312,10 +317,10 @@ public class GridArrangement implements Arrangement, Serializable {
      *
      * @return The size of the arrangement.
      */
-    protected Size2D arrangeRR(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+    protected Size2D arrangeRR(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                               jfree.chart.block.RectangleConstraint constraint) {
 
-        Size2D size1 = arrange(container, g2, RectangleConstraint.NONE);
+        Size2D size1 = arrange(container, g2, jfree.chart.block.RectangleConstraint.NONE);
 
         if (constraint.getWidthRange().contains(size1.getWidth())) {
             if (constraint.getHeightRange().contains(size1.getHeight())) {
@@ -325,7 +330,7 @@ public class GridArrangement implements Arrangement, Serializable {
                 // width is OK, but height must be constrained
                 double h = constraint.getHeightRange().constrain(
                         size1.getHeight());
-                RectangleConstraint cc = new RectangleConstraint(
+                jfree.chart.block.RectangleConstraint cc = new jfree.chart.block.RectangleConstraint(
                         size1.getWidth(), h);
                 return arrangeFF(container, g2, cc);
             }
@@ -335,7 +340,7 @@ public class GridArrangement implements Arrangement, Serializable {
                 // height is OK, but width must be constrained
                 double w = constraint.getWidthRange().constrain(
                         size1.getWidth());
-                RectangleConstraint cc = new RectangleConstraint(w,
+                jfree.chart.block.RectangleConstraint cc = new jfree.chart.block.RectangleConstraint(w,
                         size1.getHeight());
                 return arrangeFF(container, g2, cc);
 
@@ -345,7 +350,7 @@ public class GridArrangement implements Arrangement, Serializable {
                         size1.getWidth());
                 double h = constraint.getHeightRange().constrain(
                         size1.getHeight());
-                RectangleConstraint cc = new RectangleConstraint(w, h);
+                jfree.chart.block.RectangleConstraint cc = new jfree.chart.block.RectangleConstraint(w, h);
                 return arrangeFF(container, g2, cc);
             }
         }
@@ -360,11 +365,11 @@ public class GridArrangement implements Arrangement, Serializable {
      *
      * @return The size of the arrangement.
      */
-    protected Size2D arrangeFN(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+    protected Size2D arrangeFN(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                               jfree.chart.block.RectangleConstraint constraint) {
 
         double width = constraint.getWidth() / this.columns;
-        RectangleConstraint bc = constraint.toFixedWidth(width);
+        jfree.chart.block.RectangleConstraint bc = constraint.toFixedWidth(width);
         List blocks = container.getBlocks();
         double maxH = 0.0;
         for (int r = 0; r < this.rows; r++) {
@@ -373,14 +378,14 @@ public class GridArrangement implements Arrangement, Serializable {
                 if (index >= blocks.size()) {
                     break;
                 }
-                Block b = (Block) blocks.get(index);
+                jfree.chart.block.Block b = (jfree.chart.block.Block) blocks.get(index);
                 if (b != null) {
                     Size2D s = b.arrange(g2, bc);
                     maxH = Math.max(maxH, s.getHeight());
                 }
             }
         }
-        RectangleConstraint cc = constraint.toFixedHeight(maxH * this.rows);
+        jfree.chart.block.RectangleConstraint cc = constraint.toFixedHeight(maxH * this.rows);
         return arrange(container, g2, cc);
     }
 
@@ -394,10 +399,10 @@ public class GridArrangement implements Arrangement, Serializable {
      * @return The size of the arrangement.
      */
     protected Size2D arrangeNF(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+                               jfree.chart.block.RectangleConstraint constraint) {
 
         double height = constraint.getHeight() / this.rows;
-        RectangleConstraint bc = constraint.toFixedHeight(height);
+        jfree.chart.block.RectangleConstraint bc = constraint.toFixedHeight(height);
         List blocks = container.getBlocks();
         double maxW = 0.0;
         for (int r = 0; r < this.rows; r++) {
@@ -406,7 +411,7 @@ public class GridArrangement implements Arrangement, Serializable {
                 if (index >= blocks.size()) {
                     break;
                 }
-                Block b = (Block) blocks.get(index);
+                jfree.chart.block.Block b = (Block) blocks.get(index);
                 if (b != null) {
                     Size2D s = b.arrange(g2, bc);
                     maxW = Math.max(maxW, s.getWidth());
@@ -437,10 +442,10 @@ public class GridArrangement implements Arrangement, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof GridArrangement)) {
+        if (!(obj instanceof jfree.chart.block.GridArrangement)) {
             return false;
         }
-        GridArrangement that = (GridArrangement) obj;
+        jfree.chart.block.GridArrangement that = (jfree.chart.block.GridArrangement) obj;
         if (this.columns != that.columns) {
             return false;
         }

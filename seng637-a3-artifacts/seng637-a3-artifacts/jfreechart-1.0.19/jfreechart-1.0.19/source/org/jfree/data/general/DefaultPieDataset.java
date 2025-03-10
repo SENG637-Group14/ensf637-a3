@@ -60,19 +60,22 @@ package org.jfree.data.general;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.DefaultKeyedValues;
-import org.jfree.data.KeyedValues;
-import org.jfree.data.UnknownKeyException;
+import jfree.data.DefaultKeyedValues;
+import jfree.data.KeyedValues;
+import jfree.data.UnknownKeyException;
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.PieDataset;
 import org.jfree.util.PublicCloneable;
 import org.jfree.util.SortOrder;
 
 /**
- * A default implementation of the {@link PieDataset} interface.
+ * A default implementation of the {@link jfree.data.general.PieDataset} interface.
  */
 public class DefaultPieDataset extends AbstractDataset
-        implements PieDataset, Cloneable, PublicCloneable, Serializable {
+        implements jfree.data.general.PieDataset, Cloneable, PublicCloneable, Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = 2904745139106540618L;
@@ -185,7 +188,7 @@ public class DefaultPieDataset extends AbstractDataset
     }
 
     /**
-     * Sets the data value for a key and sends a {@link DatasetChangeEvent} to
+     * Sets the data value for a key and sends a {@link jfree.data.general.DatasetChangeEvent} to
      * all registered listeners.
      *
      * @param key  the key (<code>null</code> not permitted).
@@ -200,7 +203,7 @@ public class DefaultPieDataset extends AbstractDataset
     }
 
     /**
-     * Sets the data value for a key and sends a {@link DatasetChangeEvent} to
+     * Sets the data value for a key and sends a {@link jfree.data.general.DatasetChangeEvent} to
      * all registered listeners.
      *
      * @param key  the key (<code>null</code> not permitted).
@@ -217,7 +220,7 @@ public class DefaultPieDataset extends AbstractDataset
      * Inserts a new value at the specified position in the dataset or, if
      * there is an existing item with the specified key, updates the value
      * for that item and moves it to the specified position.  After the change
-     * is made, this methods sends a {@link DatasetChangeEvent} to all
+     * is made, this methods sends a {@link jfree.data.general.DatasetChangeEvent} to all
      * registered listeners.
      *
      * @param position  the position (in the range 0 to getItemCount()).
@@ -234,7 +237,7 @@ public class DefaultPieDataset extends AbstractDataset
      * Inserts a new value at the specified position in the dataset or, if
      * there is an existing item with the specified key, updates the value
      * for that item and moves it to the specified position.  After the change
-     * is made, this methods sends a {@link DatasetChangeEvent} to all
+     * is made, this methods sends a {@link jfree.data.general.DatasetChangeEvent} to all
      * registered listeners.
      *
      * @param position  the position (in the range 0 to getItemCount()).
@@ -249,7 +252,7 @@ public class DefaultPieDataset extends AbstractDataset
     }
 
     /**
-     * Removes an item from the dataset and sends a {@link DatasetChangeEvent}
+     * Removes an item from the dataset and sends a {@link jfree.data.general.DatasetChangeEvent}
      * to all registered listeners.
      *
      * @param key  the key (<code>null</code> not permitted).
@@ -263,7 +266,7 @@ public class DefaultPieDataset extends AbstractDataset
     }
 
     /**
-     * Clears all data from this dataset and sends a {@link DatasetChangeEvent}
+     * Clears all data from this dataset and sends a {@link jfree.data.general.DatasetChangeEvent}
      * to all registered listeners (unless the dataset was already empty).
      *
      * @since 1.0.2
@@ -276,7 +279,7 @@ public class DefaultPieDataset extends AbstractDataset
     }
 
     /**
-     * Sorts the dataset's items by key and sends a {@link DatasetChangeEvent}
+     * Sorts the dataset's items by key and sends a {@link jfree.data.general.DatasetChangeEvent}
      * to all registered listeners.
      *
      * @param order  the sort order (<code>null</code> not permitted).
@@ -314,10 +317,10 @@ public class DefaultPieDataset extends AbstractDataset
             return true;
         }
 
-        if (!(obj instanceof PieDataset)) {
+        if (!(obj instanceof jfree.data.general.PieDataset)) {
             return false;
         }
-        PieDataset that = (PieDataset) obj;
+        jfree.data.general.PieDataset that = (PieDataset) obj;
         int count = getItemCount();
         if (that.getItemCount() != count) {
             return false;
@@ -367,7 +370,7 @@ public class DefaultPieDataset extends AbstractDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultPieDataset clone = (DefaultPieDataset) super.clone();
+        jfree.data.general.DefaultPieDataset clone = (jfree.data.general.DefaultPieDataset) super.clone();
         clone.data = (DefaultKeyedValues) this.data.clone();
         return clone;
     }

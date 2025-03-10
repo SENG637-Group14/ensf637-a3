@@ -55,9 +55,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.StandardEntityCollection;
-import org.jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.JFreeChart;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.StandardEntityCollection;
+import jfree.chart.plot.PlotRenderingInfo;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
@@ -66,7 +67,7 @@ import org.jfree.util.PublicCloneable;
  * A structure for storing rendering information from one call to the
  * JFreeChart.draw() method.
  * <P>
- * An instance of the {@link JFreeChart} class can draw itself within an
+ * An instance of the {@link jfree.chart.JFreeChart} class can draw itself within an
  * arbitrary rectangle on any <code>Graphics2D</code>.  It is assumed that
  * client code will sometimes render the same chart in more than one view, so
  * the {@link JFreeChart} instance does not retain any information about its
@@ -192,10 +193,10 @@ public class ChartRenderingInfo implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ChartRenderingInfo)) {
+        if (!(obj instanceof jfree.chart.ChartRenderingInfo)) {
             return false;
         }
-        ChartRenderingInfo that = (ChartRenderingInfo) obj;
+        jfree.chart.ChartRenderingInfo that = (jfree.chart.ChartRenderingInfo) obj;
         if (!ObjectUtilities.equal(this.chartArea, that.chartArea)) {
             return false;
         }
@@ -217,7 +218,7 @@ public class ChartRenderingInfo implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        ChartRenderingInfo clone = (ChartRenderingInfo) super.clone();
+        jfree.chart.ChartRenderingInfo clone = (jfree.chart.ChartRenderingInfo) super.clone();
         if (this.chartArea != null) {
             clone.chartArea = (Rectangle2D) this.chartArea.clone();
         }

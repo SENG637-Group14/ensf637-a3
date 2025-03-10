@@ -77,16 +77,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.statistics.StatisticalCategoryDataset;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.category.BarRenderer;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
+import jfree.data.statistics.StatisticalCategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.RectangleEdge;
@@ -217,7 +220,7 @@ public class StatisticalBarRenderer extends BarRenderer
      * @param pass  the pass index.
      */
     @Override
-    public void drawItem(Graphics2D g2, CategoryItemRendererState state,
+    public void drawItem(Graphics2D g2, jfree.chart.renderer.category.CategoryItemRendererState state,
             Rectangle2D dataArea, CategoryPlot plot, CategoryAxis domainAxis,
             ValueAxis rangeAxis, CategoryDataset data, int row, int column,
             int pass) {
@@ -259,7 +262,7 @@ public class StatisticalBarRenderer extends BarRenderer
      * @param column  the column index (zero-based).
      */
     protected void drawHorizontalItem(Graphics2D g2,
-                                      CategoryItemRendererState state,
+                                      jfree.chart.renderer.category.CategoryItemRendererState state,
                                       Rectangle2D dataArea,
                                       CategoryPlot plot,
                                       CategoryAxis domainAxis,
@@ -550,10 +553,10 @@ public class StatisticalBarRenderer extends BarRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StatisticalBarRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.StatisticalBarRenderer)) {
             return false;
         }
-        StatisticalBarRenderer that = (StatisticalBarRenderer) obj;
+        jfree.chart.renderer.category.StatisticalBarRenderer that = (jfree.chart.renderer.category.StatisticalBarRenderer) obj;
         if (!PaintUtilities.equal(this.errorIndicatorPaint,
                 that.errorIndicatorPaint)) {
             return false;

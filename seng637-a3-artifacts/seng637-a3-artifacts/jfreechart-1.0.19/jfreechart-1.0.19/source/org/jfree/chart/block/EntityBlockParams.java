@@ -40,6 +40,8 @@
 
 package org.jfree.chart.block;
 
+import jfree.chart.block.Block;
+
 /**
  * An interface that is used by the draw() method of some {@link Block}
  * implementations to determine whether or not to generate entities for the

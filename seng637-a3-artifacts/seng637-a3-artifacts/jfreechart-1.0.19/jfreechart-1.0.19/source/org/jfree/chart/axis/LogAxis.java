@@ -78,14 +78,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.ValueAxisPlot;
-import org.jfree.chart.util.AttrStringUtils;
-import org.jfree.chart.util.LogFormat;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.LogTick;
+import jfree.chart.axis.LogarithmicAxis;
+import jfree.chart.axis.NumberTickUnit;
+import jfree.chart.axis.NumberTickUnitSource;
+import jfree.chart.axis.TickType;
+import jfree.chart.axis.TickUnit;
+import jfree.chart.axis.TickUnitSource;
+import jfree.chart.axis.TickUnits;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.chart.util.AttrStringUtils;
+import jfree.chart.util.LogFormat;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.ui.TextAnchor;
@@ -97,7 +107,7 @@ import org.jfree.util.ObjectUtilities;
  *
  * @since 1.0.7
  */
-public class LogAxis extends ValueAxis {
+public class LogAxis extends jfree.chart.axis.ValueAxis {
 
     /** The logarithm base. */
     private double base = 10.0;
@@ -121,7 +131,7 @@ public class LogAxis extends ValueAxis {
     private double smallestValue = 1E-100;
 
     /** The current tick unit. */
-    private NumberTickUnit tickUnit;
+    private jfree.chart.axis.NumberTickUnit tickUnit;
 
     /** The override number format. */
     private NumberFormat numberFormatOverride;
@@ -141,7 +151,7 @@ public class LogAxis extends ValueAxis {
     public LogAxis(String label) {
         super(label, new NumberTickUnitSource());
         setDefaultAutoRange(new Range(0.01, 1.0));
-        this.tickUnit = new NumberTickUnit(1.0, new DecimalFormat("0.#"), 10);
+        this.tickUnit = new jfree.chart.axis.NumberTickUnit(1.0, new DecimalFormat("0.#"), 10);
     }
 
     /**
@@ -259,9 +269,9 @@ public class LogAxis extends ValueAxis {
      *
      * @return The current tick unit.
      *
-     * @see #setTickUnit(NumberTickUnit)
+     * @see #setTickUnit(jfree.chart.axis.NumberTickUnit)
      */
-    public NumberTickUnit getTickUnit() {
+    public jfree.chart.axis.NumberTickUnit getTickUnit() {
         return this.tickUnit;
     }
 
@@ -269,14 +279,14 @@ public class LogAxis extends ValueAxis {
      * Sets the tick unit for the axis and sends an {@link AxisChangeEvent} to
      * all registered listeners.  A side effect of calling this method is that
      * the "auto-select" feature for tick units is switched off (you can
-     * restore it using the {@link ValueAxis#setAutoTickUnitSelection(boolean)}
+     * restore it using the {@link jfree.chart.axis.ValueAxis#setAutoTickUnitSelection(boolean)}
      * method).
      *
      * @param unit  the new tick unit ({@code null} not permitted).
      *
      * @see #getTickUnit()
      */
-    public void setTickUnit(NumberTickUnit unit) {
+    public void setTickUnit(jfree.chart.axis.NumberTickUnit unit) {
         // defer argument checking...
         setTickUnit(unit, true, true);
     }
@@ -294,8 +304,8 @@ public class LogAxis extends ValueAxis {
      *
      * @see #getTickUnit()
      */
-    public void setTickUnit(NumberTickUnit unit, boolean notify,
-            boolean turnOffAutoSelect) {
+    public void setTickUnit(jfree.chart.axis.NumberTickUnit unit, boolean notify,
+                            boolean turnOffAutoSelect) {
         ParamChecks.nullNotPermitted(unit, "unit");
         this.tickUnit = unit;
         if (turnOffAutoSelect) {
@@ -527,14 +537,14 @@ public class LogAxis extends ValueAxis {
      * @return The axis state (never {@code null}).
      */
     @Override
-    public AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
-            Rectangle2D dataArea, RectangleEdge edge,
-            PlotRenderingInfo plotState) {
+    public jfree.chart.axis.AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
+                                                Rectangle2D dataArea, RectangleEdge edge,
+                                                PlotRenderingInfo plotState) {
 
-        AxisState state;
+        jfree.chart.axis.AxisState state;
         // if the axis is not visible, don't draw it...
         if (!isVisible()) {
-            state = new AxisState(cursor);
+            state = new jfree.chart.axis.AxisState(cursor);
             // even though the axis is not visible, we need ticks for the
             // gridlines...
             List ticks = refreshTicks(g2, state, dataArea, edge);
@@ -616,7 +626,7 @@ public class LogAxis extends ValueAxis {
         while (hasTicks && current <= end) {
             double v = calculateValueNoINF(current);
             if (range.contains(v)) {
-                ticks.add(new LogTick(TickType.MAJOR, v, createTickLabel(v),
+                ticks.add(new jfree.chart.axis.LogTick(jfree.chart.axis.TickType.MAJOR, v, createTickLabel(v),
                         textAnchor));
             }
             // add minor ticks (for gridlines)
@@ -625,7 +635,7 @@ public class LogAxis extends ValueAxis {
             for (int i = 1; i < minorTickCount; i++) {
                 double minorV = v + i * ((next - v) / minorTickCount);
                 if (range.contains(minorV)) {
-                    ticks.add(new LogTick(TickType.MINOR, minorV, null,
+                    ticks.add(new jfree.chart.axis.LogTick(jfree.chart.axis.TickType.MINOR, minorV, null,
                             textAnchor));
                 }
             }
@@ -674,7 +684,7 @@ public class LogAxis extends ValueAxis {
         while (hasTicks && current <= end) {
             double v = calculateValueNoINF(current);
             if (range.contains(v)) {
-                ticks.add(new LogTick(TickType.MAJOR, v, createTickLabel(v),
+                ticks.add(new jfree.chart.axis.LogTick(jfree.chart.axis.TickType.MAJOR, v, createTickLabel(v),
                         textAnchor));
             }
             // add minor ticks (for gridlines)
@@ -735,14 +745,14 @@ public class LogAxis extends ValueAxis {
                 range.getLowerBound()));
         double logAxisMax = calculateLog(range.getUpperBound());
         double size = (logAxisMax - logAxisMin) / 50;
-        TickUnitSource tickUnits = getStandardTickUnits();
-        TickUnit candidate = tickUnits.getCeilingTickUnit(size);
-        TickUnit prevCandidate = candidate;
+        jfree.chart.axis.TickUnitSource tickUnits = getStandardTickUnits();
+        jfree.chart.axis.TickUnit candidate = tickUnits.getCeilingTickUnit(size);
+        jfree.chart.axis.TickUnit prevCandidate = candidate;
         boolean found = false;
         while (!found) {
         // while the tick labels overlap and there are more tick sizes available,
             // choose the next bigger label
-            this.tickUnit = (NumberTickUnit) candidate;
+            this.tickUnit = (jfree.chart.axis.NumberTickUnit) candidate;
             double tickLabelWidth = estimateMaximumTickLabelWidth(g2, 
                     candidate);
             // what is the available space for one unit?
@@ -761,7 +771,7 @@ public class LogAxis extends ValueAxis {
                 }
             }
         } 
-        setTickUnit((NumberTickUnit) candidate, false, false);
+        setTickUnit((jfree.chart.axis.NumberTickUnit) candidate, false, false);
     }
 
     /**
@@ -803,14 +813,14 @@ public class LogAxis extends ValueAxis {
                 range.getLowerBound()));
         double logAxisMax = calculateLog(range.getUpperBound());
         double size = (logAxisMax - logAxisMin) / 50;
-        TickUnitSource tickUnits = getStandardTickUnits();
-        TickUnit candidate = tickUnits.getCeilingTickUnit(size);
-        TickUnit prevCandidate = candidate;
+        jfree.chart.axis.TickUnitSource tickUnits = getStandardTickUnits();
+        jfree.chart.axis.TickUnit candidate = tickUnits.getCeilingTickUnit(size);
+        jfree.chart.axis.TickUnit prevCandidate = candidate;
         boolean found = false;
         while (!found) {
         // while the tick labels overlap and there are more tick sizes available,
             // choose the next bigger label
-            this.tickUnit = (NumberTickUnit) candidate;
+            this.tickUnit = (jfree.chart.axis.NumberTickUnit) candidate;
             double tickLabelHeight = estimateMaximumTickLabelHeight(g2);
             // what is the available space for one unit?
             double candidateHeight = exponentLengthToJava2D(candidate.getSize(), 
@@ -828,7 +838,7 @@ public class LogAxis extends ValueAxis {
                 }
             }
         } 
-        setTickUnit((NumberTickUnit) candidate, false, false);
+        setTickUnit((jfree.chart.axis.NumberTickUnit) candidate, false, false);
     }
 
     /**
@@ -1049,10 +1059,10 @@ public class LogAxis extends ValueAxis {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof LogAxis)) {
+        if (!(obj instanceof jfree.chart.axis.LogAxis)) {
             return false;
         }
-        LogAxis that = (LogAxis) obj;
+        jfree.chart.axis.LogAxis that = (jfree.chart.axis.LogAxis) obj;
         if (this.base != that.base) {
             return false;
         }
@@ -1106,21 +1116,21 @@ public class LogAxis extends ValueAxis {
      *     code into your project.
      */
     public static TickUnitSource createLogTickUnits(Locale locale) {
-        TickUnits units = new TickUnits();
+        jfree.chart.axis.TickUnits units = new TickUnits();
         NumberFormat numberFormat = new LogFormat();
-        units.add(new NumberTickUnit(0.05, numberFormat, 2));
-        units.add(new NumberTickUnit(0.1, numberFormat, 10));
-        units.add(new NumberTickUnit(0.2, numberFormat, 2));
-        units.add(new NumberTickUnit(0.5, numberFormat, 5));
-        units.add(new NumberTickUnit(1, numberFormat, 10));
-        units.add(new NumberTickUnit(2, numberFormat, 10));
-        units.add(new NumberTickUnit(3, numberFormat, 15));
-        units.add(new NumberTickUnit(4, numberFormat, 20));
-        units.add(new NumberTickUnit(5, numberFormat, 25));
-        units.add(new NumberTickUnit(6, numberFormat));
-        units.add(new NumberTickUnit(7, numberFormat));
-        units.add(new NumberTickUnit(8, numberFormat));
-        units.add(new NumberTickUnit(9, numberFormat));
+        units.add(new jfree.chart.axis.NumberTickUnit(0.05, numberFormat, 2));
+        units.add(new jfree.chart.axis.NumberTickUnit(0.1, numberFormat, 10));
+        units.add(new jfree.chart.axis.NumberTickUnit(0.2, numberFormat, 2));
+        units.add(new jfree.chart.axis.NumberTickUnit(0.5, numberFormat, 5));
+        units.add(new jfree.chart.axis.NumberTickUnit(1, numberFormat, 10));
+        units.add(new jfree.chart.axis.NumberTickUnit(2, numberFormat, 10));
+        units.add(new jfree.chart.axis.NumberTickUnit(3, numberFormat, 15));
+        units.add(new jfree.chart.axis.NumberTickUnit(4, numberFormat, 20));
+        units.add(new jfree.chart.axis.NumberTickUnit(5, numberFormat, 25));
+        units.add(new jfree.chart.axis.NumberTickUnit(6, numberFormat));
+        units.add(new jfree.chart.axis.NumberTickUnit(7, numberFormat));
+        units.add(new jfree.chart.axis.NumberTickUnit(8, numberFormat));
+        units.add(new jfree.chart.axis.NumberTickUnit(9, numberFormat));
         units.add(new NumberTickUnit(10, numberFormat));
         return units;
     }

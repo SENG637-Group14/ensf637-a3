@@ -62,6 +62,9 @@
 
 package org.jfree.data.time;
 
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.TimePeriodFormatException;
+
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -70,9 +73,9 @@ import java.util.TimeZone;
 
 /**
  * Represents a year in the range -9999 to 9999.  This class is immutable,
- * which is a requirement for all {@link RegularTimePeriod} subclasses.
+ * which is a requirement for all {@link jfree.data.time.RegularTimePeriod} subclasses.
  */
-public class Year extends RegularTimePeriod implements Serializable {
+public class Year extends jfree.data.time.RegularTimePeriod implements Serializable {
 
     /**
      * The minimum year value.
@@ -113,7 +116,7 @@ public class Year extends RegularTimePeriod implements Serializable {
      * @param year  the year.
      */
     public Year(int year) {
-        if ((year < Year.MINIMUM_YEAR) || (year > Year.MAXIMUM_YEAR)) {
+        if ((year < jfree.data.time.Year.MINIMUM_YEAR) || (year > jfree.data.time.Year.MAXIMUM_YEAR)) {
             throw new IllegalArgumentException(
                 "Year constructor: year (" + year + ") outside valid range.");
         }
@@ -223,9 +226,9 @@ public class Year extends RegularTimePeriod implements Serializable {
      *         current year is -9999).
      */
     @Override
-    public RegularTimePeriod previous() {
-        if (this.year > Year.MINIMUM_YEAR) {
-            return new Year(this.year - 1);
+    public jfree.data.time.RegularTimePeriod previous() {
+        if (this.year > jfree.data.time.Year.MINIMUM_YEAR) {
+            return new jfree.data.time.Year(this.year - 1);
         }
         else {
             return null;
@@ -239,9 +242,9 @@ public class Year extends RegularTimePeriod implements Serializable {
      *         year is 9999).
      */
     @Override
-    public RegularTimePeriod next() {
-        if (this.year < Year.MAXIMUM_YEAR) {
-            return new Year(this.year + 1);
+    public jfree.data.time.RegularTimePeriod next() {
+        if (this.year < jfree.data.time.Year.MAXIMUM_YEAR) {
+            return new jfree.data.time.Year(this.year + 1);
         }
         else {
             return null;
@@ -312,10 +315,10 @@ public class Year extends RegularTimePeriod implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Year)) {
+        if (!(obj instanceof jfree.data.time.Year)) {
             return false;
         }
-        Year that = (Year) obj;
+        jfree.data.time.Year that = (jfree.data.time.Year) obj;
         return (this.year == that.year);
     }
 
@@ -353,8 +356,8 @@ public class Year extends RegularTimePeriod implements Serializable {
 
         // CASE 1 : Comparing to another Year object
         // -----------------------------------------
-        if (o1 instanceof Year) {
-            Year y = (Year) o1;
+        if (o1 instanceof jfree.data.time.Year) {
+            jfree.data.time.Year y = (jfree.data.time.Year) o1;
             result = this.year - y.getYear();
         }
 
@@ -396,7 +399,7 @@ public class Year extends RegularTimePeriod implements Serializable {
      * @return <code>null</code> if the string is not parseable, the year
      *         otherwise.
      */
-    public static Year parseYear(String s) {
+    public static jfree.data.time.Year parseYear(String s) {
 
         // parse the string...
         int y;
@@ -404,12 +407,12 @@ public class Year extends RegularTimePeriod implements Serializable {
             y = Integer.parseInt(s.trim());
         }
         catch (NumberFormatException e) {
-            throw new TimePeriodFormatException("Cannot parse string.");
+            throw new jfree.data.time.TimePeriodFormatException("Cannot parse string.");
         }
 
         // create the year...
         try {
-            return new Year(y);
+            return new jfree.data.time.Year(y);
         }
         catch (IllegalArgumentException e) {
             throw new TimePeriodFormatException("Year outside valid range.");

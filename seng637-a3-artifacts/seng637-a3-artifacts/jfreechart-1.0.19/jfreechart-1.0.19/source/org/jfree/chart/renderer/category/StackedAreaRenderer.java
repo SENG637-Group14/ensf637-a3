@@ -75,15 +75,17 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.data.DataUtilities;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.general.DatasetUtilities;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.renderer.category.AreaRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.data.DataUtilities;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
+import jfree.data.general.DatasetUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.PublicCloneable;
 
@@ -498,10 +500,10 @@ public class StackedAreaRenderer extends AreaRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StackedAreaRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.StackedAreaRenderer)) {
             return false;
         }
-        StackedAreaRenderer that = (StackedAreaRenderer) obj;
+        jfree.chart.renderer.category.StackedAreaRenderer that = (jfree.chart.renderer.category.StackedAreaRenderer) obj;
         if (this.renderAsPercentages != that.renderAsPercentages) {
             return false;
         }

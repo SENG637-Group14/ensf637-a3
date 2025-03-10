@@ -41,6 +41,8 @@
 
 package org.jfree.chart.axis;
 
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.Tick;
 import org.jfree.text.TextBlock;
 import org.jfree.text.TextBlockAnchor;
 import org.jfree.ui.TextAnchor;
@@ -121,8 +123,8 @@ public class CategoryTick extends Tick {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof CategoryTick && super.equals(obj)) {
-            CategoryTick that = (CategoryTick) obj;
+        if (obj instanceof jfree.chart.axis.CategoryTick && super.equals(obj)) {
+            jfree.chart.axis.CategoryTick that = (jfree.chart.axis.CategoryTick) obj;
             if (!ObjectUtilities.equal(this.category, that.category)) {
                 return false;
             }

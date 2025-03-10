@@ -56,9 +56,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.editor.ChartEditor;
-import org.jfree.chart.util.ResourceBundleWrapper;
+import jfree.chart.JFreeChart;
+import jfree.chart.editor.ChartEditor;
+import jfree.chart.util.ResourceBundleWrapper;
 
 /**
  * An editor for chart properties.

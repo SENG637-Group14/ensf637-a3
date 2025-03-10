@@ -44,13 +44,17 @@
 
 package org.jfree.data;
 
+import jfree.data.DefaultKeyedValues;
+import jfree.data.UnknownKeyException;
+import jfree.data.Values;
+
 import java.util.List;
 
 /**
  * An ordered list of (key, value) items where the keys are unique and
  * non-<code>null</code>.
  *
- * @see Values
+ * @see jfree.data.Values
  * @see DefaultKeyedValues
  */
 public interface KeyedValues extends Values {

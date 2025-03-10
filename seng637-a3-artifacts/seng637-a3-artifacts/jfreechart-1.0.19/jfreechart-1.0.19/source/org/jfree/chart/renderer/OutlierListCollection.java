@@ -44,6 +44,9 @@
 
 package org.jfree.chart.renderer;
 
+import jfree.chart.renderer.Outlier;
+import jfree.chart.renderer.OutlierList;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -56,7 +59,7 @@ import java.util.List;
  * one or more outliers, determined by whether overlaps have
  * occurred. Overlapping outliers are grouped in the same list.
  *
- * @see org.jfree.chart.renderer.OutlierList
+ * @see jfree.chart.renderer.OutlierList
  */
 public class OutlierListCollection {
 
@@ -132,23 +135,23 @@ public class OutlierListCollection {
      *
      * @return <tt>true</tt> (as per the general contract of Collection.add).
      */
-    public boolean add(Outlier outlier) {
+    public boolean add(jfree.chart.renderer.Outlier outlier) {
 
         if (this.outlierLists.isEmpty()) {
-            return this.outlierLists.add(new OutlierList(outlier));
+            return this.outlierLists.add(new jfree.chart.renderer.OutlierList(outlier));
         }
         else {
             boolean updated = false;
             for (Iterator iterator = this.outlierLists.iterator();
                  iterator.hasNext();) {
-                OutlierList list = (OutlierList) iterator.next();
+                jfree.chart.renderer.OutlierList list = (jfree.chart.renderer.OutlierList) iterator.next();
                 if (list.isOverlapped(outlier)) {
                     updated = updateOutlierList(list, outlier);
                 }
             }
             if (!updated) {
                 //System.err.print(" creating new outlier list ");
-                updated = this.outlierLists.add(new OutlierList(outlier));
+                updated = this.outlierLists.add(new jfree.chart.renderer.OutlierList(outlier));
             }
             return updated;
         }

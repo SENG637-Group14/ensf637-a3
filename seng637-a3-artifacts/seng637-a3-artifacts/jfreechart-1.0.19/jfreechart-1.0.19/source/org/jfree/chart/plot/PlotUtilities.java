@@ -41,8 +41,9 @@
 
 package org.jfree.chart.plot;
 
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.plot.XYPlot;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.xy.XYDataset;
 
 /**
  * Some utility methods related to the plot classes.

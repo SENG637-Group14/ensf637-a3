@@ -50,7 +50,18 @@
 package org.jfree.data.time;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
+import jfree.data.time.Day;
+import jfree.data.time.FixedMillisecond;
+import jfree.data.time.Hour;
+import jfree.data.time.Millisecond;
+import jfree.data.time.Minute;
+import jfree.data.time.Month;
+import jfree.data.time.Quarter;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.Second;
+import jfree.data.time.Week;
+import jfree.data.time.Year;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -84,7 +95,7 @@ public class TimeSeriesDataItem implements Cloneable, Comparable, Serializable {
     private static final long serialVersionUID = -2235346966016401302L;
 
     /** The time period. */
-    private RegularTimePeriod period;
+    private jfree.data.time.RegularTimePeriod period;
 
     /** The value associated with the time period. */
     private Number value;
@@ -95,7 +106,7 @@ public class TimeSeriesDataItem implements Cloneable, Comparable, Serializable {
      * @param period  the time period (<code>null</code> not permitted).
      * @param value  the value (<code>null</code> permitted).
      */
-    public TimeSeriesDataItem(RegularTimePeriod period, Number value) {
+    public TimeSeriesDataItem(jfree.data.time.RegularTimePeriod period, Number value) {
         ParamChecks.nullNotPermitted(period, "period");
         this.period = period;
         this.value = value;
@@ -107,7 +118,7 @@ public class TimeSeriesDataItem implements Cloneable, Comparable, Serializable {
      * @param period  the time period (<code>null</code> not permitted).
      * @param value  the value associated with the time period.
      */
-    public TimeSeriesDataItem(RegularTimePeriod period, double value) {
+    public TimeSeriesDataItem(jfree.data.time.RegularTimePeriod period, double value) {
         this(period, new Double(value));
     }
 
@@ -154,10 +165,10 @@ public class TimeSeriesDataItem implements Cloneable, Comparable, Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof TimeSeriesDataItem)) {
+        if (!(obj instanceof jfree.data.time.TimeSeriesDataItem)) {
             return false;
         }
-        TimeSeriesDataItem that = (TimeSeriesDataItem) obj;
+        jfree.data.time.TimeSeriesDataItem that = (jfree.data.time.TimeSeriesDataItem) obj;
         if (!ObjectUtilities.equal(this.period, that.period)) {
             return false;
         }
@@ -199,8 +210,8 @@ public class TimeSeriesDataItem implements Cloneable, Comparable, Serializable {
 
         // CASE 1 : Comparing to another TimeSeriesDataItem object
         // -------------------------------------------------------
-        if (o1 instanceof TimeSeriesDataItem) {
-            TimeSeriesDataItem datapair = (TimeSeriesDataItem) o1;
+        if (o1 instanceof jfree.data.time.TimeSeriesDataItem) {
+            jfree.data.time.TimeSeriesDataItem datapair = (jfree.data.time.TimeSeriesDataItem) o1;
             result = getPeriod().compareTo(datapair.getPeriod());
         }
 

@@ -70,17 +70,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.AbstractRenderer;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.AbstractRenderer;
+import jfree.chart.renderer.category.BarRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.GradientPaintTransformType;
 import org.jfree.ui.RectangleEdge;
@@ -441,10 +443,10 @@ public class WaterfallBarRenderer extends BarRenderer {
         if (!super.equals(obj)) {
             return false;
         }
-        if (!(obj instanceof WaterfallBarRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.WaterfallBarRenderer)) {
             return false;
         }
-        WaterfallBarRenderer that = (WaterfallBarRenderer) obj;
+        jfree.chart.renderer.category.WaterfallBarRenderer that = (jfree.chart.renderer.category.WaterfallBarRenderer) obj;
         if (!PaintUtilities.equal(this.firstBarPaint, that.firstBarPaint)) {
             return false;
         }

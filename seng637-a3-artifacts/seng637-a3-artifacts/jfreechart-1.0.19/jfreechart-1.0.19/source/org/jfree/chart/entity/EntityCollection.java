@@ -47,12 +47,14 @@
 
 package org.jfree.chart.entity;
 
+import jfree.chart.entity.ChartEntity;
+
 import java.util.Collection;
 import java.util.Iterator;
 
 /**
  * This interface defines the methods used to access an ordered list of
- * {@link ChartEntity} objects.
+ * {@link jfree.chart.entity.ChartEntity} objects.
  */
 public interface EntityCollection {
 
@@ -66,14 +68,14 @@ public interface EntityCollection {
      *
      * @param entity  the entity (<code>null</code> not permitted).
      */
-    public void add(ChartEntity entity);
+    public void add(jfree.chart.entity.ChartEntity entity);
 
     /**
      * Adds the entities from another collection to this collection.
      *
      * @param collection  the other collection.
      */
-    public void addAll(EntityCollection collection);
+    public void addAll(jfree.chart.entity.EntityCollection collection);
 
     /**
      * Returns an entity whose area contains the specified point.
@@ -83,7 +85,7 @@ public interface EntityCollection {
      *
      * @return The entity.
      */
-    public ChartEntity getEntity(double x, double y);
+    public jfree.chart.entity.ChartEntity getEntity(double x, double y);
 
     /**
      * Returns an entity from the collection.

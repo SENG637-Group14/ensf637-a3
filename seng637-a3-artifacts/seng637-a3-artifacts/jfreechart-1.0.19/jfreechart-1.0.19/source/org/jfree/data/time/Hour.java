@@ -71,13 +71,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
+import jfree.data.time.Day;
+import jfree.data.time.RegularTimePeriod;
 
 /**
  * Represents an hour in a specific day.  This class is immutable, which is a
- * requirement for all {@link RegularTimePeriod} subclasses.
+ * requirement for all {@link jfree.data.time.RegularTimePeriod} subclasses.
  */
-public class Hour extends RegularTimePeriod implements Serializable {
+public class Hour extends jfree.data.time.RegularTimePeriod implements Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = -835471579831937652L;
@@ -89,7 +91,7 @@ public class Hour extends RegularTimePeriod implements Serializable {
     public static final int LAST_HOUR_IN_DAY = 23;
 
     /** The day. */
-    private Day day;
+    private jfree.data.time.Day day;
 
     /** The hour. */
     private byte hour;
@@ -113,7 +115,7 @@ public class Hour extends RegularTimePeriod implements Serializable {
      * @param hour  the hour (in the range 0 to 23).
      * @param day  the day (<code>null</code> not permitted).
      */
-    public Hour(int hour, Day day) {
+    public Hour(int hour, jfree.data.time.Day day) {
         ParamChecks.nullNotPermitted(day, "day");
         this.hour = (byte) hour;
         this.day = day;
@@ -129,7 +131,7 @@ public class Hour extends RegularTimePeriod implements Serializable {
      * @param year  the year (1900-9999).
      */
     public Hour(int hour, int day, int month, int year) {
-        this(hour, new Day(day, month, year));
+        this(hour, new jfree.data.time.Day(day, month, year));
     }
 
     /**
@@ -176,7 +178,7 @@ public class Hour extends RegularTimePeriod implements Serializable {
         Calendar calendar = Calendar.getInstance(zone, locale);
         calendar.setTime(time);
         this.hour = (byte) calendar.get(Calendar.HOUR_OF_DAY);
-        this.day = new Day(time, zone, locale);
+        this.day = new jfree.data.time.Day(time, zone, locale);
         peg(calendar);
     }
 
@@ -194,7 +196,7 @@ public class Hour extends RegularTimePeriod implements Serializable {
      *
      * @return The day.
      */
-    public Day getDay() {
+    public jfree.data.time.Day getDay() {
         return this.day;
     }
 
@@ -275,15 +277,15 @@ public class Hour extends RegularTimePeriod implements Serializable {
      * @return The hour preceding this one.
      */
     @Override
-    public RegularTimePeriod previous() {
-        Hour result;
+    public jfree.data.time.RegularTimePeriod previous() {
+        jfree.data.time.Hour result;
         if (this.hour != FIRST_HOUR_IN_DAY) {
-            result = new Hour(this.hour - 1, this.day);
+            result = new jfree.data.time.Hour(this.hour - 1, this.day);
         }
         else { // we are at the first hour in the day...
-            Day prevDay = (Day) this.day.previous();
+            jfree.data.time.Day prevDay = (jfree.data.time.Day) this.day.previous();
             if (prevDay != null) {
-                result = new Hour(LAST_HOUR_IN_DAY, prevDay);
+                result = new jfree.data.time.Hour(LAST_HOUR_IN_DAY, prevDay);
             }
             else {
                 result = null;
@@ -298,15 +300,15 @@ public class Hour extends RegularTimePeriod implements Serializable {
      * @return The hour following this one.
      */
     @Override
-    public RegularTimePeriod next() {
-        Hour result;
+    public jfree.data.time.RegularTimePeriod next() {
+        jfree.data.time.Hour result;
         if (this.hour != LAST_HOUR_IN_DAY) {
-            result = new Hour(this.hour + 1, this.day);
+            result = new jfree.data.time.Hour(this.hour + 1, this.day);
         }
         else { // we are at the last hour in the day...
-            Day nextDay = (Day) this.day.next();
+            jfree.data.time.Day nextDay = (jfree.data.time.Day) this.day.next();
             if (nextDay != null) {
-                result = new Hour(FIRST_HOUR_IN_DAY, nextDay);
+                result = new jfree.data.time.Hour(FIRST_HOUR_IN_DAY, nextDay);
             }
             else {
                 result = null;
@@ -381,10 +383,10 @@ public class Hour extends RegularTimePeriod implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Hour)) {
+        if (!(obj instanceof jfree.data.time.Hour)) {
             return false;
         }
-        Hour that = (Hour) obj;
+        jfree.data.time.Hour that = (jfree.data.time.Hour) obj;
         if (this.hour != that.hour) {
             return false;
         }
@@ -439,8 +441,8 @@ public class Hour extends RegularTimePeriod implements Serializable {
 
         // CASE 1 : Comparing to another Hour object
         // -----------------------------------------
-        if (o1 instanceof Hour) {
-            Hour h = (Hour) o1;
+        if (o1 instanceof jfree.data.time.Hour) {
+            jfree.data.time.Hour h = (jfree.data.time.Hour) o1;
             result = getDay().compareTo(h.getDay());
             if (result == 0) {
                 result = this.hour - h.getHour();
@@ -474,12 +476,12 @@ public class Hour extends RegularTimePeriod implements Serializable {
      * @return <code>null</code> if the string is not parseable, the hour
      *         otherwise.
      */
-    public static Hour parseHour(String s) {
-        Hour result = null;
+    public static jfree.data.time.Hour parseHour(String s) {
+        jfree.data.time.Hour result = null;
         s = s.trim();
 
         String daystr = s.substring(0, Math.min(10, s.length()));
-        Day day = Day.parseDay(daystr);
+        jfree.data.time.Day day = Day.parseDay(daystr);
         if (day != null) {
             String hourstr = s.substring(
                 Math.min(daystr.length() + 1, s.length()), s.length()
@@ -488,7 +490,7 @@ public class Hour extends RegularTimePeriod implements Serializable {
             int hour = Integer.parseInt(hourstr);
             // if the hour is 0 - 23 then create an hour
             if ((hour >= FIRST_HOUR_IN_DAY) && (hour <= LAST_HOUR_IN_DAY)) {
-                result = new Hour(hour, day);
+                result = new jfree.data.time.Hour(hour, day);
             }
         }
 

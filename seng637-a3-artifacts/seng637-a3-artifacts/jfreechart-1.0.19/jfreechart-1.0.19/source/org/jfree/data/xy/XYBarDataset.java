@@ -49,19 +49,22 @@
 
 package org.jfree.data.xy;
 
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.general.DatasetChangeListener;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetChangeListener;
+import jfree.data.xy.AbstractIntervalXYDataset;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A dataset wrapper class that converts a standard {@link XYDataset} into an
- * {@link IntervalXYDataset} suitable for use in creating XY bar charts.
+ * A dataset wrapper class that converts a standard {@link jfree.data.xy.XYDataset} into an
+ * {@link jfree.data.xy.IntervalXYDataset} suitable for use in creating XY bar charts.
  */
 public class XYBarDataset extends AbstractIntervalXYDataset
         implements IntervalXYDataset, DatasetChangeListener, PublicCloneable {
 
     /** The underlying dataset. */
-    private XYDataset underlying;
+    private jfree.data.xy.XYDataset underlying;
 
     /** The bar width. */
     private double barWidth;
@@ -73,7 +76,7 @@ public class XYBarDataset extends AbstractIntervalXYDataset
      *     permitted).
      * @param barWidth  the width of the bars.
      */
-    public XYBarDataset(XYDataset underlying, double barWidth) {
+    public XYBarDataset(jfree.data.xy.XYDataset underlying, double barWidth) {
         this.underlying = underlying;
         this.underlying.addChangeListener(this);
         this.barWidth = barWidth;
@@ -86,7 +89,7 @@ public class XYBarDataset extends AbstractIntervalXYDataset
      *
      * @since 1.0.4
      */
-    public XYDataset getUnderlyingDataset() {
+    public jfree.data.xy.XYDataset getUnderlyingDataset() {
         return this.underlying;
     }
 
@@ -359,10 +362,10 @@ public class XYBarDataset extends AbstractIntervalXYDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof XYBarDataset)) {
+        if (!(obj instanceof jfree.data.xy.XYBarDataset)) {
             return false;
         }
-        XYBarDataset that = (XYBarDataset) obj;
+        jfree.data.xy.XYBarDataset that = (jfree.data.xy.XYBarDataset) obj;
         if (!this.underlying.equals(that.underlying)) {
             return false;
         }
@@ -388,7 +391,7 @@ public class XYBarDataset extends AbstractIntervalXYDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        XYBarDataset clone = (XYBarDataset) super.clone();
+        jfree.data.xy.XYBarDataset clone = (jfree.data.xy.XYBarDataset) super.clone();
         if (this.underlying instanceof PublicCloneable) {
             PublicCloneable pc = (PublicCloneable) this.underlying;
             clone.underlying = (XYDataset) pc.clone();

@@ -89,16 +89,21 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.ValueAxisPlot;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.time.Day;
-import org.jfree.data.time.Month;
-import org.jfree.data.time.RegularTimePeriod;
-import org.jfree.data.time.Year;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.NumberTick;
+import jfree.chart.axis.PeriodAxisLabelInfo;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.time.Day;
+import jfree.data.time.Month;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.Year;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleEdge;
@@ -107,7 +112,7 @@ import org.jfree.util.PublicCloneable;
 
 /**
  * An axis that displays a date scale based on a
- * {@link org.jfree.data.time.RegularTimePeriod}.  This axis works when
+ * {@link RegularTimePeriod}.  This axis works when
  * displayed across the bottom or top of a plot, but is broken for display at
  * the left or right of charts.
  */
@@ -179,7 +184,7 @@ public class PeriodAxis extends ValueAxis
     private transient Paint minorTickMarkPaint = Color.black;
 
     /** Info for each labeling band. */
-    private PeriodAxisLabelInfo[] labelInfo;
+    private jfree.chart.axis.PeriodAxisLabelInfo[] labelInfo;
 
     /**
      * Creates a new axis.
@@ -253,13 +258,13 @@ public class PeriodAxis extends ValueAxis
         this.minorTickTimePeriodClass = RegularTimePeriod.downsize(
                 this.majorTickTimePeriodClass);
         setAutoRange(true);
-        this.labelInfo = new PeriodAxisLabelInfo[2];
+        this.labelInfo = new jfree.chart.axis.PeriodAxisLabelInfo[2];
         SimpleDateFormat df0 = new SimpleDateFormat("MMM", locale);
         df0.setTimeZone(timeZone);
-        this.labelInfo[0] = new PeriodAxisLabelInfo(Month.class, df0);
+        this.labelInfo[0] = new jfree.chart.axis.PeriodAxisLabelInfo(Month.class, df0);
         SimpleDateFormat df1 = new SimpleDateFormat("yyyy", locale);
         df1.setTimeZone(timeZone);
-        this.labelInfo[1] = new PeriodAxisLabelInfo(Year.class, df1);
+        this.labelInfo[1] = new jfree.chart.axis.PeriodAxisLabelInfo(Year.class, df1);
     }
 
     /**
@@ -528,7 +533,7 @@ public class PeriodAxis extends ValueAxis
      *
      * @return An array.
      */
-    public PeriodAxisLabelInfo[] getLabelInfo() {
+    public jfree.chart.axis.PeriodAxisLabelInfo[] getLabelInfo() {
         return this.labelInfo;
     }
 
@@ -538,7 +543,7 @@ public class PeriodAxis extends ValueAxis
      *
      * @param info  the info.
      */
-    public void setLabelInfo(PeriodAxisLabelInfo[] info) {
+    public void setLabelInfo(jfree.chart.axis.PeriodAxisLabelInfo[] info) {
         this.labelInfo = info;
         fireChangeEvent();
     }
@@ -593,8 +598,8 @@ public class PeriodAxis extends ValueAxis
      *         space).
      */
     @Override
-    public AxisSpace reserveSpace(Graphics2D g2, Plot plot, 
-            Rectangle2D plotArea, RectangleEdge edge, AxisSpace space) {
+    public jfree.chart.axis.AxisSpace reserveSpace(Graphics2D g2, Plot plot,
+                                                        Rectangle2D plotArea, RectangleEdge edge, jfree.chart.axis.AxisSpace space) {
         // create a new space object if one wasn't supplied...
         if (space == null) {
             space = new AxisSpace();
@@ -617,7 +622,7 @@ public class PeriodAxis extends ValueAxis
         double tickLabelBandsDimension = 0.0;
 
         for (int i = 0; i < this.labelInfo.length; i++) {
-            PeriodAxisLabelInfo info = this.labelInfo[i];
+            jfree.chart.axis.PeriodAxisLabelInfo info = this.labelInfo[i];
             FontMetrics fm = g2.getFontMetrics(info.getLabelFont());
             tickLabelBandsDimension
                 += info.getPadding().extendHeight(fm.getHeight());
@@ -660,11 +665,11 @@ public class PeriodAxis extends ValueAxis
      * @return The axis state (never <code>null</code>).
      */
     @Override
-    public AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
-            Rectangle2D dataArea, RectangleEdge edge,
-            PlotRenderingInfo plotState) {
+    public jfree.chart.axis.AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
+                                                Rectangle2D dataArea, RectangleEdge edge,
+                                                PlotRenderingInfo plotState) {
 
-        AxisState axisState = new AxisState(cursor);
+        jfree.chart.axis.AxisState axisState = new jfree.chart.axis.AxisState(cursor);
         if (isAxisLineVisible()) {
             drawAxisLine(g2, cursor, dataArea, edge);
         }
@@ -696,7 +701,7 @@ public class PeriodAxis extends ValueAxis
      * @param dataArea  the data area.
      * @param edge  the edge.
      */
-    protected void drawTickMarks(Graphics2D g2, AxisState state, 
+    protected void drawTickMarks(Graphics2D g2, jfree.chart.axis.AxisState state,
             Rectangle2D dataArea, RectangleEdge edge) {
         if (RectangleEdge.isTopOrBottom(edge)) {
             drawTickMarksHorizontal(g2, state, dataArea, edge);
@@ -715,7 +720,7 @@ public class PeriodAxis extends ValueAxis
      * @param dataArea  the data area.
      * @param edge  the edge.
      */
-    protected void drawTickMarksHorizontal(Graphics2D g2, AxisState state,
+    protected void drawTickMarksHorizontal(Graphics2D g2, jfree.chart.axis.AxisState state,
             Rectangle2D dataArea, RectangleEdge edge) {
         List ticks = new ArrayList();
         double x0;
@@ -802,7 +807,7 @@ public class PeriodAxis extends ValueAxis
      * @param dataArea  the data area.
      * @param edge  the edge.
      */
-    protected void drawTickMarksVertical(Graphics2D g2, AxisState state,
+    protected void drawTickMarksVertical(Graphics2D g2, jfree.chart.axis.AxisState state,
             Rectangle2D dataArea, RectangleEdge edge) {
         // FIXME:  implement this...
     }
@@ -818,8 +823,8 @@ public class PeriodAxis extends ValueAxis
      *
      * @return The updated axis state.
      */
-    protected AxisState drawTickLabels(int band, Graphics2D g2, AxisState state,
-            Rectangle2D dataArea, RectangleEdge edge) {
+    protected jfree.chart.axis.AxisState drawTickLabels(int band, Graphics2D g2, jfree.chart.axis.AxisState state,
+                                                             Rectangle2D dataArea, RectangleEdge edge) {
 
         // work out the initial gap
         double delta1 = 0.0;
@@ -1095,10 +1100,10 @@ public class PeriodAxis extends ValueAxis
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof PeriodAxis)) {
+        if (!(obj instanceof jfree.chart.axis.PeriodAxis)) {
             return false;
         }
-        PeriodAxis that = (PeriodAxis) obj;
+        jfree.chart.axis.PeriodAxis that = (jfree.chart.axis.PeriodAxis) obj;
         if (!this.first.equals(that.first)) {
             return false;
         }
@@ -1158,7 +1163,7 @@ public class PeriodAxis extends ValueAxis
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        PeriodAxis clone = (PeriodAxis) super.clone();
+        jfree.chart.axis.PeriodAxis clone = (jfree.chart.axis.PeriodAxis) super.clone();
         clone.timeZone = (TimeZone) this.timeZone.clone();
         clone.labelInfo = (PeriodAxisLabelInfo[]) this.labelInfo.clone();
         return clone;

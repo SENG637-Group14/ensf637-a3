@@ -60,18 +60,21 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.ItemLabelPosition;
-import org.jfree.chart.labels.XYItemLabelGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.data.Range;
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.ItemLabelPosition;
+import jfree.chart.labels.XYItemLabelGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.AbstractXYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.data.Range;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.util.ObjectUtilities;
@@ -292,10 +295,10 @@ public class YIntervalRenderer extends AbstractXYItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof YIntervalRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.YIntervalRenderer)) {
             return false;
         }
-        YIntervalRenderer that = (YIntervalRenderer) obj;
+        jfree.chart.renderer.xy.YIntervalRenderer that = (jfree.chart.renderer.xy.YIntervalRenderer) obj;
         if (!ObjectUtilities.equal(this.additionalItemLabelGenerator,
                 that.additionalItemLabelGenerator)) {
             return false;

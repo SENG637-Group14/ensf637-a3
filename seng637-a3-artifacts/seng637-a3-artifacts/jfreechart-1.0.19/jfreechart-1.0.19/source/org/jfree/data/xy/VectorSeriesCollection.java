@@ -47,14 +47,19 @@ package org.jfree.data.xy;
 
 import java.io.Serializable;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.general.DatasetChangeEvent;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.xy.AbstractXYDataset;
+import jfree.data.xy.Vector;
+import jfree.data.xy.VectorDataItem;
+import jfree.data.xy.VectorSeries;
+import jfree.data.xy.VectorXYDataset;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A collection of {@link VectorSeries} objects.
+ * A collection of {@link jfree.data.xy.VectorSeries} objects.
  *
  * @since 1.0.6
  */
@@ -77,7 +82,7 @@ public class VectorSeriesCollection extends AbstractXYDataset
      *
      * @param series  the series (<code>null</code> not permitted).
      */
-    public void addSeries(VectorSeries series) {
+    public void addSeries(jfree.data.xy.VectorSeries series) {
         ParamChecks.nullNotPermitted(series, "series");
         this.data.add(series);
         series.addChangeListener(this);
@@ -93,7 +98,7 @@ public class VectorSeriesCollection extends AbstractXYDataset
      * @return A boolean indicating whether the series has actually been
      *         removed.
      */
-    public boolean removeSeries(VectorSeries series) {
+    public boolean removeSeries(jfree.data.xy.VectorSeries series) {
         ParamChecks.nullNotPermitted(series, "series");
         boolean removed = this.data.remove(series);
         if (removed) {
@@ -112,7 +117,7 @@ public class VectorSeriesCollection extends AbstractXYDataset
         // deregister the collection as a change listener to each series in the
         // collection
         for (int i = 0; i < this.data.size(); i++) {
-            VectorSeries series = (VectorSeries) this.data.get(i);
+            jfree.data.xy.VectorSeries series = (jfree.data.xy.VectorSeries) this.data.get(i);
             series.removeChangeListener(this);
         }
 
@@ -142,11 +147,11 @@ public class VectorSeriesCollection extends AbstractXYDataset
      * @throws IllegalArgumentException if <code>series</code> is not in the
      *     range <code>0</code> to <code>getSeriesCount() - 1</code>.
      */
-    public VectorSeries getSeries(int series) {
+    public jfree.data.xy.VectorSeries getSeries(int series) {
         if ((series < 0) || (series >= getSeriesCount())) {
             throw new IllegalArgumentException("Series index out of bounds");
         }
-        return (VectorSeries) this.data.get(series);
+        return (jfree.data.xy.VectorSeries) this.data.get(series);
     }
 
     /**
@@ -174,7 +179,7 @@ public class VectorSeriesCollection extends AbstractXYDataset
      *
      * @return The series index.
      */
-    public int indexOf(VectorSeries series) {
+    public int indexOf(jfree.data.xy.VectorSeries series) {
         ParamChecks.nullNotPermitted(series, "series");
         return this.data.indexOf(series);
     }
@@ -205,8 +210,8 @@ public class VectorSeriesCollection extends AbstractXYDataset
      */
     @Override
     public double getXValue(int series, int item) {
-        VectorSeries s = (VectorSeries) this.data.get(series);
-        VectorDataItem di = (VectorDataItem) s.getDataItem(item);
+        jfree.data.xy.VectorSeries s = (jfree.data.xy.VectorSeries) this.data.get(series);
+        jfree.data.xy.VectorDataItem di = (jfree.data.xy.VectorDataItem) s.getDataItem(item);
         return di.getXValue();
     }
 
@@ -235,8 +240,8 @@ public class VectorSeriesCollection extends AbstractXYDataset
      */
     @Override
     public double getYValue(int series, int item) {
-        VectorSeries s = (VectorSeries) this.data.get(series);
-        VectorDataItem di = (VectorDataItem) s.getDataItem(item);
+        jfree.data.xy.VectorSeries s = (jfree.data.xy.VectorSeries) this.data.get(series);
+        jfree.data.xy.VectorDataItem di = (jfree.data.xy.VectorDataItem) s.getDataItem(item);
         return di.getYValue();
     }
 
@@ -265,8 +270,8 @@ public class VectorSeriesCollection extends AbstractXYDataset
      */
     @Override
     public Vector getVector(int series, int item) {
-        VectorSeries s = (VectorSeries) this.data.get(series);
-        VectorDataItem di = (VectorDataItem) s.getDataItem(item);
+        jfree.data.xy.VectorSeries s = (jfree.data.xy.VectorSeries) this.data.get(series);
+        jfree.data.xy.VectorDataItem di = (jfree.data.xy.VectorDataItem) s.getDataItem(item);
         return di.getVector();
     }
 
@@ -280,8 +285,8 @@ public class VectorSeriesCollection extends AbstractXYDataset
      */
     @Override
     public double getVectorXValue(int series, int item) {
-        VectorSeries s = (VectorSeries) this.data.get(series);
-        VectorDataItem di = (VectorDataItem) s.getDataItem(item);
+        jfree.data.xy.VectorSeries s = (jfree.data.xy.VectorSeries) this.data.get(series);
+        jfree.data.xy.VectorDataItem di = (jfree.data.xy.VectorDataItem) s.getDataItem(item);
         return di.getVectorX();
     }
 
@@ -295,8 +300,8 @@ public class VectorSeriesCollection extends AbstractXYDataset
      */
     @Override
     public double getVectorYValue(int series, int item) {
-        VectorSeries s = (VectorSeries) this.data.get(series);
-        VectorDataItem di = (VectorDataItem) s.getDataItem(item);
+        jfree.data.xy.VectorSeries s = (VectorSeries) this.data.get(series);
+        jfree.data.xy.VectorDataItem di = (VectorDataItem) s.getDataItem(item);
         return di.getVectorY();
     }
 
@@ -312,10 +317,10 @@ public class VectorSeriesCollection extends AbstractXYDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof VectorSeriesCollection)) {
+        if (!(obj instanceof jfree.data.xy.VectorSeriesCollection)) {
             return false;
         }
-        VectorSeriesCollection that = (VectorSeriesCollection) obj;
+        jfree.data.xy.VectorSeriesCollection that = (jfree.data.xy.VectorSeriesCollection) obj;
         return ObjectUtilities.equal(this.data, that.data);
     }
 
@@ -328,8 +333,8 @@ public class VectorSeriesCollection extends AbstractXYDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        VectorSeriesCollection clone
-                = (VectorSeriesCollection) super.clone();
+        jfree.data.xy.VectorSeriesCollection clone
+                = (jfree.data.xy.VectorSeriesCollection) super.clone();
         clone.data = (List) ObjectUtilities.deepClone(this.data);
         return clone;
     }

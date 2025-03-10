@@ -44,10 +44,12 @@
 
 package org.jfree.chart.plot;
 
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
-import org.jfree.data.Range;
-import org.jfree.data.contour.ContourDataset;
-import org.jfree.data.contour.DefaultContourDataset;
+import jfree.chart.plot.ContourPlot;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.data.Range;
+import jfree.data.contour.ContourDataset;
+import jfree.data.contour.DefaultContourDataset;
 
 /**
  * Some utility methods for the {@link ContourPlot} class.

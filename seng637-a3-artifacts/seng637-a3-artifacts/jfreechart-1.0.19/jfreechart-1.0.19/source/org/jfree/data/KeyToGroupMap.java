@@ -54,7 +54,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
@@ -228,10 +228,10 @@ public class KeyToGroupMap implements Cloneable, PublicCloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof KeyToGroupMap)) {
+        if (!(obj instanceof jfree.data.KeyToGroupMap)) {
             return false;
         }
-        KeyToGroupMap that = (KeyToGroupMap) obj;
+        jfree.data.KeyToGroupMap that = (jfree.data.KeyToGroupMap) obj;
         if (!ObjectUtilities.equal(this.defaultGroup, that.defaultGroup)) {
             return false;
         }
@@ -251,11 +251,11 @@ public class KeyToGroupMap implements Cloneable, PublicCloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        KeyToGroupMap result = (KeyToGroupMap) super.clone();
+        jfree.data.KeyToGroupMap result = (jfree.data.KeyToGroupMap) super.clone();
         result.defaultGroup
-            = (Comparable) KeyToGroupMap.clone(this.defaultGroup);
-        result.groups = (List) KeyToGroupMap.clone(this.groups);
-        result.keyToGroupMap = (Map) KeyToGroupMap.clone(this.keyToGroupMap);
+            = (Comparable) jfree.data.KeyToGroupMap.clone(this.defaultGroup);
+        result.groups = (List) jfree.data.KeyToGroupMap.clone(this.groups);
+        result.keyToGroupMap = (Map) jfree.data.KeyToGroupMap.clone(this.keyToGroupMap);
         return result;
     }
 
@@ -306,7 +306,7 @@ public class KeyToGroupMap implements Cloneable, PublicCloneable, Serializable {
                 List clone = (List) list.getClass().newInstance();
                 Iterator iterator = list.iterator();
                 while (iterator.hasNext()) {
-                    clone.add(KeyToGroupMap.clone(iterator.next()));
+                    clone.add(jfree.data.KeyToGroupMap.clone(iterator.next()));
                 }
                 result = clone;
             }

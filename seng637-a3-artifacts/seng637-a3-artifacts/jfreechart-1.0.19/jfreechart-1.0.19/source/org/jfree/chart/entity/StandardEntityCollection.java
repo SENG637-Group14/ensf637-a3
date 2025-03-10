@@ -55,15 +55,18 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+
+import jfree.chart.entity.ChartEntity;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A standard implementation of the {@link EntityCollection} interface.
+ * A standard implementation of the {@link jfree.chart.entity.EntityCollection} interface.
  */
-public class StandardEntityCollection implements EntityCollection,
+public class StandardEntityCollection implements jfree.chart.entity.EntityCollection,
         Cloneable, PublicCloneable, Serializable {
 
     /** For serialization. */
@@ -96,11 +99,11 @@ public class StandardEntityCollection implements EntityCollection,
      *
      * @return The entity.
      *
-     * @see #add(ChartEntity)
+     * @see #add(jfree.chart.entity.ChartEntity)
      */
     @Override
-    public ChartEntity getEntity(int index) {
-        return (ChartEntity) this.entities.get(index);
+    public jfree.chart.entity.ChartEntity getEntity(int index) {
+        return (jfree.chart.entity.ChartEntity) this.entities.get(index);
     }
 
     /**
@@ -117,7 +120,7 @@ public class StandardEntityCollection implements EntityCollection,
      * @param entity  the entity (<code>null</code> not permitted).
      */
     @Override
-    public void add(ChartEntity entity) {
+    public void add(jfree.chart.entity.ChartEntity entity) {
         ParamChecks.nullNotPermitted(entity, "entity");
         this.entities.add(entity);
     }
@@ -143,10 +146,10 @@ public class StandardEntityCollection implements EntityCollection,
      * @return The entity (possibly <code>null</code>).
      */
     @Override
-    public ChartEntity getEntity(double x, double y) {
+    public jfree.chart.entity.ChartEntity getEntity(double x, double y) {
         int entityCount = this.entities.size();
         for (int i = entityCount - 1; i >= 0; i--) {
-            ChartEntity entity = (ChartEntity) this.entities.get(i);
+            jfree.chart.entity.ChartEntity entity = (jfree.chart.entity.ChartEntity) this.entities.get(i);
             if (entity.getArea().contains(x, y)) {
                 return entity;
             }
@@ -186,8 +189,8 @@ public class StandardEntityCollection implements EntityCollection,
         if (obj == this) {
             return true;
         }
-        if (obj instanceof StandardEntityCollection) {
-            StandardEntityCollection that = (StandardEntityCollection) obj;
+        if (obj instanceof jfree.chart.entity.StandardEntityCollection) {
+            jfree.chart.entity.StandardEntityCollection that = (jfree.chart.entity.StandardEntityCollection) obj;
             return ObjectUtilities.equal(this.entities, that.entities);
         }
         return false;
@@ -202,11 +205,11 @@ public class StandardEntityCollection implements EntityCollection,
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        StandardEntityCollection clone
-                = (StandardEntityCollection) super.clone();
+        jfree.chart.entity.StandardEntityCollection clone
+                = (jfree.chart.entity.StandardEntityCollection) super.clone();
         clone.entities = new java.util.ArrayList(this.entities.size());
         for (int i = 0; i < this.entities.size(); i++) {
-            ChartEntity entity = (ChartEntity) this.entities.get(i);
+            jfree.chart.entity.ChartEntity entity = (ChartEntity) this.entities.get(i);
             clone.entities.add(entity.clone());
         }
         return clone;

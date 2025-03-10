@@ -61,15 +61,19 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.DefaultKeyedValues2D;
-import org.jfree.data.DomainInfo;
-import org.jfree.data.Range;
-import org.jfree.data.general.DatasetChangeEvent;
-import org.jfree.data.xy.AbstractIntervalXYDataset;
-import org.jfree.data.xy.IntervalXYDataset;
-import org.jfree.data.xy.TableXYDataset;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.TimePeriod;
+import jfree.data.time.TimePeriodAnchor;
+import jfree.data.xy.XYDataset;
+import jfree.data.DefaultKeyedValues2D;
+import jfree.data.DomainInfo;
+import jfree.data.Range;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.xy.AbstractIntervalXYDataset;
+import jfree.data.xy.IntervalXYDataset;
+import jfree.data.xy.TableXYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -80,7 +84,7 @@ import org.jfree.util.PublicCloneable;
  * automatically get a new item <code>(x, null)</code> unless a non-null item
  * has already been specified.
  *
- * @see org.jfree.data.xy.TableXYDataset
+ * @see TableXYDataset
  */
 public class TimeTableXYDataset extends AbstractIntervalXYDataset
         implements Cloneable, PublicCloneable, IntervalXYDataset, DomainInfo,
@@ -91,7 +95,7 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      * a series (elsewhere in JFreeChart rows are typically used for series,
      * but it doesn't matter that much since this data structure is private
      * and symmetrical anyway), each row contains values for the same
-     * {@link RegularTimePeriod} (the rows are sorted into ascending order).
+     * {@link jfree.data.time.RegularTimePeriod} (the rows are sorted into ascending order).
      */
     private DefaultKeyedValues2D values;
 
@@ -104,10 +108,10 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
 
     /**
      * The point within each time period that is used for the X value when this
-     * collection is used as an {@link org.jfree.data.xy.XYDataset}.  This can
+     * collection is used as an {@link XYDataset}.  This can
      * be the start, middle or end of the time period.
      */
-    private TimePeriodAnchor xPosition;
+    private jfree.data.time.TimePeriodAnchor xPosition;
 
     /** A working calendar (to recycle) */
     private Calendar workingCalendar;
@@ -141,7 +145,7 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
         ParamChecks.nullNotPermitted(locale, "locale");
         this.values = new DefaultKeyedValues2D(true);
         this.workingCalendar = Calendar.getInstance(zone, locale);
-        this.xPosition = TimePeriodAnchor.START;
+        this.xPosition = jfree.data.time.TimePeriodAnchor.START;
     }
 
     /**
@@ -181,9 +185,9 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      *
      * @return The anchor position (never <code>null</code>).
      *
-     * @see #setXPosition(TimePeriodAnchor)
+     * @see #setXPosition(jfree.data.time.TimePeriodAnchor)
      */
-    public TimePeriodAnchor getXPosition() {
+    public jfree.data.time.TimePeriodAnchor getXPosition() {
         return this.xPosition;
     }
 
@@ -195,7 +199,7 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      *
      * @see #getXPosition()
      */
-    public void setXPosition(TimePeriodAnchor anchor) {
+    public void setXPosition(jfree.data.time.TimePeriodAnchor anchor) {
         ParamChecks.nullNotPermitted(anchor, "anchor");
         this.xPosition = anchor;
         notifyListeners(new DatasetChangeEvent(this, this));
@@ -209,9 +213,9 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      * @param y  the value for this period.
      * @param seriesName  the name of the series to add the value.
      *
-     * @see #remove(TimePeriod, Comparable)
+     * @see #remove(jfree.data.time.TimePeriod, Comparable)
      */
-    public void add(TimePeriod period, double y, Comparable seriesName) {
+    public void add(jfree.data.time.TimePeriod period, double y, Comparable seriesName) {
         add(period, new Double(y), seriesName, true);
     }
 
@@ -225,16 +229,16 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      *                    (<code>null</code> not permitted).
      * @param notify  whether dataset listener are notified or not.
      *
-     * @see #remove(TimePeriod, Comparable, boolean)
+     * @see #remove(jfree.data.time.TimePeriod, Comparable, boolean)
      */
-    public void add(TimePeriod period, Number y, Comparable seriesName,
+    public void add(jfree.data.time.TimePeriod period, Number y, Comparable seriesName,
                     boolean notify) {
         // here's a quirk - the API has been defined in terms of a plain
         // TimePeriod, which cannot make use of the timezone and locale
         // specified in the constructor...so we only do the time zone
         // pegging if the period is an instanceof RegularTimePeriod
-        if (period instanceof RegularTimePeriod) {
-            RegularTimePeriod p = (RegularTimePeriod) period;
+        if (period instanceof jfree.data.time.RegularTimePeriod) {
+            jfree.data.time.RegularTimePeriod p = (RegularTimePeriod) period;
             p.peg(this.workingCalendar);
         }
         this.values.addValue(y, period, seriesName);
@@ -251,9 +255,9 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      * @param seriesName  the (existing!) series name to remove the value
      *                    (<code>null</code> not permitted).
      *
-     * @see #add(TimePeriod, double, Comparable)
+     * @see #add(jfree.data.time.TimePeriod, double, Comparable)
      */
-    public void remove(TimePeriod period, Comparable seriesName) {
+    public void remove(jfree.data.time.TimePeriod period, Comparable seriesName) {
         remove(period, seriesName, true);
     }
 
@@ -267,10 +271,10 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      *                    (<code>null</code> not permitted).
      * @param notify  whether dataset listener are notified or not.
      *
-     * @see #add(TimePeriod, double, Comparable)
+     * @see #add(jfree.data.time.TimePeriod, double, Comparable)
      */
-    public void remove(TimePeriod period, Comparable seriesName,
-            boolean notify) {
+    public void remove(jfree.data.time.TimePeriod period, Comparable seriesName,
+                       boolean notify) {
         this.values.removeValue(period, seriesName);
         if (notify) {
             fireDatasetChanged();
@@ -298,8 +302,8 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      *
      * @return The time period.
      */
-    public TimePeriod getTimePeriod(int item) {
-        return (TimePeriod) this.values.getRowKey(item);
+    public jfree.data.time.TimePeriod getTimePeriod(int item) {
+        return (jfree.data.time.TimePeriod) this.values.getRowKey(item);
     }
 
     /**
@@ -373,7 +377,7 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      */
     @Override
     public double getXValue(int series, int item) {
-        TimePeriod period = (TimePeriod) this.values.getRowKey(item);
+        jfree.data.time.TimePeriod period = (jfree.data.time.TimePeriod) this.values.getRowKey(item);
         return getXValue(period);
     }
 
@@ -403,7 +407,7 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      */
     @Override
     public double getStartXValue(int series, int item) {
-        TimePeriod period = (TimePeriod) this.values.getRowKey(item);
+        jfree.data.time.TimePeriod period = (jfree.data.time.TimePeriod) this.values.getRowKey(item);
         return period.getStart().getTime();
     }
 
@@ -433,7 +437,7 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      */
     @Override
     public double getEndXValue(int series, int item) {
-        TimePeriod period = (TimePeriod) this.values.getRowKey(item);
+        jfree.data.time.TimePeriod period = (jfree.data.time.TimePeriod) this.values.getRowKey(item);
         return period.getEnd().getTime();
     }
 
@@ -483,12 +487,12 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      *
      * @return The x-value.
      */
-    private long getXValue(TimePeriod period) {
+    private long getXValue(jfree.data.time.TimePeriod period) {
         long result = 0L;
-        if (this.xPosition == TimePeriodAnchor.START) {
+        if (this.xPosition == jfree.data.time.TimePeriodAnchor.START) {
             result = period.getStart().getTime();
         }
-        else if (this.xPosition == TimePeriodAnchor.MIDDLE) {
+        else if (this.xPosition == jfree.data.time.TimePeriodAnchor.MIDDLE) {
             long t0 = period.getStart().getTime();
             long t1 = period.getEnd().getTime();
             result = t0 + (t1 - t0) / 2L;
@@ -550,8 +554,8 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
             return null;
         }
 
-        TimePeriod first = (TimePeriod) keys.get(0);
-        TimePeriod last = (TimePeriod) keys.get(keys.size() - 1);
+        jfree.data.time.TimePeriod first = (jfree.data.time.TimePeriod) keys.get(0);
+        jfree.data.time.TimePeriod last = (TimePeriod) keys.get(keys.size() - 1);
 
         if (!includeInterval || this.domainIsPointsInTime) {
             return new Range(getXValue(first), getXValue(last));
@@ -574,10 +578,10 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof TimeTableXYDataset)) {
+        if (!(obj instanceof jfree.data.time.TimeTableXYDataset)) {
             return false;
         }
-        TimeTableXYDataset that = (TimeTableXYDataset) obj;
+        jfree.data.time.TimeTableXYDataset that = (jfree.data.time.TimeTableXYDataset) obj;
         if (this.domainIsPointsInTime != that.domainIsPointsInTime) {
             return false;
         }
@@ -604,7 +608,7 @@ public class TimeTableXYDataset extends AbstractIntervalXYDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        TimeTableXYDataset clone = (TimeTableXYDataset) super.clone();
+        jfree.data.time.TimeTableXYDataset clone = (jfree.data.time.TimeTableXYDataset) super.clone();
         clone.values = (DefaultKeyedValues2D) this.values.clone();
         clone.workingCalendar = (Calendar) this.workingCalendar.clone();
         return clone;

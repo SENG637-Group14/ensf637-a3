@@ -42,6 +42,7 @@ package org.jfree.data.xml;
 
 import java.util.Stack;
 
+import jfree.data.xml.DatasetTags;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 

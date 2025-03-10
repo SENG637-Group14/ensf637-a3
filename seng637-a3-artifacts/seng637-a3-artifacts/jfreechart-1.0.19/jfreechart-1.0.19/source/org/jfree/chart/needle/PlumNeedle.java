@@ -45,6 +45,9 @@
 
 package org.jfree.chart.needle;
 
+import jfree.chart.needle.MeterNeedle;
+import jfree.chart.plot.CompassPlot;
+
 import java.awt.Graphics2D;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
@@ -53,7 +56,7 @@ import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 /**
- * A needle for use with the {@link org.jfree.chart.plot.CompassPlot} class.
+ * A needle for use with the {@link CompassPlot} class.
  */
 public class PlumNeedle extends MeterNeedle
                         implements Cloneable, Serializable {
@@ -108,7 +111,7 @@ public class PlumNeedle extends MeterNeedle
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof PlumNeedle)) {
+        if (!(obj instanceof jfree.chart.needle.PlumNeedle)) {
             return false;
         }
         if (!super.equals(obj)) {

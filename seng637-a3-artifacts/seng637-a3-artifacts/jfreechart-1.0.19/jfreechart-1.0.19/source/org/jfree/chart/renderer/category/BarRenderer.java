@@ -110,20 +110,25 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.labels.ItemLabelAnchor;
-import org.jfree.chart.labels.ItemLabelPosition;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.labels.ItemLabelAnchor;
+import jfree.chart.labels.ItemLabelPosition;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.renderer.category.AbstractCategoryItemRenderer;
+import jfree.chart.renderer.category.BarPainter;
+import jfree.chart.renderer.category.CategoryItemRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.chart.renderer.category.GradientBarPainter;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.GradientPaintTransformer;
@@ -161,7 +166,7 @@ public class BarRenderer extends AbstractCategoryItemRenderer
      *
      * @since 1.0.11
      */
-    private static BarPainter defaultBarPainter = new GradientBarPainter();
+    private static jfree.chart.renderer.category.BarPainter defaultBarPainter = new GradientBarPainter();
 
     /**
      * Returns the default bar painter.
@@ -170,8 +175,8 @@ public class BarRenderer extends AbstractCategoryItemRenderer
      *
      * @since 1.0.11
      */
-    public static BarPainter getDefaultBarPainter() {
-        return BarRenderer.defaultBarPainter;
+    public static jfree.chart.renderer.category.BarPainter getDefaultBarPainter() {
+        return jfree.chart.renderer.category.BarRenderer.defaultBarPainter;
     }
 
     /**
@@ -181,9 +186,9 @@ public class BarRenderer extends AbstractCategoryItemRenderer
      *
      * @since 1.0.11
      */
-    public static void setDefaultBarPainter(BarPainter painter) {
+    public static void setDefaultBarPainter(jfree.chart.renderer.category.BarPainter painter) {
         ParamChecks.nullNotPermitted(painter, "painter");
-        BarRenderer.defaultBarPainter = painter;
+        jfree.chart.renderer.category.BarRenderer.defaultBarPainter = painter;
     }
 
     /**
@@ -201,7 +206,7 @@ public class BarRenderer extends AbstractCategoryItemRenderer
      * @since 1.0.13
      */
     public static boolean getDefaultShadowsVisible() {
-        return BarRenderer.defaultShadowsVisible;
+        return jfree.chart.renderer.category.BarRenderer.defaultShadowsVisible;
     }
 
     /**
@@ -214,7 +219,7 @@ public class BarRenderer extends AbstractCategoryItemRenderer
      * @since 1.0.13
      */
     public static void setDefaultShadowsVisible(boolean visible) {
-        BarRenderer.defaultShadowsVisible = visible;
+        jfree.chart.renderer.category.BarRenderer.defaultShadowsVisible = visible;
     }
 
     /** The margin between items (bars) within a category. */
@@ -269,7 +274,7 @@ public class BarRenderer extends AbstractCategoryItemRenderer
      *
      * @since 1.0.11
      */
-    private BarPainter barPainter;
+    private jfree.chart.renderer.category.BarPainter barPainter;
 
     /**
      * The flag that controls whether or not shadows are drawn for the bars.
@@ -578,11 +583,11 @@ public class BarRenderer extends AbstractCategoryItemRenderer
      *
      * @return The bar painter (never <code>null</code>).
      *
-     * @see #setBarPainter(BarPainter)
+     * @see #setBarPainter(jfree.chart.renderer.category.BarPainter)
      *
      * @since 1.0.11
      */
-    public BarPainter getBarPainter() {
+    public jfree.chart.renderer.category.BarPainter getBarPainter() {
         return this.barPainter;
     }
 
@@ -740,11 +745,11 @@ public class BarRenderer extends AbstractCategoryItemRenderer
      * @return The renderer state.
      */
     @Override
-    public CategoryItemRendererState initialise(Graphics2D g2, 
-            Rectangle2D dataArea, CategoryPlot plot, int rendererIndex,
-            PlotRenderingInfo info) {
+    public jfree.chart.renderer.category.CategoryItemRendererState initialise(Graphics2D g2,
+                                                                                   Rectangle2D dataArea, CategoryPlot plot, int rendererIndex,
+                                                                                   PlotRenderingInfo info) {
 
-        CategoryItemRendererState state = super.initialise(g2, dataArea, plot,
+        jfree.chart.renderer.category.CategoryItemRendererState state = super.initialise(g2, dataArea, plot,
                 rendererIndex, info);
 
         // get the clipping values...
@@ -770,7 +775,7 @@ public class BarRenderer extends AbstractCategoryItemRenderer
     protected void calculateBarWidth(CategoryPlot plot,
                                      Rectangle2D dataArea,
                                      int rendererIndex,
-                                     CategoryItemRendererState state) {
+                                     jfree.chart.renderer.category.CategoryItemRendererState state) {
 
         CategoryAxis domainAxis = getDomainAxis(plot, rendererIndex);
         CategoryDataset dataset = plot.getDataset(rendererIndex);
@@ -824,7 +829,7 @@ public class BarRenderer extends AbstractCategoryItemRenderer
      */
     protected double calculateBarW0(CategoryPlot plot, 
             PlotOrientation orientation, Rectangle2D dataArea, 
-            CategoryAxis domainAxis, CategoryItemRendererState state,
+            CategoryAxis domainAxis, jfree.chart.renderer.category.CategoryItemRendererState state,
             int row, int column) {
         // calculate bar width...
         double space;
@@ -1326,10 +1331,10 @@ public class BarRenderer extends AbstractCategoryItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof BarRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.BarRenderer)) {
             return false;
         }
-        BarRenderer that = (BarRenderer) obj;
+        jfree.chart.renderer.category.BarRenderer that = (jfree.chart.renderer.category.BarRenderer) obj;
         if (this.base != that.base) {
             return false;
         }

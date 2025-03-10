@@ -58,17 +58,20 @@ package org.jfree.data.statistics;
 
 import java.util.List;
 
-import org.jfree.data.KeyedObjects2D;
-import org.jfree.data.Range;
-import org.jfree.data.RangeInfo;
-import org.jfree.data.general.AbstractDataset;
-import org.jfree.data.general.DatasetChangeEvent;
+import jfree.data.KeyedObjects2D;
+import jfree.data.Range;
+import jfree.data.RangeInfo;
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.statistics.BoxAndWhiskerCalculator;
+import jfree.data.statistics.BoxAndWhiskerCategoryDataset;
+import jfree.data.statistics.BoxAndWhiskerItem;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A convenience class that provides a default implementation of the
- * {@link BoxAndWhiskerCategoryDataset} interface.
+ * {@link jfree.data.statistics.BoxAndWhiskerCategoryDataset} interface.
  */
 public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
         implements BoxAndWhiskerCategoryDataset, RangeInfo, PublicCloneable {
@@ -120,10 +123,10 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
      * @param rowKey  the row key (<code>null</code> not permitted).
      * @param columnKey  the column key (<code>null</code> not permitted).
      *
-     * @see #add(BoxAndWhiskerItem, Comparable, Comparable)
+     * @see #add(jfree.data.statistics.BoxAndWhiskerItem, Comparable, Comparable)
      */
     public void add(List list, Comparable rowKey, Comparable columnKey) {
-        BoxAndWhiskerItem item = BoxAndWhiskerCalculator
+        jfree.data.statistics.BoxAndWhiskerItem item = BoxAndWhiskerCalculator
                 .calculateBoxAndWhiskerStatistics(list);
         add(item, rowKey, columnKey);
     }
@@ -138,8 +141,8 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
      *
      * @see #add(List, Comparable, Comparable)
      */
-    public void add(BoxAndWhiskerItem item, Comparable rowKey,
-            Comparable columnKey) {
+    public void add(jfree.data.statistics.BoxAndWhiskerItem item, Comparable rowKey,
+                    Comparable columnKey) {
 
         this.data.addObject(item, rowKey, columnKey);
 
@@ -196,7 +199,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
      * @param rowKey  the row key (<code>null</code> not permitted).
      * @param columnKey  the column key (<code>null</code> not permitted).
      *
-     * @see #add(BoxAndWhiskerItem, Comparable, Comparable)
+     * @see #add(jfree.data.statistics.BoxAndWhiskerItem, Comparable, Comparable)
      *
      * @since 1.0.7
      */
@@ -301,8 +304,8 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
      *
      * @return The item.
      */
-    public BoxAndWhiskerItem getItem(int row, int column) {
-        return (BoxAndWhiskerItem) this.data.getObject(row, column);
+    public jfree.data.statistics.BoxAndWhiskerItem getItem(int row, int column) {
+        return (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(row, column);
     }
 
     /**
@@ -351,7 +354,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     public Number getMeanValue(int row, int column) {
 
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(row,
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(row,
                 column);
         if (item != null) {
             result = item.getMean();
@@ -373,7 +376,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getMeanValue(Comparable rowKey, Comparable columnKey) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 rowKey, columnKey);
         if (item != null) {
             result = item.getMean();
@@ -394,7 +397,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getMedianValue(int row, int column) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(row,
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(row,
                 column);
         if (item != null) {
             result = item.getMedian();
@@ -415,7 +418,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getMedianValue(Comparable rowKey, Comparable columnKey) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 rowKey, columnKey);
         if (item != null) {
             result = item.getMedian();
@@ -436,7 +439,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getQ1Value(int row, int column) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 row, column);
         if (item != null) {
             result = item.getQ1();
@@ -457,7 +460,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getQ1Value(Comparable rowKey, Comparable columnKey) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 rowKey, columnKey);
         if (item != null) {
             result = item.getQ1();
@@ -478,7 +481,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getQ3Value(int row, int column) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 row, column);
         if (item != null) {
             result = item.getQ3();
@@ -499,7 +502,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getQ3Value(Comparable rowKey, Comparable columnKey) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 rowKey, columnKey);
         if (item != null) {
             result = item.getQ3();
@@ -668,7 +671,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getMinRegularValue(int row, int column) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 row, column);
         if (item != null) {
             result = item.getMinRegularValue();
@@ -689,7 +692,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getMinRegularValue(Comparable rowKey, Comparable columnKey) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 rowKey, columnKey);
         if (item != null) {
             result = item.getMinRegularValue();
@@ -710,7 +713,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getMaxRegularValue(int row, int column) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 row, column);
         if (item != null) {
             result = item.getMaxRegularValue();
@@ -731,7 +734,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getMaxRegularValue(Comparable rowKey, Comparable columnKey) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 rowKey, columnKey);
         if (item != null) {
             result = item.getMaxRegularValue();
@@ -752,7 +755,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getMinOutlier(int row, int column) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 row, column);
         if (item != null) {
             result = item.getMinOutlier();
@@ -773,7 +776,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getMinOutlier(Comparable rowKey, Comparable columnKey) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 rowKey, columnKey);
         if (item != null) {
             result = item.getMinOutlier();
@@ -794,7 +797,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getMaxOutlier(int row, int column) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 row, column);
         if (item != null) {
             result = item.getMaxOutlier();
@@ -815,7 +818,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public Number getMaxOutlier(Comparable rowKey, Comparable columnKey) {
         Number result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 rowKey, columnKey);
         if (item != null) {
             result = item.getMaxOutlier();
@@ -836,7 +839,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public List getOutliers(int row, int column) {
         List result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 row, column);
         if (item != null) {
             result = item.getOutliers();
@@ -857,7 +860,7 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
     @Override
     public List getOutliers(Comparable rowKey, Comparable columnKey) {
         List result = null;
-        BoxAndWhiskerItem item = (BoxAndWhiskerItem) this.data.getObject(
+        jfree.data.statistics.BoxAndWhiskerItem item = (jfree.data.statistics.BoxAndWhiskerItem) this.data.getObject(
                 rowKey, columnKey);
         if (item != null) {
             result = item.getOutliers();
@@ -923,9 +926,9 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
         if (obj == this) {
             return true;
         }
-        if (obj instanceof DefaultBoxAndWhiskerCategoryDataset) {
-            DefaultBoxAndWhiskerCategoryDataset dataset
-                    = (DefaultBoxAndWhiskerCategoryDataset) obj;
+        if (obj instanceof jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset) {
+            jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset dataset
+                    = (jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset) obj;
             return ObjectUtilities.equal(this.data, dataset.data);
         }
         return false;
@@ -940,8 +943,8 @@ public class DefaultBoxAndWhiskerCategoryDataset extends AbstractDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultBoxAndWhiskerCategoryDataset clone
-                = (DefaultBoxAndWhiskerCategoryDataset) super.clone();
+        jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset clone
+                = (jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset) super.clone();
         clone.data = (KeyedObjects2D) this.data.clone();
         return clone;
     }

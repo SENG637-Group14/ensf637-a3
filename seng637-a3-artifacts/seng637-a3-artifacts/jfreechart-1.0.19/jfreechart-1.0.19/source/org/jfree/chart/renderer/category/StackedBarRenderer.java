@@ -98,19 +98,21 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.labels.ItemLabelAnchor;
-import org.jfree.chart.labels.ItemLabelPosition;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.DataUtilities;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.general.DatasetUtilities;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.labels.ItemLabelAnchor;
+import jfree.chart.labels.ItemLabelPosition;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.category.BarRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.data.DataUtilities;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
+import jfree.data.general.DatasetUtilities;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.TextAnchor;
 import org.jfree.util.PublicCloneable;
@@ -235,7 +237,7 @@ public class StackedBarRenderer extends BarRenderer
      */
     @Override
     protected void calculateBarWidth(CategoryPlot plot, Rectangle2D dataArea,
-            int rendererIndex, CategoryItemRendererState state) {
+            int rendererIndex, jfree.chart.renderer.category.CategoryItemRendererState state) {
 
         // calculate the bar width
         CategoryAxis xAxis = plot.getDomainAxisForDataset(rendererIndex);
@@ -418,10 +420,10 @@ public class StackedBarRenderer extends BarRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StackedBarRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.StackedBarRenderer)) {
             return false;
         }
-        StackedBarRenderer that = (StackedBarRenderer) obj;
+        jfree.chart.renderer.category.StackedBarRenderer that = (jfree.chart.renderer.category.StackedBarRenderer) obj;
         if (this.renderAsPercentages != that.renderAsPercentages) {
             return false;
         }

@@ -52,8 +52,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.HashUtilities;
+import jfree.chart.plot.dial.AbstractDialLayer;
+import jfree.chart.plot.dial.DialLayer;
+import jfree.chart.plot.dial.DialLayerChangeEvent;
+import jfree.chart.plot.dial.DialPlot;
+import jfree.chart.util.ParamChecks;
 import org.jfree.io.SerialUtilities;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.StandardGradientPaintTransformer;
@@ -118,7 +122,7 @@ public class DialBackground extends AbstractDialLayer implements DialLayer,
 
     /**
      * Sets the paint for the dial background and sends a
-     * {@link DialLayerChangeEvent} to all registered listeners.
+     * {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param paint  the paint (<code>null</code> not permitted).
      *
@@ -127,7 +131,7 @@ public class DialBackground extends AbstractDialLayer implements DialLayer,
     public void setPaint(Paint paint) {
         ParamChecks.nullNotPermitted(paint, "paint");
         this.paint = paint;
-        notifyListeners(new DialLayerChangeEvent(this));
+        notifyListeners(new jfree.chart.plot.dial.DialLayerChangeEvent(this));
     }
 
     /**
@@ -145,7 +149,7 @@ public class DialBackground extends AbstractDialLayer implements DialLayer,
     /**
      * Sets the transformer used to adjust the coordinates of any
      * <code>GradientPaint</code> instance used for the background paint, and
-     * sends a {@link DialLayerChangeEvent} to all registered listeners.
+     * sends a {@link jfree.chart.plot.dial.DialLayerChangeEvent} to all registered listeners.
      *
      * @param t  the transformer (<code>null</code> not permitted).
      *
@@ -180,7 +184,7 @@ public class DialBackground extends AbstractDialLayer implements DialLayer,
      */
     @Override
     public void draw(Graphics2D g2, DialPlot plot, Rectangle2D frame,
-            Rectangle2D view) {
+                     Rectangle2D view) {
 
         Paint p = this.paint;
         if (p instanceof GradientPaint) {
@@ -203,10 +207,10 @@ public class DialBackground extends AbstractDialLayer implements DialLayer,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DialBackground)) {
+        if (!(obj instanceof jfree.chart.plot.dial.DialBackground)) {
             return false;
         }
-        DialBackground that = (DialBackground) obj;
+        jfree.chart.plot.dial.DialBackground that = (jfree.chart.plot.dial.DialBackground) obj;
         if (!PaintUtilities.equal(this.paint, that.paint)) {
             return false;
         }

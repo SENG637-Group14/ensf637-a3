@@ -115,13 +115,24 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.ValueAxisPlot;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.RangeType;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.MarkerAxisBand;
+import jfree.chart.axis.NumberTick;
+import jfree.chart.axis.NumberTickUnit;
+import jfree.chart.axis.NumberTickUnitSource;
+import jfree.chart.axis.Tick;
+import jfree.chart.axis.TickType;
+import jfree.chart.axis.TickUnit;
+import jfree.chart.axis.TickUnitSource;
+import jfree.chart.axis.TickUnits;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.RangeType;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.ui.TextAnchor;
@@ -139,7 +150,7 @@ import org.jfree.util.ObjectUtilities;
  * selecting a tick unit that is appropriate for the current axis range.  This
  * mechanism is an adaptation of code suggested by Laurence Vanhelsuwe.
  */
-public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
+public class NumberAxis extends jfree.chart.axis.ValueAxis implements Cloneable, Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = 2805933088476185789L;
@@ -151,7 +162,7 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
     public static final boolean DEFAULT_AUTO_RANGE_STICKY_ZERO = true;
 
     /** The default tick unit. */
-    public static final NumberTickUnit DEFAULT_TICK_UNIT = new NumberTickUnit(
+    public static final jfree.chart.axis.NumberTickUnit DEFAULT_TICK_UNIT = new jfree.chart.axis.NumberTickUnit(
             1.0, new DecimalFormat("0"));
 
     /** The default setting for the vertical tick labels flag. */
@@ -178,13 +189,13 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
     private boolean autoRangeStickyZero;
 
     /** The tick unit for the axis. */
-    private NumberTickUnit tickUnit;
+    private jfree.chart.axis.NumberTickUnit tickUnit;
 
     /** The override number format. */
     private NumberFormat numberFormatOverride;
 
     /** An optional band for marking regions on the axis. */
-    private MarkerAxisBand markerBand;
+    private jfree.chart.axis.MarkerAxisBand markerBand;
 
     /**
      * Default constructor.
@@ -199,7 +210,7 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      * @param label  the axis label (<code>null</code> permitted).
      */
     public NumberAxis(String label) {
-        super(label, NumberAxis.createStandardTickUnits());
+        super(label, jfree.chart.axis.NumberAxis.createStandardTickUnits());
         this.rangeType = RangeType.FULL;
         this.autoRangeIncludesZero = DEFAULT_AUTO_RANGE_INCLUDES_ZERO;
         this.autoRangeStickyZero = DEFAULT_AUTO_RANGE_STICKY_ZERO;
@@ -305,10 +316,10 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return The tick unit for the axis.
      *
-     * @see #setTickUnit(NumberTickUnit)
-     * @see ValueAxis#isAutoTickUnitSelection()
+     * @see #setTickUnit(jfree.chart.axis.NumberTickUnit)
+     * @see jfree.chart.axis.ValueAxis#isAutoTickUnitSelection()
      */
-    public NumberTickUnit getTickUnit() {
+    public jfree.chart.axis.NumberTickUnit getTickUnit() {
         return this.tickUnit;
     }
 
@@ -316,15 +327,15 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      * Sets the tick unit for the axis and sends an {@link AxisChangeEvent} to
      * all registered listeners.  A side effect of calling this method is that
      * the "auto-select" feature for tick units is switched off (you can
-     * restore it using the {@link ValueAxis#setAutoTickUnitSelection(boolean)}
+     * restore it using the {@link jfree.chart.axis.ValueAxis#setAutoTickUnitSelection(boolean)}
      * method).
      *
      * @param unit  the new tick unit (<code>null</code> not permitted).
      *
      * @see #getTickUnit()
-     * @see #setTickUnit(NumberTickUnit, boolean, boolean)
+     * @see #setTickUnit(jfree.chart.axis.NumberTickUnit, boolean, boolean)
      */
-    public void setTickUnit(NumberTickUnit unit) {
+    public void setTickUnit(jfree.chart.axis.NumberTickUnit unit) {
         // defer argument checking...
         setTickUnit(unit, true, true);
     }
@@ -334,14 +345,14 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      * {@link AxisChangeEvent} to all registered listeners.  In addition, an
      * option is provided to turn off the "auto-select" feature for tick units
      * (you can restore it using the
-     * {@link ValueAxis#setAutoTickUnitSelection(boolean)} method).
+     * {@link jfree.chart.axis.ValueAxis#setAutoTickUnitSelection(boolean)} method).
      *
      * @param unit  the new tick unit (<code>null</code> not permitted).
      * @param notify  notify listeners?
      * @param turnOffAutoSelect  turn off the auto-tick selection?
      */
-    public void setTickUnit(NumberTickUnit unit, boolean notify,
-            boolean turnOffAutoSelect) {
+    public void setTickUnit(jfree.chart.axis.NumberTickUnit unit, boolean notify,
+                            boolean turnOffAutoSelect) {
 
         ParamChecks.nullNotPermitted(unit, "unit");
         this.tickUnit = unit;
@@ -384,9 +395,9 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return The marker band (possibly <code>null</code>).
      *
-     * @see #setMarkerBand(MarkerAxisBand)
+     * @see #setMarkerBand(jfree.chart.axis.MarkerAxisBand)
      */
-    public MarkerAxisBand getMarkerBand() {
+    public jfree.chart.axis.MarkerAxisBand getMarkerBand() {
         return this.markerBand;
     }
 
@@ -647,14 +658,14 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      * @return The axis state (never <code>null</code>).
      */
     @Override
-    public AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
-            Rectangle2D dataArea, RectangleEdge edge,
-            PlotRenderingInfo plotState) {
+    public jfree.chart.axis.AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
+                                                Rectangle2D dataArea, RectangleEdge edge,
+                                                PlotRenderingInfo plotState) {
 
-        AxisState state;
+        jfree.chart.axis.AxisState state;
         // if the axis is not visible, don't draw it...
         if (!isVisible()) {
-            state = new AxisState(cursor);
+            state = new jfree.chart.axis.AxisState(cursor);
             // even though the axis is not visible, we need ticks for the
             // gridlines...
             List ticks = refreshTicks(g2, state, dataArea, edge);
@@ -686,11 +697,11 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return The standard tick units.
      *
-     * @see #setStandardTickUnits(TickUnitSource)
+     * @see #setStandardTickUnits(jfree.chart.axis.TickUnitSource)
      * @see #createIntegerTickUnits()
      */
-    public static TickUnitSource createStandardTickUnits() {
-        return new NumberTickUnitSource();
+    public static jfree.chart.axis.TickUnitSource createStandardTickUnits() {
+        return new jfree.chart.axis.NumberTickUnitSource();
     }
 
     /**
@@ -698,11 +709,11 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return A collection of tick units for integer values.
      *
-     * @see #setStandardTickUnits(TickUnitSource)
+     * @see #setStandardTickUnits(jfree.chart.axis.TickUnitSource)
      * @see #createStandardTickUnits()
      */
-    public static TickUnitSource createIntegerTickUnits() {
-        return new NumberTickUnitSource(true);
+    public static jfree.chart.axis.TickUnitSource createIntegerTickUnits() {
+        return new jfree.chart.axis.NumberTickUnitSource(true);
     }
 
     /**
@@ -718,11 +729,11 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return A tick unit collection.
      *
-     * @see #setStandardTickUnits(TickUnitSource)
+     * @see #setStandardTickUnits(jfree.chart.axis.TickUnitSource)
      */
-    public static TickUnitSource createStandardTickUnits(Locale locale) {
+    public static jfree.chart.axis.TickUnitSource createStandardTickUnits(Locale locale) {
         NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
-        return new NumberTickUnitSource(false, numberFormat);
+        return new jfree.chart.axis.NumberTickUnitSource(false, numberFormat);
     }
 
     /**
@@ -733,9 +744,9 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      *
      * @return A collection of tick units for integer values.
      *
-     * @see #setStandardTickUnits(TickUnitSource)
+     * @see #setStandardTickUnits(jfree.chart.axis.TickUnitSource)
      */
-    public static TickUnitSource createIntegerTickUnits(Locale locale) {
+    public static jfree.chart.axis.TickUnitSource createIntegerTickUnits(Locale locale) {
         NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
         return new NumberTickUnitSource(true, numberFormat);
     }
@@ -771,7 +782,7 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      * @return The estimated maximum width of the tick labels.
      */
     protected double estimateMaximumTickLabelWidth(Graphics2D g2,
-                                                   TickUnit unit) {
+                                                   jfree.chart.axis.TickUnit unit) {
 
         RectangleInsets tickLabelInsets = getTickLabelInsets();
         double result = tickLabelInsets.getLeft() + tickLabelInsets.getRight();
@@ -845,20 +856,20 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
                 getTickUnit());
 
         // start with the current tick unit...
-        TickUnitSource tickUnits = getStandardTickUnits();
-        TickUnit unit1 = tickUnits.getCeilingTickUnit(getTickUnit());
+        jfree.chart.axis.TickUnitSource tickUnits = getStandardTickUnits();
+        jfree.chart.axis.TickUnit unit1 = tickUnits.getCeilingTickUnit(getTickUnit());
         double unit1Width = lengthToJava2D(unit1.getSize(), dataArea, edge);
 
         // then extrapolate...
         double guess = (tickLabelWidth / unit1Width) * unit1.getSize();
 
-        NumberTickUnit unit2 = (NumberTickUnit) tickUnits.getCeilingTickUnit(
+        jfree.chart.axis.NumberTickUnit unit2 = (jfree.chart.axis.NumberTickUnit) tickUnits.getCeilingTickUnit(
                 guess);
         double unit2Width = lengthToJava2D(unit2.getSize(), dataArea, edge);
 
         tickLabelWidth = estimateMaximumTickLabelWidth(g2, unit2);
         if (tickLabelWidth > unit2Width) {
-            unit2 = (NumberTickUnit) tickUnits.getLargerTickUnit(unit2);
+            unit2 = (jfree.chart.axis.NumberTickUnit) tickUnits.getLargerTickUnit(unit2);
         }
 
         setTickUnit(unit2, false, false);
@@ -881,14 +892,14 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
 
         // start with the current tick unit...
         TickUnitSource tickUnits = getStandardTickUnits();
-        TickUnit unit1 = tickUnits.getCeilingTickUnit(getTickUnit());
+        jfree.chart.axis.TickUnit unit1 = tickUnits.getCeilingTickUnit(getTickUnit());
         double unitHeight = lengthToJava2D(unit1.getSize(), dataArea, edge);
         double guess = unit1.getSize();
         if (unitHeight > 0) {
             // then extrapolate...
             guess = (tickLabelHeight / unitHeight) * unit1.getSize();
         }
-        NumberTickUnit unit2 = (NumberTickUnit) tickUnits.getCeilingTickUnit(
+        jfree.chart.axis.NumberTickUnit unit2 = (jfree.chart.axis.NumberTickUnit) tickUnits.getCeilingTickUnit(
                 guess);
         double unit2Height = lengthToJava2D(unit2.getSize(), dataArea, edge);
 
@@ -913,7 +924,7 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      * @return A list of ticks.
      */
     @Override
-    public List refreshTicks(Graphics2D g2, AxisState state, 
+    public List refreshTicks(Graphics2D g2, AxisState state,
             Rectangle2D dataArea, RectangleEdge edge) {
 
         List result = new java.util.ArrayList();
@@ -949,12 +960,12 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
             selectAutoTickUnit(g2, dataArea, edge);
         }
 
-        TickUnit tu = getTickUnit();
+        jfree.chart.axis.TickUnit tu = getTickUnit();
         double size = tu.getSize();
         int count = calculateVisibleTickCount();
         double lowestTickValue = calculateLowestVisibleTickValue();
 
-        if (count <= ValueAxis.MAXIMUM_TICK_COUNT) {
+        if (count <= jfree.chart.axis.ValueAxis.MAXIMUM_TICK_COUNT) {
             int minorTickSpaces = getMinorTickCount();
             if (minorTickSpaces <= 0) {
                 minorTickSpaces = tu.getMinorTickCount();
@@ -963,7 +974,7 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
                 double minorTickValue = lowestTickValue 
                         - size * minorTick / minorTickSpaces;
                 if (getRange().contains(minorTickValue)) {
-                    result.add(new NumberTick(TickType.MINOR, minorTickValue,
+                    result.add(new jfree.chart.axis.NumberTick(jfree.chart.axis.TickType.MINOR, minorTickValue,
                             "", TextAnchor.TOP_CENTER, TextAnchor.CENTER,
                             0.0));
                 }
@@ -1001,7 +1012,7 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
                     }
                 }
 
-                Tick tick = new NumberTick(new Double(currentTickValue),
+                jfree.chart.axis.Tick tick = new jfree.chart.axis.NumberTick(new Double(currentTickValue),
                         tickLabel, anchor, rotationAnchor, angle);
                 result.add(tick);
                 double nextTickValue = lowestTickValue + ((i + 1) * size);
@@ -1011,7 +1022,7 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
                             + (nextTickValue - currentTickValue)
                             * minorTick / minorTickSpaces;
                     if (getRange().contains(minorTickValue)) {
-                        result.add(new NumberTick(TickType.MINOR,
+                        result.add(new jfree.chart.axis.NumberTick(jfree.chart.axis.TickType.MINOR,
                                 minorTickValue, "", TextAnchor.TOP_CENTER,
                                 TextAnchor.CENTER, 0.0));
                     }
@@ -1058,7 +1069,7 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
                 double minorTickValue = lowestTickValue
                         - size * minorTick / minorTickSpaces;
                 if (getRange().contains(minorTickValue)) {
-                    result.add(new NumberTick(TickType.MINOR, minorTickValue,
+                    result.add(new jfree.chart.axis.NumberTick(jfree.chart.axis.TickType.MINOR, minorTickValue,
                             "", TextAnchor.TOP_CENTER, TextAnchor.CENTER,
                             0.0));
                 }
@@ -1101,7 +1112,7 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
                     }
                 }
 
-                Tick tick = new NumberTick(new Double(currentTickValue),
+                Tick tick = new jfree.chart.axis.NumberTick(new Double(currentTickValue),
                         tickLabel, anchor, rotationAnchor, angle);
                 result.add(tick);
 
@@ -1133,7 +1144,7 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        NumberAxis clone = (NumberAxis) super.clone();
+        jfree.chart.axis.NumberAxis clone = (jfree.chart.axis.NumberAxis) super.clone();
         if (this.numberFormatOverride != null) {
             clone.numberFormatOverride
                 = (NumberFormat) this.numberFormatOverride.clone();
@@ -1153,10 +1164,10 @@ public class NumberAxis extends ValueAxis implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof NumberAxis)) {
+        if (!(obj instanceof jfree.chart.axis.NumberAxis)) {
             return false;
         }
-        NumberAxis that = (NumberAxis) obj;
+        jfree.chart.axis.NumberAxis that = (jfree.chart.axis.NumberAxis) obj;
         if (this.autoRangeIncludesZero != that.autoRangeIncludesZero) {
             return false;
         }

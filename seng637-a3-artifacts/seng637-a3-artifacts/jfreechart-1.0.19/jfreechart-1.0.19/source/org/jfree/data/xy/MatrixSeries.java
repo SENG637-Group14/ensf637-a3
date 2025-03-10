@@ -49,7 +49,8 @@ package org.jfree.data.xy;
 
 import java.io.Serializable;
 
-import org.jfree.data.general.Series;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.general.Series;
 
 /**
  * Represents a dense matrix M[i,j] where each Mij item of the matrix has a
@@ -189,7 +190,7 @@ public class MatrixSeries extends Series implements Serializable {
 
     /**
      * Sets all matrix values to zero and sends a
-     * {@link org.jfree.data.general.SeriesChangeEvent} to all registered
+     * {@link SeriesChangeEvent} to all registered
      * listeners.
      */
     public void zeroAll() {
@@ -216,10 +217,10 @@ public class MatrixSeries extends Series implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof MatrixSeries)) {
+        if (!(obj instanceof jfree.data.xy.MatrixSeries)) {
             return false;
         }
-        MatrixSeries that = (MatrixSeries) obj;
+        jfree.data.xy.MatrixSeries that = (jfree.data.xy.MatrixSeries) obj;
         if (!(getRowCount() == that.getRowCount())) {
             return false;
         }

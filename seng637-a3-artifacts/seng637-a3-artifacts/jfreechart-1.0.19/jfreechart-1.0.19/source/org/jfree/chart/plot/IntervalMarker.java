@@ -51,7 +51,8 @@ import java.awt.Paint;
 import java.awt.Stroke;
 import java.io.Serializable;
 
-import org.jfree.chart.event.MarkerChangeEvent;
+import jfree.chart.event.MarkerChangeEvent;
+import jfree.chart.plot.Marker;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.LengthAdjustmentType;
 import org.jfree.util.ObjectUtilities;
@@ -199,13 +200,13 @@ public class IntervalMarker extends Marker implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof IntervalMarker)) {
+        if (!(obj instanceof jfree.chart.plot.IntervalMarker)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        IntervalMarker that = (IntervalMarker) obj;
+        jfree.chart.plot.IntervalMarker that = (jfree.chart.plot.IntervalMarker) obj;
         if (this.startValue != that.startValue) {
             return false;
         }

@@ -41,6 +41,8 @@
 
 package org.jfree.data.xy;
 
+import jfree.data.xy.XYDataset;
+
 /**
  * Interface for a dataset that supplies wind intensity and direction values
  * observed at various points in time.

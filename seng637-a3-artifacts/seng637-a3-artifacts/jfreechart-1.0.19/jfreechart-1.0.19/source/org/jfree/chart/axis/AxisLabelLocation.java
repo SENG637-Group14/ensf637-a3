@@ -54,15 +54,15 @@ public final class AxisLabelLocation implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** Axis label at the top. */
-    public static final AxisLabelLocation HIGH_END = new AxisLabelLocation(
+    public static final jfree.chart.axis.AxisLabelLocation HIGH_END = new jfree.chart.axis.AxisLabelLocation(
             "HIGH_END");
     
     /** Axis label at the middle. */
-    public static final AxisLabelLocation MIDDLE = new AxisLabelLocation(
+    public static final jfree.chart.axis.AxisLabelLocation MIDDLE = new jfree.chart.axis.AxisLabelLocation(
             "MIDDLE");
     
     /** Axis label at the bottom. */
-    public static final AxisLabelLocation LOW_END = new AxisLabelLocation(
+    public static final jfree.chart.axis.AxisLabelLocation LOW_END = new jfree.chart.axis.AxisLabelLocation(
             "LOW_END");
 
     /** The name. */
@@ -100,10 +100,10 @@ public final class AxisLabelLocation implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof AxisLabelLocation)) {
+        if (!(obj instanceof jfree.chart.axis.AxisLabelLocation)) {
             return false;
         }
-        AxisLabelLocation location = (AxisLabelLocation) obj;
+        jfree.chart.axis.AxisLabelLocation location = (jfree.chart.axis.AxisLabelLocation) obj;
         if (!this.name.equals(location.toString())) {
             return false;
         }
@@ -130,14 +130,14 @@ public final class AxisLabelLocation implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(AxisLabelLocation.HIGH_END)) {
-            return AxisLabelLocation.HIGH_END;
+        if (this.equals(jfree.chart.axis.AxisLabelLocation.HIGH_END)) {
+            return jfree.chart.axis.AxisLabelLocation.HIGH_END;
         }
-        if (this.equals(AxisLabelLocation.MIDDLE)) {
-            return AxisLabelLocation.MIDDLE;
+        if (this.equals(jfree.chart.axis.AxisLabelLocation.MIDDLE)) {
+            return jfree.chart.axis.AxisLabelLocation.MIDDLE;
         }
-        if (this.equals(AxisLabelLocation.LOW_END)) {
-            return AxisLabelLocation.LOW_END;
+        if (this.equals(jfree.chart.axis.AxisLabelLocation.LOW_END)) {
+            return jfree.chart.axis.AxisLabelLocation.LOW_END;
         }
 
         return null;

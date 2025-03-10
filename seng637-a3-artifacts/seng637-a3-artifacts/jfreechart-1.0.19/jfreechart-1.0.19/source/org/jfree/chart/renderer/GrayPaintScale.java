@@ -47,7 +47,8 @@ import java.awt.Color;
 import java.awt.Paint;
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
+import jfree.chart.HashUtilities;
+import jfree.chart.renderer.PaintScale;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -191,10 +192,10 @@ public class GrayPaintScale
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof GrayPaintScale)) {
+        if (!(obj instanceof jfree.chart.renderer.GrayPaintScale)) {
             return false;
         }
-        GrayPaintScale that = (GrayPaintScale) obj;
+        jfree.chart.renderer.GrayPaintScale that = (jfree.chart.renderer.GrayPaintScale) obj;
         if (this.lowerBound != that.lowerBound) {
             return false;
         }

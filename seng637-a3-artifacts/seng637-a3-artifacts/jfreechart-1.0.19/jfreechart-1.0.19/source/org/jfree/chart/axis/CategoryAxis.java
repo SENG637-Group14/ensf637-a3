@@ -121,14 +121,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.jfree.chart.entity.CategoryLabelEntity;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.event.AxisChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.axis.Axis;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.CategoryAnchor;
+import jfree.chart.axis.CategoryLabelPosition;
+import jfree.chart.axis.CategoryLabelPositions;
+import jfree.chart.axis.CategoryLabelWidthType;
+import jfree.chart.axis.CategoryTick;
+import jfree.chart.axis.Tick;
+import jfree.chart.entity.CategoryLabelEntity;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.event.AxisChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.util.ParamChecks;
+import jfree.data.category.CategoryDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.text.G2TextMeasurer;
 import org.jfree.text.TextBlock;
@@ -185,7 +194,7 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      * A structure defining the category label positions for each axis
      * location.
      */
-    private CategoryLabelPositions categoryLabelPositions;
+    private jfree.chart.axis.CategoryLabelPositions categoryLabelPositions;
 
     /** Storage for tick label font overrides (if any). */
     private Map tickLabelFontMap;
@@ -221,7 +230,7 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
         this.maximumCategoryLabelWidthRatio = 0.0f;
 
         this.categoryLabelPositionOffset = 4;
-        this.categoryLabelPositions = CategoryLabelPositions.STANDARD;
+        this.categoryLabelPositions = jfree.chart.axis.CategoryLabelPositions.STANDARD;
         this.tickLabelFontMap = new HashMap();
         this.tickLabelPaintMap = new HashMap();
         this.categoryLabelToolTips = new HashMap();
@@ -386,9 +395,9 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      *
      * @return The positions (never <code>null</code>).
      *
-     * @see #setCategoryLabelPositions(CategoryLabelPositions)
+     * @see #setCategoryLabelPositions(jfree.chart.axis.CategoryLabelPositions)
      */
-    public CategoryLabelPositions getCategoryLabelPositions() {
+    public jfree.chart.axis.CategoryLabelPositions getCategoryLabelPositions() {
         return this.categoryLabelPositions;
     }
 
@@ -622,15 +631,15 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      *
      * @return The coordinate.
      */
-    public double getCategoryJava2DCoordinate(CategoryAnchor anchor, 
-            int category, int categoryCount, Rectangle2D area, 
-            RectangleEdge edge) {
+    public double getCategoryJava2DCoordinate(jfree.chart.axis.CategoryAnchor anchor,
+                                              int category, int categoryCount, Rectangle2D area,
+                                              RectangleEdge edge) {
 
         double result = 0.0;
-        if (anchor == CategoryAnchor.START) {
+        if (anchor == jfree.chart.axis.CategoryAnchor.START) {
             result = getCategoryStart(category, categoryCount, area, edge);
         }
-        else if (anchor == CategoryAnchor.MIDDLE) {
+        else if (anchor == jfree.chart.axis.CategoryAnchor.MIDDLE) {
             result = getCategoryMiddle(category, categoryCount, area, edge);
         }
         else if (anchor == CategoryAnchor.END) {
@@ -888,8 +897,8 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      * @return The space required to draw the axis.
      */
     @Override
-    public AxisSpace reserveSpace(Graphics2D g2, Plot plot, 
-            Rectangle2D plotArea, RectangleEdge edge, AxisSpace space) {
+    public jfree.chart.axis.AxisSpace reserveSpace(Graphics2D g2, Plot plot,
+                                                        Rectangle2D plotArea, RectangleEdge edge, jfree.chart.axis.AxisSpace space) {
 
         // create a new space object if one wasn't supplied...
         if (space == null) {
@@ -906,7 +915,7 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
         double tickLabelWidth = 0.0;
         if (isTickLabelsVisible()) {
             g2.setFont(getTickLabelFont());
-            AxisState state = new AxisState();
+            jfree.chart.axis.AxisState state = new jfree.chart.axis.AxisState();
             // we call refresh ticks just to get the maximum width or height
             refreshTicks(g2, state, plotArea, edge);
             if (edge == RectangleEdge.TOP) {
@@ -964,19 +973,19 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      * @return The axis state (never <code>null</code>).
      */
     @Override
-    public AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
-            Rectangle2D dataArea, RectangleEdge edge,
-            PlotRenderingInfo plotState) {
+    public jfree.chart.axis.AxisState draw(Graphics2D g2, double cursor, Rectangle2D plotArea,
+                                                Rectangle2D dataArea, RectangleEdge edge,
+                                                PlotRenderingInfo plotState) {
 
         // if the axis is not visible, don't draw it...
         if (!isVisible()) {
-            return new AxisState(cursor);
+            return new jfree.chart.axis.AxisState(cursor);
         }
 
         if (isAxisLineVisible()) {
             drawAxisLine(g2, cursor, dataArea, edge);
         }
-        AxisState state = new AxisState(cursor);
+        jfree.chart.axis.AxisState state = new jfree.chart.axis.AxisState(cursor);
         if (isTickMarksVisible()) {
             drawTickMarks(g2, cursor, dataArea, edge, state);
         }
@@ -1011,9 +1020,9 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      *
      * @return The updated axis state (never <code>null</code>).
      */
-    protected AxisState drawCategoryLabels(Graphics2D g2, Rectangle2D plotArea,
-            Rectangle2D dataArea, RectangleEdge edge, AxisState state,
-            PlotRenderingInfo plotState) {
+    protected jfree.chart.axis.AxisState drawCategoryLabels(Graphics2D g2, Rectangle2D plotArea,
+                                                                 Rectangle2D dataArea, RectangleEdge edge, jfree.chart.axis.AxisState state,
+                                                                 PlotRenderingInfo plotState) {
 
         ParamChecks.nullNotPermitted(state, "state");
         if (!isTickLabelsVisible()) {
@@ -1025,11 +1034,11 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
         int categoryIndex = 0;
         Iterator iterator = ticks.iterator();
         while (iterator.hasNext()) {
-            CategoryTick tick = (CategoryTick) iterator.next();
+            jfree.chart.axis.CategoryTick tick = (jfree.chart.axis.CategoryTick) iterator.next();
             g2.setFont(getTickLabelFont(tick.getCategory()));
             g2.setPaint(getTickLabelPaint(tick.getCategory()));
 
-            CategoryLabelPosition position
+            jfree.chart.axis.CategoryLabelPosition position
                     = this.categoryLabelPositions.getLabelPosition(edge);
             double x0 = 0.0;
             double x1 = 0.0;
@@ -1124,7 +1133,7 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      * @return A list of ticks.
      */
     @Override
-    public List refreshTicks(Graphics2D g2, AxisState state, 
+    public List refreshTicks(Graphics2D g2, jfree.chart.axis.AxisState state,
             Rectangle2D dataArea, RectangleEdge edge) {
 
         List ticks = new java.util.ArrayList();
@@ -1139,7 +1148,7 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
         double max = 0.0;
 
         if (categories != null) {
-            CategoryLabelPosition position
+            jfree.chart.axis.CategoryLabelPosition position
                     = this.categoryLabelPositions.getLabelPosition(edge);
             float r = this.maximumCategoryLabelWidthRatio;
             if (r <= 0.0) {
@@ -1198,7 +1207,7 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      * @since 1.0.13
      */
     public void drawTickMarks(Graphics2D g2, double cursor,
-            Rectangle2D dataArea, RectangleEdge edge, AxisState state) {
+            Rectangle2D dataArea, RectangleEdge edge, jfree.chart.axis.AxisState state) {
 
         Plot p = getPlot();
         if (p == null) {
@@ -1290,7 +1299,7 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      * @return The width.
      */
     protected double calculateTextBlockWidth(TextBlock block,
-            CategoryLabelPosition position, Graphics2D g2) {
+                                             jfree.chart.axis.CategoryLabelPosition position, Graphics2D g2) {
         RectangleInsets insets = getTickLabelInsets();
         Size2D size = block.calculateDimensions(g2);
         Rectangle2D box = new Rectangle2D.Double(0.0, 0.0, size.getWidth(),
@@ -1312,7 +1321,7 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      * @return The height.
      */
     protected double calculateTextBlockHeight(TextBlock block,
-            CategoryLabelPosition position, Graphics2D g2) {
+                                              CategoryLabelPosition position, Graphics2D g2) {
         RectangleInsets insets = getTickLabelInsets();
         Size2D size = block.calculateDimensions(g2);
         Rectangle2D box = new Rectangle2D.Double(0.0, 0.0, size.getWidth(),
@@ -1334,7 +1343,7 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        CategoryAxis clone = (CategoryAxis) super.clone();
+        jfree.chart.axis.CategoryAxis clone = (jfree.chart.axis.CategoryAxis) super.clone();
         clone.tickLabelFontMap = new HashMap(this.tickLabelFontMap);
         clone.tickLabelPaintMap = new HashMap(this.tickLabelPaintMap);
         clone.categoryLabelToolTips = new HashMap(this.categoryLabelToolTips);
@@ -1354,13 +1363,13 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CategoryAxis)) {
+        if (!(obj instanceof jfree.chart.axis.CategoryAxis)) {
             return false;
         }
         if (!super.equals(obj)) {
             return false;
         }
-        CategoryAxis that = (CategoryAxis) obj;
+        jfree.chart.axis.CategoryAxis that = (jfree.chart.axis.CategoryAxis) obj;
         if (that.lowerMargin != this.lowerMargin) {
             return false;
         }
@@ -1535,10 +1544,10 @@ public class CategoryAxis extends Axis implements Cloneable, Serializable {
      * @return The updated axis state (never <code>null</code>).
      *
      * @deprecated Use {@link #drawCategoryLabels(Graphics2D, Rectangle2D,
-     *     Rectangle2D, RectangleEdge, AxisState, PlotRenderingInfo)}.
+     *     Rectangle2D, RectangleEdge, jfree.chart.axis.AxisState, PlotRenderingInfo)}.
      */
-    protected AxisState drawCategoryLabels(Graphics2D g2, Rectangle2D dataArea,
-            RectangleEdge edge, AxisState state, PlotRenderingInfo plotState) {
+    protected jfree.chart.axis.AxisState drawCategoryLabels(Graphics2D g2, Rectangle2D dataArea,
+                                                                 RectangleEdge edge, AxisState state, PlotRenderingInfo plotState) {
         // this method is deprecated because we really need the plotArea
         // when drawing the labels - see bug 1277726
         return drawCategoryLabels(g2, dataArea, dataArea, edge, state,

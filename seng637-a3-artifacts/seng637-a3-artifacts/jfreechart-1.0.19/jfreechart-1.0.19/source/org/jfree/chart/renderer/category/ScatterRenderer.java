@@ -57,15 +57,18 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.List;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.statistics.MultiValueCategoryDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.category.AbstractCategoryItemRenderer;
+import jfree.chart.renderer.category.BarRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
+import jfree.data.statistics.MultiValueCategoryDataset;
 import org.jfree.util.BooleanList;
 import org.jfree.util.BooleanUtilities;
 import org.jfree.util.ObjectUtilities;
@@ -123,7 +126,7 @@ public class ScatterRenderer extends AbstractCategoryItemRenderer
 
     /**
      * The item margin used for series offsetting - this allows the positioning
-     * to match the bar positions of the {@link BarRenderer} class.
+     * to match the bar positions of the {@link jfree.chart.renderer.category.BarRenderer} class.
      */
     private double itemMargin;
 
@@ -525,10 +528,10 @@ public class ScatterRenderer extends AbstractCategoryItemRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ScatterRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.ScatterRenderer)) {
             return false;
         }
-        ScatterRenderer that = (ScatterRenderer) obj;
+        jfree.chart.renderer.category.ScatterRenderer that = (jfree.chart.renderer.category.ScatterRenderer) obj;
         if (!ObjectUtilities.equal(this.seriesShapesFilled,
                 that.seriesShapesFilled)) {
             return false;
@@ -563,7 +566,7 @@ public class ScatterRenderer extends AbstractCategoryItemRenderer
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        ScatterRenderer clone = (ScatterRenderer) super.clone();
+        jfree.chart.renderer.category.ScatterRenderer clone = (jfree.chart.renderer.category.ScatterRenderer) super.clone();
         clone.seriesShapesFilled
                 = (BooleanList) this.seriesShapesFilled.clone();
         return clone;

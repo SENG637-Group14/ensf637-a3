@@ -43,6 +43,9 @@
 
 package org.jfree.chart.needle;
 
+import jfree.chart.needle.ArrowNeedle;
+import jfree.chart.plot.CompassPlot;
+
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -50,7 +53,7 @@ import java.io.Serializable;
 
 /**
  * A needle that indicates wind direction, for use with the
- * {@link org.jfree.chart.plot.CompassPlot} class.
+ * {@link CompassPlot} class.
  */
 public class WindNeedle extends ArrowNeedle
                                 implements Cloneable, Serializable {
@@ -111,7 +114,7 @@ public class WindNeedle extends ArrowNeedle
         if (object == this) {
             return true;
         }
-        if (super.equals(object) && object instanceof WindNeedle) {
+        if (super.equals(object) && object instanceof jfree.chart.needle.WindNeedle) {
             return true;
         }
         return false;

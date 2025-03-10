@@ -70,15 +70,18 @@ package org.jfree.chart.renderer.category;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.labels.CategoryItemLabelGenerator;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.Range;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.IntervalCategoryDataset;
+import jfree.chart.axis.CategoryAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.labels.CategoryItemLabelGenerator;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.renderer.category.BarPainter;
+import jfree.chart.renderer.category.BarRenderer;
+import jfree.chart.renderer.category.CategoryItemRendererState;
+import jfree.data.Range;
+import jfree.data.category.CategoryDataset;
+import jfree.data.category.IntervalCategoryDataset;
 import org.jfree.ui.RectangleEdge;
 
 /**
@@ -133,7 +136,7 @@ public class IntervalBarRenderer extends BarRenderer {
      * @param pass  the pass index.
      */
     @Override
-    public void drawItem(Graphics2D g2, CategoryItemRendererState state,
+    public void drawItem(Graphics2D g2, jfree.chart.renderer.category.CategoryItemRendererState state,
             Rectangle2D dataArea, CategoryPlot plot, CategoryAxis domainAxis,
             ValueAxis rangeAxis, CategoryDataset dataset, int row, int column,
             int pass) {
@@ -264,7 +267,7 @@ public class IntervalBarRenderer extends BarRenderer {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof IntervalBarRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.category.IntervalBarRenderer)) {
             return false;
         }
         // there are no fields to check

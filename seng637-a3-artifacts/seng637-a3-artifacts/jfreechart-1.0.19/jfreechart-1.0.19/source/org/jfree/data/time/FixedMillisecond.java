@@ -49,16 +49,18 @@
 
 package org.jfree.data.time;
 
+import jfree.data.time.RegularTimePeriod;
+
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Wrapper for a <code>java.util.Date</code> object that allows it to be used
- * as a {@link RegularTimePeriod}.  This class is immutable, which is a
- * requirement for all {@link RegularTimePeriod} subclasses.
+ * as a {@link jfree.data.time.RegularTimePeriod}.  This class is immutable, which is a
+ * requirement for all {@link jfree.data.time.RegularTimePeriod} subclasses.
  */
-public class FixedMillisecond extends RegularTimePeriod
+public class FixedMillisecond extends jfree.data.time.RegularTimePeriod
         implements Serializable {
 
     /** For serialization. */
@@ -119,11 +121,11 @@ public class FixedMillisecond extends RegularTimePeriod
      * @return The millisecond preceding this one.
      */
     @Override
-    public RegularTimePeriod previous() {
-        RegularTimePeriod result = null;
+    public jfree.data.time.RegularTimePeriod previous() {
+        jfree.data.time.RegularTimePeriod result = null;
         long t = this.time;
         if (t != Long.MIN_VALUE) {
-            result = new FixedMillisecond(t - 1);
+            result = new jfree.data.time.FixedMillisecond(t - 1);
         }
         return result;
     }
@@ -134,11 +136,11 @@ public class FixedMillisecond extends RegularTimePeriod
      * @return The millisecond following this one.
      */
     @Override
-    public RegularTimePeriod next() {
-        RegularTimePeriod result = null;
+    public jfree.data.time.RegularTimePeriod next() {
+        jfree.data.time.RegularTimePeriod result = null;
         long t = this.time;
         if (t != Long.MAX_VALUE) {
-            result = new FixedMillisecond(t + 1);
+            result = new jfree.data.time.FixedMillisecond(t + 1);
         }
         return result;
     }
@@ -152,8 +154,8 @@ public class FixedMillisecond extends RegularTimePeriod
      */
     @Override
     public boolean equals(Object object) {
-        if (object instanceof FixedMillisecond) {
-            FixedMillisecond m = (FixedMillisecond) object;
+        if (object instanceof jfree.data.time.FixedMillisecond) {
+            jfree.data.time.FixedMillisecond m = (jfree.data.time.FixedMillisecond) object;
             return this.time == m.getFirstMillisecond();
         }
         else {
@@ -189,8 +191,8 @@ public class FixedMillisecond extends RegularTimePeriod
 
         // CASE 1 : Comparing to another Second object
         // -------------------------------------------
-        if (o1 instanceof FixedMillisecond) {
-            FixedMillisecond t1 = (FixedMillisecond) o1;
+        if (o1 instanceof jfree.data.time.FixedMillisecond) {
+            jfree.data.time.FixedMillisecond t1 = (jfree.data.time.FixedMillisecond) o1;
             difference = this.time - t1.time;
             if (difference > 0) {
                 result = 1;

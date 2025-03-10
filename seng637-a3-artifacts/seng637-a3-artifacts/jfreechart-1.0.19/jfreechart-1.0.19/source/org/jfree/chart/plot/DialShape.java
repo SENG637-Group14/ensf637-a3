@@ -41,12 +41,14 @@
 
 package org.jfree.chart.plot;
 
+import jfree.chart.plot.MeterPlot;
+
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 
 /**
  * Used to indicate the background shape for a
- * {@link org.jfree.chart.plot.MeterPlot}.
+ * {@link MeterPlot}.
  */
 public final class DialShape implements Serializable {
 
@@ -54,13 +56,13 @@ public final class DialShape implements Serializable {
     private static final long serialVersionUID = -3471933055190251131L;
 
     /** Circle. */
-    public static final DialShape CIRCLE = new DialShape("DialShape.CIRCLE");
+    public static final jfree.chart.plot.DialShape CIRCLE = new jfree.chart.plot.DialShape("DialShape.CIRCLE");
 
     /** Chord. */
-    public static final DialShape CHORD = new DialShape("DialShape.CHORD");
+    public static final jfree.chart.plot.DialShape CHORD = new jfree.chart.plot.DialShape("DialShape.CHORD");
 
     /** Pie. */
-    public static final DialShape PIE = new DialShape("DialShape.PIE");
+    public static final jfree.chart.plot.DialShape PIE = new jfree.chart.plot.DialShape("DialShape.PIE");
 
     /** The name. */
     private String name;
@@ -97,10 +99,10 @@ public final class DialShape implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof DialShape)) {
+        if (!(obj instanceof jfree.chart.plot.DialShape)) {
             return false;
         }
-        DialShape shape = (DialShape) obj;
+        jfree.chart.plot.DialShape shape = (jfree.chart.plot.DialShape) obj;
         if (!this.name.equals(shape.toString())) {
             return false;
         }
@@ -125,14 +127,14 @@ public final class DialShape implements Serializable {
      * @throws ObjectStreamException if there is a problem.
      */
     private Object readResolve() throws ObjectStreamException {
-        if (this.equals(DialShape.CIRCLE)) {
-            return DialShape.CIRCLE;
+        if (this.equals(jfree.chart.plot.DialShape.CIRCLE)) {
+            return jfree.chart.plot.DialShape.CIRCLE;
         }
-        else if (this.equals(DialShape.CHORD)) {
-            return DialShape.CHORD;
+        else if (this.equals(jfree.chart.plot.DialShape.CHORD)) {
+            return jfree.chart.plot.DialShape.CHORD;
         }
-        else if (this.equals(DialShape.PIE)) {
-            return DialShape.PIE;
+        else if (this.equals(jfree.chart.plot.DialShape.PIE)) {
+            return jfree.chart.plot.DialShape.PIE;
         }
         return null;
     }

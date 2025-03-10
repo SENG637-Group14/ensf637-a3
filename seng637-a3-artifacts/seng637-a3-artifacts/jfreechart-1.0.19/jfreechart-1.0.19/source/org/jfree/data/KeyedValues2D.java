@@ -41,10 +41,13 @@
 
 package org.jfree.data;
 
+import jfree.data.UnknownKeyException;
+import jfree.data.Values2D;
+
 import java.util.List;
 
 /**
- * An extension of the {@link Values2D} interface where a unique key is
+ * An extension of the {@link jfree.data.Values2D} interface where a unique key is
  * associated with the row and column indices.
  */
 public interface KeyedValues2D extends Values2D {

@@ -51,12 +51,16 @@ package org.jfree.data.xy;
 
 import java.util.Arrays;
 import java.util.Date;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
+import jfree.data.xy.AbstractXYDataset;
+import jfree.data.xy.DefaultOHLCDataset;
+import jfree.data.xy.OHLCDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A simple implementation of the {@link OHLCDataset} interface.  See also
+ * A simple implementation of the {@link jfree.data.xy.OHLCDataset} interface.  See also
  * the {@link DefaultOHLCDataset} class, which provides another implementation
  * that is very similar.
  */
@@ -397,10 +401,10 @@ public class DefaultHighLowDataset extends AbstractXYDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultHighLowDataset)) {
+        if (!(obj instanceof jfree.data.xy.DefaultHighLowDataset)) {
             return false;
         }
-        DefaultHighLowDataset that = (DefaultHighLowDataset) obj;
+        jfree.data.xy.DefaultHighLowDataset that = (jfree.data.xy.DefaultHighLowDataset) obj;
         if (!this.seriesKey.equals(that.seriesKey)) {
             return false;
         }

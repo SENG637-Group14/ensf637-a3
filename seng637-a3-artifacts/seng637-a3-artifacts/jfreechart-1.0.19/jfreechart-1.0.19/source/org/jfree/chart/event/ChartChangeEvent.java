@@ -46,7 +46,8 @@ package org.jfree.chart.event;
 
 import java.util.EventObject;
 
-import org.jfree.chart.JFreeChart;
+import jfree.chart.JFreeChart;
+import jfree.chart.event.ChartChangeEventType;
 
 /**
  * A change event that encapsulates information about a change to a chart.
@@ -54,7 +55,7 @@ import org.jfree.chart.JFreeChart;
 public class ChartChangeEvent extends EventObject {
 
     /** The type of event. */
-    private ChartChangeEventType type;
+    private jfree.chart.event.ChartChangeEventType type;
 
     /** The chart that generated the event. */
     private JFreeChart chart;
@@ -66,7 +67,7 @@ public class ChartChangeEvent extends EventObject {
      *                an axis etc.)
      */
     public ChartChangeEvent(Object source) {
-        this(source, null, ChartChangeEventType.GENERAL);
+        this(source, null, jfree.chart.event.ChartChangeEventType.GENERAL);
     }
 
     /**
@@ -77,7 +78,7 @@ public class ChartChangeEvent extends EventObject {
      * @param chart  the chart that generated the event.
      */
     public ChartChangeEvent(Object source, JFreeChart chart) {
-        this(source, chart, ChartChangeEventType.GENERAL);
+        this(source, chart, jfree.chart.event.ChartChangeEventType.GENERAL);
     }
 
     /**
@@ -89,7 +90,7 @@ public class ChartChangeEvent extends EventObject {
      * @param type  the type of event.
      */
     public ChartChangeEvent(Object source, JFreeChart chart,
-                            ChartChangeEventType type) {
+                            jfree.chart.event.ChartChangeEventType type) {
         super(source);
         this.chart = chart;
         this.type = type;
@@ -118,7 +119,7 @@ public class ChartChangeEvent extends EventObject {
      *
      * @return The event type.
      */
-    public ChartChangeEventType getType() {
+    public jfree.chart.event.ChartChangeEventType getType() {
         return this.type;
     }
 

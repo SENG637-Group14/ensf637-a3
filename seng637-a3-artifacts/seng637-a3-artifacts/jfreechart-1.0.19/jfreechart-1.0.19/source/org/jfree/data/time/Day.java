@@ -73,16 +73,17 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
+import jfree.data.time.RegularTimePeriod;
 import org.jfree.date.SerialDate;
 
 /**
  * Represents a single day in the range 1-Jan-1900 to 31-Dec-9999.  This class
- * is immutable, which is a requirement for all {@link RegularTimePeriod}
+ * is immutable, which is a requirement for all {@link jfree.data.time.RegularTimePeriod}
  * subclasses.
  */
-public class Day extends RegularTimePeriod implements Serializable {
+public class Day extends jfree.data.time.RegularTimePeriod implements Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = -7082667380758962755L;
@@ -279,12 +280,12 @@ public class Day extends RegularTimePeriod implements Serializable {
      * @return The day preceding this one.
      */
     @Override
-    public RegularTimePeriod previous() {
-        Day result;
+    public jfree.data.time.RegularTimePeriod previous() {
+        jfree.data.time.Day result;
         int serial = this.serialDate.toSerial();
         if (serial > SerialDate.SERIAL_LOWER_BOUND) {
             SerialDate yesterday = SerialDate.createInstance(serial - 1);
-            return new Day(yesterday);
+            return new jfree.data.time.Day(yesterday);
         }
         else {
             result = null;
@@ -300,12 +301,12 @@ public class Day extends RegularTimePeriod implements Serializable {
      *         has been reached.
      */
     @Override
-    public RegularTimePeriod next() {
-        Day result;
+    public jfree.data.time.RegularTimePeriod next() {
+        jfree.data.time.Day result;
         int serial = this.serialDate.toSerial();
         if (serial < SerialDate.SERIAL_UPPER_BOUND) {
             SerialDate tomorrow = SerialDate.createInstance(serial + 1);
-            return new Day(tomorrow);
+            return new jfree.data.time.Day(tomorrow);
         }
         else {
             result = null;
@@ -382,10 +383,10 @@ public class Day extends RegularTimePeriod implements Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Day)) {
+        if (!(obj instanceof jfree.data.time.Day)) {
             return false;
         }
-        Day that = (Day) obj;
+        jfree.data.time.Day that = (jfree.data.time.Day) obj;
         if (!this.serialDate.equals(that.getSerialDate())) {
             return false;
         }
@@ -422,8 +423,8 @@ public class Day extends RegularTimePeriod implements Serializable {
 
         // CASE 1 : Comparing to another Day object
         // ----------------------------------------
-        if (o1 instanceof Day) {
-            Day d = (Day) o1;
+        if (o1 instanceof jfree.data.time.Day) {
+            jfree.data.time.Day d = (jfree.data.time.Day) o1;
             result = -d.getSerialDate().compare(this.serialDate);
         }
 
@@ -465,13 +466,13 @@ public class Day extends RegularTimePeriod implements Serializable {
      * @return <code>null</code> if the string does not contain any parseable
      *      string, the day otherwise.
      */
-    public static Day parseDay(String s) {
+    public static jfree.data.time.Day parseDay(String s) {
         try {
-            return new Day (Day.DATE_FORMAT.parse(s));
+            return new jfree.data.time.Day(jfree.data.time.Day.DATE_FORMAT.parse(s));
         }
         catch (ParseException e1) {
             try {
-                return new Day (Day.DATE_FORMAT_SHORT.parse(s));
+                return new jfree.data.time.Day(jfree.data.time.Day.DATE_FORMAT_SHORT.parse(s));
             }
             catch (ParseException e2) {
               // ignore

@@ -47,17 +47,18 @@ package org.jfree.chart.labels;
 import java.io.Serializable;
 import java.text.MessageFormat;
 
-import org.jfree.chart.HashUtilities;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.category.CategoryDataset;
+import jfree.chart.HashUtilities;
+import jfree.chart.labels.CategorySeriesLabelGenerator;
+import jfree.chart.util.ParamChecks;
+import jfree.data.category.CategoryDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
  * A standard series label generator for plots that use data from
- * a {@link org.jfree.data.category.CategoryDataset}.
+ * a {@link CategoryDataset}.
  */
 public class StandardCategorySeriesLabelGenerator implements
-    CategorySeriesLabelGenerator, Cloneable, PublicCloneable, Serializable {
+        CategorySeriesLabelGenerator, Cloneable, PublicCloneable, Serializable {
 
     /** For serialization. */
     private static final long serialVersionUID = 4630760091523940820L;
@@ -141,11 +142,11 @@ public class StandardCategorySeriesLabelGenerator implements
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardCategorySeriesLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.StandardCategorySeriesLabelGenerator)) {
             return false;
         }
-        StandardCategorySeriesLabelGenerator that
-                = (StandardCategorySeriesLabelGenerator) obj;
+        jfree.chart.labels.StandardCategorySeriesLabelGenerator that
+                = (jfree.chart.labels.StandardCategorySeriesLabelGenerator) obj;
         if (!this.formatPattern.equals(that.formatPattern)) {
             return false;
         }

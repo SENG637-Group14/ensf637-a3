@@ -108,33 +108,38 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.axis.AxisSpace;
-import org.jfree.chart.axis.AxisState;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.event.PlotChangeEvent;
-import org.jfree.chart.event.PlotChangeListener;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.chart.util.ShadowGenerator;
-import org.jfree.data.Range;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.axis.AxisSpace;
+import jfree.chart.axis.AxisState;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.event.PlotChangeEvent;
+import jfree.chart.event.PlotChangeListener;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.PlotState;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.util.ParamChecks;
+import jfree.chart.util.ShadowGenerator;
+import jfree.data.Range;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.util.ObjectUtilities;
 
 /**
- * An extension of {@link XYPlot} that contains multiple subplots that share a
+ * An extension of {@link jfree.chart.plot.XYPlot} that contains multiple subplots that share a
  * common range axis.
  */
-public class CombinedRangeXYPlot extends XYPlot
+public class CombinedRangeXYPlot extends jfree.chart.plot.XYPlot
         implements PlotChangeListener {
 
     /** For serialization. */
     private static final long serialVersionUID = -5177814085082031168L;
 
     /** Storage for the subplot references. */
-    private List<XYPlot> subplots;
+    private List<jfree.chart.plot.XYPlot> subplots;
 
     /** The gap between subplots. */
     private double gap = 5.0;
@@ -159,7 +164,7 @@ public class CombinedRangeXYPlot extends XYPlot
               null,
               rangeAxis,
               null);
-        this.subplots = new java.util.ArrayList<XYPlot>();
+        this.subplots = new java.util.ArrayList<jfree.chart.plot.XYPlot>();
     }
 
     /**
@@ -202,7 +207,7 @@ public class CombinedRangeXYPlot extends XYPlot
      */
     @Override
     public boolean isDomainPannable() {
-        for (XYPlot subplot : this.subplots) {
+        for (jfree.chart.plot.XYPlot subplot : this.subplots) {
             if (subplot.isDomainPannable()) {
                 return true;
             }
@@ -218,7 +223,7 @@ public class CombinedRangeXYPlot extends XYPlot
      */
     @Override
     public void setDomainPannable(boolean pannable) {
-        for (XYPlot subplot : this.subplots) {
+        for (jfree.chart.plot.XYPlot subplot : this.subplots) {
             subplot.setDomainPannable(pannable);
         }        
     }
@@ -231,7 +236,7 @@ public class CombinedRangeXYPlot extends XYPlot
      *
      * @param subplot  the subplot.
      */
-    public void add(XYPlot subplot) {
+    public void add(jfree.chart.plot.XYPlot subplot) {
         add(subplot, 1);
     }
 
@@ -246,7 +251,7 @@ public class CombinedRangeXYPlot extends XYPlot
      * @param subplot  the subplot (<code>null</code> not permitted).
      * @param weight  the weight (must be 1 or greater).
      */
-    public void add(XYPlot subplot, int weight) {
+    public void add(jfree.chart.plot.XYPlot subplot, int weight) {
         ParamChecks.nullNotPermitted(subplot, "subplot");
         if (weight <= 0) {
             String msg = "The 'weight' must be positive.";
@@ -270,7 +275,7 @@ public class CombinedRangeXYPlot extends XYPlot
      *
      * @param subplot  the subplot (<code>null</code> not permitted).
      */
-    public void remove(XYPlot subplot) {
+    public void remove(jfree.chart.plot.XYPlot subplot) {
         ParamChecks.nullNotPermitted(subplot, "subplot");
         int position = -1;
         int size = this.subplots.size();
@@ -318,23 +323,23 @@ public class CombinedRangeXYPlot extends XYPlot
                                            Rectangle2D plotArea) {
 
         AxisSpace space = new AxisSpace();
-        PlotOrientation orientation = getOrientation();
+        jfree.chart.plot.PlotOrientation orientation = getOrientation();
 
         // work out the space required by the domain axis...
         AxisSpace fixed = getFixedRangeAxisSpace();
         if (fixed != null) {
-            if (orientation == PlotOrientation.VERTICAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 space.setLeft(fixed.getLeft());
                 space.setRight(fixed.getRight());
             }
-            else if (orientation == PlotOrientation.HORIZONTAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 space.setTop(fixed.getTop());
                 space.setBottom(fixed.getBottom());
             }
         }
         else {
             ValueAxis valueAxis = getRangeAxis();
-            RectangleEdge valueEdge = Plot.resolveRangeAxisLocation(
+            RectangleEdge valueEdge = jfree.chart.plot.Plot.resolveRangeAxisLocation(
                 getRangeAxisLocation(), orientation
             );
             if (valueAxis != null) {
@@ -348,7 +353,7 @@ public class CombinedRangeXYPlot extends XYPlot
         int n = this.subplots.size();
         int totalWeight = 0;
         for (int i = 0; i < n; i++) {
-            XYPlot sub = (XYPlot) this.subplots.get(i);
+            jfree.chart.plot.XYPlot sub = (jfree.chart.plot.XYPlot) this.subplots.get(i);
             totalWeight += sub.getWeight();
         }
 
@@ -358,24 +363,24 @@ public class CombinedRangeXYPlot extends XYPlot
         double x = adjustedPlotArea.getX();
         double y = adjustedPlotArea.getY();
         double usableSize = 0.0;
-        if (orientation == PlotOrientation.VERTICAL) {
+        if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
             usableSize = adjustedPlotArea.getWidth() - this.gap * (n - 1);
         }
-        else if (orientation == PlotOrientation.HORIZONTAL) {
+        else if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
             usableSize = adjustedPlotArea.getHeight() - this.gap * (n - 1);
         }
 
         for (int i = 0; i < n; i++) {
-            XYPlot plot = (XYPlot) this.subplots.get(i);
+            jfree.chart.plot.XYPlot plot = (jfree.chart.plot.XYPlot) this.subplots.get(i);
 
             // calculate sub-plot area
-            if (orientation == PlotOrientation.VERTICAL) {
+            if (orientation == jfree.chart.plot.PlotOrientation.VERTICAL) {
                 double w = usableSize * plot.getWeight() / totalWeight;
                 this.subplotAreas[i] = new Rectangle2D.Double(x, y, w,
                         adjustedPlotArea.getHeight());
                 x = x + w + this.gap;
             }
-            else if (orientation == PlotOrientation.HORIZONTAL) {
+            else if (orientation == jfree.chart.plot.PlotOrientation.HORIZONTAL) {
                 double h = usableSize * plot.getWeight() / totalWeight;
                 this.subplotAreas[i] = new Rectangle2D.Double(x, y,
                         adjustedPlotArea.getWidth(), h);
@@ -405,7 +410,7 @@ public class CombinedRangeXYPlot extends XYPlot
      */
     @Override
     public void draw(Graphics2D g2, Rectangle2D area, Point2D anchor,
-            PlotState parentState, PlotRenderingInfo info) {
+                     jfree.chart.plot.PlotState parentState, jfree.chart.plot.PlotRenderingInfo info) {
 
         // set up info collection...
         if (info != null) {
@@ -436,10 +441,10 @@ public class CombinedRangeXYPlot extends XYPlot
 
         // draw all the charts
         for (int i = 0; i < this.subplots.size(); i++) {
-            XYPlot plot = (XYPlot) this.subplots.get(i);
-            PlotRenderingInfo subplotInfo = null;
+            jfree.chart.plot.XYPlot plot = (jfree.chart.plot.XYPlot) this.subplots.get(i);
+            jfree.chart.plot.PlotRenderingInfo subplotInfo = null;
             if (info != null) {
-                subplotInfo = new PlotRenderingInfo(info.getOwner());
+                subplotInfo = new jfree.chart.plot.PlotRenderingInfo(info.getOwner());
                 info.addSubplotInfo(subplotInfo);
             }
             plot.draw(g2, this.subplotAreas[i], anchor, parentState,
@@ -466,7 +471,7 @@ public class CombinedRangeXYPlot extends XYPlot
             if (this.subplots != null) {
                 Iterator iterator = this.subplots.iterator();
                 while (iterator.hasNext()) {
-                    XYPlot plot = (XYPlot) iterator.next();
+                    jfree.chart.plot.XYPlot plot = (jfree.chart.plot.XYPlot) iterator.next();
                     LegendItemCollection more = plot.getLegendItems();
                     result.addAll(more);
                 }
@@ -483,7 +488,7 @@ public class CombinedRangeXYPlot extends XYPlot
      * @param source  the source point (<code>null</code> not permitted).
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo info,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                                Point2D source) {
         zoomDomainAxes(factor, info, source, false);
     }
@@ -497,10 +502,10 @@ public class CombinedRangeXYPlot extends XYPlot
      * @param useAnchor  zoom about the anchor point?
      */
     @Override
-    public void zoomDomainAxes(double factor, PlotRenderingInfo info,
+    public void zoomDomainAxes(double factor, jfree.chart.plot.PlotRenderingInfo info,
                                Point2D source, boolean useAnchor) {
         // delegate 'info' and 'source' argument checks...
-        XYPlot subplot = findSubplot(info, source);
+        jfree.chart.plot.XYPlot subplot = findSubplot(info, source);
         if (subplot != null) {
             subplot.zoomDomainAxes(factor, info, source, useAnchor);
         }
@@ -509,7 +514,7 @@ public class CombinedRangeXYPlot extends XYPlot
             // zoom on all subplots...
             Iterator iterator = getSubplots().iterator();
             while (iterator.hasNext()) {
-                subplot = (XYPlot) iterator.next();
+                subplot = (jfree.chart.plot.XYPlot) iterator.next();
                 subplot.zoomDomainAxes(factor, info, source, useAnchor);
             }
         }
@@ -525,9 +530,9 @@ public class CombinedRangeXYPlot extends XYPlot
      */
     @Override
     public void zoomDomainAxes(double lowerPercent, double upperPercent,
-                               PlotRenderingInfo info, Point2D source) {
+                               jfree.chart.plot.PlotRenderingInfo info, Point2D source) {
         // delegate 'info' and 'source' argument checks...
-        XYPlot subplot = findSubplot(info, source);
+        jfree.chart.plot.XYPlot subplot = findSubplot(info, source);
         if (subplot != null) {
             subplot.zoomDomainAxes(lowerPercent, upperPercent, info, source);
         }
@@ -536,7 +541,7 @@ public class CombinedRangeXYPlot extends XYPlot
             // zoom on all subplots...
             Iterator iterator = getSubplots().iterator();
             while (iterator.hasNext()) {
-                subplot = (XYPlot) iterator.next();
+                subplot = (jfree.chart.plot.XYPlot) iterator.next();
                 subplot.zoomDomainAxes(lowerPercent, upperPercent, info,
                         source);
             }
@@ -553,17 +558,17 @@ public class CombinedRangeXYPlot extends XYPlot
      * @since 1.0.15
      */
     @Override
-    public void panDomainAxes(double panRange, PlotRenderingInfo info,
+    public void panDomainAxes(double panRange, jfree.chart.plot.PlotRenderingInfo info,
             Point2D source) {
 
-        XYPlot subplot = findSubplot(info, source);
+        jfree.chart.plot.XYPlot subplot = findSubplot(info, source);
         if (subplot == null) {
             return;
         }
         if (!subplot.isDomainPannable()) {
             return;
         }
-        PlotRenderingInfo subplotInfo = info.getSubplotInfo(
+        jfree.chart.plot.PlotRenderingInfo subplotInfo = info.getSubplotInfo(
                 info.getSubplotIndex(source));
         if (subplotInfo == null) {
             return;
@@ -586,13 +591,13 @@ public class CombinedRangeXYPlot extends XYPlot
      *
      * @return A subplot (possibly <code>null</code>).
      */
-    public XYPlot findSubplot(PlotRenderingInfo info, Point2D source) {
+    public jfree.chart.plot.XYPlot findSubplot(jfree.chart.plot.PlotRenderingInfo info, Point2D source) {
         ParamChecks.nullNotPermitted(info, "info");
         ParamChecks.nullNotPermitted(source, "source");
-        XYPlot result = null;
+        jfree.chart.plot.XYPlot result = null;
         int subplotIndex = info.getSubplotIndex(source);
         if (subplotIndex >= 0) {
-            result =  (XYPlot) this.subplots.get(subplotIndex);
+            result =  (jfree.chart.plot.XYPlot) this.subplots.get(subplotIndex);
         }
         return result;
     }
@@ -613,7 +618,7 @@ public class CombinedRangeXYPlot extends XYPlot
                                       // parent plot is not used
         Iterator iterator = this.subplots.iterator();
         while (iterator.hasNext()) {
-            XYPlot plot = (XYPlot) iterator.next();
+            jfree.chart.plot.XYPlot plot = (jfree.chart.plot.XYPlot) iterator.next();
             plot.setRenderer(renderer);
         }
     }
@@ -628,7 +633,7 @@ public class CombinedRangeXYPlot extends XYPlot
         super.setOrientation(orientation);
         Iterator iterator = this.subplots.iterator();
         while (iterator.hasNext()) {
-            XYPlot plot = (XYPlot) iterator.next();
+            jfree.chart.plot.XYPlot plot = (jfree.chart.plot.XYPlot) iterator.next();
             plot.setOrientation(orientation);
         }
     }
@@ -645,7 +650,7 @@ public class CombinedRangeXYPlot extends XYPlot
         super.setShadowGenerator(generator);
         Iterator iterator = this.subplots.iterator();
         while (iterator.hasNext()) {
-            XYPlot plot = (XYPlot) iterator.next();
+            jfree.chart.plot.XYPlot plot = (jfree.chart.plot.XYPlot) iterator.next();
             plot.setShadowGenerator(generator);
         }
         setNotify(true);
@@ -670,7 +675,7 @@ public class CombinedRangeXYPlot extends XYPlot
         if (this.subplots != null) {
             Iterator iterator = this.subplots.iterator();
             while (iterator.hasNext()) {
-                XYPlot subplot = (XYPlot) iterator.next();
+                jfree.chart.plot.XYPlot subplot = (jfree.chart.plot.XYPlot) iterator.next();
                 result = Range.combine(result, subplot.getDataRange(axis));
             }
         }
@@ -686,7 +691,7 @@ public class CombinedRangeXYPlot extends XYPlot
     protected void setFixedDomainAxisSpaceForSubplots(AxisSpace space) {
         Iterator iterator = this.subplots.iterator();
         while (iterator.hasNext()) {
-            XYPlot plot = (XYPlot) iterator.next();
+            jfree.chart.plot.XYPlot plot = (jfree.chart.plot.XYPlot) iterator.next();
             plot.setFixedDomainAxisSpace(space, false);
         }
     }
@@ -699,11 +704,11 @@ public class CombinedRangeXYPlot extends XYPlot
      * @param info  object containing information about the plot dimensions.
      */
     @Override
-    public void handleClick(int x, int y, PlotRenderingInfo info) {
+    public void handleClick(int x, int y, jfree.chart.plot.PlotRenderingInfo info) {
         Rectangle2D dataArea = info.getDataArea();
         if (dataArea.contains(x, y)) {
             for (int i = 0; i < this.subplots.size(); i++) {
-                XYPlot subplot = (XYPlot) this.subplots.get(i);
+                jfree.chart.plot.XYPlot subplot = (XYPlot) this.subplots.get(i);
                 PlotRenderingInfo subplotInfo = info.getSubplotInfo(i);
                 subplot.handleClick(x, y, subplotInfo);
             }
@@ -733,10 +738,10 @@ public class CombinedRangeXYPlot extends XYPlot
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof CombinedRangeXYPlot)) {
+        if (!(obj instanceof jfree.chart.plot.CombinedRangeXYPlot)) {
             return false;
         }
-        CombinedRangeXYPlot that = (CombinedRangeXYPlot) obj;
+        jfree.chart.plot.CombinedRangeXYPlot that = (jfree.chart.plot.CombinedRangeXYPlot) obj;
         if (this.gap != that.gap) {
             return false;
         }
@@ -757,10 +762,10 @@ public class CombinedRangeXYPlot extends XYPlot
     @Override
     public Object clone() throws CloneNotSupportedException {
 
-        CombinedRangeXYPlot result = (CombinedRangeXYPlot) super.clone();
+        jfree.chart.plot.CombinedRangeXYPlot result = (jfree.chart.plot.CombinedRangeXYPlot) super.clone();
         result.subplots = (List) ObjectUtilities.deepClone(this.subplots);
         for (Iterator it = result.subplots.iterator(); it.hasNext();) {
-            Plot child = (Plot) it.next();
+            jfree.chart.plot.Plot child = (Plot) it.next();
             child.setParent(result);
         }
 

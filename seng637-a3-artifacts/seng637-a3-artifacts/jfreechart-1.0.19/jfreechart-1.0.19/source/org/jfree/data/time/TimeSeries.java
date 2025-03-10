@@ -101,16 +101,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TimeZone;
 
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.general.Series;
-import org.jfree.data.general.SeriesChangeEvent;
-import org.jfree.data.general.SeriesException;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.general.Series;
+import jfree.data.general.SeriesChangeEvent;
+import jfree.data.general.SeriesException;
+import jfree.data.time.Day;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.TimePeriodAnchor;
+import jfree.data.time.TimeSeriesDataItem;
+import jfree.data.time.Year;
 import org.jfree.util.ObjectUtilities;
 
 /**
  * Represents a sequence of zero or more data items in the form (period, value)
- * where 'period' is some instance of a subclass of {@link RegularTimePeriod}.
+ * where 'period' is some instance of a subclass of {@link jfree.data.time.RegularTimePeriod}.
  * The time series will ensure that (a) all data items have the same type of
  * period (for example, {@link Day}) and (b) that each period appears at
  * most one time in the series.
@@ -260,7 +265,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
 
     /**
      * Returns the list of data items for the series (the list contains
-     * {@link TimeSeriesDataItem} objects and is unmodifiable).
+     * {@link jfree.data.time.TimeSeriesDataItem} objects and is unmodifiable).
      *
      * @return The list of data items.
      */
@@ -368,7 +373,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * @since 1.0.18
      */
     public Range findValueRange(Range xRange, TimeZone timeZone) {
-        return findValueRange(xRange, TimePeriodAnchor.MIDDLE, timeZone);
+        return findValueRange(xRange, jfree.data.time.TimePeriodAnchor.MIDDLE, timeZone);
     }
     
     /**
@@ -386,7 +391,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * 
      * @since 1.0.18
      */
-    public Range findValueRange(Range xRange, TimePeriodAnchor xAnchor, 
+    public Range findValueRange(Range xRange, TimePeriodAnchor xAnchor,
             TimeZone zone) {
         ParamChecks.nullNotPermitted(xRange, "xRange");
         ParamChecks.nullNotPermitted(xAnchor, "xAnchor");
@@ -400,7 +405,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
         double lowY = Double.POSITIVE_INFINITY;
         double highY = Double.NEGATIVE_INFINITY;
         for (int i = 0; i < this.data.size(); i++) {
-            TimeSeriesDataItem item = (TimeSeriesDataItem) this.data.get(i);
+            jfree.data.time.TimeSeriesDataItem item = (jfree.data.time.TimeSeriesDataItem) this.data.get(i);
             long millis = item.getPeriod().getMillisecond(xAnchor, calendar);
             if (xRange.contains(millis)) {
                 Number n = item.getValue();
@@ -457,7 +462,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * Returns the time period class for this series.
      * <p>
      * Only one time period class can be used within a single series (enforced).
-     * If you add a data item with a {@link Year} for the time period, then all
+     * If you add a data item with a {@link jfree.data.time.Year} for the time period, then all
      * subsequent data items must also have a {@link Year} for the time period.
      *
      * @return The time period class (may be <code>null</code> but only for
@@ -476,9 +481,9 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * 
      * @return The data item.
      */
-    public TimeSeriesDataItem getDataItem(int index) {
-        TimeSeriesDataItem item = (TimeSeriesDataItem) this.data.get(index);
-        return (TimeSeriesDataItem) item.clone();
+    public jfree.data.time.TimeSeriesDataItem getDataItem(int index) {
+        jfree.data.time.TimeSeriesDataItem item = (jfree.data.time.TimeSeriesDataItem) this.data.get(index);
+        return (jfree.data.time.TimeSeriesDataItem) item.clone();
     }
 
     /**
@@ -493,7 +498,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @see #getDataItem(int)
      */
-    public TimeSeriesDataItem getDataItem(RegularTimePeriod period) {
+    public jfree.data.time.TimeSeriesDataItem getDataItem(jfree.data.time.RegularTimePeriod period) {
         int index = getIndex(period);
         if (index >= 0) {
             return getDataItem(index);
@@ -514,8 +519,8 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @since 1.0.14
      */
-    TimeSeriesDataItem getRawDataItem(int index) {
-        return (TimeSeriesDataItem) this.data.get(index);
+    jfree.data.time.TimeSeriesDataItem getRawDataItem(int index) {
+        return (jfree.data.time.TimeSeriesDataItem) this.data.get(index);
     }
 
     /**
@@ -527,14 +532,14 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @return The data item.
      *
-     * @see #getDataItem(RegularTimePeriod)
+     * @see #getDataItem(jfree.data.time.RegularTimePeriod)
      *
      * @since 1.0.14
      */
-    TimeSeriesDataItem getRawDataItem(RegularTimePeriod period) {
+    jfree.data.time.TimeSeriesDataItem getRawDataItem(jfree.data.time.RegularTimePeriod period) {
         int index = getIndex(period);
         if (index >= 0) {
-            return (TimeSeriesDataItem) this.data.get(index);
+            return (jfree.data.time.TimeSeriesDataItem) this.data.get(index);
         }
         return null;
     }
@@ -546,7 +551,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @return The time period.
      */
-    public RegularTimePeriod getTimePeriod(int index) {
+    public jfree.data.time.RegularTimePeriod getTimePeriod(int index) {
         return getRawDataItem(index).getPeriod();
     }
 
@@ -556,8 +561,8 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @return The next time period.
      */
-    public RegularTimePeriod getNextTimePeriod() {
-        RegularTimePeriod last = getTimePeriod(getItemCount() - 1);
+    public jfree.data.time.RegularTimePeriod getNextTimePeriod() {
+        jfree.data.time.RegularTimePeriod last = getTimePeriod(getItemCount() - 1);
         return last.next();
     }
 
@@ -582,10 +587,10 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @return The unique time periods.
      */
-    public Collection getTimePeriodsUniqueToOtherSeries(TimeSeries series) {
+    public Collection getTimePeriodsUniqueToOtherSeries(jfree.data.time.TimeSeries series) {
         Collection result = new java.util.ArrayList();
         for (int i = 0; i < series.getItemCount(); i++) {
-            RegularTimePeriod period = series.getTimePeriod(i);
+            jfree.data.time.RegularTimePeriod period = series.getTimePeriod(i);
             int index = getIndex(period);
             if (index < 0) {
                 result.add(period);
@@ -602,9 +607,9 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @return The index.
      */
-    public int getIndex(RegularTimePeriod period) {
+    public int getIndex(jfree.data.time.RegularTimePeriod period) {
         ParamChecks.nullNotPermitted(period, "period");
-        TimeSeriesDataItem dummy = new TimeSeriesDataItem(
+        jfree.data.time.TimeSeriesDataItem dummy = new jfree.data.time.TimeSeriesDataItem(
               period, Integer.MIN_VALUE);
         return Collections.binarySearch(this.data, dummy);
     }
@@ -628,7 +633,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @return The value (possibly <code>null</code>).
      */
-    public Number getValue(RegularTimePeriod period) {
+    public Number getValue(jfree.data.time.RegularTimePeriod period) {
         int index = getIndex(period);
         if (index >= 0) {
             return getValue(index);
@@ -643,7 +648,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * @param item  the (timeperiod, value) pair (<code>null</code> not
      *              permitted).
      */
-    public void add(TimeSeriesDataItem item) {
+    public void add(jfree.data.time.TimeSeriesDataItem item) {
         add(item, true);
     }
 
@@ -655,9 +660,9 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *              permitted).
      * @param notify  notify listeners?
      */
-    public void add(TimeSeriesDataItem item, boolean notify) {
+    public void add(jfree.data.time.TimeSeriesDataItem item, boolean notify) {
         ParamChecks.nullNotPermitted(item, "item");
-        item = (TimeSeriesDataItem) item.clone();
+        item = (jfree.data.time.TimeSeriesDataItem) item.clone();
         Class c = item.getPeriod().getClass();
         if (this.timePeriodClass == null) {
             this.timePeriodClass = c;
@@ -681,7 +686,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
             added = true;
         }
         else {
-            RegularTimePeriod last = getTimePeriod(getItemCount() - 1);
+            jfree.data.time.RegularTimePeriod last = getTimePeriod(getItemCount() - 1);
             if (item.getPeriod().compareTo(last) > 0) {
                 this.data.add(item);
                 added = true;
@@ -708,7 +713,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
             updateBoundsForAddedItem(item);
             // check if this addition will exceed the maximum item count...
             if (getItemCount() > this.maximumItemCount) {
-                TimeSeriesDataItem d = (TimeSeriesDataItem) this.data.remove(0);
+                jfree.data.time.TimeSeriesDataItem d = (jfree.data.time.TimeSeriesDataItem) this.data.remove(0);
                 updateBoundsForRemovedItem(d);
             }
 
@@ -729,7 +734,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * @param period  the time period (<code>null</code> not permitted).
      * @param value  the value.
      */
-    public void add(RegularTimePeriod period, double value) {
+    public void add(jfree.data.time.RegularTimePeriod period, double value) {
         // defer argument checking...
         add(period, value, true);
     }
@@ -742,21 +747,21 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * @param value  the value.
      * @param notify  notify listeners?
      */
-    public void add(RegularTimePeriod period, double value, boolean notify) {
+    public void add(jfree.data.time.RegularTimePeriod period, double value, boolean notify) {
         // defer argument checking...
-        TimeSeriesDataItem item = new TimeSeriesDataItem(period, value);
+        jfree.data.time.TimeSeriesDataItem item = new jfree.data.time.TimeSeriesDataItem(period, value);
         add(item, notify);
     }
 
     /**
      * Adds a new data item to the series and sends
-     * a {@link org.jfree.data.general.SeriesChangeEvent} to all registered
+     * a {@link SeriesChangeEvent} to all registered
      * listeners.
      *
      * @param period  the time period (<code>null</code> not permitted).
      * @param value  the value (<code>null</code> permitted).
      */
-    public void add(RegularTimePeriod period, Number value) {
+    public void add(jfree.data.time.RegularTimePeriod period, Number value) {
         // defer argument checking...
         add(period, value, true);
     }
@@ -769,9 +774,9 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * @param value  the value (<code>null</code> permitted).
      * @param notify  notify listeners?
      */
-    public void add(RegularTimePeriod period, Number value, boolean notify) {
+    public void add(jfree.data.time.RegularTimePeriod period, Number value, boolean notify) {
         // defer argument checking...
-        TimeSeriesDataItem item = new TimeSeriesDataItem(period, value);
+        jfree.data.time.TimeSeriesDataItem item = new jfree.data.time.TimeSeriesDataItem(period, value);
         add(item, notify);
     }
 
@@ -784,7 +789,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * 
      * @since 1.0.14
      */
-    public void update(RegularTimePeriod period, double value) {
+    public void update(jfree.data.time.RegularTimePeriod period, double value) {
       update(period, new Double(value));
     }
 
@@ -795,8 +800,8 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * @param period  the period (<code>null</code> not permitted).
      * @param value  the value (<code>null</code> permitted).
      */
-    public void update(RegularTimePeriod period, Number value) {
-        TimeSeriesDataItem temp = new TimeSeriesDataItem(period, value);
+    public void update(jfree.data.time.RegularTimePeriod period, Number value) {
+        jfree.data.time.TimeSeriesDataItem temp = new jfree.data.time.TimeSeriesDataItem(period, value);
         int index = Collections.binarySearch(this.data, temp);
         if (index < 0) {
             throw new SeriesException("There is no existing value for the "
@@ -812,7 +817,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * @param value  the new value (<code>null</code> permitted).
      */
     public void update(int index, Number value) {
-        TimeSeriesDataItem item = (TimeSeriesDataItem) this.data.get(index);
+        jfree.data.time.TimeSeriesDataItem item = (jfree.data.time.TimeSeriesDataItem) this.data.get(index);
         boolean iterate = false;
         Number oldYN = item.getValue();
         if (oldYN != null) {
@@ -841,12 +846,12 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @return A series containing the values that were overwritten.
      */
-    public TimeSeries addAndOrUpdate(TimeSeries series) {
-        TimeSeries overwritten = new TimeSeries("Overwritten values from: "
+    public jfree.data.time.TimeSeries addAndOrUpdate(jfree.data.time.TimeSeries series) {
+        jfree.data.time.TimeSeries overwritten = new jfree.data.time.TimeSeries("Overwritten values from: "
                 + getKey());
         for (int i = 0; i < series.getItemCount(); i++) {
-            TimeSeriesDataItem item = series.getRawDataItem(i);
-            TimeSeriesDataItem oldItem = addOrUpdate(item.getPeriod(),
+            jfree.data.time.TimeSeriesDataItem item = series.getRawDataItem(i);
+            jfree.data.time.TimeSeriesDataItem oldItem = addOrUpdate(item.getPeriod(),
                     item.getValue());
             if (oldItem != null) {
                 overwritten.add(oldItem);
@@ -866,8 +871,8 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * @return A copy of the overwritten data item, or <code>null</code> if no
      *         item was overwritten.
      */
-    public TimeSeriesDataItem addOrUpdate(RegularTimePeriod period,
-                                          double value) {
+    public jfree.data.time.TimeSeriesDataItem addOrUpdate(jfree.data.time.RegularTimePeriod period,
+                                                               double value) {
         return addOrUpdate(period, new Double(value));
     }
 
@@ -882,9 +887,9 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * @return A copy of the overwritten data item, or <code>null</code> if no
      *         item was overwritten.
      */
-    public TimeSeriesDataItem addOrUpdate(RegularTimePeriod period,
-                                          Number value) {
-        return addOrUpdate(new TimeSeriesDataItem(period, value));
+    public jfree.data.time.TimeSeriesDataItem addOrUpdate(jfree.data.time.RegularTimePeriod period,
+                                                               Number value) {
+        return addOrUpdate(new jfree.data.time.TimeSeriesDataItem(period, value));
     }
 
     /**
@@ -898,7 +903,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @since 1.0.14
      */
-    public TimeSeriesDataItem addOrUpdate(TimeSeriesDataItem item) {
+    public jfree.data.time.TimeSeriesDataItem addOrUpdate(jfree.data.time.TimeSeriesDataItem item) {
 
         ParamChecks.nullNotPermitted(item, "item");
         Class periodClass = item.getPeriod().getClass();
@@ -912,12 +917,12 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
                     + this.timePeriodClass.getName() + ".";
             throw new SeriesException(msg);
         }
-        TimeSeriesDataItem overwritten = null;
+        jfree.data.time.TimeSeriesDataItem overwritten = null;
         int index = Collections.binarySearch(this.data, item);
         if (index >= 0) {
-            TimeSeriesDataItem existing
-                    = (TimeSeriesDataItem) this.data.get(index);
-            overwritten = (TimeSeriesDataItem) existing.clone();
+            jfree.data.time.TimeSeriesDataItem existing
+                    = (jfree.data.time.TimeSeriesDataItem) this.data.get(index);
+            overwritten = (jfree.data.time.TimeSeriesDataItem) existing.clone();
             // figure out if we need to iterate through all the y-values
             // to find the revised minY / maxY
             boolean iterate = false;
@@ -937,13 +942,13 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
             }
         }
         else {
-            item = (TimeSeriesDataItem) item.clone();
+            item = (jfree.data.time.TimeSeriesDataItem) item.clone();
             this.data.add(-index - 1, item);
             updateBoundsForAddedItem(item);
 
             // check if this addition will exceed the maximum item count...
             if (getItemCount() > this.maximumItemCount) {
-                TimeSeriesDataItem d = (TimeSeriesDataItem) this.data.remove(0);
+                jfree.data.time.TimeSeriesDataItem d = (jfree.data.time.TimeSeriesDataItem) this.data.remove(0);
                 updateBoundsForRemovedItem(d);
             }
         }
@@ -1000,10 +1005,10 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
         // find the serial index of the period specified by 'latest'
         long index = Long.MAX_VALUE;
         try {
-            Method m = RegularTimePeriod.class.getDeclaredMethod(
+            Method m = jfree.data.time.RegularTimePeriod.class.getDeclaredMethod(
                     "createInstance", new Class[] {Class.class, Date.class,
                     TimeZone.class});
-            RegularTimePeriod newest = (RegularTimePeriod) m.invoke(
+            jfree.data.time.RegularTimePeriod newest = (jfree.data.time.RegularTimePeriod) m.invoke(
                     this.timePeriodClass, new Object[] {this.timePeriodClass,
                             new Date(latest), TimeZone.getDefault()});
             index = newest.getSerialIndex();
@@ -1056,10 +1061,10 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      * @param period  the period of the item to delete (<code>null</code> not
      *                permitted).
      */
-    public void delete(RegularTimePeriod period) {
+    public void delete(jfree.data.time.RegularTimePeriod period) {
         int index = getIndex(period);
         if (index >= 0) {
-            TimeSeriesDataItem item = (TimeSeriesDataItem) this.data.remove(
+            jfree.data.time.TimeSeriesDataItem item = (jfree.data.time.TimeSeriesDataItem) this.data.remove(
                     index);
             updateBoundsForRemovedItem(item);
             if (this.data.isEmpty()) {
@@ -1121,7 +1126,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        TimeSeries clone = (TimeSeries) super.clone();
+        jfree.data.time.TimeSeries clone = (jfree.data.time.TimeSeries) super.clone();
         clone.data = (List) ObjectUtilities.deepClone(this.data);
         return clone;
     }
@@ -1138,7 +1143,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @throws CloneNotSupportedException if there is a cloning problem.
      */
-    public TimeSeries createCopy(int start, int end)
+    public jfree.data.time.TimeSeries createCopy(int start, int end)
             throws CloneNotSupportedException {
         if (start < 0) {
             throw new IllegalArgumentException("Requires start >= 0.");
@@ -1146,15 +1151,15 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
         if (end < start) {
             throw new IllegalArgumentException("Requires start <= end.");
         }
-        TimeSeries copy = (TimeSeries) super.clone();
+        jfree.data.time.TimeSeries copy = (jfree.data.time.TimeSeries) super.clone();
         copy.minY = Double.NaN;
         copy.maxY = Double.NaN;
         copy.data = new java.util.ArrayList();
         if (this.data.size() > 0) {
             for (int index = start; index <= end; index++) {
-                TimeSeriesDataItem item
-                        = (TimeSeriesDataItem) this.data.get(index);
-                TimeSeriesDataItem clone = (TimeSeriesDataItem) item.clone();
+                jfree.data.time.TimeSeriesDataItem item
+                        = (jfree.data.time.TimeSeriesDataItem) this.data.get(index);
+                jfree.data.time.TimeSeriesDataItem clone = (jfree.data.time.TimeSeriesDataItem) item.clone();
                 try {
                     copy.add(clone);
                 }
@@ -1180,7 +1185,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @throws CloneNotSupportedException if there is a cloning problem.
      */
-    public TimeSeries createCopy(RegularTimePeriod start, RegularTimePeriod end)
+    public jfree.data.time.TimeSeries createCopy(jfree.data.time.RegularTimePeriod start, jfree.data.time.RegularTimePeriod end)
         throws CloneNotSupportedException {
 
         ParamChecks.nullNotPermitted(start, "start");
@@ -1206,7 +1211,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
             emptyRange = true;
         }
         if (emptyRange) {
-            TimeSeries copy = (TimeSeries) super.clone();
+            jfree.data.time.TimeSeries copy = (jfree.data.time.TimeSeries) super.clone();
             copy.data = new java.util.ArrayList();
             return copy;
         }
@@ -1225,10 +1230,10 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof TimeSeries)) {
+        if (!(obj instanceof jfree.data.time.TimeSeries)) {
             return false;
         }
-        TimeSeries that = (TimeSeries) obj;
+        jfree.data.time.TimeSeries that = (jfree.data.time.TimeSeries) obj;
         if (!ObjectUtilities.equal(getDomainDescription(),
                 that.getDomainDescription())) {
             return false;
@@ -1274,15 +1279,15 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
         // the first, middle and last items...
         int count = getItemCount();
         if (count > 0) {
-            TimeSeriesDataItem item = getRawDataItem(0);
+            jfree.data.time.TimeSeriesDataItem item = getRawDataItem(0);
             result = 29 * result + item.hashCode();
         }
         if (count > 1) {
-            TimeSeriesDataItem item = getRawDataItem(count - 1);
+            jfree.data.time.TimeSeriesDataItem item = getRawDataItem(count - 1);
             result = 29 * result + item.hashCode();
         }
         if (count > 2) {
-            TimeSeriesDataItem item = getRawDataItem(count / 2);
+            jfree.data.time.TimeSeriesDataItem item = getRawDataItem(count / 2);
             result = 29 * result + item.hashCode();
         }
         result = 29 * result + this.maximumItemCount;
@@ -1297,7 +1302,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @since 1.0.14
      */
-    private void updateBoundsForAddedItem(TimeSeriesDataItem item) {
+    private void updateBoundsForAddedItem(jfree.data.time.TimeSeriesDataItem item) {
         Number yN = item.getValue();
         if (item.getValue() != null) {
             double y = yN.doubleValue();
@@ -1314,7 +1319,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
      *
      * @since 1.0.14
      */
-    private void updateBoundsForRemovedItem(TimeSeriesDataItem item) {
+    private void updateBoundsForRemovedItem(jfree.data.time.TimeSeriesDataItem item) {
         Number yN = item.getValue();
         if (yN != null) {
             double y = yN.doubleValue();
@@ -1337,7 +1342,7 @@ public class TimeSeries extends Series implements Cloneable, Serializable {
         this.maxY = Double.NaN;
         Iterator iterator = this.data.iterator();
         while (iterator.hasNext()) {
-            TimeSeriesDataItem item = (TimeSeriesDataItem) iterator.next();
+            jfree.data.time.TimeSeriesDataItem item = (TimeSeriesDataItem) iterator.next();
             updateBoundsForAddedItem(item);
         }
     }

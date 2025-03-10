@@ -100,9 +100,12 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.ValueAxisPlot;
-import org.jfree.data.Range;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.axis.NumberTick;
+import jfree.chart.axis.Tick;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.ValueAxisPlot;
+import jfree.data.Range;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.TextAnchor;
 
@@ -860,7 +863,7 @@ public class LogarithmicAxis extends NumberAxis {
                         }
                     }
 
-                    Tick tick = new NumberTick(new Double(currentTickValue),
+                    Tick tick = new jfree.chart.axis.NumberTick(new Double(currentTickValue),
                             tickLabel, anchor, rotationAnchor, angle);
                     ticks.add(tick);
                 }

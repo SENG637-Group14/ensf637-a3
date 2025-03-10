@@ -149,37 +149,39 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.jfree.chart.LegendItem;
-import org.jfree.chart.LegendItemCollection;
-import org.jfree.chart.annotations.Annotation;
-import org.jfree.chart.annotations.XYAnnotation;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.XYItemEntity;
-import org.jfree.chart.event.AnnotationChangeEvent;
-import org.jfree.chart.event.AnnotationChangeListener;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.ItemLabelPosition;
-import org.jfree.chart.labels.StandardXYSeriesLabelGenerator;
-import org.jfree.chart.labels.XYItemLabelGenerator;
-import org.jfree.chart.labels.XYSeriesLabelGenerator;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.DrawingSupplier;
-import org.jfree.chart.plot.IntervalMarker;
-import org.jfree.chart.plot.Marker;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.ValueMarker;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.AbstractRenderer;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.chart.util.CloneUtils;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.LegendItem;
+import jfree.chart.LegendItemCollection;
+import jfree.chart.annotations.Annotation;
+import jfree.chart.annotations.XYAnnotation;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.XYItemEntity;
+import jfree.chart.event.AnnotationChangeEvent;
+import jfree.chart.event.AnnotationChangeListener;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.ItemLabelPosition;
+import jfree.chart.labels.StandardXYSeriesLabelGenerator;
+import jfree.chart.labels.XYItemLabelGenerator;
+import jfree.chart.labels.XYSeriesLabelGenerator;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.DrawingSupplier;
+import jfree.chart.plot.IntervalMarker;
+import jfree.chart.plot.Marker;
+import jfree.chart.plot.Plot;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.ValueMarker;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.AbstractRenderer;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.chart.util.CloneUtils;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.xy.XYDataset;
 import org.jfree.text.TextUtilities;
 import org.jfree.ui.GradientPaintTransformer;
 import org.jfree.ui.Layer;
@@ -190,7 +192,7 @@ import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PublicCloneable;
 
 /**
- * A base class that can be used to create new {@link XYItemRenderer}
+ * A base class that can be used to create new {@link jfree.chart.renderer.xy.XYItemRenderer}
  * implementations.
  */
 public abstract class AbstractXYItemRenderer extends AbstractRenderer
@@ -307,8 +309,8 @@ public abstract class AbstractXYItemRenderer extends AbstractRenderer
      * @return The renderer state (never <code>null</code>).
      */
     @Override
-    public XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
-            XYPlot plot, XYDataset data, PlotRenderingInfo info) {
+    public jfree.chart.renderer.xy.XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
+                                                                       XYPlot plot, XYDataset data, PlotRenderingInfo info) {
         return new XYItemRendererState(info);
     }
 
@@ -1481,7 +1483,7 @@ public abstract class AbstractXYItemRenderer extends AbstractRenderer
      */
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        AbstractXYItemRenderer clone = (AbstractXYItemRenderer) super.clone();
+        jfree.chart.renderer.xy.AbstractXYItemRenderer clone = (jfree.chart.renderer.xy.AbstractXYItemRenderer) super.clone();
         // 'plot' : just retain reference, not a deep copy
 
         if (this.itemLabelGenerator != null
@@ -1543,10 +1545,10 @@ public abstract class AbstractXYItemRenderer extends AbstractRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof AbstractXYItemRenderer)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.AbstractXYItemRenderer)) {
             return false;
         }
-        AbstractXYItemRenderer that = (AbstractXYItemRenderer) obj;
+        jfree.chart.renderer.xy.AbstractXYItemRenderer that = (jfree.chart.renderer.xy.AbstractXYItemRenderer) obj;
         if (!ObjectUtilities.equal(this.itemLabelGenerator,
                 that.itemLabelGenerator)) {
             return false;

@@ -50,6 +50,9 @@
 
 package org.jfree.chart.axis;
 
+import jfree.chart.axis.DateAxis;
+import jfree.chart.axis.Timeline;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -63,13 +66,13 @@ import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
 /**
- * A {@link Timeline} that implements a "segmented" timeline with included,
+ * A {@link jfree.chart.axis.Timeline} that implements a "segmented" timeline with included,
  * excluded and exception segments.
  * <p>A Timeline will present a series of values to be used for an axis. Each
  * Timeline must provide transformation methods between domain values and
  * timeline values.</p>
  * <p>A timeline can be used as parameter to a
- * {@link org.jfree.chart.axis.DateAxis} to define the values that this axis
+ * {@link jfree.chart.axis.DateAxis} to define the values that this axis
  * supports. This class implements a timeline formed by segments of equal
  * length (ex. days, hours, minutes) where some segments can be included in the
  * timeline and others excluded. Therefore timelines like "working days" or
@@ -149,7 +152,7 @@ import java.util.TimeZone;
  * newFifteenMinuteTimeline() are provided as examples to create special
  * SegmentedTimelines.</p>
  *
- * @see org.jfree.chart.axis.DateAxis
+ * @see DateAxis
  */
 public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
 
@@ -267,7 +270,7 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
      * Additionally, all excluded segments from this baseTimeline will be
      * considered exceptions at this level.
      */
-    private SegmentedTimeline baseTimeline;
+    private jfree.chart.axis.SegmentedTimeline baseTimeline;
 
     /** A flag that controls whether or not to adjust for daylight saving. */
     private boolean adjustForDaylightSaving = false;
@@ -363,9 +366,9 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
      *
      * @return A fully initialized SegmentedTimeline.
      */
-    public static SegmentedTimeline newMondayThroughFridayTimeline() {
-        SegmentedTimeline timeline
-            = new SegmentedTimeline(DAY_SEGMENT_SIZE, 5, 2);
+    public static jfree.chart.axis.SegmentedTimeline newMondayThroughFridayTimeline() {
+        jfree.chart.axis.SegmentedTimeline timeline
+            = new jfree.chart.axis.SegmentedTimeline(DAY_SEGMENT_SIZE, 5, 2);
         timeline.setStartTime(firstMondayAfter1900());
         return timeline;
     }
@@ -387,8 +390,8 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
      *
      * @return A fully initialized SegmentedTimeline.
      */
-    public static SegmentedTimeline newFifteenMinuteTimeline() {
-        SegmentedTimeline timeline = new SegmentedTimeline(
+    public static jfree.chart.axis.SegmentedTimeline newFifteenMinuteTimeline() {
+        jfree.chart.axis.SegmentedTimeline timeline = new jfree.chart.axis.SegmentedTimeline(
                 FIFTEEN_MINUTE_SEGMENT_SIZE, 28, 68);
         timeline.setStartTime(firstMondayAfter1900() + 36
                 * timeline.getSegmentSize());
@@ -530,7 +533,7 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
      *
      * @return The base timeline.
      */
-    public SegmentedTimeline getBaseTimeline() {
+    public jfree.chart.axis.SegmentedTimeline getBaseTimeline() {
         return this.baseTimeline;
     }
 
@@ -539,7 +542,7 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
      *
      * @param baseTimeline  the timeline.
      */
-    public void setBaseTimeline(SegmentedTimeline baseTimeline) {
+    public void setBaseTimeline(jfree.chart.axis.SegmentedTimeline baseTimeline) {
 
         // verify that baseTimeline is compatible with us
         if (baseTimeline != null) {
@@ -1092,8 +1095,8 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof SegmentedTimeline) {
-            SegmentedTimeline other = (SegmentedTimeline) o;
+        if (o instanceof jfree.chart.axis.SegmentedTimeline) {
+            jfree.chart.axis.SegmentedTimeline other = (jfree.chart.axis.SegmentedTimeline) o;
 
             boolean b0 = (this.segmentSize == other.getSegmentSize());
             boolean b1 = (this.segmentsIncluded == other.getSegmentsIncluded());
@@ -1214,7 +1217,7 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        SegmentedTimeline clone = (SegmentedTimeline) super.clone();
+        jfree.chart.axis.SegmentedTimeline clone = (jfree.chart.axis.SegmentedTimeline) super.clone();
         return clone;
     }
 
@@ -1254,10 +1257,10 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
          */
         protected Segment(long millisecond) {
             this.segmentNumber = calculateSegmentNumber(millisecond);
-            this.segmentStart = SegmentedTimeline.this.startTime
-                + this.segmentNumber * SegmentedTimeline.this.segmentSize;
+            this.segmentStart = jfree.chart.axis.SegmentedTimeline.this.startTime
+                + this.segmentNumber * jfree.chart.axis.SegmentedTimeline.this.segmentSize;
             this.segmentEnd
-                = this.segmentStart + SegmentedTimeline.this.segmentSize - 1;
+                = this.segmentStart + jfree.chart.axis.SegmentedTimeline.this.segmentSize - 1;
             this.millisecond = millisecond;
         }
 
@@ -1269,13 +1272,13 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
          * @return The segment number.
          */
         public long calculateSegmentNumber(long millis) {
-            if (millis >= SegmentedTimeline.this.startTime) {
-                return (millis - SegmentedTimeline.this.startTime)
-                    / SegmentedTimeline.this.segmentSize;
+            if (millis >= jfree.chart.axis.SegmentedTimeline.this.startTime) {
+                return (millis - jfree.chart.axis.SegmentedTimeline.this.startTime)
+                    / jfree.chart.axis.SegmentedTimeline.this.segmentSize;
             }
             else {
-                return ((millis - SegmentedTimeline.this.startTime)
-                    / SegmentedTimeline.this.segmentSize) - 1;
+                return ((millis - jfree.chart.axis.SegmentedTimeline.this.startTime)
+                    / jfree.chart.axis.SegmentedTimeline.this.segmentSize) - 1;
             }
         }
 
@@ -1333,7 +1336,7 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
          * @return The date.
          */
         public Date getDate() {
-            return SegmentedTimeline.this.getDate(this.millisecond);
+            return jfree.chart.axis.SegmentedTimeline.this.getDate(this.millisecond);
         }
 
         /**
@@ -1497,7 +1500,7 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
          */
         public boolean inIncludeSegments() {
             if (getSegmentNumberRelativeToGroup()
-                    < SegmentedTimeline.this.segmentsIncluded) {
+                    < jfree.chart.axis.SegmentedTimeline.this.segmentsIncluded) {
                 return !inExceptionSegments();
             }
             else {
@@ -1512,7 +1515,7 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
          */
         public boolean inExcludeSegments() {
             return getSegmentNumberRelativeToGroup()
-                    >= SegmentedTimeline.this.segmentsIncluded;
+                    >= jfree.chart.axis.SegmentedTimeline.this.segmentsIncluded;
         }
 
         /**
@@ -1525,9 +1528,9 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
          */
         private long getSegmentNumberRelativeToGroup() {
             long p = (this.segmentNumber
-                    % SegmentedTimeline.this.groupSegmentCount);
+                    % jfree.chart.axis.SegmentedTimeline.this.groupSegmentCount);
             if (p < 0) {
-                p += SegmentedTimeline.this.groupSegmentCount;
+                p += jfree.chart.axis.SegmentedTimeline.this.groupSegmentCount;
             }
             return p;
         }
@@ -1555,7 +1558,7 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
          */
         public void inc(long n) {
             this.segmentNumber += n;
-            long m = n * SegmentedTimeline.this.segmentSize;
+            long m = n * jfree.chart.axis.SegmentedTimeline.this.segmentSize;
             this.segmentStart += m;
             this.segmentEnd += m;
             this.millisecond += m;
@@ -1577,7 +1580,7 @@ public class SegmentedTimeline implements Timeline, Cloneable, Serializable {
          */
         public void dec(long n) {
             this.segmentNumber -= n;
-            long m = n * SegmentedTimeline.this.segmentSize;
+            long m = n * jfree.chart.axis.SegmentedTimeline.this.segmentSize;
             this.segmentStart -= m;
             this.segmentEnd -= m;
             this.millisecond -= m;

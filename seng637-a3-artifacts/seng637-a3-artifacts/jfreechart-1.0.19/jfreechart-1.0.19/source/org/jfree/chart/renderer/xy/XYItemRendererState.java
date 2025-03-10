@@ -50,10 +50,11 @@ package org.jfree.chart.renderer.xy;
 
 import java.awt.geom.Line2D;
 
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.RendererState;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.RendererState;
+import jfree.chart.renderer.xy.XYItemRenderer;
+import jfree.data.xy.XYDataset;
 
 /**
  * The state for an {@link XYItemRenderer}.

@@ -82,20 +82,23 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Stack;
 
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.entity.EntityCollection;
-import org.jfree.chart.entity.XYItemEntity;
-import org.jfree.chart.event.RendererChangeEvent;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.CrosshairState;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.urls.XYURLGenerator;
-import org.jfree.data.Range;
-import org.jfree.data.general.DatasetUtilities;
-import org.jfree.data.xy.TableXYDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.axis.ValueAxis;
+import jfree.chart.entity.EntityCollection;
+import jfree.chart.entity.XYItemEntity;
+import jfree.chart.event.RendererChangeEvent;
+import jfree.chart.labels.XYToolTipGenerator;
+import jfree.chart.plot.CrosshairState;
+import jfree.chart.plot.PlotOrientation;
+import jfree.chart.plot.PlotRenderingInfo;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.StackedXYAreaRenderer2;
+import jfree.chart.renderer.xy.XYAreaRenderer;
+import jfree.chart.renderer.xy.XYItemRendererState;
+import jfree.chart.urls.XYURLGenerator;
+import jfree.data.Range;
+import jfree.data.general.DatasetUtilities;
+import jfree.data.xy.TableXYDataset;
+import jfree.data.xy.XYDataset;
 import org.jfree.io.SerialUtilities;
 import org.jfree.util.ObjectUtilities;
 import org.jfree.util.PaintUtilities;
@@ -125,7 +128,7 @@ public class StackedXYAreaRenderer extends XYAreaRenderer
      /**
      * A state object for use by this renderer.
      */
-    static class StackedXYAreaRendererState extends XYItemRendererState {
+    static class StackedXYAreaRendererState extends jfree.chart.renderer.xy.XYItemRendererState {
 
         /** The area for the current series. */
         private Polygon seriesArea;
@@ -326,10 +329,10 @@ public class StackedXYAreaRenderer extends XYAreaRenderer
      *         drawItem() method.
      */
     @Override
-    public XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
-            XYPlot plot, XYDataset data, PlotRenderingInfo info) {
+    public jfree.chart.renderer.xy.XYItemRendererState initialise(Graphics2D g2, Rectangle2D dataArea,
+                                                                       XYPlot plot, XYDataset data, PlotRenderingInfo info) {
 
-        XYItemRendererState state = new StackedXYAreaRendererState(info);
+        jfree.chart.renderer.xy.XYItemRendererState state = new StackedXYAreaRendererState(info);
         // in the rendering process, there is special handling for item
         // zero, so we can't support processing of visible data items only
         state.setProcessVisibleItemsOnly(false);
@@ -640,10 +643,10 @@ public class StackedXYAreaRenderer extends XYAreaRenderer
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StackedXYAreaRenderer) || !super.equals(obj)) {
+        if (!(obj instanceof jfree.chart.renderer.xy.StackedXYAreaRenderer) || !super.equals(obj)) {
             return false;
         }
-        StackedXYAreaRenderer that = (StackedXYAreaRenderer) obj;
+        jfree.chart.renderer.xy.StackedXYAreaRenderer that = (jfree.chart.renderer.xy.StackedXYAreaRenderer) obj;
         if (!PaintUtilities.equal(this.shapePaint, that.shapePaint)) {
             return false;
         }

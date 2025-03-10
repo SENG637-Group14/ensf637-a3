@@ -41,6 +41,8 @@
 
 package org.jfree.chart.plot.dial;
 
+import jfree.chart.plot.dial.DialLayer;
+
 /**
  * A dial scale is a specialised layer that has the ability to convert data
  * values into angles.

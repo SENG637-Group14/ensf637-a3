@@ -47,7 +47,8 @@ package org.jfree.data.function;
 
 import java.io.Serializable;
 
-import org.jfree.chart.HashUtilities;
+import jfree.chart.HashUtilities;
+import jfree.data.function.Function2D;
 
 /**
  * A normal distribution function.  See
@@ -124,10 +125,10 @@ public class NormalDistributionFunction2D implements Function2D, Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof NormalDistributionFunction2D)) {
+        if (!(obj instanceof jfree.data.function.NormalDistributionFunction2D)) {
             return false;
         }
-        NormalDistributionFunction2D that = (NormalDistributionFunction2D) obj;
+        jfree.data.function.NormalDistributionFunction2D that = (jfree.data.function.NormalDistributionFunction2D) obj;
         if (this.mean != that.mean) {
             return false;
         }

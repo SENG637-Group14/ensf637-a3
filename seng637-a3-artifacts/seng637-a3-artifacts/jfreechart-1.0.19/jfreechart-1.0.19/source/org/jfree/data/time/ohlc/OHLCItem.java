@@ -40,8 +40,9 @@
 
 package org.jfree.data.time.ohlc;
 
-import org.jfree.data.ComparableObjectItem;
-import org.jfree.data.time.RegularTimePeriod;
+import jfree.data.ComparableObjectItem;
+import jfree.data.time.RegularTimePeriod;
+import jfree.data.time.ohlc.OHLC;
 
 /**
  * An item representing data in the form <code>(time-period, open, high, low, 
@@ -62,7 +63,7 @@ public class OHLCItem extends ComparableObjectItem {
      */
     public OHLCItem(RegularTimePeriod period, double open, double high,
             double low, double close) {
-        super(period, new OHLC(open, high, low, close));
+        super(period, new jfree.data.time.ohlc.OHLC(open, high, low, close));
     }
 
     /**
@@ -89,7 +90,7 @@ public class OHLCItem extends ComparableObjectItem {
      * @return The open value.
      */
     public double getOpenValue() {
-        OHLC ohlc = (OHLC) getObject();
+        jfree.data.time.ohlc.OHLC ohlc = (jfree.data.time.ohlc.OHLC) getObject();
         if (ohlc != null) {
             return ohlc.getOpen();
         }
@@ -104,7 +105,7 @@ public class OHLCItem extends ComparableObjectItem {
      * @return The high value.
      */
     public double getHighValue() {
-        OHLC ohlc = (OHLC) getObject();
+        jfree.data.time.ohlc.OHLC ohlc = (jfree.data.time.ohlc.OHLC) getObject();
         if (ohlc != null) {
             return ohlc.getHigh();
         }
@@ -119,7 +120,7 @@ public class OHLCItem extends ComparableObjectItem {
      * @return The low value.
      */
     public double getLowValue() {
-        OHLC ohlc = (OHLC) getObject();
+        jfree.data.time.ohlc.OHLC ohlc = (jfree.data.time.ohlc.OHLC) getObject();
         if (ohlc != null) {
             return ohlc.getLow();
         }
@@ -134,7 +135,7 @@ public class OHLCItem extends ComparableObjectItem {
      * @return The close value.
      */
     public double getCloseValue() {
-        OHLC ohlc = (OHLC) getObject();
+        jfree.data.time.ohlc.OHLC ohlc = (OHLC) getObject();
         if (ohlc != null) {
             return ohlc.getClose();
         }

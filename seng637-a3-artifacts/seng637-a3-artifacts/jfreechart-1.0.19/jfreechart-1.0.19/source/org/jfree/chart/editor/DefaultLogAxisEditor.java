@@ -47,14 +47,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.jfree.chart.axis.Axis;
-import org.jfree.chart.axis.LogAxis;
-import org.jfree.chart.axis.NumberTickUnit;
+import jfree.chart.axis.Axis;
+import jfree.chart.axis.LogAxis;
+import jfree.chart.axis.NumberTickUnit;
+import jfree.chart.editor.DefaultValueAxisEditor;
 
 /**
  * A panel for editing properties of a {@link LogAxis}.
  */
-public class DefaultLogAxisEditor extends DefaultValueAxisEditor {
+public class DefaultLogAxisEditor extends jfree.chart.editor.DefaultValueAxisEditor {
 
     private double manualTickUnitValue;
 

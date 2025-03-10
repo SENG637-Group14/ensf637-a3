@@ -42,8 +42,9 @@
 package org.jfree.data;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
+import jfree.data.ComparableObjectSeries;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -123,8 +124,8 @@ public class ComparableObjectItem implements Cloneable, Comparable,
 
         // CASE 1 : Comparing to another ComparableObjectItem object
         // ---------------------------------------------------------
-        if (o1 instanceof ComparableObjectItem) {
-            ComparableObjectItem that = (ComparableObjectItem) o1;
+        if (o1 instanceof jfree.data.ComparableObjectItem) {
+            jfree.data.ComparableObjectItem that = (jfree.data.ComparableObjectItem) o1;
             return this.x.compareTo(that.x);
         }
 
@@ -165,10 +166,10 @@ public class ComparableObjectItem implements Cloneable, Comparable,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ComparableObjectItem)) {
+        if (!(obj instanceof jfree.data.ComparableObjectItem)) {
             return false;
         }
-        ComparableObjectItem that = (ComparableObjectItem) obj;
+        jfree.data.ComparableObjectItem that = (jfree.data.ComparableObjectItem) obj;
         if (!this.x.equals(that.x)) {
             return false;
         }

@@ -41,6 +41,9 @@
 
 package org.jfree.data.xml;
 
+import jfree.data.xml.DatasetTags;
+import jfree.data.xml.ItemHandler;
+import jfree.data.xml.RootHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -51,10 +54,10 @@ import org.xml.sax.helpers.DefaultHandler;
 public class ValueHandler extends DefaultHandler implements DatasetTags {
 
     /** The root handler. */
-    private RootHandler rootHandler;
+    private jfree.data.xml.RootHandler rootHandler;
 
     /** The item handler. */
-    private ItemHandler itemHandler;
+    private jfree.data.xml.ItemHandler itemHandler;
 
     /** Storage for the current CDATA */
     private StringBuffer currentText;

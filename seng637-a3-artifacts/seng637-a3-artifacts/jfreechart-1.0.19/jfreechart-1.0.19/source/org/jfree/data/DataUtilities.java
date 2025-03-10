@@ -49,8 +49,11 @@
 package org.jfree.data;
 
 import java.util.Arrays;
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.general.DatasetUtilities;
+import jfree.chart.util.ParamChecks;
+import jfree.data.DefaultKeyedValues;
+import jfree.data.KeyedValues;
+import jfree.data.Values2D;
+import jfree.data.general.DatasetUtilities;
 
 /**
  * Utility methods for use with some of the data classes (but not the datasets,
@@ -120,7 +123,7 @@ public abstract class DataUtilities {
      *
      * @return The total of the values in the specified column.
      */
-    public static double calculateColumnTotal(Values2D data, int column) {
+    public static double calculateColumnTotal(jfree.data.Values2D data, int column) {
         ParamChecks.nullNotPermitted(data, "data");
         double total = 0.0;
         int rowCount = data.getRowCount();
@@ -151,8 +154,8 @@ public abstract class DataUtilities {
      *
      * @since 1.0.13
      */
-    public static double calculateColumnTotal(Values2D data, int column,
-             int[] validRows) {
+    public static double calculateColumnTotal(jfree.data.Values2D data, int column,
+                                              int[] validRows) {
         ParamChecks.nullNotPermitted(data, "data");
         double total = 0.0;
         if (total > 0){
@@ -181,7 +184,7 @@ public abstract class DataUtilities {
      *
      * @return The total of the values in the specified row.
      */
-    public static double calculateRowTotal(Values2D data, int row) {
+    public static double calculateRowTotal(jfree.data.Values2D data, int row) {
         ParamChecks.nullNotPermitted(data, "data");
         double total = 0.0;
         int columnCount = data.getColumnCount();
@@ -213,7 +216,7 @@ public abstract class DataUtilities {
      * @since 1.0.13
      */
     public static double calculateRowTotal(Values2D data, int row,
-             int[] validCols) {
+                                           int[] validCols) {
         ParamChecks.nullNotPermitted(data, "data");
         double total = 0.0;
         int colCount = data.getColumnCount();
@@ -268,8 +271,8 @@ public abstract class DataUtilities {
     }
 
     /**
-     * Returns a {@link KeyedValues} instance that contains the cumulative
-     * percentage values for the data in another {@link KeyedValues} instance.
+     * Returns a {@link jfree.data.KeyedValues} instance that contains the cumulative
+     * percentage values for the data in another {@link jfree.data.KeyedValues} instance.
      * <p>
      * The percentages are values between 0.0 and 1.0 (where 1.0 = 100%).
      *
@@ -277,9 +280,9 @@ public abstract class DataUtilities {
      *
      * @return The cumulative percentages.
      */
-    public static KeyedValues getCumulativePercentages(KeyedValues data) {
+    public static jfree.data.KeyedValues getCumulativePercentages(KeyedValues data) {
         ParamChecks.nullNotPermitted(data, "data");
-        DefaultKeyedValues result = new DefaultKeyedValues();
+        jfree.data.DefaultKeyedValues result = new DefaultKeyedValues();
         double total = 0.0;
         for (int i = 0; i < data.getItemCount(); i++) {
             Number v = data.getValue(i);

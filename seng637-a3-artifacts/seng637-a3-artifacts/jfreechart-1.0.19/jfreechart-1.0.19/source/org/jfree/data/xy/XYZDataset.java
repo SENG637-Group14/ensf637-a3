@@ -43,6 +43,8 @@
 
 package org.jfree.data.xy;
 
+import jfree.data.xy.XYDataset;
+
 /**
  * The interface through which JFreeChart obtains data in the form of (x, y, z)
  * items - used for XY and XYZ plots.

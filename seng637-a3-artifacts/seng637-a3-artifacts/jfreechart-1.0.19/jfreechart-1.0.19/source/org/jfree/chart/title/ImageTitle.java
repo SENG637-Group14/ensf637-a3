@@ -62,8 +62,9 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
 
-import org.jfree.chart.block.RectangleConstraint;
-import org.jfree.chart.event.TitleChangeEvent;
+import jfree.chart.block.RectangleConstraint;
+import jfree.chart.event.TitleChangeEvent;
+import jfree.chart.title.Title;
 import org.jfree.ui.HorizontalAlignment;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
@@ -86,7 +87,7 @@ import org.jfree.util.ObjectUtilities;
  * SPECIAL NOTE:  this class fails to serialize, so if you are
  * relying on your charts to be serializable, please avoid using this class.
  */
-public class ImageTitle extends Title {
+public class ImageTitle extends jfree.chart.title.Title {
 
     /** The title image. */
     private Image image;
@@ -98,8 +99,8 @@ public class ImageTitle extends Title {
      */
     public ImageTitle(Image image) {
         this(image, image.getHeight(null), image.getWidth(null),
-                Title.DEFAULT_POSITION, Title.DEFAULT_HORIZONTAL_ALIGNMENT,
-                Title.DEFAULT_VERTICAL_ALIGNMENT, Title.DEFAULT_PADDING);
+                jfree.chart.title.Title.DEFAULT_POSITION, jfree.chart.title.Title.DEFAULT_HORIZONTAL_ALIGNMENT,
+                jfree.chart.title.Title.DEFAULT_VERTICAL_ALIGNMENT, jfree.chart.title.Title.DEFAULT_PADDING);
     }
 
     /**
@@ -355,10 +356,10 @@ public class ImageTitle extends Title {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ImageTitle)) {
+        if (!(obj instanceof jfree.chart.title.ImageTitle)) {
             return false;
         }
-        ImageTitle that = (ImageTitle) obj;
+        jfree.chart.title.ImageTitle that = (jfree.chart.title.ImageTitle) obj;
         if (!ObjectUtilities.equal(this.image, that.image)) {
             return false;
         }

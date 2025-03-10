@@ -44,8 +44,9 @@
 
 package org.jfree.chart.block;
 
-import org.jfree.chart.util.ParamChecks;
-import org.jfree.data.Range;
+import jfree.chart.block.LengthConstraintType;
+import jfree.chart.util.ParamChecks;
+import jfree.data.Range;
 import org.jfree.ui.Size2D;
 
 /**
@@ -57,9 +58,9 @@ public class RectangleConstraint {
     /**
      * An instance representing no constraint.
      */
-    public static final RectangleConstraint NONE = new RectangleConstraint(
-            0.0, null, LengthConstraintType.NONE,
-            0.0, null, LengthConstraintType.NONE);
+    public static final jfree.chart.block.RectangleConstraint NONE = new jfree.chart.block.RectangleConstraint(
+            0.0, null, jfree.chart.block.LengthConstraintType.NONE,
+            0.0, null, jfree.chart.block.LengthConstraintType.NONE);
 
     /** The width. */
     private double width;
@@ -68,7 +69,7 @@ public class RectangleConstraint {
     private Range widthRange;
 
     /** The width constraint type. */
-    private LengthConstraintType widthConstraintType;
+    private jfree.chart.block.LengthConstraintType widthConstraintType;
 
     /** The fixed or maximum height. */
     private double height;
@@ -76,7 +77,7 @@ public class RectangleConstraint {
     private Range heightRange;
 
     /** The constraint type. */
-    private LengthConstraintType heightConstraintType;
+    private jfree.chart.block.LengthConstraintType heightConstraintType;
 
     /**
      * Creates a new "fixed width and height" instance.
@@ -85,8 +86,8 @@ public class RectangleConstraint {
      * @param h  the fixed height.
      */
     public RectangleConstraint(double w, double h) {
-        this(w, null, LengthConstraintType.FIXED,
-                h, null, LengthConstraintType.FIXED);
+        this(w, null, jfree.chart.block.LengthConstraintType.FIXED,
+                h, null, jfree.chart.block.LengthConstraintType.FIXED);
     }
 
     /**
@@ -96,8 +97,8 @@ public class RectangleConstraint {
      * @param h  the height range.
      */
     public RectangleConstraint(Range w, Range h) {
-        this(0.0, w, LengthConstraintType.RANGE,
-                0.0, h, LengthConstraintType.RANGE);
+        this(0.0, w, jfree.chart.block.LengthConstraintType.RANGE,
+                0.0, h, jfree.chart.block.LengthConstraintType.RANGE);
     }
 
     /**
@@ -108,8 +109,8 @@ public class RectangleConstraint {
      * @param h  the fixed height.
      */
     public RectangleConstraint(Range w, double h) {
-        this(0.0, w, LengthConstraintType.RANGE,
-                h, null, LengthConstraintType.FIXED);
+        this(0.0, w, jfree.chart.block.LengthConstraintType.RANGE,
+                h, null, jfree.chart.block.LengthConstraintType.FIXED);
     }
 
     /**
@@ -120,8 +121,8 @@ public class RectangleConstraint {
      * @param h  the height range.
      */
     public RectangleConstraint(double w, Range h) {
-        this(w, null, LengthConstraintType.FIXED,
-                0.0, h, LengthConstraintType.RANGE);
+        this(w, null, jfree.chart.block.LengthConstraintType.FIXED,
+                0.0, h, jfree.chart.block.LengthConstraintType.RANGE);
     }
 
     /**
@@ -135,9 +136,9 @@ public class RectangleConstraint {
      * @param heightConstraintType  the height type.
      */
     public RectangleConstraint(double w, Range widthRange,
-                               LengthConstraintType widthConstraintType,
+                               jfree.chart.block.LengthConstraintType widthConstraintType,
                                double h, Range heightRange,
-                               LengthConstraintType heightConstraintType) {
+                               jfree.chart.block.LengthConstraintType heightConstraintType) {
         ParamChecks.nullNotPermitted(widthConstraintType, "widthConstraintType");
         ParamChecks.nullNotPermitted(heightConstraintType, "heightConstraintType");
         this.width = w;
@@ -171,7 +172,7 @@ public class RectangleConstraint {
      *
      * @return The constraint type (never <code>null</code>).
      */
-    public LengthConstraintType getWidthConstraintType() {
+    public jfree.chart.block.LengthConstraintType getWidthConstraintType() {
         return this.widthConstraintType;
     }
 
@@ -198,7 +199,7 @@ public class RectangleConstraint {
      *
      * @return The constraint type (never <code>null</code>).
      */
-    public LengthConstraintType getHeightConstraintType() {
+    public jfree.chart.block.LengthConstraintType getHeightConstraintType() {
         return this.heightConstraintType;
     }
 
@@ -208,13 +209,13 @@ public class RectangleConstraint {
      *
      * @return A new constraint.
      */
-    public RectangleConstraint toUnconstrainedWidth() {
-        if (this.widthConstraintType == LengthConstraintType.NONE) {
+    public jfree.chart.block.RectangleConstraint toUnconstrainedWidth() {
+        if (this.widthConstraintType == jfree.chart.block.LengthConstraintType.NONE) {
             return this;
         }
         else {
-            return new RectangleConstraint(this.width, this.widthRange,
-                    LengthConstraintType.NONE, this.height, this.heightRange,
+            return new jfree.chart.block.RectangleConstraint(this.width, this.widthRange,
+                    jfree.chart.block.LengthConstraintType.NONE, this.height, this.heightRange,
                     this.heightConstraintType);
         }
     }
@@ -225,14 +226,14 @@ public class RectangleConstraint {
      *
      * @return A new constraint.
      */
-    public RectangleConstraint toUnconstrainedHeight() {
-        if (this.heightConstraintType == LengthConstraintType.NONE) {
+    public jfree.chart.block.RectangleConstraint toUnconstrainedHeight() {
+        if (this.heightConstraintType == jfree.chart.block.LengthConstraintType.NONE) {
             return this;
         }
         else {
-            return new RectangleConstraint(this.width, this.widthRange,
+            return new jfree.chart.block.RectangleConstraint(this.width, this.widthRange,
                     this.widthConstraintType, 0.0, this.heightRange,
-                    LengthConstraintType.NONE);
+                    jfree.chart.block.LengthConstraintType.NONE);
         }
     }
 
@@ -244,9 +245,9 @@ public class RectangleConstraint {
      *
      * @return A new constraint.
      */
-    public RectangleConstraint toFixedWidth(double width) {
-        return new RectangleConstraint(width, this.widthRange,
-                LengthConstraintType.FIXED, this.height, this.heightRange,
+    public jfree.chart.block.RectangleConstraint toFixedWidth(double width) {
+        return new jfree.chart.block.RectangleConstraint(width, this.widthRange,
+                jfree.chart.block.LengthConstraintType.FIXED, this.height, this.heightRange,
                 this.heightConstraintType);
     }
 
@@ -258,10 +259,10 @@ public class RectangleConstraint {
      *
      * @return A new constraint.
      */
-    public RectangleConstraint toFixedHeight(double height) {
-        return new RectangleConstraint(this.width, this.widthRange,
+    public jfree.chart.block.RectangleConstraint toFixedHeight(double height) {
+        return new jfree.chart.block.RectangleConstraint(this.width, this.widthRange,
                 this.widthConstraintType, height, this.heightRange,
-                LengthConstraintType.FIXED);
+                jfree.chart.block.LengthConstraintType.FIXED);
     }
 
     /**
@@ -272,10 +273,10 @@ public class RectangleConstraint {
      *
      * @return A new constraint.
      */
-    public RectangleConstraint toRangeWidth(Range range) {
+    public jfree.chart.block.RectangleConstraint toRangeWidth(Range range) {
         ParamChecks.nullNotPermitted(range, "range");
-        return new RectangleConstraint(range.getUpperBound(), range,
-                LengthConstraintType.RANGE, this.height, this.heightRange,
+        return new jfree.chart.block.RectangleConstraint(range.getUpperBound(), range,
+                jfree.chart.block.LengthConstraintType.RANGE, this.height, this.heightRange,
                 this.heightConstraintType);
     }
 
@@ -287,11 +288,11 @@ public class RectangleConstraint {
      *
      * @return A new constraint.
      */
-    public RectangleConstraint toRangeHeight(Range range) {
+    public jfree.chart.block.RectangleConstraint toRangeHeight(Range range) {
         ParamChecks.nullNotPermitted(range, "range");
-        return new RectangleConstraint(this.width, this.widthRange,
+        return new jfree.chart.block.RectangleConstraint(this.width, this.widthRange,
                 this.widthConstraintType, range.getUpperBound(), range,
-                LengthConstraintType.RANGE);
+                jfree.chart.block.LengthConstraintType.RANGE);
     }
 
     /**
@@ -317,36 +318,36 @@ public class RectangleConstraint {
      */
     public Size2D calculateConstrainedSize(Size2D base) {
         Size2D result = new Size2D();
-        if (this.widthConstraintType == LengthConstraintType.NONE) {
+        if (this.widthConstraintType == jfree.chart.block.LengthConstraintType.NONE) {
             result.width = base.width;
-            if (this.heightConstraintType == LengthConstraintType.NONE) {
+            if (this.heightConstraintType == jfree.chart.block.LengthConstraintType.NONE) {
                result.height = base.height;
             }
-            else if (this.heightConstraintType == LengthConstraintType.RANGE) {
+            else if (this.heightConstraintType == jfree.chart.block.LengthConstraintType.RANGE) {
                result.height = this.heightRange.constrain(base.height);
             }
-            else if (this.heightConstraintType == LengthConstraintType.FIXED) {
+            else if (this.heightConstraintType == jfree.chart.block.LengthConstraintType.FIXED) {
                result.height = this.height;
             }
         }
-        else if (this.widthConstraintType == LengthConstraintType.RANGE) {
+        else if (this.widthConstraintType == jfree.chart.block.LengthConstraintType.RANGE) {
             result.width = this.widthRange.constrain(base.width);
-            if (this.heightConstraintType == LengthConstraintType.NONE) {
+            if (this.heightConstraintType == jfree.chart.block.LengthConstraintType.NONE) {
                 result.height = base.height;
             }
-            else if (this.heightConstraintType == LengthConstraintType.RANGE) {
+            else if (this.heightConstraintType == jfree.chart.block.LengthConstraintType.RANGE) {
                 result.height = this.heightRange.constrain(base.height);
             }
-            else if (this.heightConstraintType == LengthConstraintType.FIXED) {
+            else if (this.heightConstraintType == jfree.chart.block.LengthConstraintType.FIXED) {
                 result.height = this.height;
             }
         }
-        else if (this.widthConstraintType == LengthConstraintType.FIXED) {
+        else if (this.widthConstraintType == jfree.chart.block.LengthConstraintType.FIXED) {
             result.width = this.width;
-            if (this.heightConstraintType == LengthConstraintType.NONE) {
+            if (this.heightConstraintType == jfree.chart.block.LengthConstraintType.NONE) {
                 result.height = base.height;
             }
-            else if (this.heightConstraintType == LengthConstraintType.RANGE) {
+            else if (this.heightConstraintType == jfree.chart.block.LengthConstraintType.RANGE) {
                 result.height = this.heightRange.constrain(base.height);
             }
             else if (this.heightConstraintType == LengthConstraintType.FIXED) {

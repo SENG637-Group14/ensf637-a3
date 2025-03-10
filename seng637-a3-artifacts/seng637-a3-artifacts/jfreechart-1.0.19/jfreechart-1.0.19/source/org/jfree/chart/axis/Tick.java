@@ -47,7 +47,7 @@
 package org.jfree.chart.axis;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
 import org.jfree.ui.TextAnchor;
 import org.jfree.util.ObjectUtilities;
@@ -140,8 +140,8 @@ public abstract class Tick implements Serializable, Cloneable {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof Tick) {
-            Tick t = (Tick) obj;
+        if (obj instanceof jfree.chart.axis.Tick) {
+            jfree.chart.axis.Tick t = (jfree.chart.axis.Tick) obj;
             if (!ObjectUtilities.equal(this.text, t.text)) {
                 return false;
             }
@@ -168,7 +168,7 @@ public abstract class Tick implements Serializable, Cloneable {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        Tick clone = (Tick) super.clone();
+        jfree.chart.axis.Tick clone = (jfree.chart.axis.Tick) super.clone();
         return clone;
     }
 

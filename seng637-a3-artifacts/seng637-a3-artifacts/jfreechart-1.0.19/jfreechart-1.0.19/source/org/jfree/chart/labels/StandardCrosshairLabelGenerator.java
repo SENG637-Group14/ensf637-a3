@@ -43,7 +43,9 @@ package org.jfree.chart.labels;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
-import org.jfree.chart.plot.Crosshair;
+
+import jfree.chart.labels.CrosshairLabelGenerator;
+import jfree.chart.plot.Crosshair;
 
 /**
  * A default label generator.
@@ -134,11 +136,11 @@ public class StandardCrosshairLabelGenerator implements CrosshairLabelGenerator,
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof StandardCrosshairLabelGenerator)) {
+        if (!(obj instanceof jfree.chart.labels.StandardCrosshairLabelGenerator)) {
             return false;
         }
-        StandardCrosshairLabelGenerator that
-                = (StandardCrosshairLabelGenerator) obj;
+        jfree.chart.labels.StandardCrosshairLabelGenerator that
+                = (jfree.chart.labels.StandardCrosshairLabelGenerator) obj;
         if (!this.labelTemplate.equals(that.labelTemplate)) {
             return false;
         }

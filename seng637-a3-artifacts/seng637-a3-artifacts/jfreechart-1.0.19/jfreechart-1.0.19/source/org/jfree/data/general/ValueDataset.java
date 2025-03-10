@@ -40,7 +40,8 @@
 
 package org.jfree.data.general;
 
-import org.jfree.data.Value;
+import jfree.data.Value;
+import jfree.data.general.Dataset;
 
 /**
  * An interface for a dataset that returns a single value.

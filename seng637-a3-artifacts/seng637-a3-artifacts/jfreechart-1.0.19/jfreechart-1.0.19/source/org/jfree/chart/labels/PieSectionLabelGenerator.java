@@ -58,7 +58,7 @@ import java.awt.Paint;
 import java.awt.font.TextAttribute;
 import java.text.AttributedString;
 
-import org.jfree.data.general.PieDataset;
+import jfree.data.general.PieDataset;
 
 /**
  * Interface for a label generator for plots that use data from

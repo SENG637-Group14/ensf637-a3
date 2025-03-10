@@ -50,7 +50,10 @@ import java.awt.event.MouseEvent;
 import java.io.Serializable;
 import java.util.EventObject;
 
-import org.jfree.chart.entity.ChartEntity;
+import jfree.chart.ChartMouseListener;
+import jfree.chart.ChartPanel;
+import jfree.chart.JFreeChart;
+import jfree.chart.entity.ChartEntity;
 
 /**
  * A mouse event for a chart that is displayed in a {@link ChartPanel}.
@@ -63,7 +66,7 @@ public class ChartMouseEvent extends EventObject implements Serializable {
     private static final long serialVersionUID = -682393837314562149L;
 
     /** The chart that the mouse event relates to. */
-    private JFreeChart chart;
+    private jfree.chart.JFreeChart chart;
 
     /** The Java mouse event that triggered this event. */
     private MouseEvent trigger;
@@ -80,7 +83,7 @@ public class ChartMouseEvent extends EventObject implements Serializable {
      * @param entity  the chart entity (if any) under the mouse point
      *                (<code>null</code> permitted).
      */
-    public ChartMouseEvent(JFreeChart chart, MouseEvent trigger,
+    public ChartMouseEvent(jfree.chart.JFreeChart chart, MouseEvent trigger,
                            ChartEntity entity) {
         super(chart);
         this.chart = chart;

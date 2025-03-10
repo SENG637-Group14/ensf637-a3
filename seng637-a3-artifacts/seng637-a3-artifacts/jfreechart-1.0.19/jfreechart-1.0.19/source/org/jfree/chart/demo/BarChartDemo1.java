@@ -45,17 +45,17 @@ package org.jfree.chart.demo;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.StandardChartTheme;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.block.BlockBorder;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.title.TextTitle;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
+import jfree.chart.ChartFactory;
+import jfree.chart.ChartPanel;
+import jfree.chart.JFreeChart;
+import jfree.chart.StandardChartTheme;
+import jfree.chart.axis.NumberAxis;
+import jfree.chart.block.BlockBorder;
+import jfree.chart.plot.CategoryPlot;
+import jfree.chart.renderer.category.BarRenderer;
+import jfree.chart.title.TextTitle;
+import jfree.data.category.CategoryDataset;
+import jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
@@ -141,7 +141,7 @@ public class BarChartDemo1 extends ApplicationFrame {
      * @param args  ignored.
      */
     public static void main(String[] args) {
-        BarChartDemo1 demo = new BarChartDemo1("JFreeChart: BarChartDemo1.java");
+        jfree.chart.demo.BarChartDemo1 demo = new jfree.chart.demo.BarChartDemo1("JFreeChart: BarChartDemo1.java");
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);

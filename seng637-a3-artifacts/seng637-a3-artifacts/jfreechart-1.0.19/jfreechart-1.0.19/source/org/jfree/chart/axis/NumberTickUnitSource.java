@@ -43,6 +43,10 @@ package org.jfree.chart.axis;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+
+import jfree.chart.axis.NumberTickUnit;
+import jfree.chart.axis.TickUnit;
+import jfree.chart.axis.TickUnitSource;
 import org.jfree.util.ObjectUtilities;
 
 /**
@@ -93,18 +97,18 @@ public class NumberTickUnitSource implements TickUnitSource, Serializable {
     }
     
     @Override
-    public TickUnit getLargerTickUnit(TickUnit unit) {
-        TickUnit t = getCeilingTickUnit(unit);
+    public jfree.chart.axis.TickUnit getLargerTickUnit(jfree.chart.axis.TickUnit unit) {
+        jfree.chart.axis.TickUnit t = getCeilingTickUnit(unit);
         if (t.equals(unit)) {
             next();
-            t = new NumberTickUnit(getTickSize(), getTickLabelFormat(), 
+            t = new jfree.chart.axis.NumberTickUnit(getTickSize(), getTickLabelFormat(),
                     getMinorTickCount());
         }
         return t; 
     }
 
     @Override
-    public TickUnit getCeilingTickUnit(TickUnit unit) {
+    public jfree.chart.axis.TickUnit getCeilingTickUnit(jfree.chart.axis.TickUnit unit) {
         return getCeilingTickUnit(unit.getSize());
     }
 
@@ -128,7 +132,7 @@ public class NumberTickUnitSource implements TickUnitSource, Serializable {
                 done = true;
             }
         }
-        return new NumberTickUnit(getTickSize(), getTickLabelFormat(), 
+        return new NumberTickUnit(getTickSize(), getTickLabelFormat(),
                 getMinorTickCount());
     }
     
@@ -219,10 +223,10 @@ public class NumberTickUnitSource implements TickUnitSource, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof NumberTickUnitSource)) {
+        if (!(obj instanceof jfree.chart.axis.NumberTickUnitSource)) {
             return false;
         }
-        NumberTickUnitSource that = (NumberTickUnitSource) obj;
+        jfree.chart.axis.NumberTickUnitSource that = (jfree.chart.axis.NumberTickUnitSource) obj;
         if (this.integers != that.integers) {
             return false;
         }

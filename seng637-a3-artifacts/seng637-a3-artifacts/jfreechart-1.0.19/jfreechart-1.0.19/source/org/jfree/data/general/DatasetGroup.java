@@ -44,7 +44,7 @@
 package org.jfree.data.general;
 
 import java.io.Serializable;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
 /**
  * A class that is used to group datasets (currently not used for any specific
@@ -109,10 +109,10 @@ public class DatasetGroup implements Cloneable, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DatasetGroup)) {
+        if (!(obj instanceof jfree.data.general.DatasetGroup)) {
             return false;
         }
-        DatasetGroup that = (DatasetGroup) obj;
+        jfree.data.general.DatasetGroup that = (jfree.data.general.DatasetGroup) obj;
         if (!this.id.equals(that.id)) {
             return false;
         }

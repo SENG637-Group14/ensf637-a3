@@ -50,15 +50,16 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Vector;
 
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYBlockRenderer;
-import org.jfree.data.Range;
-import org.jfree.data.xy.AbstractXYZDataset;
-import org.jfree.data.xy.XYDataset;
+import jfree.chart.plot.XYPlot;
+import jfree.chart.renderer.xy.XYBlockRenderer;
+import jfree.data.Range;
+import jfree.data.contour.ContourDataset;
+import jfree.data.xy.AbstractXYZDataset;
+import jfree.data.xy.XYDataset;
 
 /**
  * A convenience class that provides a default implementation of the
- * {@link ContourDataset} interface.
+ * {@link jfree.data.contour.ContourDataset} interface.
  *
  * @deprecated This class is no longer supported (as of version 1.0.4).  If
  *     you are creating contour plots, please try to use {@link XYPlot} and

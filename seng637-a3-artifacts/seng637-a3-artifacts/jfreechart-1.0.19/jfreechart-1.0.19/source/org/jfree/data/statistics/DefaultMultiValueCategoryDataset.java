@@ -46,13 +46,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import org.jfree.chart.util.ParamChecks;
+import jfree.chart.util.ParamChecks;
 
-import org.jfree.data.KeyedObjects2D;
-import org.jfree.data.Range;
-import org.jfree.data.RangeInfo;
-import org.jfree.data.general.AbstractDataset;
-import org.jfree.data.general.DatasetChangeEvent;
+import jfree.data.KeyedObjects2D;
+import jfree.data.Range;
+import jfree.data.RangeInfo;
+import jfree.data.general.AbstractDataset;
+import jfree.data.general.DatasetChangeEvent;
+import jfree.data.statistics.MultiValueCategoryDataset;
 import org.jfree.util.PublicCloneable;
 
 /**
@@ -392,11 +393,11 @@ public class DefaultMultiValueCategoryDataset extends AbstractDataset
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof DefaultMultiValueCategoryDataset)) {
+        if (!(obj instanceof jfree.data.statistics.DefaultMultiValueCategoryDataset)) {
             return false;
         }
-        DefaultMultiValueCategoryDataset that
-                = (DefaultMultiValueCategoryDataset) obj;
+        jfree.data.statistics.DefaultMultiValueCategoryDataset that
+                = (jfree.data.statistics.DefaultMultiValueCategoryDataset) obj;
         return this.data.equals(that.data);
     }
 
@@ -409,8 +410,8 @@ public class DefaultMultiValueCategoryDataset extends AbstractDataset
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        DefaultMultiValueCategoryDataset clone
-                = (DefaultMultiValueCategoryDataset) super.clone();
+        jfree.data.statistics.DefaultMultiValueCategoryDataset clone
+                = (jfree.data.statistics.DefaultMultiValueCategoryDataset) super.clone();
         clone.data = (KeyedObjects2D) this.data.clone();
         return clone;
     }

@@ -47,6 +47,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import jfree.chart.block.Arrangement;
+import jfree.chart.block.Block;
+import jfree.chart.block.BlockContainer;
+import jfree.chart.block.LengthConstraintType;
+import jfree.chart.block.RectangleConstraint;
 import org.jfree.ui.HorizontalAlignment;
 import org.jfree.ui.Size2D;
 import org.jfree.ui.VerticalAlignment;
@@ -96,14 +101,14 @@ public class ColumnArrangement implements Arrangement, Serializable {
 
     /**
      * Adds a block to be managed by this instance.  This method is usually
-     * called by the {@link BlockContainer}, you shouldn't need to call it
+     * called by the {@link jfree.chart.block.BlockContainer}, you shouldn't need to call it
      * directly.
      *
      * @param block  the block.
      * @param key  a key that controls the position of the block.
      */
     @Override
-    public void add(Block block, Object key) {
+    public void add(jfree.chart.block.Block block, Object key) {
         // since the flow layout is relatively straightforward, no information
         // needs to be recorded here
     }
@@ -121,38 +126,38 @@ public class ColumnArrangement implements Arrangement, Serializable {
      * @return The size of the container after arrangement of the contents.
      */
     @Override
-    public Size2D arrange(BlockContainer container, Graphics2D g2,
-                          RectangleConstraint constraint) {
+    public Size2D arrange(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                          jfree.chart.block.RectangleConstraint constraint) {
 
-        LengthConstraintType w = constraint.getWidthConstraintType();
-        LengthConstraintType h = constraint.getHeightConstraintType();
-        if (w == LengthConstraintType.NONE) {
-            if (h == LengthConstraintType.NONE) {
+        jfree.chart.block.LengthConstraintType w = constraint.getWidthConstraintType();
+        jfree.chart.block.LengthConstraintType h = constraint.getHeightConstraintType();
+        if (w == jfree.chart.block.LengthConstraintType.NONE) {
+            if (h == jfree.chart.block.LengthConstraintType.NONE) {
                 return arrangeNN(container, g2);
             }
-            else if (h == LengthConstraintType.FIXED) {
+            else if (h == jfree.chart.block.LengthConstraintType.FIXED) {
                 throw new RuntimeException("Not implemented.");
             }
-            else if (h == LengthConstraintType.RANGE) {
+            else if (h == jfree.chart.block.LengthConstraintType.RANGE) {
                 throw new RuntimeException("Not implemented.");
             }
         }
-        else if (w == LengthConstraintType.FIXED) {
-            if (h == LengthConstraintType.NONE) {
+        else if (w == jfree.chart.block.LengthConstraintType.FIXED) {
+            if (h == jfree.chart.block.LengthConstraintType.NONE) {
                 throw new RuntimeException("Not implemented.");
             }
-            else if (h == LengthConstraintType.FIXED) {
+            else if (h == jfree.chart.block.LengthConstraintType.FIXED) {
                 return arrangeFF(container, g2, constraint);
             }
-            else if (h == LengthConstraintType.RANGE) {
+            else if (h == jfree.chart.block.LengthConstraintType.RANGE) {
                 throw new RuntimeException("Not implemented.");
             }
         }
-        else if (w == LengthConstraintType.RANGE) {
-            if (h == LengthConstraintType.NONE) {
+        else if (w == jfree.chart.block.LengthConstraintType.RANGE) {
+            if (h == jfree.chart.block.LengthConstraintType.NONE) {
                 throw new RuntimeException("Not implemented.");
             }
-            else if (h == LengthConstraintType.FIXED) {
+            else if (h == jfree.chart.block.LengthConstraintType.FIXED) {
                 return arrangeRF(container, g2, constraint);
             }
             else if (h == LengthConstraintType.RANGE) {
@@ -175,8 +180,8 @@ public class ColumnArrangement implements Arrangement, Serializable {
      *
      * @return The container size after the arrangement.
      */
-    protected Size2D arrangeFF(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+    protected Size2D arrangeFF(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                               jfree.chart.block.RectangleConstraint constraint) {
         // TODO: implement properly
         return arrangeNF(container, g2, constraint);
     }
@@ -193,8 +198,8 @@ public class ColumnArrangement implements Arrangement, Serializable {
      *
      * @return The container size after the arrangement.
      */
-    protected Size2D arrangeNF(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+    protected Size2D arrangeNF(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                               jfree.chart.block.RectangleConstraint constraint) {
 
         List blocks = container.getBlocks();
 
@@ -208,8 +213,8 @@ public class ColumnArrangement implements Arrangement, Serializable {
         double maxWidth = 0.0;
         List itemsInColumn = new ArrayList();
         for (int i = 0; i < blocks.size(); i++) {
-            Block block = (Block) blocks.get(i);
-            Size2D size = block.arrange(g2, RectangleConstraint.NONE);
+            jfree.chart.block.Block block = (jfree.chart.block.Block) blocks.get(i);
+            Size2D size = block.arrange(g2, jfree.chart.block.RectangleConstraint.NONE);
             if (y + size.height <= height) {
                 itemsInColumn.add(block);
                 block.setBounds(
@@ -258,8 +263,8 @@ public class ColumnArrangement implements Arrangement, Serializable {
      *
      * @return The size of the container.
      */
-    protected Size2D arrangeRR(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+    protected Size2D arrangeRR(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                               jfree.chart.block.RectangleConstraint constraint) {
 
         // first arrange without constraints, and see if this fits within
         // the required ranges...
@@ -268,7 +273,7 @@ public class ColumnArrangement implements Arrangement, Serializable {
             return s1;  // TODO: we didn't check the width yet
         }
         else {
-            RectangleConstraint c = constraint.toFixedHeight(
+            jfree.chart.block.RectangleConstraint c = constraint.toFixedHeight(
                 constraint.getHeightRange().getUpperBound()
             );
             return arrangeRF(container, g2, c);
@@ -285,15 +290,15 @@ public class ColumnArrangement implements Arrangement, Serializable {
      *
      * @return The size of the container after arrangement.
      */
-    protected Size2D arrangeRF(BlockContainer container, Graphics2D g2,
-                               RectangleConstraint constraint) {
+    protected Size2D arrangeRF(jfree.chart.block.BlockContainer container, Graphics2D g2,
+                               jfree.chart.block.RectangleConstraint constraint) {
 
         Size2D s = arrangeNF(container, g2, constraint);
         if (constraint.getWidthRange().contains(s.width)) {
             return s;
         }
         else {
-            RectangleConstraint c = constraint.toFixedWidth(
+            jfree.chart.block.RectangleConstraint c = constraint.toFixedWidth(
                 constraint.getWidthRange().constrain(s.getWidth())
             );
             return arrangeFF(container, g2, c);
@@ -318,7 +323,7 @@ public class ColumnArrangement implements Arrangement, Serializable {
         if (blockCount > 0) {
             Size2D[] sizes = new Size2D[blocks.size()];
             for (int i = 0; i < blocks.size(); i++) {
-                Block block = (Block) blocks.get(i);
+                jfree.chart.block.Block block = (Block) blocks.get(i);
                 sizes[i] = block.arrange(g2, RectangleConstraint.NONE);
                 height = height + sizes[i].getHeight();
                 maxWidth = Math.max(sizes[i].width, maxWidth);
@@ -369,10 +374,10 @@ public class ColumnArrangement implements Arrangement, Serializable {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof ColumnArrangement)) {
+        if (!(obj instanceof jfree.chart.block.ColumnArrangement)) {
             return false;
         }
-        ColumnArrangement that = (ColumnArrangement) obj;
+        jfree.chart.block.ColumnArrangement that = (jfree.chart.block.ColumnArrangement) obj;
         if (this.horizontalAlignment != that.horizontalAlignment) {
             return false;
         }
