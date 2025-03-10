@@ -1,13 +1,14 @@
 **SENG 637 - Dependability and Reliability of Software Systems**
 
-**Lab. Report #3 – Code Coverage, Adequacy Criteria and Test Case Correlation**
+**Lab. Report #3 – Code Coverage, Adequacy Criteria, and Test Case Correlation**
 
-| Group \#:      |     |
+| Group \#: 14     |     |
 | -------------- | --- |
-| Student Names: |     |
-|                |     |
-|                |     |
-|                |     |
+| **Student Names:** |     |
+| Ayodele Oluwabusola |     |
+| Gabriel Gabari |     |
+| Remi Oyediji   |     |
+| Taiwo Oyewole  |     |
 
 (Note that some labs require individual reports while others require one report
 for each group. Please see each lab document for details.)
