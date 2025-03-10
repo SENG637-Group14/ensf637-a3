@@ -14,8 +14,17 @@
 for each group. Please see each lab document for details.)
 
 # 1 Introduction
+Software testing is an essential part of software development, ensuring that programs function correctly and meet user requirements. One approach to testing is **white-box testing**, which involves analyzing the internal structure and logic of the code to design test cases. This report documents our team's implementation of white-box testing strategies for JFreeChart's **DataUtilities** and **Range** classes.
 
-Text…
+We used **EclEmma**, a code coverage tool, to measure how well our test suite covered different parts of the code. Specifically, we evaluated three key control-flow metrics:
+
+- **Statement Coverage** – the percentage of executed statements during testing.  
+- **Branch Coverage** – the percentage of executed decision paths (e.g., if-else conditions).  
+- **Condition Coverage** – the percentage of individual boolean expressions tested within conditions.  
+
+Additionally, we manually calculated **data-flow coverage** for selected methods to understand how data is used throughout execution paths. By analyzing variable definitions and usages, we ensured comprehensive test adequacy.
+
+This assignment highlights how **coverage criteria influence test case design**, helping testers improve test suite effectiveness while balancing practical trade-offs. Through this process, we learned the importance of achieving high coverage without unnecessary redundancy and ensuring meaningful test cases that catch potential software defects.
 
 # 2 Manual data-flow coverage calculations for X and Y methods
 
