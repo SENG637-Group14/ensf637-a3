@@ -38,7 +38,7 @@ Additionally, we manually calculated **data-flow coverage** for selected methods
 
 This assignment highlights how **coverage criteria influence test case design**, helping testers improve test suite effectiveness while balancing practical trade-offs. Through this process, we learned the importance of achieving high coverage without unnecessary redundancy and ensuring meaningful test cases that catch potential software defects.
 
-The test suite can be found in the org.jfree.data.test package of the source directory.
+The test suite can be found in the `org.jfree.data.test` package of the source directory.
 
 # 2 Manual data-flow coverage calculations for X and Y methods
 
