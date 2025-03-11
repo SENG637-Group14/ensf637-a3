@@ -1,4 +1,4 @@
-package test;
+package org.jfree.data;
 
 import org.jfree.data.Range;
 import org.junit.Before;
@@ -333,5 +333,234 @@ public class RangeTest {
         Range range2 = new Range(100, Double.POSITIVE_INFINITY);
         Range combined = Range.combine(range1, range2);
         assertEquals(new Range(Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY), combined);
+    }
+
+    //constrain
+    // Test case: Constrain a value within the range
+    @Test
+    public void testConstrainWithinRange() {
+        Range range = new Range(-1, 1);
+        assertEquals(0.5, range.constrain(0.5), 0.000000001d);
+    }
+
+    // Test case: Constrain a value below the lower bound
+    @Test
+    public void testConstrainBelowLowerBound() {
+        Range range = new Range(-1, 1);
+        assertEquals(-1, range.constrain(-2), 0.000000001d);
+    }
+
+    // Test case: Constrain a value above the upper bound
+    @Test
+    public void testConstrainAboveUpperBound() {
+        Range range = new Range(-1, 1);
+        assertEquals(1, range.constrain(2), 0.000000001d);
+    }
+
+    // Test case: Constrain a value exactly at the lower bound
+    @Test
+    public void testConstrainAtLowerBound() {
+        Range range = new Range(-1, 1);
+        assertEquals(-1, range.constrain(-1), 0.000000001d);
+    }
+
+    // Test case: Constrain a value exactly at the upper bound
+    @Test
+    public void testConstrainAtUpperBound() {
+        Range range = new Range(-1, 1);
+        assertEquals(1, range.constrain(1), 0.000000001d);
+    }
+
+
+    // Test case: Intersecting range within the bounds
+    @Test
+    public void testIntersectsWithinBounds() {
+        Range range = new Range(-1, 1);
+        assertTrue(range.intersects(-0.5, 0.5));
+    }
+
+    // Test case: Intersecting range overlapping the lower bound
+    @Test
+    public void testIntersectsOverlappingLowerBound() {
+        Range range = new Range(-1, 1);
+        assertTrue(range.intersects(-2, 0));
+    }
+
+    // Test case: Intersecting range overlapping the upper bound
+    @Test
+    public void testIntersectsOverlappingUpperBound() {
+        Range range = new Range(-1, 1);
+        assertTrue(range.intersects(0, 2));
+    }
+
+    // Test case: Intersecting range exactly matching the bounds
+    @Test
+    public void testIntersectsExactBounds() {
+        Range range = new Range(-1, 1);
+        assertTrue(range.intersects(-1, 1));
+    }
+
+    // Test case: Non-intersecting range below the lower bound
+    @Test
+    public void testIntersectsBelowLowerBound() {
+        Range range = new Range(-1, 1);
+        assertFalse(range.intersects(-3, -2));
+    }
+
+    // Test case: Non-intersecting range above the upper bound
+    @Test
+    public void testIntersectsAboveUpperBound() {
+        Range range = new Range(-1, 1);
+        assertFalse(range.intersects(2, 3));
+    }
+
+    // Test case: Both ranges are null
+    @Test
+    public void testCombineIgnoringNaNBothNull() {
+        assertNull(Range.combineIgnoringNaN(null, null));
+    }
+
+    // Test case: First range is null, second range is NaN range
+    @Test
+    public void testCombineIgnoringNaNFirstNullSecondNaN() {
+        Range range2 = new Range(Double.NaN, Double.NaN);
+        assertNull(Range.combineIgnoringNaN(null, range2));
+    }
+
+    // Test case: First range is NaN range, second range is null
+    @Test
+    public void testCombineIgnoringNaNFirstNaNSecondNull() {
+        Range range1 = new Range(Double.NaN, Double.NaN);
+        assertNull(Range.combineIgnoringNaN(range1, null));
+    }
+
+    // Test case: First range is null, second range is valid
+    @Test
+    public void testCombineIgnoringNaNFirstNullSecondValid() {
+        Range range2 = new Range(1, 10);
+        assertEquals(range2, Range.combineIgnoringNaN(null, range2));
+    }
+
+    // Test case: First range is valid, second range is null
+    @Test
+    public void testCombineIgnoringNaNFirstValidSecondNull() {
+        Range range1 = new Range(1, 10);
+        assertEquals(range1, Range.combineIgnoringNaN(range1, null));
+    }
+
+    // Test case: Both ranges are valid
+    @Test
+    public void testCombineIgnoringNaNBothValid() {
+        Range range1 = new Range(1, 5);
+        Range range2 = new Range(3, 10);
+        Range expected = new Range(1, 10);
+        assertEquals(expected, Range.combineIgnoringNaN(range1, range2));
+    }
+
+    // Test case: One range has NaN lower bound, other has NaN upper bound
+    @Test
+    public void testCombineIgnoringNaNWithNaNBounds() {
+        Range range1 = new Range(Double.NaN, 5);
+        Range range2 = new Range(3, Double.NaN);
+        Range expected = new Range(3, 5);
+        assertEquals(expected, Range.combineIgnoringNaN(range1, range2));
+    }
+
+    // Test case: Both ranges are NaN ranges
+    @Test
+    public void testCombineIgnoringNaNBothNaN() {
+        Range range1 = new Range(Double.NaN, Double.NaN);
+        Range range2 = new Range(Double.NaN, Double.NaN);
+        assertNull(Range.combineIgnoringNaN(range1, range2));
+    }
+
+
+    @Test
+    public void testEqualsSameBounds() {
+        Range r1 = new Range(-1, 1);
+        Range r2 = new Range(-1, 1);
+        assertTrue("Ranges with same bounds should be equal", r1.equals(r2));
+        assertTrue("Equal ranges should have same hashCode", r1.hashCode() == r2.hashCode());
+    }
+
+    @Test
+    public void testEqualsDifferentBounds() {
+        Range r1 = new Range(-1, 1);
+        Range r2 = new Range(-2, 2);
+        assertFalse("Ranges with different bounds should not be equal", r1.equals(r2));
+    }
+
+    @Test
+    public void testToString() {
+        Range r1 = new Range(-1, 1);
+        assertEquals("Range[-1.0,1.0]", r1.toString());
+    }
+
+    @Test
+    public void testExpandNoChange() {
+        Range r1 = new Range(0, 10);
+        Range expanded = Range.expand(r1, 0.0, 0.0);
+        assertEquals("Range should be unchanged with 0.0 margins", r1, expanded);
+    }
+
+    @Test
+    public void testExpandToIncludeWithinBounds() {
+        Range r1 = new Range(0, 5);
+        Range expanded = Range.expandToInclude(r1, 3);
+        assertEquals("Including a value inside range should not change the range", r1, expanded);
+    }
+
+    @Test
+    public void testExpandToIncludeLargerValue() {
+        Range r1 = new Range(0, 5);
+        Range expanded = Range.expandToInclude(r1, 10);
+        assertEquals("Range[0.0,10.0]", expanded.toString());
+    }
+
+    @Test
+    public void testShiftAllowZeroCrossing() {
+        Range base = new Range(-2.0, 2.0);
+        Range shifted = Range.shift(base, 1.0, true);
+        assertEquals("Range[-1.0,3.0]", shifted.toString());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testShiftNullRange() {
+        Range.shift(null, 5.0); // should throw exception
+    }
+
+    @Test
+    public void testScalePositive() {
+        Range base = new Range(-2, 2);
+        Range scaled = Range.scale(base, 2.0);
+        assertEquals("Range[-4.0,4.0]", scaled.toString());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testScaleNegativeFactor() {
+        Range base = new Range(1, 2);
+        Range.scale(base, -1.0); // should throw exception
+    }
+
+
+    @Test
+    public void testShiftNoZeroCrossingPositiveCrossingZero() {
+        Range base = new Range(1.0, 2.0);
+        Range shifted = Range.shift(base, -2.0, false);
+        assertEquals("Range[0.0,0.0]", shifted.toString());
+    }
+
+    @Test
+    public void testShiftNoZeroCrossingNegativeCrossingZero() {
+        Range base = new Range(-2.0, -1.0);
+        Range shifted = Range.shift(base, 3.0, false);
+        assertEquals("Range[0.0,0.0]", shifted.toString());
+    }
+
+    @Test
+    public void testShiftNoZeroCrossingBoundAtZero() {
+        Range base = new Range(0.0, 2.0);
+        Range shifted = Range.shift(base, -1.0, false);
+        assertEquals("Range[0.0,2.0]", shifted.toString());
     }
 }
