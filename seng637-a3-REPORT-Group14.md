@@ -159,4 +159,5 @@ Despite these difficulties, we successfully improved our test coverage and gaine
 
 # 10 Comments/feedback on the lab itself
 
-Text…
+- The instructions and guidelines for this assignment were clear and well-structured, making it easier to understand and implement the test cases effectively.
+- The lab exercise provided valuable experience in designing and executing structured test cases using white-box testing and coverage analysis.
