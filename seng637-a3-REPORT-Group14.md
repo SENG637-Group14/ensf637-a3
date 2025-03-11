@@ -18,8 +18,8 @@
 - [5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)](#5-a-detailed-report-of-the-coverage-achieved-of-each-class-and-method-a-screen-shot-from-the-code-cover-results-in-green-and-red-color-would-suffice)
 - [6 Pros and Cons of coverage tools used and Metrics you report](#6-pros-and-cons-of-coverage-tools-used-and-metrics-you-report)
 - [7 A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation.](#7-a-comparison-on-the-advantages-and-disadvantages-of-requirements-based-test-generation-and-coverage-based-test-generation)
-    - [**Requirements-Based Test Generation**](#requirements-based-test-generation)
-    - [**Coverage-Based Test Generation**](#coverage-based-test-generation)
+    - [Requirements-Based Test Generation](#requirements-based-test-generation)
+    - [Coverage-Based Test Generation](#coverage-based-test-generation)
 - [8 A discussion on how the teamwork/effort was divided and managed](#8-a-discussion-on-how-the-teamworkeffort-was-divided-and-managed)
 - [9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab](#9-any-difficulties-encountered-challenges-overcome-and-lessons-learned-from-performing-the-lab)
 - [10 Comments/feedback on the lab itself](#10-commentsfeedback-on-the-lab-itself)
@@ -38,7 +38,7 @@ Additionally, we manually calculated **data-flow coverage** for selected methods
 
 This assignment highlights how **coverage criteria influence test case design**, helping testers improve test suite effectiveness while balancing practical trade-offs. Through this process, we learned the importance of achieving high coverage without unnecessary redundancy and ensuring meaningful test cases that catch potential software defects.
 
-The test suite can be found in the `org.jfree.data.test` package of the source directory.
+The test suite can be found in the `org.jfree.data` package of the source directory.
 
 # 2 Manual data-flow coverage calculations for X and Y methods
 
