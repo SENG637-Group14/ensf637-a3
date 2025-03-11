@@ -93,101 +93,123 @@ By refining our test suite through iterative improvements, we ensured higher cod
 To improve **statement, branch, and method coverage** for `calculateColumnTotal` in the `DataUtilities` class, we designed five test cases that cover different input scenarios. These tests ensure correct behavior across various conditions while eliminating untested paths.  
 
 **1. Summing Negative Values** (`testCalculateColumnTotalForNegativeValues`) 
-**Purpose**: Ensures the method correctly sums only negative numbers in a column.  
-**Coverage Improvement**: Exercises paths where all values are negative, ensuring branch conditions for addition logic are covered.  
+**Purpose**: Calculate column total with negative values.
+**Coverage Improvement: Exercises paths where all values are negative, ensuring branch conditions for addition logic are covered.
 
-**Code Snippet:** Showing how `Values2D` is mocked to return negative values.  
+**Code Snippet: Showing how Values2D is mocked to return negative values.  
 ```java
 @Test
 public void testCalculateColumnTotalForNegativeValues() {
-    Mockery context = new Mockery();
-    Values2D values = context.mock(Values2D.class);
-    context.checking(new Expectations() {{
-        allowing(values).getRowCount(); will(returnValue(3));
-        allowing(values).getValue(0, 0); will(returnValue(-5.0));
-        allowing(values).getValue(1, 0); will(returnValue(-10.0));
-        allowing(values).getValue(2, 0); will(returnValue(-3.0));
-    }});
-    assertEquals(-18.0, DataUtilities.calculateColumnTotal(values, 0), 0.0001);
+  mockingContext.checking(new Expectations() {{
+    oneOf(values2D).getRowCount();
+    will(returnValue(2));
+    oneOf(values2D).getValue(0, 0);
+    will(returnValue(-7.5));
+    oneOf(values2D).getValue(1, 0);
+    will(returnValue(-2.5));
+  }});
+
+  // exercise
+  double result = DataUtilities.calculateColumnTotal(values2D, 0);
+  // verify
+  assertEquals("Column total should be -10.0", -10.0, result, .000000001d);
 }
 ```
 
 **2. Summing Positive Values** (`testCalculateColumnTotalForPositiveValues`) 
-**Purpose**: Verifies that the method returns the correct sum when all values are positive.  
-**Coverage Improvement**: Covers basic statement execution and verifies correct handling of positive-only data.  
+**Purpose**: Calculate column total with positive values.  
+**Coverage Improvement**: Exercises paths where all values are positive, ensuring branch conditions for addition logic are covered.
 
 **Code Snippet:**
 
 ```java
 @Test
 public void testCalculateColumnTotalForPositiveValues() {
-    Mockery context = new Mockery();
-    Values2D values = context.mock(Values2D.class);
-    context.checking(new Expectations() {{
-        allowing(values).getRowCount(); will(returnValue(3));
-        allowing(values).getValue(0, 0); will(returnValue(4.0));
-        allowing(values).getValue(1, 0); will(returnValue(6.0));
-        allowing(values).getValue(2, 0); will(returnValue(8.0));
-    }});
-    assertEquals(18.0, DataUtilities.calculateColumnTotal(values, 0), 0.0001);
+  final Values2D data = mockingContext.mock(Values2D.class);
+
+  mockingContext.checking(new Expectations() {{
+    oneOf(data).getRowCount(); will(returnValue(2));
+    oneOf(data).getValue(0, 0); will(returnValue(7.5));
+    oneOf(data).getValue(1, 0); will(returnValue(2.5));
+  }});
+
+  int[] validRows = {0, 1};
+  double result = DataUtilities.calculateColumnTotal(data, 0, validRows);
+  assertEquals(10.0, result, 0.00001);
+
+  mockingContext.assertIsSatisfied();
 }
 ```
 
 **3. Summing Mixed Values** (`testCalculateColumnTotalForMixedValues`) 
-**Purpose**: Tests how the method handles a mix of positive and negative values in a column.  
-**Coverage Improvement**: Increases branch coverage by testing sign variations in the summation logic.  
+**Purpose**: Calculate column total with mixed positive and negative values
+**Coverage Improvement**:  Exercises paths where values in the column include both positive and negative numbers, ensuring branch conditions for addition logic are covered.
 
 **Code Snippet:**
 
 ```java
 @Test
 public void testCalculateColumnTotalForMixedValues() {
-    Mockery context = new Mockery();
-    Values2D values = context.mock(Values2D.class);
-    context.checking(new Expectations() {{
-        allowing(values).getRowCount(); will(returnValue(3));
-        allowing(values).getValue(0, 0); will(returnValue(10.0));
-        allowing(values).getValue(1, 0); will(returnValue(-5.0));
-        allowing(values).getValue(2, 0); will(returnValue(3.0));
-    }});
-    assertEquals(8.0, DataUtilities.calculateColumnTotal(values, 0), 0.0001);
+  final Values2D data = mockingContext.mock(Values2D.class);
+
+  mockingContext.checking(new Expectations() {{
+    oneOf(data).getRowCount(); will(returnValue(2));
+    oneOf(data).getValue(0, 0); will(returnValue(7.5));
+    oneOf(data).getValue(1, 0); will(returnValue(-2.5));
+  }});
+
+  int[] validRows = {0, 1};
+  double result = DataUtilities.calculateColumnTotal(data, 0, validRows);
+  assertEquals(5.0, result, 0.00001);
+
+  mockingContext.assertIsSatisfied();
 }
 ```
 
 
 **4. Handling an Empty Data Set (`testCalculateColumnTotalForEmptyDataSet`)**  
-**Purpose**: Ensures that an **empty dataset returns zero**, as specified in the Javadoc.  
-**Coverage Improvement**: Covers an important **edge case** where no data is present, ensuring correct handling of **null or empty inputs**.  
+**Purpose**: Calculate column total with an empty data set.
+**Coverage Improvement**: Ensures that the method correctly handles the case where the data set is empty, returning a total of zero as specified in the Javadoc.
 
-**Code Snippet:**@Test
+**Code Snippet:**
 
 ```java
 @Test
 public void testCalculateColumnTotalForEmptyDataSet() {
-    Mockery context = new Mockery();
-    Values2D values = context.mock(Values2D.class);
-    context.checking(new Expectations() {{
-        allowing(values).getRowCount(); will(returnValue(0));
-    }});
-    assertEquals(0.0, DataUtilities.calculateColumnTotal(values, 0), 0.0001);
+  final Values2D data = mockingContext.mock(Values2D.class);
+
+  mockingContext.checking(new Expectations() {{
+    oneOf(data).getRowCount(); will(returnValue(0));
+  }});
+
+  int[] validRows = {};
+  double result = DataUtilities.calculateColumnTotal(data, 0, validRows);
+  assertEquals(0.0, result, 0.00001);
+
+  mockingContext.assertIsSatisfied();
 }
 ```
 
 **5. Single Value Case (`testCalculateColumnTotalForSingleValue`)**  
-**Purpose**: Verifies that when a **single value is present**, it returns that value as the total.  
-**Coverage Improvement**: Ensures correct handling of **minimal input**, covering a **simple yet critical execution path**.  
+**Purpose**: Calculate column total with a single value.
+**Coverage Improvement**: Exercises paths where the column contains only one value, ensuring the method correctly handles minimal input cases.
 **Code Snippet:**
 
 ```java
 @Test
 public void testCalculateColumnTotalForSingleValue() {
-    Mockery context = new Mockery();
-    Values2D values = context.mock(Values2D.class);
-    context.checking(new Expectations() {{
-        allowing(values).getRowCount(); will(returnValue(1));
-        allowing(values).getValue(0, 0); will(returnValue(7.5));
-    }});
-    assertEquals(7.5, DataUtilities.calculateColumnTotal(values, 0), 0.0001);
+  final Values2D data = mockingContext.mock(Values2D.class);
+
+  mockingContext.checking(new Expectations() {{
+    oneOf(data).getRowCount(); will(returnValue(1));
+    oneOf(data).getValue(0, 0); will(returnValue(7.5));
+  }});
+
+  int[] validRows = {0};
+  double result = DataUtilities.calculateColumnTotal(data, 0, validRows);
+  assertEquals(7.5, result, 0.00001);
+
+  mockingContext.assertIsSatisfied();
 }
 ```
 
