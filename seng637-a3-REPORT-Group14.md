@@ -59,7 +59,7 @@ The test suite can be found in the `org.jfree.data` package of the source direct
 | `def(13)`    | `{n}`             |
 | `def(15)`    | `{total}`         |
 | `def(16)`    | `{r2}`            |
-
+**Table 1 showing definition node for calculateColumnTotal function from DataUtilities class**
 
 | `Usage`  | `Variables`              |
 |-----------|----------------------------|
@@ -76,6 +76,7 @@ The test suite can be found in the `org.jfree.data` package of the source direct
 | `use(15)` | `{total, n}`            |
 | `use(16)` | `{r2}`                  |
 | `use(17)` | `{total}`               |
+**Table 2 showing usage node for calculateColumnTotal function from DataUtilities class**
 
 | Variable   | DU-Pairs                                                                    |
 |----------- |---------------------------------------------------------------------------- |
@@ -86,6 +87,8 @@ The test suite can be found in the `org.jfree.data` package of the source direct
 | r          | (5,6), (5,7), (5,10), (10,6)                                                |
 | r2         | (11,12), (11,13), (11,16), (16,12)                                          |
 | n          | (7,8), (7,9), (13,14), (13,15)                                              |
+**Table 3 showing DU-Pairs for calculateColumnTotal function from DataUtilities class**
+
 
 | `Variable` | `Defined at node` | `dcu(v,n)`         | `dpu(v,n)`                               |
 |-------------|---------------------|----------------------|--------------------------------------------|
@@ -97,6 +100,8 @@ The test suite can be found in the `org.jfree.data` package of the source direct
 | `rowCount` | `4`               | `{}`                | `{(6,7),(6,11),(12,13),(12,17)}`          |
 | `n`        | `7`               | `{9,15}`            | `{(8,10),(8,9)}`                          |
 | `n`        | `13`              | `{9,15}`            | `{(14,16),(14,15)}`                       |
+
+**Table 4 showing dcu and dpu for calculateColumnTotal function from DataUtilities class**
 
 **Dataflow graph for Range.png**
 <img src="media/Dataflow graph for Range.png" alt="media/Dataflow graph for Range.png" >
