@@ -103,11 +103,16 @@ The test suite can be found in the `org.jfree.data` package of the source direct
 
 **Table 4 showing dcu and dpu for calculateColumnTotal function from DataUtilities class**
 
-**Dataflow graph for Range.png**
+**Dataflow graph for Range**
 <img src="media/Dataflow graph for Range.png" alt="media/Dataflow graph for Range.png" >
 
-**DU pair statements for getupperbound().png**
+**DU pair statements for getupperbound()**
 <img src="media/DU pair statements for getupperbound().png" alt="media/DU pair statements for getupperbound().png" >
+
+**DU pair per variable**
+<img src="media/DU Pair per Variable.png" alt="media/DU Pair per Variable.png" >
+
+
 
 
 # 3 A detailed description of the testing strategy for the new unit test
