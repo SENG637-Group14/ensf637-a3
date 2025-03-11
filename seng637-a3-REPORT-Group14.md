@@ -2,6 +2,15 @@
 
 **Lab. Report #3 – Code Coverage, Adequacy Criteria, and Test Case Correlation**
 
+| Group \#: 14     |     |
+| -------------- | --- |
+| **Student Names:** |     |
+| Ayodele Oluwabusola |     |
+| Gabriel Gabari |     |
+| Remi Oyediji   |     |
+| Taiwo Oyewole  |     |
+
+
 - [1 Introduction](#1-introduction)
 - [2 Manual data-flow coverage calculations for X and Y methods](#2-manual-data-flow-coverage-calculations-for-x-and-y-methods)
 - [3 A detailed description of the testing strategy for the new unit test](#3-a-detailed-description-of-the-testing-strategy-for-the-new-unit-test)
@@ -12,21 +21,9 @@
     - [**Requirements-Based Test Generation**](#requirements-based-test-generation)
     - [**Coverage-Based Test Generation**](#coverage-based-test-generation)
 - [8 A discussion on how the teamwork/effort was divided and managed](#8-a-discussion-on-how-the-teamworkeffort-was-divided-and-managed)
-  - [Teamwork and Responsibilities](#teamwork-and-responsibilities)
 - [9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab](#9-any-difficulties-encountered-challenges-overcome-and-lessons-learned-from-performing-the-lab)
 - [10 Comments/feedback on the lab itself](#10-commentsfeedback-on-the-lab-itself)
 
-
-| Group \#: 14     |     |
-| -------------- | --- |
-| **Student Names:** |     |
-| Ayodele Oluwabusola |     |
-| Gabriel Gabari |     |
-| Remi Oyediji   |     |
-| Taiwo Oyewole  |     |
-
-(Note that some labs require individual reports while others require one report
-for each group. Please see each lab document for details.)
 
 # 1 Introduction
 Software testing is an essential part of software development, ensuring that programs function correctly and meet user requirements. One approach to testing is **white-box testing**, which involves analyzing the internal structure and logic of the code to design test cases. This report documents our team's implementation of white-box testing strategies for JFreeChart's **DataUtilities** and **Range** classes.
@@ -143,7 +140,7 @@ By integrating both methods, we maximized test effectiveness while ensuring our 
 
 Every member of the team was actively involved in the entire exercise. The project was executed as follows:
 
-## Teamwork and Responsibilities
+Teamwork and Responsibilities
 
 | **Task**                           | **Responsibility** |
 |-------------------------------------|--------------------|
