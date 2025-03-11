@@ -90,13 +90,13 @@ By refining our test suite through iterative improvements, we ensured higher cod
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
-To improve **statement, branch, and method coverage** for `calculateColumnTotal` in the `DataUtilities` class, we designed **five test cases** that cover different input scenarios. These tests ensure **correct behavior across various conditions** while eliminating untested paths.  
+To improve **statement, branch, and method coverage** for `calculateColumnTotal` in the `DataUtilities` class, we designed five test cases that cover different input scenarios. These tests ensure correct behavior across various conditions while eliminating untested paths.  
 
-**1. Summing Negative Values (`testCalculateColumnTotalForNegativeValues`)**  
-**Purpose**: Ensures the method correctly sums **only negative numbers** in a column.  
+**1. Summing Negative Values** (`testCalculateColumnTotalForNegativeValues`) 
+**Purpose**: Ensures the method correctly sums only negative numbers in a column.  
 **Coverage Improvement**: Exercises paths where all values are negative, ensuring branch conditions for addition logic are covered.  
 
-**Suggested Snippet Placement:** Show how `Values2D` is mocked to return negative values.  
+**Code Snippet:** Showing how `Values2D` is mocked to return negative values.  
 ```java
 @Test
 public void testCalculateColumnTotalForNegativeValues() {
@@ -112,24 +112,54 @@ public void testCalculateColumnTotalForNegativeValues() {
 }
 ```
 
-**2. Summing Positive Values (`testCalculateColumnTotalForPositiveValues`)**  
-**Purpose**: Verifies that the method returns the correct sum when **all values are positive**.  
+**2. Summing Positive Values** (`testCalculateColumnTotalForPositiveValues`) 
+**Purpose**: Verifies that the method returns the correct sum when all values are positive.  
 **Coverage Improvement**: Covers basic statement execution and verifies correct handling of positive-only data.  
 
-**Suggested Snippet Placement:** Similar to negative values but using positive values instead.  
+**Code Snippet:**
 
-**3. Summing Mixed Values (`testCalculateColumnTotalForMixedValues`)**  
-**Purpose**: Tests how the method handles a mix of **positive and negative values** in a column.  
-**Coverage Improvement**: Increases **branch coverage** by testing sign variations in the summation logic.  
+```java
+@Test
+public void testCalculateColumnTotalForPositiveValues() {
+    Mockery context = new Mockery();
+    Values2D values = context.mock(Values2D.class);
+    context.checking(new Expectations() {{
+        allowing(values).getRowCount(); will(returnValue(3));
+        allowing(values).getValue(0, 0); will(returnValue(4.0));
+        allowing(values).getValue(1, 0); will(returnValue(6.0));
+        allowing(values).getValue(2, 0); will(returnValue(8.0));
+    }});
+    assertEquals(18.0, DataUtilities.calculateColumnTotal(values, 0), 0.0001);
+}
+```
 
-**Suggested Snippet Placement:** Show test logic where values include both **positive and negative numbers**.  
+**3. Summing Mixed Values** (`testCalculateColumnTotalForMixedValues`) 
+**Purpose**: Tests how the method handles a mix of positive and negative values in a column.  
+**Coverage Improvement**: Increases branch coverage by testing sign variations in the summation logic.  
+
+**Code Snippet:**
+
+```java
+@Test
+public void testCalculateColumnTotalForMixedValues() {
+    Mockery context = new Mockery();
+    Values2D values = context.mock(Values2D.class);
+    context.checking(new Expectations() {{
+        allowing(values).getRowCount(); will(returnValue(3));
+        allowing(values).getValue(0, 0); will(returnValue(10.0));
+        allowing(values).getValue(1, 0); will(returnValue(-5.0));
+        allowing(values).getValue(2, 0); will(returnValue(3.0));
+    }});
+    assertEquals(8.0, DataUtilities.calculateColumnTotal(values, 0), 0.0001);
+}
+```
 
 
 **4. Handling an Empty Data Set (`testCalculateColumnTotalForEmptyDataSet`)**  
 **Purpose**: Ensures that an **empty dataset returns zero**, as specified in the Javadoc.  
 **Coverage Improvement**: Covers an important **edge case** where no data is present, ensuring correct handling of **null or empty inputs**.  
 
-**Suggested Snippet Placement:** Show how a mock object with **zero rows** behaves in this scenario.  
+**Code Snippet:**@Test
 
 ```java
 @Test
@@ -146,15 +176,28 @@ public void testCalculateColumnTotalForEmptyDataSet() {
 **5. Single Value Case (`testCalculateColumnTotalForSingleValue`)**  
 **Purpose**: Verifies that when a **single value is present**, it returns that value as the total.  
 **Coverage Improvement**: Ensures correct handling of **minimal input**, covering a **simple yet critical execution path**.  
-**Suggested Snippet Placement:** Show test for **one-row dataset returning the same value**.  
+**Code Snippet:**
+
+```java
+@Test
+public void testCalculateColumnTotalForSingleValue() {
+    Mockery context = new Mockery();
+    Values2D values = context.mock(Values2D.class);
+    context.checking(new Expectations() {{
+        allowing(values).getRowCount(); will(returnValue(1));
+        allowing(values).getValue(0, 0); will(returnValue(7.5));
+    }});
+    assertEquals(7.5, DataUtilities.calculateColumnTotal(values, 0), 0.0001);
+}
+```
 
 
 **Overall Impact on Code Coverage**  
 - **Statement Coverage**: Ensures all major execution paths are exercised.  
-- **Branch Coverage**: Validates correct behavior under different logical conditions (**positive, negative, mixed, empty cases**).  
+- **Branch Coverage**: Validates correct behavior under different logical conditions (positive, negative, mixed, empty cases).  
 - **Method Coverage**: Confirms that method execution includes all relevant input scenarios.  
 
-By systematically testing **different value combinations**, we **eliminated untested paths**, ensuring a **more robust and reliable test suite**. 
+By systematically testing different value combinations, we eliminated untested paths, ensuring a more robust and reliable test suite. 
 
 
 # 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
