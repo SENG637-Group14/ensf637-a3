@@ -280,7 +280,40 @@ By systematically testing different value combinations, we eliminated untested p
 
 # 5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)
 
-Text…
+### **Before Coverage**
+**Branch Coverage** 
+<img src="media/branch-before.png" alt="media/branch-before.png" >
+
+**Complexity Coverage** 
+<img src="media/complexity-before.png" alt="media/complexity-before.png" >
+
+**Instruction Coverage** 
+<img src="media/instruction-before.png" alt="media/instruction-before.png" >
+
+**Line-Counter Coverage** 
+<img src="media/lines-counter-before.png" alt="media/lines-counter-before.png" >
+
+**Method Coverage** 
+<img src="media/methods-before.png" alt="media/methods-before.png" >
+
+
+### **After Coverage** 
+
+**Branch Coverage** 
+<img src="media/branch-after.png" alt="media/branch-after.png" >
+
+**Complexity Coverage** 
+<img src="media/complexity-after.png" alt="media/complexity-after.png" >
+
+**Instruction Coverage** 
+<img src="media/instructions-after.png" alt="media/instruction-after.png" >
+
+**Line-Counter Coverage** 
+<img src="media/lines-counter-after.png" alt="media/lines-counter-after.png" >
+
+**Methods Coverage** 
+<img src="media/methods-after.png" alt="media/methods-after.png" >
+
 
 # 6 Pros and Cons of coverage tools used and Metrics you report
 
@@ -397,3 +430,12 @@ Despite these difficulties, we successfully improved our test coverage and gaine
 
 - The instructions and guidelines for this assignment were clear and well-structured, making it easier to understand and implement the test cases effectively.
 - The lab exercise provided valuable experience in designing and executing structured test cases using white-box testing and coverage analysis.
+
+
+
+
+
+
+
+
+
