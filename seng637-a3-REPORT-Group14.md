@@ -2,21 +2,6 @@
 
 **Lab. Report #3 – Code Coverage, Adequacy Criteria, and Test Case Correlation**
 
-- [1 Introduction](#1-introduction)
-- [2 Manual data-flow coverage calculations for X and Y methods](#2-manual-data-flow-coverage-calculations-for-x-and-y-methods)
-- [3 A detailed description of the testing strategy for the new unit test](#3-a-detailed-description-of-the-testing-strategy-for-the-new-unit-test)
-- [4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage](#4-a-high-level-description-of-five-selected-test-cases-you-have-designed-using-coverage-information-and-how-they-have-increased-code-coverage)
-- [5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)](#5-a-detailed-report-of-the-coverage-achieved-of-each-class-and-method-a-screen-shot-from-the-code-cover-results-in-green-and-red-color-would-suffice)
-- [6 Pros and Cons of coverage tools used and Metrics you report](#6-pros-and-cons-of-coverage-tools-used-and-metrics-you-report)
-- [7 A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation.](#7-a-comparison-on-the-advantages-and-disadvantages-of-requirements-based-test-generation-and-coverage-based-test-generation)
-    - [**Requirements-Based Test Generation**](#requirements-based-test-generation)
-    - [**Coverage-Based Test Generation**](#coverage-based-test-generation)
-- [8 A discussion on how the teamwork/effort was divided and managed](#8-a-discussion-on-how-the-teamworkeffort-was-divided-and-managed)
-  - [Teamwork and Responsibilities](#teamwork-and-responsibilities)
-- [9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab](#9-any-difficulties-encountered-challenges-overcome-and-lessons-learned-from-performing-the-lab)
-- [10 Comments/feedback on the lab itself](#10-commentsfeedback-on-the-lab-itself)
-
-
 | Group \#: 14     |     |
 | -------------- | --- |
 | **Student Names:** |     |
@@ -25,8 +10,20 @@
 | Remi Oyediji   |     |
 | Taiwo Oyewole  |     |
 
-(Note that some labs require individual reports while others require one report
-for each group. Please see each lab document for details.)
+
+- [1 Introduction](#1-introduction)
+- [2 Manual data-flow coverage calculations for X and Y methods](#2-manual-data-flow-coverage-calculations-for-x-and-y-methods)
+- [3 A detailed description of the testing strategy for the new unit test](#3-a-detailed-description-of-the-testing-strategy-for-the-new-unit-test)
+- [4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage](#4-a-high-level-description-of-five-selected-test-cases-you-have-designed-using-coverage-information-and-how-they-have-increased-code-coverage)
+- [5 A detailed report of the coverage achieved of each class and method (a screen shot from the code cover results in green and red color would suffice)](#5-a-detailed-report-of-the-coverage-achieved-of-each-class-and-method-a-screen-shot-from-the-code-cover-results-in-green-and-red-color-would-suffice)
+- [6 Pros and Cons of coverage tools used and Metrics you report](#6-pros-and-cons-of-coverage-tools-used-and-metrics-you-report)
+- [7 A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation.](#7-a-comparison-on-the-advantages-and-disadvantages-of-requirements-based-test-generation-and-coverage-based-test-generation)
+    - [Requirements-Based Test Generation](#requirements-based-test-generation)
+    - [Coverage-Based Test Generation](#coverage-based-test-generation)
+- [8 A discussion on how the teamwork/effort was divided and managed](#8-a-discussion-on-how-the-teamworkeffort-was-divided-and-managed)
+- [9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab](#9-any-difficulties-encountered-challenges-overcome-and-lessons-learned-from-performing-the-lab)
+- [10 Comments/feedback on the lab itself](#10-commentsfeedback-on-the-lab-itself)
+
 
 # 1 Introduction
 Software testing is an essential part of software development, ensuring that programs function correctly and meet user requirements. One approach to testing is **white-box testing**, which involves analyzing the internal structure and logic of the code to design test cases. This report documents our team's implementation of white-box testing strategies for JFreeChart's **DataUtilities** and **Range** classes.
@@ -41,7 +38,7 @@ Additionally, we manually calculated **data-flow coverage** for selected methods
 
 This assignment highlights how **coverage criteria influence test case design**, helping testers improve test suite effectiveness while balancing practical trade-offs. Through this process, we learned the importance of achieving high coverage without unnecessary redundancy and ensuring meaningful test cases that catch potential software defects.
 
-The test suite can be found in the org.jfree.data.test package of the source directory.
+The test suite can be found in the `org.jfree.data` package of the source directory.
 
 # 2 Manual data-flow coverage calculations for X and Y methods
 
@@ -49,7 +46,37 @@ Text…
 
 # 3 A detailed description of the testing strategy for the new unit test
 
-Text…
+Our objective was to achieve **90% instruction coverage (statement), 70% branch coverage, and 60% method coverage (condition)** for `DataUtilities` and `Range` classes using **EclEmma**.  
+
+**Approach**  
+1. **Analyze Initial Coverage** – Ran Assignment 2 tests with EclEmma to identify untested code.  
+2. **Identify Gaps** – Examined missed statements, branches, and methods.  
+3. **Refine & Expand Tests** – Added test cases focusing on **edge cases, loops, and decision points**.  
+4. **Optimize Coverage** – Iteratively reran tests, adjusted where needed, and ensured we met the **coverage thresholds**.  
+
+**Key Testing Techniques**  
+| **Technique**            | **Application**                                      |
+|--------------------------|------------------------------------------------------|
+| **Equivalence Partitioning** | Grouped inputs into categories to reduce redundancy. |
+| **Boundary Value Analysis** | Focused on edge cases for method boundaries.       |
+| **Mocking**              | Used mock objects for dependency isolation.         |
+
+**Challenges & Adjustments**  
+- **EclEmma Limitations** – Lacked **condition coverage**, so we substituted **method coverage**.  
+- **Coverage Discrepancies** – Different members saw inconsistent coverage results (e.g., **0.0%, 0.4%, 0.7%**) for the same tests, highlighting tool setup inconsistencies.  
+- **Handling Overloaded Methods** – Discovered additional method signatures (e.g., `calculateColumnTotal`) requiring extra test cases.  
+
+By refining our test suite through iterative improvements, we ensured higher code coverage and meaningful validation while balancing practical test design.  
+
+**Test Execution & Environment**
+
+| **Component**            | **Version / Setup**   |
+|-------------------------|----------------------|
+| **JUnit**               | 4                 |
+| **Mocking Library**     | JMock 2.12.0            |
+| **IDE**                 | Eclipse              |
+| **Code Coverage Tool**  | EclEmma (JaCoCo)     |
+| **SUT**                 | JFreeChart           |
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
@@ -143,7 +170,7 @@ By integrating both methods, we maximized test effectiveness while ensuring our 
 
 Every member of the team was actively involved in the entire exercise. The project was executed as follows:
 
-## Teamwork and Responsibilities
+Teamwork and Responsibilities
 
 | **Task**                           | **Responsibility** |
 |-------------------------------------|--------------------|
