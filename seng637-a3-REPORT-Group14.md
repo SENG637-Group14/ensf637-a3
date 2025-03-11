@@ -26,6 +26,8 @@ Additionally, we manually calculated **data-flow coverage** for selected methods
 
 This assignment highlights how **coverage criteria influence test case design**, helping testers improve test suite effectiveness while balancing practical trade-offs. Through this process, we learned the importance of achieving high coverage without unnecessary redundancy and ensuring meaningful test cases that catch potential software defects.
 
+The test suite can be found in the org.jfree.data.test package of the source directory.
+
 # 2 Manual data-flow coverage calculations for X and Y methods
 
 Text…
@@ -52,7 +54,21 @@ Text…
 
 # 8 A discussion on how the team work/effort was divided and managed
 
-Text…
+Every member of the team was actively involved in the entire exercise. The project was executed as follows:
+
+## Teamwork and Responsibilities
+
+| **Task**                           | **Responsibility** |
+|-------------------------------------|--------------------|
+| **Requirement Analysis**           | All team members reviewed the Javadoc API specifications for the Range and DataUtilities classes, focusing on white-box testing requirements. |
+| **Test-Case Design**               | Each member designed test cases for a subset of methods, aiming to improve statement, branch, and condition coverage. |
+| **Test Code Implementation**       | Each member implemented the test cases they designed, ensuring they meet the required coverage criteria using JUnit. |
+| **Test Execution & Coverage Analysis** | All team members participated in running the test suite, measuring code coverage using EclEmma, analyzing results, and refining test cases to maximize coverage. |
+| **Code Review & Test Consolidation** | The team came together to review each other's test cases and coverage reports, identifying redundant or ineffective tests. We then consolidated the most effective tests into a final suite that best met the required coverage criteria for our report. |
+
+The report was collaboratively written, with each member contributing to different sections. |
+
+**Communication & Collaboration**: Regular meetings (both in-person and virtual) and a shared online document were used to facilitate communication. This ensured that all team members were aware of progress and challenges encountered.
 
 # 9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab
 
