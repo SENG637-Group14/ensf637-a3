@@ -46,7 +46,43 @@ Text…
 
 # 3 A detailed description of the testing strategy for the new unit test
 
-Text…
+Here’s a **concise and refined version** of your test unit strategy, keeping only the most important parts:  
+
+---
+
+## **Testing Strategy for the New Unit Tests**  
+
+Our objective was to achieve **90% instruction coverage (statement), 70% branch coverage, and 60% method coverage (condition)** for `DataUtilities` and `Range` classes using **EclEmma**.  
+
+**Approach**  
+1. **Analyze Initial Coverage** – Ran Assignment 2 tests with EclEmma to identify untested code.  
+2. **Identify Gaps** – Examined missed statements, branches, and methods.  
+3. **Refine & Expand Tests** – Added test cases focusing on **edge cases, loops, and decision points**.  
+4. **Optimize Coverage** – Iteratively reran tests, adjusted where needed, and ensured we met the **coverage thresholds**.  
+
+**Key Testing Techniques**  
+| **Technique**            | **Application**                                      |
+|--------------------------|------------------------------------------------------|
+| **Equivalence Partitioning** | Grouped inputs into categories to reduce redundancy. |
+| **Boundary Value Analysis** | Focused on edge cases for method boundaries.       |
+| **Mocking**              | Used mock objects for dependency isolation.         |
+
+**Challenges & Adjustments**  
+- **EclEmma Limitations** – Lacked **condition coverage**, so we substituted **method coverage**.  
+- **Coverage Discrepancies** – Different members saw inconsistent coverage results (e.g., **0.0%, 0.4%, 0.7%**) for the same tests, highlighting tool setup inconsistencies.  
+- **Handling Overloaded Methods** – Discovered additional method signatures (e.g., `calculateColumnTotal`) requiring extra test cases.  
+
+By refining our test suite through iterative improvements, we ensured higher code coverage and meaningful validation while balancing practical test design.  
+
+**Test Execution & Environment**
+
+| **Component**            | **Version / Setup**   |
+|-------------------------|----------------------|
+| **JUnit**               | 4                 |
+| **Mocking Library**     | JMock 2.12.0            |
+| **IDE**                 | Eclipse              |
+| **Code Coverage Tool**  | EclEmma (JaCoCo)     |
+| **SUT**                 | JFreeChart           |
 
 # 4 A high level description of five selected test cases you have designed using coverage information, and how they have increased code coverage
 
