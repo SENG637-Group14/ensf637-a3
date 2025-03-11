@@ -46,7 +46,35 @@ Text…
 
 # 6 Pros and Cons of coverage tools used and Metrics you report
 
-Text…
+For our project, we used  JaCoCo in Eclipse (it comes integrated with EclEmma). Due to its seamless integration with Eclipse, making it convenient to use without requiring additional installations. Since all team members were already familiar with Eclipse, adopting EclEmma ensured a short learning curve and a streamlined workflow. The tool provided essential coverage metrics, including **method, line, and branch coverage**, aligning with key concepts discussed in class.
+
+However, **EclEmma does have limitations**. It does not natively support **condition coverage**, which is a critical metric for evaluating how boolean expressions within decision statements are tested. Additionally, **statement coverage** was not explicitly provided, so we adapted by using **line coverage** as a proxy. While line coverage gives insight into how much of the code is executed, it does not offer the same level of granularity as statement coverage, especially in languages where multiple statements can exist on a single line.  
+
+**Comparison of Coverage Metrics and Adjustments**  
+To align our results with the required metrics, we made the following adjustments:  
+
+| **Required Metric**  | **EclEmma Alternative Used** | **Description** |  
+|----------------------|----------------------------|-----------------|  
+| **Statement Coverage** | **Line Coverage** | Measures the percentage of lines executed during testing. While similar to statement coverage, it may be less precise in cases where multiple statements exist on one line. |  
+| **Branch Coverage** | **Branch Coverage (Used as-is)** | Ensures that each possible decision outcome (e.g., both true and false branches of an if-statement) is executed at least once. |  
+| **Condition Coverage** | **Instruction Coverage** | Since condition coverage evaluates individual boolean expressions, we approximated it using instruction coverage, which measures whether each instruction in the bytecode was executed. |  
+
+**Pros and Cons of EclEmma/JaCoCo**  
+
+**Advantages**  
+- **Ease of Use:** Fully integrated with Eclipse, requiring no additional setup.  
+- **Immediate Feedback:** Displays coverage results in real time, allowing rapid iterations of test refinement.  
+- **Visual Representation:** Highlights covered and uncovered lines directly in the code editor, making it easier to identify gaps.  
+- **Supports Key Metrics:** Provides line, branch, and method coverage, which helped in evaluating the effectiveness of our test suite.  
+- **Lightweight and Fast:** Runs efficiently within the Eclipse environment without significant performance overhead.  
+
+**Limitations**  
+- **No Condition Coverage:** Lacks native support for evaluating individual boolean sub-expressions, requiring alternative metrics.  
+- **Lack of Customization:** The tool does not offer options to generate custom reports based on specific coverage needs.  
+- **Limited Outside Eclipse:** Since it is designed primarily for Eclipse, it does not integrate as well with other IDEs or testing environments.  
+
+**Conclusion**  
+Despite its limitations, EclEmma proved to be the most practical choice for our testing needs. The ease of use and real-time feedback outweighed the drawbacks, allowing our team to efficiently assess and refine our test cases. To compensate for the missing condition coverage, we used instruction coverage as a substitute and ensured our test cases were robust enough to cover a wide range of logical conditions. Ultimately, our approach balanced practicality and accuracy, enabling us to achieve the required code coverage goals.  
 
 # 7 A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation.
 
