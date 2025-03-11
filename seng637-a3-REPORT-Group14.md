@@ -2,7 +2,7 @@
 
 **Lab. Report #3 – Code Coverage, Adequacy Criteria, and Test Case Correlation**
 
-| Group \#: 14     |     |
+| Group #: 14     |     |
 | -------------- | --- |
 | **Student Names:** |     |
 | Ayodele Oluwabusola |     |
@@ -42,10 +42,66 @@ The test suite can be found in the `org.jfree.data` package of the source direct
 
 # 2 Manual data-flow coverage calculations for X and Y methods
 
-**Dataflow graph for DataUtilities**
+**Figure 1 below shows the data flow graph for the calculateColumnTotal function from the DataUtilities class:**
 
 <img src="media/Dataflow graph for DataUtilities.png" alt="media/Dataflow graph for DataUtilities.png" >
 
+| `Definition` | `Variables`        |
+|--------------|--------------------|
+| `def(1)`     | `{data, column}`  |
+| `def(3)`     | `{total}`         |
+| `def(4)`     | `{rowCount}`      |
+| `def(5)`     | `{r}`             |
+| `def(7)`     | `{n}`             |
+| `def(9)`     | `total`           |
+| `def(10)`    | `{r}`             |
+| `def(11)`    | `{r2}`            |
+| `def(13)`    | `{n}`             |
+| `def(15)`    | `{total}`         |
+| `def(16)`    | `{r2}`            |
+**Table 1 showing definition node for calculateColumnTotal function from DataUtilities class**
+
+| `Usage`  | `Variables`              |
+|-----------|----------------------------|
+| `use(2)`  | `{data}`                |
+| `use(4)`  | `{data}`                |
+| `use(6)`  | `{r, rowCount}`         |
+| `use(7)`  | `{data, column, r}`     |
+| `use(8)`  | `{n}`                   |
+| `use(9)`  | `{total, n}`            |
+| `use(10)` | `{r}`                   |
+| `use(12)` | `{r2, rowCount}`        |
+| `use(13)` | `{data, r2, column}`    |
+| `use(14)` | `{n}`                   |
+| `use(15)` | `{total, n}`            |
+| `use(16)` | `{r2}`                  |
+| `use(17)` | `{total}`               |
+**Table 2 showing usage node for calculateColumnTotal function from DataUtilities class**
+
+| Variable   | DU-Pairs                                                                    |
+|----------- |---------------------------------------------------------------------------- |
+| data       | (1,2), (1,4), (1,7), (1,13)                                                 |
+| column     | (1,7), (1,13)                                                               |
+| total      | (3,9), (3,15), (3,17), (9,9), (9,15), (9,17), (15,15), (15,17)               |
+| rowCount   | (4,6), (4,12)                                                               |
+| r          | (5,6), (5,7), (5,10), (10,6)                                                |
+| r2         | (11,12), (11,13), (11,16), (16,12)                                          |
+| n          | (7,8), (7,9), (13,14), (13,15)                                              |
+**Table 3 showing DU-Pairs for calculateColumnTotal function from DataUtilities class**
+
+
+| `Variable` | `Defined at node` | `dcu(v,n)`         | `dpu(v,n)`                               |
+|-------------|---------------------|----------------------|--------------------------------------------|
+| `data`     | `1`               | `{4,7,13}`          | `{(2,End),(2,3)}`                        |
+| `column`   | `1`               | `{7,13}`            | `{}`                                      |
+| `total`    | `3`               | `{9,15,17}`         | `{}`                                      |
+| `total`    | `9`               | `{9,15,17}`         | `{}`                                      |
+| `total`    | `15`              | `{15,17}`           | `{}`                                      |
+| `rowCount` | `4`               | `{}`                | `{(6,7),(6,11),(12,13),(12,17)}`          |
+| `n`        | `7`               | `{9,15}`            | `{(8,10),(8,9)}`                          |
+| `n`        | `13`              | `{9,15}`            | `{(14,16),(14,15)}`                       |
+
+**Table 4 showing dcu and dpu for calculateColumnTotal function from DataUtilities class**
 
 **Dataflow graph for Range.png**
 <img src="media/Dataflow graph for Range.png" alt="media/Dataflow graph for Range.png" >
