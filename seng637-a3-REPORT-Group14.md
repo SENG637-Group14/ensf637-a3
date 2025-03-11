@@ -73,14 +73,58 @@ To align our results with the required metrics, we made the following adjustment
 - **Lack of Customization:** The tool does not offer options to generate custom reports based on specific coverage needs.  
 - **Limited Outside Eclipse:** Since it is designed primarily for Eclipse, it does not integrate as well with other IDEs or testing environments.  
 
-**Conclusion**  
-Despite its limitations, EclEmma proved to be the most practical choice for our testing needs. The ease of use and real-time feedback outweighed the drawbacks, allowing our team to efficiently assess and refine our test cases. To compensate for the missing condition coverage, we used instruction coverage as a substitute and ensured our test cases were robust enough to cover a wide range of logical conditions. Ultimately, our approach balanced practicality and accuracy, enabling us to achieve the required code coverage goals.  
+In conclusion, despite its limitations, EclEmma proved to be the most practical choice for our testing needs. The ease of use and real-time feedback outweighed the drawbacks, allowing our team to efficiently assess and refine our test cases. To compensate for the missing condition coverage, we used instruction coverage as a substitute and ensured our test cases were robust enough to cover a wide range of logical conditions. Ultimately, our approach balanced practicality and accuracy, enabling us to achieve the required code coverage goals.  
 
 # 7 A comparison on the advantages and disadvantages of requirements-based test generation and coverage-based test generation.
 
-Text…
+In this assignment, our team carefully considered the benefits and trade-offs of requirements-based test generation and coverage-based test generation to ensure a well-rounded testing strategy. After discussions, we decided that neither approach alone would be sufficient, so we aimed to combine their strengths for effective and practical test design. Each has distinct advantages and limitations that influence test design and effectiveness.  
 
-# 8 A discussion on how the team work/effort was divided and managed
+### **Requirements-Based Test Generation**  
+This method derives test cases from **functional and non-functional requirements**, ensuring that the software meets stakeholder expectations. It primarily follows **black-box testing principles**, meaning tests are created based on specifications rather than code structure.  
+
+**Advantages**  
+- **Ensures functional correctness** – Verifies that the system meets user needs and expected behaviors.  
+- **Early defect detection** – Identifies issues early in development, reducing later debugging costs.  
+- **Unbiased testing** – Since testers do not see the code, test cases are purely based on system requirements.  
+- **Direct traceability** – Links test cases to requirements, ensuring all specified functionalities are covered.  
+
+**Disadvantages**  
+- **Potential coverage gaps** – If a requirement is unclear or missing, important code paths may go untested.  
+- **Limited edge-case detection** – May overlook unintended behaviors that are not explicitly defined in the requirements.  
+- **Human error** – Test quality depends on how well testers interpret and implement the requirements.  
+
+---
+
+### **Coverage-Based Test Generation**  
+This method emphasizes the **extent to which the test suite exercises the code**, often using white-box testing techniques. Tests are designed to maximize code execution, measured through metrics like **statement, branch, and condition coverage**.  
+
+**Advantages**  
+- **Identifies untested code** – Helps detect unexecuted portions of the program, reducing hidden defects.  
+- **Quantifiable test adequacy** – Provides measurable metrics (e.g., branch coverage percentage) to assess test suite completeness.  
+- **Automation-friendly** – Coverage-based testing can be integrated into continuous testing pipelines for efficiency.  
+- **Useful when requirements are unclear** – Provides a baseline level of testing when formal specifications are lacking.  
+
+**Disadvantages**  
+- **Does not guarantee correctness** – High coverage does not mean the software functions correctly; only that it has been executed.  
+- **Can be resource-intensive** – Achieving high coverage may require excessive effort, leading to diminishing returns.  
+- **Potential focus on irrelevant paths** – Some covered code paths may be unimportant, leading to inefficient testing.  
+
+---
+
+**Balancing Both Approaches**  
+The best strategy combines **requirements-based testing** to validate system functionality with **coverage-based testing** to identify untested areas. By integrating both methods, we achieved a high coverage while ensuring that key functionalities meet user expectations.  
+
+As a team, we agreed that neither method alone would be enough to ensure a strong test suite. Instead, we:
+
+- Started with requirements-based testing to ensure core functionalities were properly validated.
+
+- Used coverage analysis to identify untested areas and refine our test cases.
+
+- Balanced practicality and thoroughness by prioritizing meaningful tests over just hitting high coverage numbers.
+
+By integrating both methods, we maximized test effectiveness while ensuring our testing approach remained practical, structured, and aligned with real-world software testing best practices. This hybrid approach leads to **higher software quality, improved test reliability, and a more comprehensive testing strategy**.
+
+# 8 A discussion on how the teamwork/effort was divided and managed
 
 Every member of the team was actively involved in the entire exercise. The project was executed as follows:
 
@@ -96,11 +140,22 @@ Every member of the team was actively involved in the entire exercise. The proje
 
 The report was collaboratively written, with each member contributing to different sections. |
 
-**Communication & Collaboration**: Regular meetings (both in-person and virtual) and a shared online document were used to facilitate communication. This ensured that all team members were aware of progress and challenges encountered.
+**Communication & Collaboration**: Regular meetings (both in-person and virtual) and a shared online document were used to facilitate communication. This ensured that all team members were aware of the progress and challenges encountered.
 
 # 9 Any difficulties encountered, challenges overcome, and lessons learned from performing the lab
 
-Text…
+Our team faced a few challenges while completing this Lab, particularly in understanding and achieving the required coverage metrics. Initially, some members had difficulty distinguishing between statement, branch, and condition coverage**, especially since EclEmma did not provide condition coverage by default. To compensate, we substituted instruction coverage as an approximation.  
+
+Another major challenge was **coverage discrepancies in EclEmma**—despite running the same code, different team members saw **0.0%, 0.4%, and 0.7% coverage**. This inconsistency highlighted the importance of **consistent testing environments and tool configurations**. Additionally, our initial test suite did not meet the required coverage thresholds, so we had to refine our test cases to improve adequacy.  
+
+We also explored **Cobertura and CodeCover**, but integration issues and setup difficulties prevented their effective use. Debugging was another obstacle, as some test cases failed unexpectedly due to incorrect assumptions about method behaviors, requiring us to revisit the Javadoc specifications.  
+
+**Lessons Learned:**  
+- **Coverage tools can report inconsistent results** if not properly configured.  
+- **Achieving high coverage requires multiple iterations** and refinements to test cases.  
+- **Tool limitations must be considered early**, as not all metrics are available by default.  
+
+Despite these difficulties, we successfully improved our test coverage and gained a deeper understanding of **coverage-based testing strategies**.
 
 # 10 Comments/feedback on the lab itself
 
