@@ -46,12 +46,6 @@ Text…
 
 # 3 A detailed description of the testing strategy for the new unit test
 
-Here’s a **concise and refined version** of your test unit strategy, keeping only the most important parts:  
-
----
-
-## **Testing Strategy for the New Unit Tests**  
-
 Our objective was to achieve **90% instruction coverage (statement), 70% branch coverage, and 60% method coverage (condition)** for `DataUtilities` and `Range` classes using **EclEmma**.  
 
 **Approach**  
