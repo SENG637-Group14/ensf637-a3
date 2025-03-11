@@ -152,7 +152,8 @@ To improve **statement, branch, and method coverage** for `calculateColumnTotal`
 **Purpose**: Calculate column total with negative values.
 **Coverage Improvement: Exercises paths where all values are negative, ensuring branch conditions for addition logic are covered.
 
-**Code Snippet: Showing how Values2D is mocked to return negative values.  
+**Code Snippet:**
+
 ```java
 @Test
 public void testCalculateColumnTotalForNegativeValues() {
@@ -173,8 +174,8 @@ public void testCalculateColumnTotalForNegativeValues() {
 ```
 
 **2. Summing Positive Values** (`testCalculateColumnTotalForPositiveValues`) 
-**Purpose**: Calculate column total with positive values.  
-**Coverage Improvement**: Exercises paths where all values are positive, ensuring branch conditions for addition logic are covered.
+**Purpose**: Verifies that the method returns the correct sum when all values are positive.  
+**Coverage Improvement**: Covers basic statement execution and verifies correct handling of positive-only data.  
 
 **Code Snippet:**
 
