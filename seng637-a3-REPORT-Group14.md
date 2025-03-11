@@ -155,9 +155,9 @@ public void testCalculateColumnTotalForMixedValues() {
 ```
 
 
-**4. Handling an Empty Data Set (`testCalculateColumnTotalForEmptyDataSet`)**  
-**Purpose**: Ensures that an **empty dataset returns zero**, as specified in the Javadoc.  
-**Coverage Improvement**: Covers an important **edge case** where no data is present, ensuring correct handling of **null or empty inputs**.  
+**4. Handling an Empty Data Set** (`testCalculateColumnTotalForEmptyDataSet`)  
+**Purpose**: Ensures that an empty dataset returns zero, as specified in the Javadoc.  
+**Coverage Improvement**: Covers an important edge case where no data is present, ensuring correct handling of null or empty inputs.  
 
 **Code Snippet:**@Test
 
@@ -173,9 +173,9 @@ public void testCalculateColumnTotalForEmptyDataSet() {
 }
 ```
 
-**5. Single Value Case (`testCalculateColumnTotalForSingleValue`)**  
-**Purpose**: Verifies that when a **single value is present**, it returns that value as the total.  
-**Coverage Improvement**: Ensures correct handling of **minimal input**, covering a **simple yet critical execution path**.  
+**5. Single Value Case** (`testCalculateColumnTotalForSingleValue`)
+**Purpose**: Verifies that when a single value is present, it returns that value as the total.  
+**Coverage Improvement**: Ensures correct handling of minimal input, covering a simple yet critical execution path.  
 **Code Snippet:**
 
 ```java
