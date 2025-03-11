@@ -151,10 +151,10 @@ To improve **statement, branch, and method coverage** for `calculateColumnTotal`
 **1. Summing Negative Values** (`testCalculateColumnTotalForNegativeValues`) 
 
 **Purpose**: Calculate column total with negative values.
+**Coverage Improvement: Exercises paths where all values are negative, ensuring branch conditions for addition logic are covered.
 
-**Coverage Improvement:** Exercises paths where all values are negative, ensuring branch conditions for addition logic are covered.
+**Code Snippet:**
 
-**Code Snippet: Showing how Values2D is mocked to return negative values.  
 ```java
 @Test
 public void testCalculateColumnTotalForNegativeValues() {
@@ -175,10 +175,8 @@ public void testCalculateColumnTotalForNegativeValues() {
 ```
 
 **2. Summing Positive Values** (`testCalculateColumnTotalForPositiveValues`) 
-
-**Purpose**: Calculate column total with positive values.
-
-**Coverage Improvement**: Exercises paths where all values are positive, ensuring branch conditions for addition logic are covered.
+**Purpose**: Verifies that the method returns the correct sum when all values are positive.  
+**Coverage Improvement**: Covers basic statement execution and verifies correct handling of positive-only data.  
 
 **Code Snippet:**
 
@@ -202,9 +200,7 @@ public void testCalculateColumnTotalForPositiveValues() {
 ```
 
 **3. Summing Mixed Values** (`testCalculateColumnTotalForMixedValues`) 
-
 **Purpose**: Calculate column total with mixed positive and negative values
-
 **Coverage Improvement**:  Exercises paths where values in the column include both positive and negative numbers, ensuring branch conditions for addition logic are covered.
 
 **Code Snippet:**
@@ -229,10 +225,8 @@ public void testCalculateColumnTotalForMixedValues() {
 ```
 
 
-**4. Handling an Empty Data Set** (`testCalculateColumnTotalForEmptyDataSet`)
-
+**4. Handling an Empty Data Set (`testCalculateColumnTotalForEmptyDataSet`)**  
 **Purpose**: Calculate column total with an empty data set.
-
 **Coverage Improvement**: Ensures that the method correctly handles the case where the data set is empty, returning a total of zero as specified in the Javadoc.
 
 **Code Snippet:**
@@ -254,12 +248,9 @@ public void testCalculateColumnTotalForEmptyDataSet() {
 }
 ```
 
-**5. Single Value Case** (`testCalculateColumnTotalForSingleValue`) 
-
+**5. Single Value Case (`testCalculateColumnTotalForSingleValue`)**  
 **Purpose**: Calculate column total with a single value.
-
 **Coverage Improvement**: Exercises paths where the column contains only one value, ensuring the method correctly handles minimal input cases.
-
 **Code Snippet:**
 
 ```java
